@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeaderLogo from '../../assets/HeaderLogo.png';
-import Wrap from '../Wrap';
+import Wrap from './Wrap';
 
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
