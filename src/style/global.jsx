@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
         line-height: 1.4;
         background-color: ${({ theme }) => theme.bgsubColor};
         transition: all 0.2s;
+        color: ${({ theme }) => theme.textColor};
         font-family: 'Noto Sans KR', sans-serif;
     }
 

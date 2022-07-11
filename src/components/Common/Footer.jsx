@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Wrap from '../Wrap';
+import Wrap from './Wrap';
 
 const FooterStyle = styled.footer`
 	display: flex;
