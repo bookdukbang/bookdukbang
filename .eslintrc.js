@@ -25,5 +25,6 @@ module.exports = {
 		'require-await': 'error',
 		// ==, != 대신에 ===, !== 사용
 		eqeqeq: 'error',
+		'react/prop-types': 'off',
 	},
 };

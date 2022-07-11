@@ -1,5 +1,7 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import SearchPage from './pages/SearchPage';
 
 // const Wrapper = styled.div`
 // 	height: 100%;
@@ -8,7 +10,14 @@ import LoginPage from './pages/LoginPage';
 // `;
 
 function App() {
-	return <LoginPage />;
+	return (
+		<>
+			<Routes>
+				<Route path="/login" exact element={<LoginPage />} />
+				<Route path="/search" exact element={<SearchPage />} />
+			</Routes>
+		</>
+	);
 }
 
 export default App;
