@@ -43,9 +43,13 @@ function SearchHeder({ setSearchList }) {
 		setKeyword(event.target.value);
 	};
 
+	const onSubmitForm = (event) => {
+		event.preventDefault();
+	};
+
 	return (
 		<SedarchHeaderStyle>
-			<SearchForm action="" onSubmit={searchAPI}>
+			<SearchForm action="" onSubmit={onSubmitForm}>
 				<label htmlFor="userSearch">유저 계정 검색</label>
 				<SearchInput
 					type="text"
