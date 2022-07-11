@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import searchIcon from '../../assets/icon-search.png';
 
-const SedarchHeaderStyle = styled.header`
+const SearchHeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 1.6rem 0;
 
@@ -46,4 +46,4 @@ const SearchInput = styled.input`
 	}
 `;
 
-export { SedarchHeaderStyle, SearchInput, SearchForm };
+export { SearchHeaderStyle, SearchInput, SearchForm };

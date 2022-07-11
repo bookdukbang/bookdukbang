@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL, USER_TOKEN } from '../constants';
 import {
-	SedarchHeaderStyle,
+	SearchHeaderStyle,
 	SearchInput,
 	SearchForm,
-} from './Searchheder.style';
+} from './SearchHeader.style';
 
-function SearchHeder({ setSearchList }) {
+function SearchHeader({ setSearchList }) {
 	const [keyword, setKeyword] = useState('');
 
 	async function searchAPI() {
@@ -48,7 +48,7 @@ function SearchHeder({ setSearchList }) {
 	};
 
 	return (
-		<SedarchHeaderStyle>
+		<SearchHeaderStyle>
 			<SearchForm action="" onSubmit={onSubmitForm}>
 				<label htmlFor="userSearch">유저 계정 검색</label>
 				<SearchInput
@@ -60,7 +60,7 @@ function SearchHeder({ setSearchList }) {
 					value={keyword}
 				/>
 			</SearchForm>
-		</SedarchHeaderStyle>
+		</SearchHeaderStyle>
 	);
 }
-export default SearchHeder;
+export default SearchHeader;
