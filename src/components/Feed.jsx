@@ -7,7 +7,7 @@ import {
 	Profilestyle,
 } from './ProfileName.style';
 import Profile from '../assets/profile.png';
-import MoreBtn from '../assets/moreBtn.png';
+import MoreBtns from '../assets/moreBtn.png';
 import Heart from '../assets/heart.png';
 import Comment from '../assets/comment.png';
 
@@ -19,6 +19,7 @@ const FeedWrap = styled.div`
 	box-sizing: border-box;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	border-radius: 1rem;
+	position: relative;
 `;
 
 const ProfileDiv = styled.div`
@@ -45,10 +46,6 @@ const HeartImg = styled.img`
 
 const CommentImg = styled.img`
 	width: 1.5rem;
-`;
-
-const ImgDiv = styled.div`
-	margin-left: auto;
 `;
 
 const FeedText = styled.p`
@@ -94,6 +91,14 @@ const Date = styled.p`
 	color: ${({ theme }) => theme.grayColor2};
 `;
 
+const MoreBtn = styled.button`
+	width: 3rem;
+	position: absolute;
+	right: 2rem;
+	border: none;
+	background-color: transparent;
+`;
+
 function Feed() {
 	return (
 		<FeedWrap>
@@ -104,10 +109,6 @@ function Feed() {
 					<ProfileName>애월읍 위니브 감귤농장</ProfileName>
 					<BigProfileEmail>@ weniv_Mandarin </BigProfileEmail>
 				</Profilestyle>
-
-				<ImgDiv>
-					<MoreBtnImg src={MoreBtn} />
-				</ImgDiv>
 			</ProfileDiv>
 			<FeedText>
 				옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
@@ -127,6 +128,10 @@ function Feed() {
 				</CommentInfo>
 				<Date>2020년 10월 21일</Date>
 			</CommentDiv>
+
+			<MoreBtn>
+				<MoreBtnImg src={MoreBtns} />
+			</MoreBtn>
 		</FeedWrap>
 	);
 }

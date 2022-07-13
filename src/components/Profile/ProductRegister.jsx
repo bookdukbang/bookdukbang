@@ -34,15 +34,13 @@ const BookInfo = styled.div`
 	position: absolute;
 	bottom: 2.1rem;
 	left: 2.1rem;
-	display: flex;
-	align-items: flex-start;
-	flex-direction: column;
 `;
 
 const BookTitle = styled.p`
 	font-weight: 400;
 	font-size: 1.6rem;
 	color: ${({ theme }) => theme.grayColor5};
+	text-align: left;
 `;
 
 const BookCost = styled.p`

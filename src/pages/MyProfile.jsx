@@ -13,7 +13,7 @@ const ProfileWrap = styled(Wrap)`
 	margin-top: 3rem;
 `;
 const DivArray = styled.div`
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
 `;
 
