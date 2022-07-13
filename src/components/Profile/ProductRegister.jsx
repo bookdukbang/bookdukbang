@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import Book from '../../assets/BookListImg.png';
 import PlusBtn from '../../assets/plus_btn.png';
 
-const BookDiv = styled.div`
-	display: flex;
-	float: left;
-`;
-
 const BookContainer = styled.div`
 	display: grid;
 	grid-template-columns: 31.5rem 31.5rem;
@@ -51,8 +46,8 @@ const BookTitle = styled.p`
 `;
 
 const BookCost = styled.p`
-	font-weight: 400;
-	font-size: 1.6rem;
+	font-weight: 700;
+	font-size: 1.4rem;
 	color: ${({ theme }) => theme.mainColor};
 `;
 
@@ -86,43 +81,41 @@ const RegisterTitle = styled.p`
 function ProductRegister() {
 	return (
 		<>
-			<BookDiv>
-				<BookContainer>
-					<BookList>
-						<BookBtn>
-							<BookImg src={Book} />
-							<BookInfo>
-								<BookTitle>책제목</BookTitle>
-								<BookCost>99,000원</BookCost>
-							</BookInfo>
-						</BookBtn>
-					</BookList>
-					<BookList>
-						<BookBtn>
-							<BookImg src={Book} />
-							<BookInfo>
-								<BookTitle>책제목</BookTitle>
-								<BookCost>99,000원</BookCost>
-							</BookInfo>
-						</BookBtn>
-					</BookList>
-					<BookList>
-						<BookBtn>
-							<BookImg src={Book} />
-							<BookInfo>
-								<BookTitle>책제목</BookTitle>
-								<BookCost>99,000원</BookCost>
-							</BookInfo>
-						</BookBtn>
-					</BookList>
-					<BookRegister>
-						<RegisterBtn>
-							<PlusBtnImg src={PlusBtn} />
-						</RegisterBtn>
-						<RegisterTitle>상품등록</RegisterTitle>
-					</BookRegister>
-				</BookContainer>
-			</BookDiv>
+			<BookContainer>
+				<BookList>
+					<BookBtn>
+						<BookImg src={Book} />
+						<BookInfo>
+							<BookTitle>책제목</BookTitle>
+							<BookCost>99,000원</BookCost>
+						</BookInfo>
+					</BookBtn>
+				</BookList>
+				<BookList>
+					<BookBtn>
+						<BookImg src={Book} />
+						<BookInfo>
+							<BookTitle>책제목</BookTitle>
+							<BookCost>99,000원</BookCost>
+						</BookInfo>
+					</BookBtn>
+				</BookList>
+				<BookList>
+					<BookBtn>
+						<BookImg src={Book} />
+						<BookInfo>
+							<BookTitle>책제목</BookTitle>
+							<BookCost>99,000원</BookCost>
+						</BookInfo>
+					</BookBtn>
+				</BookList>
+				<BookRegister>
+					<RegisterBtn>
+						<PlusBtnImg src={PlusBtn} />
+					</RegisterBtn>
+					<RegisterTitle>상품등록</RegisterTitle>
+				</BookRegister>
+			</BookContainer>
 		</>
 	);
 }

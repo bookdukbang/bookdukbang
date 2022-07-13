@@ -51,7 +51,7 @@ const ImgDiv = styled.div`
 	margin-left: auto;
 `;
 
-const FeedText = styled.span`
+const FeedText = styled.p`
 	color: ${({ theme }) => theme.textColor};
 	font-weight: 400;
 	font-size: 2rem;
@@ -94,7 +94,7 @@ const Date = styled.p`
 	color: ${({ theme }) => theme.grayColor2};
 `;
 
-function ProductRegister() {
+function Feed() {
 	return (
 		<FeedWrap>
 			<ProfileDiv>
@@ -131,4 +131,4 @@ function ProductRegister() {
 	);
 }
 
-export default ProductRegister;
+export default Feed;

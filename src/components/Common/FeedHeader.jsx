@@ -4,32 +4,31 @@ import HeaderLogo from '../../assets/HeaderLogo.png';
 import Profile from '../../assets/profile.png';
 import PostingIcon from '../../assets/PostingIcon.png';
 import LogoutIcon from '../../assets/LogoutIcon.png';
+import Wrap from './Wrap';
 
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 2.7rem 0;
 `;
 
-const Wrap = styled.div`
-	max-width: 140rem;
-	padding: 0 2em;
-	margin: 0 auto;
+const FeedHeaderWrap = styled(Wrap)`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 `;
 
-const HeaderUI = styled.ul`
+const HeaderUl = styled.ul`
 	display: flex;
 	align-items: center;
 	gap: 2.5rem;
 `;
 
-const HeaderBtnStyle = styled.button`
+const HeaderBtnLogout = styled.button`
+	background-color: ${({ theme }) => theme.grayColor4};
 	display: flex;
-	border-radius: 5px;
+	border-radius: 0.5rem;
 	width: 12rem;
-	color: white;
+	color: ${({ theme }) => theme.whiteColor};
 	font-weight: 700;
 	font-size: 16px;
 	justify-content: center;
@@ -38,12 +37,8 @@ const HeaderBtnStyle = styled.button`
 	border: none;
 `;
 
-const HeaderBtnPosting = styled(HeaderBtnStyle)`
+const HeaderPosting = styled(HeaderBtnLogout)`
 	background-color: ${({ theme }) => theme.mainColor};
-`;
-
-const HeaderBtnLogout = styled(HeaderBtnStyle)`
-	background-color: ${({ theme }) => theme.grayColor4};
 `;
 
 const LogoImg = styled.img`
@@ -67,35 +62,33 @@ const LogoutImg = styled.img`
 function FeedHeader() {
 	return (
 		<HeaderStyle>
-			<Wrap>
-				<a href="/">
-					<LogoImg src={HeaderLogo} alt="북덕방" />
-				</a>
+			<FeedHeaderWrap>
+				<h1>
+					<a href="/">
+						<LogoImg src={HeaderLogo} alt="북덕방" />
+					</a>
+				</h1>
 
-				<HeaderUI>
+				<HeaderUl>
 					<li>
 						<a href="/">
 							<ProfileImg src={Profile} alt="프로필" />
 						</a>
 					</li>
 					<li>
-						<HeaderBtnPosting>
-							<a href="/">
-								<PostingImg src={PostingIcon} alt="포스팅" />
-								<span>Posting</span>
-							</a>
-						</HeaderBtnPosting>
+						<HeaderPosting as="a" href="/">
+							<PostingImg src={PostingIcon} alt="포스팅" />
+							<span>Posting</span>
+						</HeaderPosting>
 					</li>
 					<li>
 						<HeaderBtnLogout>
-							<a href="/">
-								<LogoutImg src={LogoutIcon} alt="로그아웃" />
-								<span>Logout</span>
-							</a>
+							<LogoutImg src={LogoutIcon} alt="로그아웃" />
+							<span>Logout</span>
 						</HeaderBtnLogout>
 					</li>
-				</HeaderUI>
-			</Wrap>
+				</HeaderUl>
+			</FeedHeaderWrap>
 		</HeaderStyle>
 	);
 }

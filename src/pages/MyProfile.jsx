@@ -12,7 +12,7 @@ const ProfileWrap = styled(Wrap)`
 	gap: 3rem;
 	margin-top: 3rem;
 `;
-const Divone = styled.div`
+const DivArray = styled.div`
 	display: inline-flex;
 	flex-direction: column;
 `;
@@ -22,10 +22,10 @@ function MyProfile() {
 		<>
 			<FeedHeader />
 			<ProfileWrap>
-				<Divone>
+				<DivArray>
 					<ProfileInfo />
 					<ProductRegister />
-				</Divone>
+				</DivArray>
 				<Feed />
 			</ProfileWrap>
 		</>
