@@ -1,23 +1,24 @@
 import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SearchPage from './pages/SearchPage';
+import MyProfile from './pages/MyProfile';
 
-// const Wrapper = styled.div`
-// 	height: 100%;
-// 	width: 100%;
-// 	background-color: #f5f5f5;
-// `;
+
+
 
 function App() {
-	return (
-		<>
-			<Routes>
-				<Route path="/login" exact element={<LoginPage />} />
-				<Route path="/search" exact element={<SearchPage />} />
-			</Routes>
-		</>
-	);
+    return (
+        <>
+            <Routes>
+                <Route path="/login" exact element={<LoginPage />} />
+                <Route path="/search" exact element={<SearchPage />} />
+        <Route path="/myprofile" exact element={<MyProfile />} />
+            </Routes>
+
+        </>
+    );
 }
 
 export default App;
