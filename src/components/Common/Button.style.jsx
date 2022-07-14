@@ -23,9 +23,15 @@ const BigBtn = styled(ButtonStyle)`
 	padding: 1.8rem 0;
 	font-size: 2.4rem;
 	margin-top: 3rem;
-	/* '로그인', '프로필 정보', '회원가입', '프로필 수정', '상품 등록' 페이지의 input에 아무것도 입력되지 않으면 버튼이 흐려집니다.
-	opacity: 0.7;
-	 */
+	font-weight: 700;
+	/* '로그인', '프로필 정보', '회원가입', '프로필 수정', '상품 등록' 페이지의 input에 아무것도 입력되지 않으면 버튼이 흐려집니다. */
+	&.disabled {
+		opacity: 0.7;
+	}
+	@media (max-width: 390px) {
+		padding: 1rem 0;
+		font-size: 2rem;
+	}
 `;
 
 // 2.  '피드-팔로워 없음', '피드-팔로워 있음' 페이지에 사용되는 버튼 사이즈
@@ -72,6 +78,15 @@ const NoInputLittleBtn = styled(ButtonStyle)`
 	border: 1px solid ${({ theme }) => theme.mainColor};
 `;
 
+// 이미지 업로드 버튼
+const ImgUploadBtn = styled.button`
+	width: 7.5rem;
+	height: 7.5rem;
+	border-radius: 50%;
+	border: 0px;
+	background-color: ${({ theme }) => theme.mainColor};
+`;
+
 export {
 	BigBtnDiv,
 	ButtonStyle,
@@ -84,4 +99,5 @@ export {
 	LittleBtn,
 	NoInputLittleBtnDiv,
 	NoInputLittleBtn,
+	ImgUploadBtn,
 };
