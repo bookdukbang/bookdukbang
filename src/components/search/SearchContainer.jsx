@@ -5,7 +5,7 @@ import {
 	SearchLoadingWrap,
 } from './SearchContainer.style';
 import SearchCard from './SearchCard';
-import Wrap from '../Common/Wrap';
+import Wrap from '../common/Wrap';
 
 function SearchLoading() {
 	return (

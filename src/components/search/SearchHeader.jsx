@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SERVER_URL, USER_TOKEN } from '../constants';
+import { SERVER_URL, USER_TOKEN } from '../../constants/index';
 import {
 	SearchHeaderStyle,
 	SearchInput,
