@@ -5,7 +5,7 @@ import {
 	InputStyle,
 	ErrorText,
 } from '../Common/Input.style';
-import FormWrap from '../FormWrap.style';
+import FormWrap from '../Common/FormWrap.style';
 import { BigBtnDiv, BigBtn } from '../Common/Button.style';
 
 function LoginForm() {
@@ -63,10 +63,6 @@ function LoginForm() {
 	// 로그인 버튼 눌렀을 때
 	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
-
-		console.log(id);
-		console.log(pw);
-
 		try {
 			// 로그인 API 통신 (id, pw 서버에 보내기)
 			const response = await fetch(url + '/user/login', {
@@ -78,10 +74,6 @@ function LoginForm() {
 			});
 			const result = await response.json();
 			console.log(result);
-			console.log(result.status);
-			console.log(isDisabled);
-			console.log(localStorage);
-			console.log(result.message);
 
 			// 로그인 성공
 			if (result.status !== 422) {
@@ -112,7 +104,7 @@ function LoginForm() {
 
 	return (
 		<>
-			<FormWrap>
+			<FormWrap onSubmit={handleLoginSubmit}>
 				<InputDiv>
 					<LabelStyle htmlFor="id" className="hide">
 						아이디
@@ -123,6 +115,8 @@ function LoginForm() {
 						placeholder="아이디를 입력하세요."
 						onChange={handleIdInput}
 						className={`${!isEmail || isWrong ? 'error' : ''}`}
+						value={id}
+						required
 					/>
 				</InputDiv>
 				<InputDiv>
@@ -135,6 +129,8 @@ function LoginForm() {
 						placeholder="비밀번호를 입력하세요."
 						onChange={handlePasswordInput}
 						className={`${isWrong ? 'error' : ''}`}
+						value={pw}
+						required
 					/>
 					<ErrorText>{msg}</ErrorText>
 				</InputDiv>
@@ -143,7 +139,6 @@ function LoginForm() {
 						disabled={isDisabled}
 						className={`${isDisabled ? 'disabled' : ''}`}
 						type="submit"
-						onClick={handleLoginSubmit}
 					>
 						로그인
 					</BigBtn>
