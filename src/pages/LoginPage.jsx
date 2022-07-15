@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from '../components/Common/Header';
-import MainTitle from '../components/Common/MainTitle';
-import Footer from '../components/Common/Footer';
+import Header from '../components/common/Header';
+import MainTitle from '../components/common/MainTitle';
+import Footer from '../components/common/Footer';
 import styled from 'styled-components';
 import bookLogo from '../assets/bookLogo.png';
-import LoginForm from '../components/Login/LoginForm';
+import LoginForm from '../components/login/LoginForm';
 import { Link } from 'react-router-dom';
-import Wrap from '../components/Common/Wrap';
+import Wrap from '../components/common/Wrap';
 
 const ImgWrap = styled.div`
 	display: flex;

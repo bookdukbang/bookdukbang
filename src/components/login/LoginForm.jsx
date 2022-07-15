@@ -4,9 +4,9 @@ import {
 	LabelStyle,
 	InputStyle,
 	ErrorText,
-} from '../Common/Input.style';
-import FormWrap from '../Common/FormWrap.style';
-import { BigBtnDiv, BigBtn } from '../Common/Button.style';
+} from '../common/Input.style';
+import FormWrap from '../common/FormWrap.style';
+import { BigBtnDiv, BigBtn } from '../common/Button.style';
 
 function LoginForm() {
 	const [id, setId] = useState('');

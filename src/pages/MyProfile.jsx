@@ -1,9 +1,9 @@
 import React from 'react';
-import FeedHeader from '../components/Common/FeedHeader';
-import ProfileInfo from '../components/Profile/ProfileInfo';
-import ProductRegister from '../components/Profile/ProductRegister';
-import Feed from '../components/Feed';
-import Wrap from '../components/Common/Wrap';
+import FeedHeader from '../components/common/FeedHeader';
+import ProfileInfo from '../components/profile/ProfileInfo';
+import ProductRegister from '../components/profile/ProductRegister';
+import Feed from '../components/common/Feed';
+import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
 
 const ProfileWrap = styled(Wrap)`
