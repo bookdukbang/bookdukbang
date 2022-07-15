@@ -9,6 +9,9 @@ import Wrap from './Wrap';
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 2.7rem 0;
+	@media ${({ theme }) => theme.size.mobile} {
+		display: none;
+	}
 `;
 
 const FeedHeaderWrap = styled(Wrap)`
