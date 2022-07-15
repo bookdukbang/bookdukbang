@@ -36,7 +36,7 @@ const LogoWrap = styled.h1`
 	}
 
 	@media ${({ theme }) => theme.size.mobile} {
-		min-width: 11.6rem;
+		width: 11.6rem;
 		display: ${({ isHome }) => (isHome ? 'block' : 'none')};
 	}
 `;
