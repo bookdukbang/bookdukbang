@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import FeedHeader from '../components/common/FeedHeader';
 import Error from '../assets/errorImg.png';
-import { ErrorBtnDiv, ErrorBtn } from '../components/common/Button.style';
+import { ButtonStyle } from '../components/common/Button.style';
+import Wrap from '../components/common/Wrap';
 
 const Container = styled.div`
 	height: 85vh;
@@ -22,41 +23,43 @@ const ErrorImg = styled.img`
 	}
 `;
 
-const TitleStyle = styled.div`
-	display: flex;
-	justify-content: center;
-`;
-
-const Title = styled.h1`
+const Title = styled.p`
 	color: ${({ theme }) => theme.grayColor2};
 	font-weight: 700;
 	font-size: 3.6rem;
+	text-align: center;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 2.4rem;
 	}
 `;
 
-const BeforePage = styled.p`
+const ErrorBtn = styled(ButtonStyle)`
+	width: 17rem;
 	text-align: center;
+	padding: 1rem 0;
+	font-size: 2rem;
+	margin: 2rem auto 0;
+	display: none;
+	@media ${({ theme }) => theme.size.mobile} {
+		display: block;
+	}
 `;
 
 function ErrorPage() {
 	return (
 		<>
 			<FeedHeader />
-			<Container>
-				<ErrorImg src={Error} />
+			<Wrap>
+				<Container>
+					<ErrorImg src={Error} />
 
-				<TitleStyle>
 					<Title>페이지를 찾을 수 없습니다. :(</Title>
-				</TitleStyle>
 
-				<ErrorBtnDiv>
 					<ErrorBtn as="a" href="/">
-						<BeforePage>이전 페이지</BeforePage>
+						이전 페이지
 					</ErrorBtn>
-				</ErrorBtnDiv>
-			</Container>
+				</Container>
+			</Wrap>
 		</>
 	);
 }

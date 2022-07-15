@@ -87,22 +87,6 @@ const ImgUploadBtn = styled.button`
 	background-color: ${({ theme }) => theme.mainColor};
 `;
 
-// 5. 404 페이지에 사용되는 버튼 스타일
-const ErrorBtnDiv = styled.div`
-	max-width: 17rem;
-	width: 100%;
-	margin: 2rem auto 0;
-	display: none;
-	@media ${({ theme }) => theme.size.mobile} {
-		display: block;
-	}
-`;
-const ErrorBtn = styled(ButtonStyle)`
-	width: 100%;
-	padding: 1rem 0;
-	font-size: 2rem;
-`;
-
 export {
 	BigBtnDiv,
 	ButtonStyle,
@@ -116,6 +100,4 @@ export {
 	NoInputLittleBtnDiv,
 	NoInputLittleBtn,
 	ImgUploadBtn,
-	ErrorBtnDiv,
-	ErrorBtn,
 };
