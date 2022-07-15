@@ -5,9 +5,7 @@ const TitleStyle = styled.h1`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 0 3.4rem;
-	/* margin-bottom: 3rem; */
-	@media (max-width: 390px) {
+	@media ${({ theme }) => theme.size.mobile} {
 		align-items: flex-start;
 		margin-top: 7rem;
 	}
@@ -17,7 +15,7 @@ const TitleP = styled.p`
 	color: ${({ theme }) => theme.textColor};
 	font-weight: 700;
 	font-size: 3.6rem;
-	@media (max-width: 390px) {
+	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 2.4rem;
 	}
 `;
