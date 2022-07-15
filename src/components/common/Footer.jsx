@@ -1,10 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Wrap from './Wrap';
 
 const FooterStyle = styled.footer`
 	display: flex;
 	justify-content: center;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 `;
 
 const FooterPStyle = styled.p`
@@ -12,11 +16,14 @@ const FooterPStyle = styled.p`
 	font-weight: 300;
 	font-size: 1.6rem;
 	padding: 4rem 0;
-	@media (max-width: 390px) {
-		/* 모바일 버전에서는 해당 글씨가 안보이게 한다. */
-		display: none;
-		/* 모바일 버전의 splash페이지에서의 해당 글씨 사이즈 */
+	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.2rem;
+		display: none;
+		${(props) =>
+			props.primary &&
+			css`
+				display: block;
+			`}
 	}
 `;
 
@@ -32,4 +39,5 @@ function Footer() {
 	);
 }
 
+export { FooterStyle, FooterPStyle };
 export default Footer;
