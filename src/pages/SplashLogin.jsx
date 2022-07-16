@@ -6,9 +6,8 @@ import splashImg from '../assets/splashImg.png';
 import {
 	TitleStyle,
 	Maintitle,
-	JoinTitle,
 	JoinTitleP,
-	JoinTitleClick,
+	JoinTitleLink,
 } from '../components/splash/SplashTitle.style';
 import {
 	LoginBtnDiv,
@@ -17,7 +16,7 @@ import {
 	GoggleBtn,
 	FacebookBtn,
 } from '../components/splash/SplashButton.style';
-import SplashFooter from '../components/splash/SplashFooter';
+import Footer from '../components/common/Footer';
 
 const BackgroundImg = styled.div`
 	position: absolute;
@@ -51,21 +50,21 @@ function SplashLogin() {
 				</TitleStyle>
 
 				<LoginBtnDiv>
-					<EmailBtn>이메일로 로그인</EmailBtn>
-					<KakaoBtn>카카오톡 계정으로 로그인</KakaoBtn>
-					<GoggleBtn>구글 계정으로 로그인</GoggleBtn>
-					<FacebookBtn>페이스북 계정으로 로그인</FacebookBtn>
+					<EmailBtn type="submit">이메일로 로그인</EmailBtn>
+					<KakaoBtn type="submit">카카오톡 계정으로 로그인</KakaoBtn>
+					<GoggleBtn type="submit">구글 계정으로 로그인</GoggleBtn>
+					<FacebookBtn type="submit">
+						페이스북 계정으로 로그인
+					</FacebookBtn>
 				</LoginBtnDiv>
 
-				<JoinTitle>
-					<JoinTitleP>아직 회원이 아니신가요?</JoinTitleP>
-					<a href="/">
-						<JoinTitleClick>회원가입</JoinTitleClick>
-					</a>
-				</JoinTitle>
+				<JoinTitleP>
+					아직 회원이 아니신가요?
+					<JoinTitleLink to="/join">회원가입</JoinTitleLink>
+				</JoinTitleP>
 			</Container>
 
-			<SplashFooter />
+			<Footer isHome />
 		</BackgroundImg>
 	);
 }

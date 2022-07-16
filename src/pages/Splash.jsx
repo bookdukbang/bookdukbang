@@ -12,7 +12,7 @@ import {
 	SplashBtnDiv,
 	SplashBtn,
 } from '../components/splash/SplashButton.style';
-import SplashFooter from '../components/splash/SplashFooter';
+import Footer from '../components/common/Footer';
 
 const BackgroundImg = styled.div`
 	position: absolute;
@@ -47,11 +47,13 @@ function Splash() {
 				</TitleStyle>
 
 				<SplashBtnDiv>
-					<SplashBtn>다양한 친구들을 만나보세요!</SplashBtn>
+					<SplashBtn type="button">
+						다양한 친구들을 만나보세요!
+					</SplashBtn>
 				</SplashBtnDiv>
 			</Container>
 
-			<SplashFooter />
+			<Footer isHome />
 		</BackgroundImg>
 	);
 }
