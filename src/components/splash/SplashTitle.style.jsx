@@ -9,7 +9,7 @@ const TitleStyle = styled.div`
 	}
 `;
 
-const Maintitle = styled.p`
+const Maintitle = styled.h2`
 	color: ${({ theme }) => theme.whiteColor};
 	font-weight: 700;
 	font-size: 6rem;

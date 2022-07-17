@@ -50,10 +50,10 @@ function SplashLogin() {
 				</TitleStyle>
 
 				<LoginBtnDiv>
-					<EmailBtn type="submit">이메일로 로그인</EmailBtn>
-					<KakaoBtn type="submit">카카오톡 계정으로 로그인</KakaoBtn>
-					<GoggleBtn type="submit">구글 계정으로 로그인</GoggleBtn>
-					<FacebookBtn type="submit">
+					<EmailBtn type="button">이메일로 로그인</EmailBtn>
+					<KakaoBtn type="button">카카오톡 계정으로 로그인</KakaoBtn>
+					<GoggleBtn type="button">구글 계정으로 로그인</GoggleBtn>
+					<FacebookBtn type="button">
 						페이스북 계정으로 로그인
 					</FacebookBtn>
 				</LoginBtnDiv>
