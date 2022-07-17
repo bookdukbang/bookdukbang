@@ -11,12 +11,18 @@ const PostUploadBtn = styled(ButtonStyle)`
 	&:disabled {
 		opacity: 0.6;
 	}
+
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 8rem;
+		padding: 0.5rem 0;
+		font-size: 1.4rem;
+	}
 `;
 
-function PostUpHeader() {
+function PostUpHeader({ isDisable }) {
 	return (
 		<Header>
-			<PostUploadBtn type="submit" form="postUpload" disabled>
+			<PostUploadBtn type="submit" form="postUpload" disabled={isDisable}>
 				업로드
 			</PostUploadBtn>
 		</Header>

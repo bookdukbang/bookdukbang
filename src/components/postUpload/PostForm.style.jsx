@@ -40,6 +40,9 @@ const PostTextarea = styled.textarea`
 	&::placeholder {
 		color: ${({ theme }) => theme.grayColor3};
 	}
+	@media ${({ theme }) => theme.size.mobile} {
+		font-size: 1.6rem;
+	}
 `;
 
 export { PostFormStyle, PostTextareaWrap, PostTextarea };

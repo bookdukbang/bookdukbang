@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Wrap from '../components/common/Wrap';
 import PostUpContainer from '../components/postUpload/PostUpContainer';
@@ -21,11 +21,13 @@ const PostUpWrap = styled(Wrap)`
 `;
 
 function PostUploadPage() {
+	const [isDisable, setDisable] = useState(true);
+	console.log(setDisable);
 	return (
 		<>
-			<PostUpHeader />
+			<PostUpHeader isDisable={isDisable} />
 			<PostUpWrap>
-				<PostUpContainer />
+				<PostUpContainer setDisable={setDisable} />
 			</PostUpWrap>
 		</>
 	);

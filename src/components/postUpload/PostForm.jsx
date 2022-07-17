@@ -8,7 +8,7 @@ import {
 } from './PostForm.style';
 import PostUploadImg from './PostUploadImg';
 
-export default function PostForm({ uploadImgs, setUploadImgs }) {
+export default function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 	const [serverImg, setServerImg] = useState([]);
 
 	console.log(serverImg);
@@ -41,6 +41,14 @@ export default function PostForm({ uploadImgs, setUploadImgs }) {
 		// 이미지 서버화 네이밍 결과 배열 serverImg
 	};
 
+	const onChangeTextarea = (e) => {
+		if (e.target.value === '') {
+			setDisable(true);
+		} else {
+			setDisable(false);
+		}
+	};
+
 	return (
 		<>
 			<PostFormStyle method="POST" onSubmit={onSubmitImg} id="postUpload">
@@ -55,6 +63,7 @@ export default function PostForm({ uploadImgs, setUploadImgs }) {
 							id="postText"
 							name="postText"
 							placeholder="게시글 입력하기..."
+							onChange={onChangeTextarea}
 						></PostTextarea>
 					</PostTextareaWrap>
 					<PostUploadImg

@@ -65,13 +65,17 @@ const PostUploadWrap = styled.section`
 	}
 `;
 
-export default function PostUpContainer() {
+export default function PostUpContainer({ setDisable }) {
 	const [uploadImgs, setUploadImgs] = useState([]);
 
 	return (
 		<PostUploadWrap>
 			<h2>포스팅 작성 페이지</h2>
-			<PostForm uploadImgs={uploadImgs} setUploadImgs={setUploadImgs} />
+			<PostForm
+				uploadImgs={uploadImgs}
+				setUploadImgs={setUploadImgs}
+				setDisable={setDisable}
+			/>
 
 			{uploadImgs.length > 0 && (
 				<PostViewImg

@@ -7,7 +7,6 @@ import MyProfile from './pages/MyProfile';
 import NavigatorMenu from './components/navigator/NavigatorMenu';
 import ErrorPage from './pages/404Page';
 import PostUploadPage from './pages/PostUploadPage';
-import PostForm from './components/postUpload/PostForm';
 
 function App() {
 	return (
@@ -19,7 +18,6 @@ function App() {
 				<Route path="/myprofile" exact element={<MyProfile />} />
 				<Route path="/errorPage" exact element={<ErrorPage />} />
 				<Route path="/postUpload" exact element={<PostUploadPage />} />
-				<Route path="/p" exact element={<PostForm />} />
 			</Routes>
 		</>
 	);
