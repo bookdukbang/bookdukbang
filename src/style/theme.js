@@ -20,6 +20,34 @@ const TextShortening = () => {
         word-break: break-all;
     `;
 };
+
+const ScrollbarStyle = () => {
+	return `
+	&::-webkit-scrollbar {
+		width: 0.4rem;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 0.2rem;
+		background-color: #D9D9D9;
+	}
+	&::-webkit-scrollbar-button {
+		width: 0;
+		height: 0;
+	}
+	
+	& {
+		scrollbar-width: thin;
+		scrollbar-color: #D9D9D9 transparent;
+	}
+	
+	
+	`;
+};
+
 const size = {
 	mobile: '(max-width: 390px)',
 	tablet: '(max-width: 1024px)',
@@ -43,6 +71,7 @@ const lightTheme = {
 
 	a11yHidden, // ${({ theme }) => theme.a11yHidden()}
 	TextShortening,
+	ScrollbarStyle,
 };
 
 const darkTheme = {
@@ -63,6 +92,7 @@ const darkTheme = {
 
 	a11yHidden, // ${({ theme }) => theme.a11yHidden()}
 	TextShortening,
+	ScrollbarStyle,
 };
 
 const theme = {

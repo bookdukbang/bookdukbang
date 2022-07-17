@@ -1,0 +1,69 @@
+import React, { useState } from 'react';
+import { SERVER_URL } from '../../constants';
+import User from '../common/user/User';
+import {
+	PostFormStyle,
+	PostTextareaWrap,
+	PostTextarea,
+} from './PostForm.style';
+import PostUploadImg from './PostUploadImg';
+
+export default function PostForm({ uploadImgs, setUploadImgs }) {
+	const [serverImg, setServerImg] = useState([]);
+
+	console.log(serverImg);
+
+	async function imageUpload(file) {
+		const formData = new FormData();
+		formData.append('image', file);
+		const imageUploadReqPath = '/image/uploadfile';
+		try {
+			const res = await fetch(SERVER_URL + imageUploadReqPath, {
+				method: 'POST',
+				body: formData,
+			});
+			const json = await res.json();
+
+			return json;
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	const onSubmitImg = (e) => {
+		e.preventDefault();
+		uploadImgs.map((img) => {
+			const imgSrc = imageUpload(img);
+			imgSrc
+				.then((d) => SERVER_URL + '/' + d.filename)
+				.then((src) => setServerImg((cur) => [...cur, src]));
+		});
+		// 이미지 서버화 네이밍 결과 배열 serverImg
+	};
+
+	return (
+		<>
+			<PostFormStyle method="POST" onSubmit={onSubmitImg} id="postUpload">
+				<fieldset>
+					<legend>포스팅 글쓰기</legend>
+					<div>
+						<User />
+					</div>
+					<PostTextareaWrap>
+						<label htmlFor="postText">포스팅 글 입력</label>
+						<PostTextarea
+							id="postText"
+							name="postText"
+							placeholder="게시글 입력하기..."
+						></PostTextarea>
+					</PostTextareaWrap>
+					<PostUploadImg
+						uploadImgs={uploadImgs}
+						serverImg={serverImg}
+						setUploadImgs={setUploadImgs}
+					/>
+				</fieldset>
+			</PostFormStyle>
+		</>
+	);
+}
