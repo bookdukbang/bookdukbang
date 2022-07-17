@@ -22,7 +22,7 @@ const PostUpWrap = styled(Wrap)`
 
 function PostUploadPage() {
 	const [isDisable, setDisable] = useState(true);
-	console.log(setDisable);
+
 	return (
 		<>
 			<PostUpHeader isDisable={isDisable} />

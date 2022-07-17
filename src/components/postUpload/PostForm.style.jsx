@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 const PostFormStyle = styled.form`
-	/* width: 62rem; */
-	/* flex-basis: 62rem; */
 	flex-grow: 1;
 	padding: 3rem;
 	box-sizing: border-box;
@@ -15,13 +13,13 @@ const PostFormStyle = styled.form`
 
 const PostTextareaWrap = styled.div`
 	width: 100%;
-	margin-top: 2.5rem;
+	margin: 2.5rem 0;
 
 	& label {
 		${({ theme }) => theme.a11yHidden()};
 	}
 	@media ${({ theme }) => theme.size.mobile} {
-		margin-top: 1.5rem;
+		margin: 1.5rem 0;
 	}
 `;
 

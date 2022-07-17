@@ -11,8 +11,6 @@ import PostUploadImg from './PostUploadImg';
 export default function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 	const [serverImg, setServerImg] = useState([]);
 
-	console.log(serverImg);
-
 	async function imageUpload(file) {
 		const formData = new FormData();
 		formData.append('image', file);
@@ -30,6 +28,7 @@ export default function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 		}
 	}
 
+	// 이미지 서버화 네이밍 결과 배열 serverImg
 	const onSubmitImg = (e) => {
 		e.preventDefault();
 		uploadImgs.map((img) => {
@@ -38,7 +37,6 @@ export default function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 				.then((d) => SERVER_URL + '/' + d.filename)
 				.then((src) => setServerImg((cur) => [...cur, src]));
 		});
-		// 이미지 서버화 네이밍 결과 배열 serverImg
 	};
 
 	const onChangeTextarea = (e) => {
