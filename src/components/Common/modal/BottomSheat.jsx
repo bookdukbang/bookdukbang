@@ -43,13 +43,23 @@ const BottomSheatLink = styled(Link)`
 	${BottomSheatBtnBasic}
 `;
 
-export default function BottomSheat() {
+export default function BottomSheat({
+	onClickDelete,
+	onClickModify,
+	webSiteUrl,
+}) {
 	return (
 		<BottomSheatBg>
 			<BottomSheatWrap>
-				<BottomSheatBtn type="button">삭제</BottomSheatBtn>
-				<BottomSheatBtn type="button">수정</BottomSheatBtn>
-				<BottomSheatLink to="/">웹사이트에서 상품보기</BottomSheatLink>
+				<BottomSheatBtn type="button" onClick={onClickDelete}>
+					삭제
+				</BottomSheatBtn>
+				<BottomSheatBtn type="button" onClick={onClickModify}>
+					수정
+				</BottomSheatBtn>
+				<BottomSheatLink to={webSiteUrl}>
+					웹사이트에서 상품보기
+				</BottomSheatLink>
 			</BottomSheatWrap>
 		</BottomSheatBg>
 	);
