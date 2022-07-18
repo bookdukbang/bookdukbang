@@ -43,19 +43,14 @@ const ProfileText = styled.p`
 	}
 `;
 
-const ProfileFollow = styled.dl`
+const Follow = styled.div`
 	display: flex;
-	align-items: center;
 `;
 
-const Followers = styled.dt`
-	font-weight: 300;
-	font-size: 1.4rem;
-	color: ${({ theme }) => theme.grayColor1};
+const ProfileFollow = styled.dl`
 	display: flex;
 	align-items: flex-end;
 	@media ${({ theme }) => theme.size.mobile} {
-		font-size: 1.2rem;
 		flex-direction: column-reverse;
 		align-items: center;
 		position: absolute;
@@ -63,10 +58,19 @@ const Followers = styled.dt`
 	}
 `;
 
-const Following = styled(Followers)`
+const ProfileFollowing = styled(ProfileFollow)`
 	margin-left: 2rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		right: 4.8rem;
+	}
+`;
+
+const Followers = styled.dt`
+	font-weight: 300;
+	font-size: 1.4rem;
+	color: ${({ theme }) => theme.grayColor1};
+	@media ${({ theme }) => theme.size.mobile} {
+		font-size: 1.2rem;
 	}
 `;
 
@@ -99,7 +103,10 @@ function ProfileInfo() {
 			<ProfileDiv>
 				<NoneProfileMediumStyle>
 					<ImgUploadBtnMedium type="button">
-						<ImgUploadMedium src={setting} />
+						<ImgUploadMedium
+							src={setting}
+							alt="내 프로필 수정 버튼"
+						/>
 					</ImgUploadBtnMedium>
 				</NoneProfileMediumStyle>
 
@@ -112,21 +119,20 @@ function ProfileInfo() {
 							애월읍 감귤 전국 배송, 귤따기 체험, 감귤농장
 						</ProfileText>
 						<MediumBtnDivStyle>
-							<MediumBtn>상품등록</MediumBtn>
+							<MediumBtn type="button">상품등록</MediumBtn>
 						</MediumBtnDivStyle>
 					</TextDiv>
 
-					<ProfileFollow>
-						<Followers>
-							followers
+					<Follow>
+						<ProfileFollow>
+							<Followers>followers</Followers>
 							<FollowNumStyle>2950</FollowNumStyle>
-						</Followers>
-
-						<Following>
-							followings
+						</ProfileFollow>
+						<ProfileFollowing>
+							<Followers>followings</Followers>
 							<FollowNumStyle>128</FollowNumStyle>
-						</Following>
-					</ProfileFollow>
+						</ProfileFollowing>
+					</Follow>
 				</Profilestyle>
 			</ProfileDiv>
 		</>

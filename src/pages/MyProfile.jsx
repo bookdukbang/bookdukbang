@@ -26,9 +26,7 @@ const FeedWrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	max-width: 72rem;
-	box-sizing: border-box;
 	border-radius: 1rem;
-	position: relative;
 	background-color: ${({ theme }) => theme.bgsubColor};
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 37rem;

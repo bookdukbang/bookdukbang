@@ -16,6 +16,8 @@ const BookContainer = styled.div`
 		grid-template-rows: 12rem;
 		gap: 0.5rem;
 		margin-left: 1rem;
+		overflow-x: scroll;
+		overflow-y: hidden;
 	}
 `;
 
@@ -76,6 +78,9 @@ const BookRegister = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	@media ${({ theme }) => theme.size.mobile} {
+		display: none;
+	}
 `;
 
 const RegisterBtn = styled.button`
@@ -99,8 +104,8 @@ function ProductRegister() {
 		<>
 			<BookContainer>
 				<BookList>
-					<BookBtn>
-						<BookImg src={Book} />
+					<BookBtn type="button">
+						<BookImg src={Book} alt="책 이미지" />
 						<BookInfo>
 							<BookTitle>책제목</BookTitle>
 							<BookCost>99,000원</BookCost>
@@ -108,8 +113,8 @@ function ProductRegister() {
 					</BookBtn>
 				</BookList>
 				<BookList>
-					<BookBtn>
-						<BookImg src={Book} />
+					<BookBtn type="button">
+						<BookImg src={Book} alt="책 이미지" />
 						<BookInfo>
 							<BookTitle>책제목</BookTitle>
 							<BookCost>99,000원</BookCost>
@@ -117,8 +122,8 @@ function ProductRegister() {
 					</BookBtn>
 				</BookList>
 				<BookList>
-					<BookBtn>
-						<BookImg src={Book} />
+					<BookBtn type="button">
+						<BookImg src={Book} alt="책 이미지" />
 						<BookInfo>
 							<BookTitle>책제목</BookTitle>
 							<BookCost>99,000원</BookCost>
@@ -126,8 +131,8 @@ function ProductRegister() {
 					</BookBtn>
 				</BookList>
 				<BookRegister>
-					<RegisterBtn>
-						<PlusBtnImg src={PlusBtn} />
+					<RegisterBtn type="button">
+						<PlusBtnImg src={PlusBtn} alt="상품등록 버튼" />
 					</RegisterBtn>
 					<RegisterTitle>상품등록</RegisterTitle>
 				</BookRegister>
