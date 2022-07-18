@@ -8,16 +8,18 @@ const ChatWrap = styled(Wrap)`
 	display: flex;
 	justify-content: space-around;
 	gap: 3rem;
-	margin-top: 3rem;
+	margin-top: 2.7rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		margin-top: 1rem;
+	}
 `;
 
 const ChatRoom = styled.div`
-	max-width: 72rem;
-	width: 100%;
+	flex-basis: 72rem;
 	border-radius: 1rem;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	text-align: center;
-	@media ${({ theme }) => theme.size.mobile} {
+	@media ${({ theme }) => theme.size.tablet} {
 		display: none;
 	}
 `;

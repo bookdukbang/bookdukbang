@@ -24,38 +24,28 @@ const MessageWrap = styled.div`
 	margin-bottom: 1rem;
 	&.send {
 		display: flex;
-		justify-content: flex-end;
+		flex-direction: row-reverse;
+		justify-content: flex-start;
 		margin-right: 3rem;
 		@media ${({ theme }) => theme.size.mobile} {
 			margin-right: 1.6rem;
 		}
 	}
-	&.first {
-		margin-top: 22.3rem;
-		@media ${({ theme }) => theme.size.mobile} {
-			margin-top: 17.1rem;
-		}
-	}
 `;
 
-const ReceiveMessageDiv = styled.div`
+const ReceiveMessage = styled.p`
 	border: 1px solid ${({ theme }) => theme.grayColor4};
 	padding: 1.5rem;
 	max-width: 41.6rem;
 	border-radius: 0 1rem 1rem 1rem;
-	@media ${({ theme }) => theme.size.mobile} {
-		max-width: 23.3rem;
-		padding: 0.9rem 1.5rem;
-	}
-`;
-
-const ReceiveMessage = styled.p`
 	font-weight: 400;
 	font-size: 2rem;
 	color: ${({ theme }) => theme.textColor};
-	word-break: break-all;
+	word-break: ${({ theme }) => theme.TextShortening()};
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.6rem;
+		max-width: 23.3rem;
+		padding: 0.9rem 1.5rem;
 	}
 `;
 
@@ -70,12 +60,9 @@ const ReceiveMessageTime = styled.span`
 	}
 `;
 
-const SendMessageDiv = styled(ReceiveMessageDiv)`
+const SendMessage = styled(ReceiveMessage)`
 	border-radius: 1rem 0 1rem 1rem;
 	background-color: ${({ theme }) => theme.mainColor};
-`;
-
-const SendMessage = styled(ReceiveMessage)`
 	color: ${({ theme }) => theme.whiteColor};
 `;
 
@@ -83,47 +70,52 @@ const SendMessageTime = styled(ReceiveMessageTime)`
 	margin-right: 0.5rem;
 `;
 
+const MessageContainer = styled.div`
+	height: 79.7rem;
+	overflow: scroll;
+	overflow-x: hidden;
+	position: relative;
+`;
+
+const MessageDiv = styled.div`
+	position: absolute;
+	bottom: 2rem;
+	width: 100%;
+`;
+
 function ChatContent() {
 	return (
-		<>
-			<MessageWrap className="first">
-				<ProfileImg src={Profile} />
-
-				<ReceiveMessageDiv>
+		<MessageContainer>
+			<MessageDiv>
+				<MessageWrap>
+					<ProfileImg src={Profile} alt="프로필" />
 					<ReceiveMessage>
 						옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의
 						위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와
 						약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
 					</ReceiveMessage>
-				</ReceiveMessageDiv>
+					<ReceiveMessageTime>12:39</ReceiveMessageTime>
+				</MessageWrap>
 
-				<ReceiveMessageTime>12:39</ReceiveMessageTime>
-			</MessageWrap>
-
-			<MessageWrap>
-				<ProfileImg src={Profile} />
-
-				<ReceiveMessageDiv>
+				<MessageWrap>
+					<ProfileImg src={Profile} alt="프로필" />
 					<ReceiveMessage>
 						안녕하세요. 네고 가능합니까?
 					</ReceiveMessage>
-				</ReceiveMessageDiv>
+					<ReceiveMessageTime>12:41</ReceiveMessageTime>
+				</MessageWrap>
 
-				<ReceiveMessageTime>12:41</ReceiveMessageTime>
-			</MessageWrap>
-
-			<MessageWrap className="send">
-				<SendMessageTime>12:50</SendMessageTime>
-				<SendMessageDiv>
+				<MessageWrap className="send">
 					<SendMessage>네 말씀하세요.</SendMessage>
-				</SendMessageDiv>
-			</MessageWrap>
+					<SendMessageTime>12:50</SendMessageTime>
+				</MessageWrap>
 
-			<MessageWrap className="send">
-				<SendMessageTime>12:51</SendMessageTime>
-				<ChatMessageImg src={ChatImg} />
-			</MessageWrap>
-		</>
+				<MessageWrap className="send">
+					<ChatMessageImg src={ChatImg} alt="" />
+					<SendMessageTime>12:51</SendMessageTime>
+				</MessageWrap>
+			</MessageDiv>
+		</MessageContainer>
 	);
 }
 

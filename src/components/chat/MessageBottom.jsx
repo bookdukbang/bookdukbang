@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ChatMenu from '../../assets/chatMenu.png';
+import ImgUpload from '../../assets/chatMenu.png';
 import { NoInputLittleBtn } from '../common/Button.style';
 // 메시지가 입력되었을때 해당 버튼 스타일
 // import { LittleBtn } from '../common/Button.style';
@@ -15,13 +15,13 @@ const ChatBottom = styled.div`
 	}
 `;
 
-const MenuBtn = styled.button`
+const ImgUploadBtn = styled.button`
 	padding: 0;
 	border: none;
 	background-color: transparent;
 `;
 
-const ChatMenuImg = styled.img`
+const ImgUploadImg = styled.img`
 	width: 5rem;
 	padding: 1.5rem;
 	@media ${({ theme }) => theme.size.mobile} {
@@ -94,9 +94,9 @@ function MessageBottom() {
 	return (
 		<>
 			<ChatBottom>
-				<MenuBtn>
-					<ChatMenuImg src={ChatMenu} />
-				</MenuBtn>
+				<ImgUploadBtn type="button">
+					<ImgUploadImg src={ImgUpload} alt="이미지 업로드" />
+				</ImgUploadBtn>
 
 				<ChatDiv>
 					<LabelStyle className="hide">메시지 입력</LabelStyle>

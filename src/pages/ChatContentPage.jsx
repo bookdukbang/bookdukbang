@@ -10,12 +10,14 @@ const ChatWrap = styled(Wrap)`
 	display: flex;
 	justify-content: space-around;
 	gap: 3rem;
-	margin-top: 3rem;
+	margin-top: 2.7rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		margin-top: 0;
+	}
 `;
 
 const ChatRoom = styled.div`
-	max-width: 72rem;
-	width: 100%;
+	flex-basis: 72rem;
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
@@ -35,12 +37,20 @@ const ChatTop = styled.div`
 	}
 `;
 
+const MessageSender = styled.p`
+	font-weight: 700;
+	font-size: 2rem;
+	color: ${({ theme }) => theme.textColor};
+`;
+
 const Sender = styled.p`
 	font-weight: 700;
 	font-size: 2rem;
 	color: ${({ theme }) => theme.textColor};
+	display: none;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.6rem;
+		display: block;
 	}
 `;
 
@@ -55,7 +65,7 @@ function ChatContentPage() {
 				<ChatList isHome />
 				<ChatRoom>
 					<ChatTop isHome>
-						<Sender>네고왕</Sender>
+						<MessageSender>네고왕</MessageSender>
 					</ChatTop>
 
 					<ChatContent />
