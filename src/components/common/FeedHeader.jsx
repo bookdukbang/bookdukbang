@@ -134,39 +134,41 @@ const LogoutImg = styled.img`
 function FeedHeader({ children, isHome }) {
 	return (
 		<HeaderStyle>
-			<FeedHeaderWrap>
-				<LogoWrap isHome={isHome}>
-					<a href="/">
-						<img src={HeaderLogo} alt="북덕방" />
-					</a>
-				</LogoWrap>
-				<BackBtn type="button" isHome={isHome}>
-					<span>뒤로가기</span>
-				</BackBtn>
-				{children}
-				<HeaderUl>
-					<li>
+			<Wrap>
+				<FeedHeaderWrap>
+					<LogoWrap isHome={isHome}>
 						<a href="/">
-							<ProfileImg src={Profile} alt="프로필" />
+							<img src={HeaderLogo} alt="북덕방" />
 						</a>
-					</li>
-					<li>
-						<HeaderPosting as="a" href="/">
-							<PostingImg src={PostingIcon} alt="포스팅" />
-							<span>Posting</span>
-						</HeaderPosting>
-					</li>
-					<li>
-						<HeaderBtnLogout>
-							<LogoutImg src={LogoutIcon} alt="로그아웃" />
-							<span>Logout</span>
-						</HeaderBtnLogout>
-					</li>
-				</HeaderUl>
-				<MoreBtn type="button">
-					<span>더보기 버튼</span>
-				</MoreBtn>
-			</FeedHeaderWrap>
+					</LogoWrap>
+					<BackBtn type="button" isHome={isHome}>
+						<span>뒤로가기</span>
+					</BackBtn>
+					{children}
+					<HeaderUl>
+						<li>
+							<a href="/">
+								<ProfileImg src={Profile} alt="프로필" />
+							</a>
+						</li>
+						<li>
+							<HeaderPosting as="a" href="/">
+								<PostingImg src={PostingIcon} alt="포스팅" />
+								<span>Posting</span>
+							</HeaderPosting>
+						</li>
+						<li>
+							<HeaderBtnLogout>
+								<LogoutImg src={LogoutIcon} alt="로그아웃" />
+								<span>Logout</span>
+							</HeaderBtnLogout>
+						</li>
+					</HeaderUl>
+					<MoreBtn type="button">
+						<span>더보기 버튼</span>
+					</MoreBtn>
+				</FeedHeaderWrap>
+			</Wrap>
 		</HeaderStyle>
 	);
 }

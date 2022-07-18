@@ -6,28 +6,51 @@ import Feed from '../components/common/Feed';
 import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
 
-const ProfileWrap = styled(Wrap)`
+const ProfileWrap = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	gap: 3rem;
-	margin-top: 3rem;
+	margin-top: 4rem;
+	flex-wrap: wrap;
 `;
 const DivArray = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 37rem;
+	}
+`;
+
+const FeedWrap = styled.div`
+	display: flex;
+	flex-direction: column;
+	max-width: 72rem;
+	box-sizing: border-box;
+	border-radius: 1rem;
+	position: relative;
+	background-color: ${({ theme }) => theme.bgsubColor};
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 37rem;
+	}
 `;
 
 function MyProfile() {
 	return (
 		<>
 			<FeedHeader />
-			<ProfileWrap>
-				<DivArray>
-					<ProfileInfo />
-					<ProductRegister />
-				</DivArray>
-				<Feed />
-			</ProfileWrap>
+			<Wrap>
+				<ProfileWrap>
+					<DivArray>
+						<ProfileInfo />
+						<ProductRegister />
+					</DivArray>
+					<FeedWrap>
+						<Feed />
+						<Feed />
+					</FeedWrap>
+				</ProfileWrap>
+			</Wrap>
 		</>
 	);
 }

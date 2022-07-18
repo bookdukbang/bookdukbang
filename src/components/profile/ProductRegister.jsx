@@ -11,6 +11,12 @@ const BookContainer = styled.div`
 	column-gap: 2rem;
 	border-radius: 1rem;
 	margin-top: 3rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		grid-template-columns: 15rem 15rem 15rem 15rem;
+		grid-template-rows: 12rem;
+		gap: 0.5rem;
+		margin-left: 1rem;
+	}
 `;
 
 const BookList = styled.div`
@@ -34,6 +40,10 @@ const BookInfo = styled.div`
 	position: absolute;
 	bottom: 2.1rem;
 	left: 2.1rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		bottom: 1rem;
+		left: 1rem;
+	}
 `;
 
 const BookTitle = styled.p`
@@ -41,12 +51,20 @@ const BookTitle = styled.p`
 	font-size: 1.6rem;
 	color: ${({ theme }) => theme.grayColor5};
 	text-align: left;
+	@media ${({ theme }) => theme.size.mobile} {
+		font-weight: 400;
+		font-size: 14px;
+	}
 `;
 
 const BookCost = styled.p`
 	font-weight: 700;
 	font-size: 1.4rem;
 	color: ${({ theme }) => theme.mainColor};
+	@media ${({ theme }) => theme.size.mobile} {
+		font-weight: 400;
+		font-size: 14px;
+	}
 `;
 
 const BookRegister = styled.div`
