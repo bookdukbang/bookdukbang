@@ -50,16 +50,12 @@ const ModalBtn = styled.button`
 	}
 `;
 
-export default function Modal({
-	ModalName,
-	onClickCancleBtn,
-	onClickDeleteBtn,
-}) {
+function Modal({ ModalName, onClickCancelBtn, onClickDeleteBtn }) {
 	return (
 		<ModalBg>
 			<ModalWrap>
 				<ModalTitle>{ModalName}을 삭제할까요?</ModalTitle>
-				<ModalBtn type="button" onClick={onClickCancleBtn}>
+				<ModalBtn type="button" onClick={onClickCancelBtn}>
 					취소
 				</ModalBtn>
 				<ModalBtn type="button" onClick={onClickDeleteBtn}>
@@ -69,3 +65,4 @@ export default function Modal({
 		</ModalBg>
 	);
 }
+export default Modal;
