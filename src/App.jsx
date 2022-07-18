@@ -8,6 +8,8 @@ import NavigatorMenu from './components/navigator/NavigatorMenu';
 import ErrorPage from './pages/404Page';
 import Splash from './pages/Splash';
 import SplashLogin from './pages/SplashLogin';
+import ChatContentPage from './pages/ChatContentPage';
+import ChatListPage from './pages/ChatListPage';
 
 function App() {
 	return (
@@ -20,6 +22,12 @@ function App() {
 				<Route path="/errorPage" exact element={<ErrorPage />} />
 				<Route path="/splash" exact element={<Splash />} />
 				<Route path="/splashLogin" exact element={<SplashLogin />} />
+				<Route
+					path="/chatcontent"
+					exact
+					element={<ChatContentPage />}
+				/>
+				<Route path="/chat" exact element={<ChatListPage />} />
 			</Routes>
 		</>
 	);
