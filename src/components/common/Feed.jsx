@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import BookList from '../assets/BookListImg02.png';
+import BookList from '../../assets/BookListImg02.png';
 import {
 	ProfileName,
 	BigProfileEmail,
 	Profilestyle,
 } from './ProfileName.style';
-import Profile from '../assets/profile.png';
-import MoreBtns from '../assets/moreBtn.png';
-import Heart from '../assets/heart.png';
-import Comment from '../assets/comment.png';
+import Profile from '../../assets/profile.png';
+import MoreBtns from '../../assets/moreBtn.png';
+import Heart from '../../assets/heart.png';
+import Comment from '../../assets/comment.png';
 
 const FeedWrap = styled.div`
 	padding: 2rem;

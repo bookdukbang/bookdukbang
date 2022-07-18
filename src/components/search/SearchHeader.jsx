@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL, USER_TOKEN } from '../../constants/index';
-import {
-	SearchHeaderStyle,
-	SearchInput,
-	SearchForm,
-} from './SearchHeader.style';
+import FeedHeader from '../common/FeedHeader';
+import { SearchInput, SearchForm } from './SearchHeader.style';
 
 function SearchHeader({ setSearchList }) {
 	const [keyword, setKeyword] = useState('');
@@ -48,7 +45,7 @@ function SearchHeader({ setSearchList }) {
 	};
 
 	return (
-		<SearchHeaderStyle>
+		<FeedHeader>
 			<SearchForm action="" onSubmit={onSubmitForm}>
 				<label htmlFor="userSearch">유저 계정 검색</label>
 				<SearchInput
@@ -60,7 +57,7 @@ function SearchHeader({ setSearchList }) {
 					value={keyword}
 				/>
 			</SearchForm>
-		</SearchHeaderStyle>
+		</FeedHeader>
 	);
 }
 export default SearchHeader;

@@ -40,12 +40,19 @@ const InputStyle = styled.input`
 	&:focus {
 		outline: 0.1rem solid ${({ theme }) => theme.mainColor};
 	}
-	/* 아이디 혹은 비밀번호가 일치하지 않을 경우 쓰이는 코드입니다. 일치하지 않을 경우 바로 위에 border와 foucs 대신에서 아래의 코드를 사용하면 됩니다.
-	
-	border: 0.1rem solid ${({ theme }) => theme.errorColor};
-	&:focus {
-		outline: 0.1rem solid ${({ theme }) => theme.errorColor};
-	} */
+	/* 아이디 혹은 비밀번호가 일치하지 않을 경우 쓰이는 코드입니다. 일치하지 않을 경우 바로 위에 border와 foucs 대신에서 아래의 코드를 사용하면 됩니다. */
+	&.error {
+		border: 0.1rem solid ${({ theme }) => theme.errorColor};
+		&:focus {
+			outline: 0.1rem solid ${({ theme }) => theme.errorColor};
+		}
+	}
+
+	@media (max-width: 390px) {
+		font-weight: 300;
+		font-size: 1.6rem;
+		padding: 1.3rem;
+	}
 `;
 
 // '로그인' 페이지에서 이메일, 비밀번호가 일치하지 않았을 경우 나타나는 문구 스타일
@@ -55,6 +62,10 @@ const ErrorText = styled.p`
 	font-size: 1.4rem;
 	display: block;
 	margin-top: 0.5rem;
+	@media (max-width: 390px) {
+		font-weight: 400;
+		font-size: 1.2rem;
+	}
 `;
 
 export { InputStyle, InputDiv, LabelStyle, ErrorText };

@@ -4,7 +4,7 @@ import {
 	Profilestyle,
 	ProfileName,
 	SmallProfileEmail,
-} from '../ProfileName.style';
+} from '../common/ProfileName.style';
 import Profile from '../../assets/profile.png';
 
 const ProfileDiv = styled.div`

@@ -5,18 +5,18 @@ const SearchHeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 1.6rem 0;
 
-	& label {
-		${({ theme }) => theme.a11yHidden()};
-	}
 	@media ${({ theme }) => theme.size.mobile} {
 		padding: 1rem 2rem;
 	}
 `;
 
 const SearchForm = styled.form`
-	max-width: 55rem;
-	@media ${({ theme }) => theme.size.mobile} {
-		max-width: 30.6rem;
+	width: 55rem;
+	@media ${({ theme }) => theme.size.tablet} {
+		width: 30.6rem;
+	}
+	& label {
+		${({ theme }) => theme.a11yHidden()};
 	}
 `;
 
