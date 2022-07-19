@@ -8,7 +8,7 @@ import {
 } from './PostForm.style';
 import PostUploadImg from './PostUploadImg';
 
-export default function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
+function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 	const [serverImg, setServerImg] = useState([]);
 
 	async function imageUpload(file) {
@@ -74,3 +74,4 @@ export default function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 		</>
 	);
 }
+export default PostForm;

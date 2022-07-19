@@ -16,7 +16,7 @@ const PostUploadWrap = styled.section`
 	}
 `;
 
-export default function PostUpContainer({ setDisable }) {
+function PostUpContainer({ setDisable }) {
 	const [uploadImgs, setUploadImgs] = useState([]);
 
 	return (
@@ -37,3 +37,5 @@ export default function PostUpContainer({ setDisable }) {
 		</PostUploadWrap>
 	);
 }
+
+export default PostUpContainer;

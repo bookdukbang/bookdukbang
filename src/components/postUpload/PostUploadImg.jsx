@@ -2,11 +2,7 @@ import { IMG_UPLOAD_MAXCOUNT } from '../../constants';
 import React, { useEffect, useState } from 'react';
 import { ImgFileLabel, ImgFileInput } from './PostUploadImg.style';
 
-export default function PostUploadImg({
-	uploadImgs,
-	serverImg,
-	setUploadImgs,
-}) {
+function PostUploadImg({ uploadImgs, serverImg, setUploadImgs }) {
 	const [remainderNum, setRemainderNum] = useState(IMG_UPLOAD_MAXCOUNT);
 
 	useEffect(() => {
@@ -82,3 +78,5 @@ export default function PostUploadImg({
 		</>
 	);
 }
+
+export default PostUploadImg;
