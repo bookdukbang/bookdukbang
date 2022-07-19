@@ -72,8 +72,6 @@ const SendMessageTime = styled(ReceiveMessageTime)`
 
 const MessageContainer = styled.div`
 	height: 79.7rem;
-	overflow: scroll;
-	overflow-x: hidden;
 	position: relative;
 `;
 

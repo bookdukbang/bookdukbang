@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FeedHeader from '../components/common/FeedHeader';
 import ChatList from '../components/chat/ChatList';
 import Wrap from '../components/common/Wrap';
+import NavigatorMenu from '../components/navigator/NavigatorMenu';
 
 const ChatWrap = styled(Wrap)`
 	display: flex;
@@ -43,6 +44,8 @@ function ChatListPage() {
 					<ChatGuide>친구에게 사진과 메시지를 보내세요.</ChatGuide>
 				</ChatRoom>
 			</ChatWrap>
+
+			<NavigatorMenu />
 		</>
 	);
 }

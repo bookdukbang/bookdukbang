@@ -50,7 +50,6 @@ const ChatContent = styled.p`
 	font-weight: 400;
 	color: ${({ theme }) => theme.grayColor2};
 	font-size: 1.6rem;
-	word-break: ${({ theme }) => theme.TextShortening()};
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.4rem;
 	}
