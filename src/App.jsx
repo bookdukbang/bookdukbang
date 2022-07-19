@@ -11,6 +11,10 @@ import SplashLogin from './pages/SplashLogin';
 // import JoinProfilepage from './pages/JoinProfilePage';
 import UserProfilePage from './pages/UserProfilePage';
 
+import ChatContentPage from './pages/ChatContentPage';
+import ChatListPage from './pages/ChatListPage';
+import FeedPage from './pages/FeedPage';
+
 function App() {
 	return (
 		<>
@@ -33,6 +37,13 @@ function App() {
 				<Route path="/postUpload" exact element={<PostUploadPage />} />
 				<Route path="/splash" exact element={<Splash />} />
 				<Route path="/splashLogin" exact element={<SplashLogin />} />
+				<Route
+					path="/chatcontent"
+					exact
+					element={<ChatContentPage />}
+				/>
+				<Route path="/chat" exact element={<ChatListPage />} />
+				<Route path="/" exact element={<FeedPage />} />
 			</Routes>
 		</>
 	);
