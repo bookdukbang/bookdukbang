@@ -3,32 +3,31 @@ import styled from 'styled-components';
 import Wrap from './Wrap';
 
 const FooterStyle = styled.footer`
-	display: flex;
-	justify-content: center;
+	text-align: center;
+	@media ${({ theme }) => theme.size.mobile} {
+		display: ${({ isHome }) => (isHome ? 'block' : 'none')};
+	}
 `;
 
-const FooterPStyle = styled.p`
+const FooterPStyle = styled.small`
 	color: ${({ theme }) => theme.grayColor3};
 	font-weight: 300;
 	font-size: 1.6rem;
-	padding: 4rem 0;
-	@media (max-width: 390px) {
-		/* 모바일 버전에서는 해당 글씨가 안보이게 한다. */
-		display: none;
-		/* 모바일 버전의 splash페이지에서의 해당 글씨 사이즈 */
+	@media ${({ theme }) => theme.size.mobile} {
+		font-weight: 300;
 		font-size: 1.2rem;
 	}
 `;
 
-function Footer() {
+function Footer({ isHome }) {
 	return (
-		<Wrap>
-			<FooterStyle>
+		<FooterStyle isHome={isHome}>
+			<Wrap>
 				<FooterPStyle>
 					Copyright © 2022, All Rights Reserved
 				</FooterPStyle>
-			</FooterStyle>
-		</Wrap>
+			</Wrap>
+		</FooterStyle>
 	);
 }
 
