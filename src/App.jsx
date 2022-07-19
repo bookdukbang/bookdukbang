@@ -7,6 +7,8 @@ import ErrorPage from './pages/404Page';
 import PostUploadPage from './pages/PostUploadPage';
 import Splash from './pages/Splash';
 import SplashLogin from './pages/SplashLogin';
+import ChatContentPage from './pages/ChatContentPage';
+import ChatListPage from './pages/ChatListPage';
 
 
 function App() {
@@ -20,6 +22,12 @@ function App() {
 				<Route path="/postUpload" exact element={<PostUploadPage />} />
 				<Route path="/splash" exact element={<Splash />} />
 				<Route path="/splashLogin" exact element={<SplashLogin />} />
+				<Route
+					path="/chatcontent"
+					exact
+					element={<ChatContentPage />}
+				/>
+				<Route path="/chat" exact element={<ChatListPage />} />
 			</Routes>
 		</>
 	);
