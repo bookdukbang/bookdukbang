@@ -43,6 +43,10 @@ const MediumBtn = styled(ButtonStyle)`
 	padding: 1.8rem 0;
 	font-size: 2.4rem;
 	margin-top: 3rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		font-size: 1.6rem;
+		padding: 0.8rem 0;
+	}
 `;
 
 // 3. '유저 프로필' 페이지에 사용되는 버튼 사이즈
@@ -85,6 +89,10 @@ const ImgUploadBtn = styled.button`
 	border-radius: 50%;
 	border: 0px;
 	background-color: ${({ theme }) => theme.mainColor};
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 4.5rem;
+		height: 4.5rem;
+	}
 `;
 
 export {
