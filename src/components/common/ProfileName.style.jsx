@@ -4,6 +4,9 @@ const Profilestyle = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	@media ${({ theme }) => theme.size.mobile} {
+		text-align: center;
+	}
 `;
 
 const ProfileName = styled.p`
@@ -29,6 +32,9 @@ const BigProfileEmail = styled(ProfileEmail)`
 
 const SmallProfileEmail = styled(ProfileEmail)`
 	font-size: 1.4rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		font-size: 1.2rem;
+	}
 `;
 
 export {
