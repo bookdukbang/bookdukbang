@@ -18,7 +18,6 @@ const FeedWrap = styled.div`
 `;
 
 const MySection = styled.section`
-	background-color: lightsteelblue;
 	width: 31rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		display: none;
@@ -30,7 +29,6 @@ const FollowerFeed = styled.section`
 `;
 
 const FollowerAside = styled.aside`
-	background-color: lavender;
 	width: 31rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		display: none;
