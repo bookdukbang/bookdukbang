@@ -9,11 +9,8 @@ const NavigatorWrap = styled.nav`
 	right: 0;
 	bottom: 0;
 	z-index: 100;
+	display: flex;
 	box-shadow: 0 -1rem 3rem rgba(200, 200, 200, 0.1);
-	display: none;
-	@media ${({ theme }) => theme.size.mobile} {
-		display: flex;
-	}
 `;
 
 const NavigatorBtn = css`
