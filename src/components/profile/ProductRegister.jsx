@@ -106,6 +106,7 @@ function ProductRegister() {
 				<BookList>
 					<BookBtn type="button">
 						<BookImg src={Book} alt="책 이미지" />
+
 						<BookInfo>
 							<BookTitle>책제목</BookTitle>
 							<BookCost>99,000원</BookCost>
@@ -115,6 +116,7 @@ function ProductRegister() {
 				<BookList>
 					<BookBtn type="button">
 						<BookImg src={Book} alt="책 이미지" />
+
 						<BookInfo>
 							<BookTitle>책제목</BookTitle>
 							<BookCost>99,000원</BookCost>
