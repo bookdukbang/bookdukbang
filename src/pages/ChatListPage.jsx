@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FeedHeader from '../components/common/FeedHeader';
+import FeedHeader from '../components/common/header/FeedHeader';
 import ChatList from '../components/chat/ChatList';
 import Wrap from '../components/common/Wrap';
 import NavigatorMenu from '../components/navigator/NavigatorMenu';

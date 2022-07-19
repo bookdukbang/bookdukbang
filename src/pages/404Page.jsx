@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FeedHeader from '../components/common/FeedHeader';
+import FeedHeader from '../components/common/header/FeedHeader';
 import Error from '../assets/errorImg.png';
 import { ButtonStyle } from '../components/common/Button.style';
 import Wrap from '../components/common/Wrap';

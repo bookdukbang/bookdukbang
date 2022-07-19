@@ -1,10 +1,5 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
-import HeaderLogo from '../../assets/HeaderLogo.png';
-import Profile from '../../assets/profile.png';
-import PostingIcon from '../../assets/PostingIcon.png';
-import LogoutIcon from '../../assets/LogoutIcon.png';
-import Wrap from './Wrap';
+import Wrap from '../Wrap';
 import BackIcon from '../../assets/arrowLeft.png';
 import MoreIcon from '../../assets/moreBtn.png';
 
@@ -22,22 +17,24 @@ const FeedHeaderWrap = styled(Wrap)`
 	align-items: center;
 	justify-content: space-between;
 	@media ${({ theme }) => theme.size.tablet} {
-		padding: 0 1em;
 		gap: 0 1.5rem;
 	}
 `;
 
 const LogoWrap = styled.h1`
-	width: 21.5rem;
-
-	& img {
-		width: 100%;
-		height: 100%;
-	}
-
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 11.6rem;
 		display: ${({ isHome }) => (isHome ? 'block' : 'none')};
+	}
+`;
+
+const LogoImg = styled.img`
+	width: 21.5rem;
+	@media ${({ theme }) => theme.size.tablet} {
+		width: 16.6rem;
+	}
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 11.6rem;
 	}
 `;
 
@@ -131,46 +128,16 @@ const LogoutImg = styled.img`
 	width: 2.1rem;
 `;
 
-function FeedHeader({ children, isHome }) {
-	return (
-		<HeaderStyle>
-			<Wrap>
-				<FeedHeaderWrap>
-					<LogoWrap isHome={isHome}>
-						<a href="/">
-							<img src={HeaderLogo} alt="북덕방" />
-						</a>
-					</LogoWrap>
-					<BackBtn type="button" isHome={isHome}>
-						<span>뒤로가기</span>
-					</BackBtn>
-					{children}
-					<HeaderUl>
-						<li>
-							<a href="/">
-								<ProfileImg src={Profile} alt="프로필" />
-							</a>
-						</li>
-						<li>
-							<HeaderPosting as="a" href="/">
-								<PostingImg src={PostingIcon} alt="포스팅" />
-								<span>Posting</span>
-							</HeaderPosting>
-						</li>
-						<li>
-							<HeaderBtnLogout>
-								<LogoutImg src={LogoutIcon} alt="로그아웃" />
-								<span>Logout</span>
-							</HeaderBtnLogout>
-						</li>
-					</HeaderUl>
-					<MoreBtn type="button">
-						<span>더보기 버튼</span>
-					</MoreBtn>
-				</FeedHeaderWrap>
-			</Wrap>
-		</HeaderStyle>
-	);
-}
-
-export default FeedHeader;
+export {
+	HeaderStyle,
+	FeedHeaderWrap,
+	LogoWrap,
+	LogoImg,
+	BackBtn,
+	MoreBtn,
+	HeaderUl,
+	HeaderPosting,
+	ProfileImg,
+	PostingImg,
+	LogoutImg,
+};
