@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Feed from '../components/common/Feed';
 import FeedHeader from '../components/common/FeedHeader';
 import Wrap from '../components/common/Wrap';
-import ProductRegister from '../components/profile/ProductRegister';
+import UserProductRegister from '../components/profile/UserProductRegister';
 import UserProfileInfo from '../components/profile/UserProfileInfo';
 
 const ProfileWrap = styled.div`
@@ -41,7 +41,7 @@ function UserProfilePage() {
 				<ProfileWrap>
 					<DivArray>
 						<UserProfileInfo />
-						<ProductRegister />
+						<UserProductRegister />
 					</DivArray>
 					<FeedWrap>
 						<Feed />
