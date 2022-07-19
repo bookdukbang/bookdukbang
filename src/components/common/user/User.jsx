@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
 
@@ -39,22 +39,23 @@ const UserName = styled.p`
 	}
 `;
 
-function User({ profileUrl, userName, accoutName }) {
-	if (!profileUrl) {
-		profileUrl = NoneProfile;
-	}
-	if (!userName) {
-		userName = '(알수없음)';
-	}
-	if (!accoutName) {
-		accoutName = 'none_account';
+function User({ author }) {
+	useEffect(() => {
+		console.log(author);
+	}, []);
+	if (author === null) {
+		author = {
+			image: NoneProfile,
+			username: '(알수없음)',
+			accountname: 'none_account',
+		};
 	}
 
 	return (
 		<>
-			<UserProfileImg src={profileUrl} alt={userName} />
+			<UserProfileImg src={author.image} alt={author.username} />
 			<UserName>
-				{userName} <span>{accoutName}</span>
+				{author.username} <span>{author.accountname}</span>
 			</UserName>
 		</>
 	);

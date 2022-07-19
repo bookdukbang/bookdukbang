@@ -9,7 +9,7 @@ import Splash from './pages/Splash';
 import SplashLogin from './pages/SplashLogin';
 import ChatContentPage from './pages/ChatContentPage';
 import ChatListPage from './pages/ChatListPage';
-
+import PostView from './pages/PostView';
 
 function App() {
 	return (
@@ -28,6 +28,7 @@ function App() {
 					element={<ChatContentPage />}
 				/>
 				<Route path="/chat" exact element={<ChatListPage />} />
+				<Route path="/post" exact element={<PostView />} />
 			</Routes>
 		</>
 	);

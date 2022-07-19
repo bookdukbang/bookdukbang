@@ -25,7 +25,7 @@ const PostTextareaWrap = styled.div`
 
 const PostTextarea = styled.textarea`
 	width: 100%;
-	min-height: 31.6rem;
+	min-height: 24rem;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	border: none;
 	resize: none;
