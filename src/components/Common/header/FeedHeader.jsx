@@ -16,7 +16,7 @@ import {
 	ProfileImg,
 	PostingImg,
 	LogoutImg,
-} from './FeedHeader.jsx.style';
+} from './FeedHeader.style';
 
 function FeedHeader({ children, isHome }) {
 	return (
