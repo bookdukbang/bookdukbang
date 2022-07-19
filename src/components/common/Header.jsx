@@ -6,6 +6,10 @@ import Wrap from './Wrap';
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 2.7rem 0;
+
+	& h1 {
+		display: inline-block;
+	}
 `;
 
 const LogoImg = styled.img`
@@ -15,7 +19,7 @@ const LogoImg = styled.img`
 	}
 `;
 
-function Header() {
+function Header({ children }) {
 	return (
 		<HeaderStyle>
 			<Wrap>
@@ -24,6 +28,7 @@ function Header() {
 						<LogoImg src={HeaderLogo} alt="북덕방" />
 					</a>
 				</h1>
+				{children}
 			</Wrap>
 		</HeaderStyle>
 	);
