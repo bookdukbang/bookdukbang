@@ -88,7 +88,6 @@ const InfoDiv = styled.div`
 
 	@media ${({ theme }) => theme.size.mobile} {
 		position: relative;
-		padding-bottom: 2rem;
 	}
 `;
 
