@@ -12,10 +12,10 @@ const ProfileImg = styled.img`
 `;
 
 const Name = styled(ProfileName)`
-	word-break: ${({ theme }) => theme.TextShortening()};
+	${({ theme }) => theme.TextShortening()};
 `;
 
-const Email = styled(ProfileEmail)`
+const Accountname = styled(ProfileEmail)`
 	font-size: 1.6rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.4rem;
@@ -64,37 +64,41 @@ const ProfileStyle = styled.div`
 
 function MyFollowerList() {
 	return (
-		<>
-			<FollowerDiv>
-				<ProfileImg src={Profile} alt="프로필" />
-				<ProfileStyle>
-					<Name>애월읍 위니브 감귤농장</Name>
-					<Email>@ weniv_Mandarin</Email>
-				</ProfileStyle>
+		<ul>
+			<li>
+				<FollowerDiv>
+					<ProfileImg src={Profile} alt="프로필" />
+					<ProfileStyle>
+						<Name>애월읍 위니브 감귤농장</Name>
+						<Accountname>@ weniv_Mandarin</Accountname>
+					</ProfileStyle>
 
-				<FollowBtn type="button">팔로우</FollowBtn>
-			</FollowerDiv>
+					<FollowBtn type="button">팔로우</FollowBtn>
+				</FollowerDiv>
+			</li>
+			<li>
+				<FollowerDiv>
+					<ProfileImg src={Profile} alt="프로필" />
+					<ProfileStyle>
+						<Name>애월읍 위니브 감귤농장</Name>
+						<Accountname>@ weniv_Mandarin</Accountname>
+					</ProfileStyle>
 
-			<FollowerDiv>
-				<ProfileImg src={Profile} alt="프로필" />
-				<ProfileStyle>
-					<Name>애월읍 위니브 감귤농장</Name>
-					<Email>@ weniv_Mandarin</Email>
-				</ProfileStyle>
+					<FollowingBtn type="button">팔로잉</FollowingBtn>
+				</FollowerDiv>
+			</li>
+			<li>
+				<FollowerDiv>
+					<ProfileImg src={Profile} alt="프로필" />
+					<ProfileStyle>
+						<Name>애월읍 위니브 감귤농장</Name>
+						<Accountname>@ weniv_Mandarin</Accountname>
+					</ProfileStyle>
 
-				<FollowingBtn type="button">팔로잉</FollowingBtn>
-			</FollowerDiv>
-
-			<FollowerDiv>
-				<ProfileImg src={Profile} alt="프로필" />
-				<ProfileStyle>
-					<Name>애월읍 위니브 감귤농장</Name>
-					<Email>@ weniv_Mandarin</Email>
-				</ProfileStyle>
-
-				<FollowBtn type="button">팔로우</FollowBtn>
-			</FollowerDiv>
-		</>
+					<FollowBtn type="button">팔로우</FollowBtn>
+				</FollowerDiv>
+			</li>
+		</ul>
 	);
 }
 
