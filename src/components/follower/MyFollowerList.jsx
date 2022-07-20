@@ -22,7 +22,7 @@ const Accountname = styled(ProfileEmail)`
 	}
 `;
 
-const FollowerDiv = styled.li`
+const FollowerLi = styled.li`
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -65,7 +65,7 @@ const ProfileStyle = styled.div`
 function MyFollowerList() {
 	return (
 		<ul>
-			<FollowerDiv>
+			<FollowerLi>
 				<ProfileImg src={Profile} alt="프로필" />
 				<ProfileStyle>
 					<Name>애월읍 위니브 감귤농장</Name>
@@ -73,9 +73,9 @@ function MyFollowerList() {
 				</ProfileStyle>
 
 				<FollowBtn type="button">팔로우</FollowBtn>
-			</FollowerDiv>
+			</FollowerLi>
 
-			<FollowerDiv>
+			<FollowerLi>
 				<ProfileImg src={Profile} alt="프로필" />
 				<ProfileStyle>
 					<Name>애월읍 위니브 감귤농장</Name>
@@ -83,9 +83,9 @@ function MyFollowerList() {
 				</ProfileStyle>
 
 				<FollowingBtn type="button">팔로잉</FollowingBtn>
-			</FollowerDiv>
+			</FollowerLi>
 
-			<FollowerDiv>
+			<FollowerLi>
 				<ProfileImg src={Profile} alt="프로필" />
 				<ProfileStyle>
 					<Name>애월읍 위니브 감귤농장</Name>
@@ -93,7 +93,7 @@ function MyFollowerList() {
 				</ProfileStyle>
 
 				<FollowBtn type="button">팔로우</FollowBtn>
-			</FollowerDiv>
+			</FollowerLi>
 		</ul>
 	);
 }
