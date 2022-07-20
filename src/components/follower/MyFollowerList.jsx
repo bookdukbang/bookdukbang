@@ -22,7 +22,7 @@ const Accountname = styled(ProfileEmail)`
 	}
 `;
 
-const FollowerDiv = styled.div`
+const FollowerDiv = styled.li`
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -65,39 +65,35 @@ const ProfileStyle = styled.div`
 function MyFollowerList() {
 	return (
 		<ul>
-			<li>
-				<FollowerDiv>
-					<ProfileImg src={Profile} alt="프로필" />
-					<ProfileStyle>
-						<Name>애월읍 위니브 감귤농장</Name>
-						<Accountname>@ weniv_Mandarin</Accountname>
-					</ProfileStyle>
+			<FollowerDiv>
+				<ProfileImg src={Profile} alt="프로필" />
+				<ProfileStyle>
+					<Name>애월읍 위니브 감귤농장</Name>
+					<Accountname>@ weniv_Mandarin</Accountname>
+				</ProfileStyle>
 
-					<FollowBtn type="button">팔로우</FollowBtn>
-				</FollowerDiv>
-			</li>
-			<li>
-				<FollowerDiv>
-					<ProfileImg src={Profile} alt="프로필" />
-					<ProfileStyle>
-						<Name>애월읍 위니브 감귤농장</Name>
-						<Accountname>@ weniv_Mandarin</Accountname>
-					</ProfileStyle>
+				<FollowBtn type="button">팔로우</FollowBtn>
+			</FollowerDiv>
 
-					<FollowingBtn type="button">팔로잉</FollowingBtn>
-				</FollowerDiv>
-			</li>
-			<li>
-				<FollowerDiv>
-					<ProfileImg src={Profile} alt="프로필" />
-					<ProfileStyle>
-						<Name>애월읍 위니브 감귤농장</Name>
-						<Accountname>@ weniv_Mandarin</Accountname>
-					</ProfileStyle>
+			<FollowerDiv>
+				<ProfileImg src={Profile} alt="프로필" />
+				<ProfileStyle>
+					<Name>애월읍 위니브 감귤농장</Name>
+					<Accountname>@ weniv_Mandarin</Accountname>
+				</ProfileStyle>
 
-					<FollowBtn type="button">팔로우</FollowBtn>
-				</FollowerDiv>
-			</li>
+				<FollowingBtn type="button">팔로잉</FollowingBtn>
+			</FollowerDiv>
+
+			<FollowerDiv>
+				<ProfileImg src={Profile} alt="프로필" />
+				<ProfileStyle>
+					<Name>애월읍 위니브 감귤농장</Name>
+					<Accountname>@ weniv_Mandarin</Accountname>
+				</ProfileStyle>
+
+				<FollowBtn type="button">팔로우</FollowBtn>
+			</FollowerDiv>
 		</ul>
 	);
 }
