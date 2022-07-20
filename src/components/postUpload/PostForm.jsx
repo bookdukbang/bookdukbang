@@ -53,7 +53,7 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 				<fieldset>
 					<legend>포스팅 글쓰기</legend>
 					<div>
-						<User />
+						<User author={null} />
 					</div>
 					<PostTextareaWrap>
 						<label htmlFor="postText">포스팅 글 입력</label>
