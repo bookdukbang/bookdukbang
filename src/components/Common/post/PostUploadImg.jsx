@@ -1,4 +1,4 @@
-import { IMG_UPLOAD_MAXCOUNT } from '../../constants';
+import { IMG_UPLOAD_MAXCOUNT } from '../../../constants';
 import React, { useEffect, useState } from 'react';
 import { ImgFileLabel, ImgFileInput } from './PostUploadImg.style';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../common/Header';
+import Header from '../common/header/Header';
 import { ButtonStyle } from '../common//Button.style';
 
 const PostUploadBtn = styled(ButtonStyle)`
