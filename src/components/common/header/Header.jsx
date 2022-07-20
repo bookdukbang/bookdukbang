@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import HeaderLogo from '../../assets/HeaderLogo.png';
-import Wrap from './Wrap';
+import HeaderLogo from '../../../assets/HeaderLogo.png';
+import Wrap from '../Wrap';
+import { Link } from 'react-router-dom';
 
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
@@ -14,7 +15,10 @@ const HeaderStyle = styled.header`
 
 const LogoImg = styled.img`
 	width: 21.5rem;
-	@media (max-width: 390px) {
+	@media ${({ theme }) => theme.size.tablet} {
+		width: 16.6rem;
+	}
+	@media ${({ theme }) => theme.size.mobile} {
 		width: 11.6rem;
 	}
 `;
@@ -24,9 +28,9 @@ function Header({ children }) {
 		<HeaderStyle>
 			<Wrap>
 				<h1>
-					<a href="/">
+					<Link to="/">
 						<LogoImg src={HeaderLogo} alt="북덕방" />
-					</a>
+					</Link>
 				</h1>
 				{children}
 			</Wrap>

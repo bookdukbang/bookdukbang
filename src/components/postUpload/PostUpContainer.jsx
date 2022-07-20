@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PostForm from './PostForm';
-import PostViewImg from './PostViewImg';
+import PostViewImg from '../common/post/PostViewImg';
 
-const PostUploadWrap = styled.section`
+const PostUploadSection = styled.section`
 	display: flex;
 	flex-direction: row-reverse;
+	min-height: 48.5rem;
 	gap: 2.5rem;
 	& h2 {
 		${({ theme }) => theme.a11yHidden()};
@@ -20,7 +21,7 @@ function PostUpContainer({ setDisable }) {
 	const [uploadImgs, setUploadImgs] = useState([]);
 
 	return (
-		<PostUploadWrap>
+		<PostUploadSection>
 			<h2>포스팅 작성 페이지</h2>
 			<PostForm
 				uploadImgs={uploadImgs}
@@ -32,9 +33,10 @@ function PostUpContainer({ setDisable }) {
 				<PostViewImg
 					uploadImgs={uploadImgs}
 					setUploadImgs={setUploadImgs}
+					isView={false}
 				/>
 			)}
-		</PostUploadWrap>
+		</PostUploadSection>
 	);
 }
 

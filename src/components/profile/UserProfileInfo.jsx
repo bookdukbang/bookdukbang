@@ -118,7 +118,7 @@ const ShareBtn = styled(SmallBtn)`
 		text-align: center;
 		position: relative;
 		& span {
-			display: none;
+			${({ theme }) => theme.a11yHidden()}
 		}
 		& img {
 			position: absolute;

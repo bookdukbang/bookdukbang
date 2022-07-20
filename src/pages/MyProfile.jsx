@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedHeader from '../components/common/FeedHeader';
+import FeedHeader from '../components/common/header/FeedHeader';
 import ProfileInfo from '../components/profile/ProfileInfo';
 import ProductRegister from '../components/profile/ProductRegister';
 import Feed from '../components/common/Feed';

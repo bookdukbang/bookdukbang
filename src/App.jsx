@@ -7,25 +7,18 @@ import ErrorPage from './pages/404Page';
 import PostUploadPage from './pages/PostUploadPage';
 import Splash from './pages/Splash';
 import SplashLogin from './pages/SplashLogin';
-// import JoinPage from './pages/JoinPage';
-// import JoinProfilepage from './pages/JoinProfilePage';
 import UserProfilePage from './pages/UserProfilePage';
-
 import ChatContentPage from './pages/ChatContentPage';
 import ChatListPage from './pages/ChatListPage';
 import FeedPage from './pages/FeedPage';
+import PostView from './pages/PostView';
+import FollowerList from './pages/FollowerList';
 
 function App() {
 	return (
 		<>
 			<Routes>
 				<Route path="/login" exact element={<LoginPage />} />
-				{/* <Route path="/join" exact element={<JoinPage />} /> */}
-				{/* <Route
-					path="/join/profile"
-					exact
-					element={<JoinProfilepage />}
-				/> */}
 				<Route path="/search" exact element={<SearchPage />} />
 				<Route path="/myprofile" exact element={<MyProfile />} />
 				<Route
@@ -44,6 +37,8 @@ function App() {
 				/>
 				<Route path="/chat" exact element={<ChatListPage />} />
 				<Route path="/" exact element={<FeedPage />} />
+				<Route path="/post" exact element={<PostView />} />
+				<Route path="/followerlist" exact element={<FollowerList />} />
 			</Routes>
 		</>
 	);
