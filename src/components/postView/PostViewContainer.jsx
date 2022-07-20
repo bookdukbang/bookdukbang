@@ -23,7 +23,7 @@ const PostContextWrap = styled.div`
 	flex-grow: 1;
 `;
 
-export default function PostViewContainer() {
+function PostViewContainer() {
 	const [postContext, setPostContext] = useState(null);
 	const [postImgs, setPostImgs] = useState(null);
 
@@ -73,3 +73,4 @@ export default function PostViewContainer() {
 		</PostViewSection>
 	);
 }
+export default PostViewContainer;

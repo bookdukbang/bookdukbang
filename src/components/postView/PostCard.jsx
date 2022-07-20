@@ -7,7 +7,7 @@ import {
 	ReactionWrap,
 } from './PostCard.style';
 
-export default function PostCard({ postContext }) {
+function PostCard({ postContext }) {
 	const [writeDate, setWriteDate] = useState('');
 
 	useEffect(() => {
@@ -40,3 +40,4 @@ export default function PostCard({ postContext }) {
 		</PostCardWrap>
 	);
 }
+export default PostCard;
