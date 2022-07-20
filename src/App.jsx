@@ -7,6 +7,7 @@ import ErrorPage from './pages/404Page';
 import PostUploadPage from './pages/PostUploadPage';
 import Splash from './pages/Splash';
 import SplashLogin from './pages/SplashLogin';
+import UserProfilePage from './pages/UserProfilePage';
 import ChatContentPage from './pages/ChatContentPage';
 import ChatListPage from './pages/ChatListPage';
 import FollowerList from './pages/FollowerList';
@@ -18,6 +19,11 @@ function App() {
 				<Route path="/login" exact element={<LoginPage />} />
 				<Route path="/search" exact element={<SearchPage />} />
 				<Route path="/myprofile" exact element={<MyProfile />} />
+				<Route
+					path="/userprofile"
+					exact
+					element={<UserProfilePage />}
+				/>
 				<Route path="/errorPage" exact element={<ErrorPage />} />
 				<Route path="/postUpload" exact element={<PostUploadPage />} />
 				<Route path="/splash" exact element={<Splash />} />
