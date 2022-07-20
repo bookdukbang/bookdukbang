@@ -6,7 +6,7 @@ import {
 	PostTextareaWrap,
 	PostTextarea,
 } from './PostForm.style';
-import PostUploadImg from './PostUploadImg';
+import PostUploadImg from '../common/post/PostUploadImg';
 
 function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 	const [serverImg, setServerImg] = useState([]);
