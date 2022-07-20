@@ -13,6 +13,7 @@ import ChatListPage from './pages/ChatListPage';
 import FeedPage from './pages/FeedPage';
 import PostView from './pages/PostView';
 import FollowerList from './pages/FollowerList';
+import ProductPage from './pages/ProductPage';
 
 function App() {
 	return (
@@ -39,6 +40,7 @@ function App() {
 				<Route path="/" exact element={<FeedPage />} />
 				<Route path="/post" exact element={<PostView />} />
 				<Route path="/followerlist" exact element={<FollowerList />} />
+				<Route path="/product" exact element={<ProductPage />} />
 			</Routes>
 		</>
 	);
