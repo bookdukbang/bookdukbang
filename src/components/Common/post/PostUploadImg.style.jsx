@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import IconImgUpload from '../../assets/imgUpload.png';
+import IconImgUpload from '../../../assets/imgUpload.png';
 
 const ImgFileLabel = styled.label`
 	display: block;

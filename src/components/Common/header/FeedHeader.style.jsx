@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import Wrap from '../Wrap';
-import BackIcon from '../../assets/arrowLeft.png';
-import MoreIcon from '../../assets/moreBtn.png';
+import BackIcon from '../../../assets/arrowLeft.png';
+import MoreIcon from '../../../assets/moreBtn.png';
 
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
@@ -140,4 +140,5 @@ export {
 	ProfileImg,
 	PostingImg,
 	LogoutImg,
+	HeaderBtnLogout,
 };

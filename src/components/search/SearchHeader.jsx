@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL, USER_TOKEN } from '../../constants/index';
-import FeedHeader from '../common/FeedHeader';
+import FeedHeader from '../common/header/FeedHeader';
 import { SearchInput, SearchForm } from './SearchHeader.style';
 
 function SearchHeader({ setSearchList }) {

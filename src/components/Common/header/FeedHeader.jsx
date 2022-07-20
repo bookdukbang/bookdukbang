@@ -1,8 +1,8 @@
 import React from 'react';
-import HeaderLogo from '../../assets/HeaderLogo.png';
-import Profile from '../../assets/profile.png';
-import PostingIcon from '../../assets/PostingIcon.png';
-import LogoutIcon from '../../assets/LogoutIcon.png';
+import HeaderLogo from '../../../assets/HeaderLogo.png';
+import Profile from '../../../assets/profile.png';
+import PostingIcon from '../../../assets/PostingIcon.png';
+import LogoutIcon from '../../../assets/LogoutIcon.png';
 import { Link } from 'react-router-dom';
 import {
 	HeaderStyle,
@@ -16,6 +16,7 @@ import {
 	ProfileImg,
 	PostingImg,
 	LogoutImg,
+	HeaderBtnLogout,
 } from './FeedHeader.style';
 
 function FeedHeader({ children, isHome }) {
@@ -23,7 +24,7 @@ function FeedHeader({ children, isHome }) {
 		<HeaderStyle>
 			<FeedHeaderWrap>
 				<LogoWrap isHome={isHome}>
-					<Link href="/">
+					<Link to="/">
 						<LogoImg src={HeaderLogo} alt="북덕방" />
 					</Link>
 				</LogoWrap>

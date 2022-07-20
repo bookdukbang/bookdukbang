@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import HeaderLogo from '../../assets/HeaderLogo.png';
-import Wrap from './Wrap';
+import HeaderLogo from '../../../assets/HeaderLogo.png';
+import Wrap from '../Wrap';
 import { Link } from 'react-router-dom';
 
 const HeaderStyle = styled.header`
@@ -28,7 +28,7 @@ function Header({ children }) {
 		<HeaderStyle>
 			<Wrap>
 				<h1>
-					<Link href="/">
+					<Link to="/">
 						<LogoImg src={HeaderLogo} alt="북덕방" />
 					</Link>
 				</h1>
