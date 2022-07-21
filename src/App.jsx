@@ -14,6 +14,7 @@ import FeedPage from './pages/FeedPage';
 import PostView from './pages/PostView';
 import FollowerList from './pages/FollowerList';
 import ProductPage from './pages/ProductPage';
+import FeedNoFollowersPage from './pages/FeedNoFollowersPage';
 
 function App() {
 	return (
@@ -38,6 +39,11 @@ function App() {
 				/>
 				<Route path="/chat" exact element={<ChatListPage />} />
 				<Route path="/" exact element={<FeedPage />} />
+				<Route
+					path="/nofollowers"
+					exact
+					element={<FeedNoFollowersPage />}
+				/>
 				<Route path="/post" exact element={<PostView />} />
 				<Route path="/followerlist" exact element={<FollowerList />} />
 				<Route path="/product" exact element={<ProductPage />} />
