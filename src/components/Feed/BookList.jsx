@@ -24,7 +24,8 @@ const BookTitle = styled.p`
 	font-weight: 400;
 	font-size: 1.6rem;
 	padding: 0 2rem;
-	& p {
+	& span {
+		display: block;
 		color: ${({ theme }) => theme.mainColor};
 	}
 `;
@@ -35,17 +36,17 @@ function BookList() {
 			<BookListWrap>
 				<BookBtn type="button">
 					<BookTitle>
-						책제목<p>99,000원</p>
+						책제목<span>99,000원</span>
 					</BookTitle>
 				</BookBtn>
 				<BookBtn type="button">
 					<BookTitle>
-						책제목<p>99,000원</p>
+						책제목<span>99,000원</span>
 					</BookTitle>
 				</BookBtn>
 				<BookBtn type="button">
 					<BookTitle>
-						책제목<p>99,000원</p>
+						책제목<span>99,000원</span>
 					</BookTitle>
 				</BookBtn>
 			</BookListWrap>

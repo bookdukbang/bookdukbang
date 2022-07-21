@@ -22,15 +22,13 @@ const UserInfo = styled.h2`
 
 function User() {
 	return (
-		<>
-			<UserArticle>
-				<NoneProfileSmall />
-				<UserInfo>
-					애월읍 위니브 감귤농장
-					<p>@ weniv_Mandarin</p>
-				</UserInfo>
-			</UserArticle>
-		</>
+		<UserArticle>
+			<NoneProfileSmall />
+			<UserInfo>
+				애월읍 위니브 감귤농장
+				<p>@ weniv_Mandarin</p>
+			</UserInfo>
+		</UserArticle>
 	);
 }
 

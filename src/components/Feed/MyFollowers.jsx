@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MediumBtn, MediumBtnDiv } from '../common/Button.style';
 import User from './User';
@@ -20,14 +21,25 @@ function MyFollowers() {
 		<>
 			<MyFollowersWrap>
 				<MyFollowersP>MyFollowers</MyFollowersP>
-				<User />
-				<User />
-				<User />
-				<User />
-				<User />
+				<ul>
+					<li>
+						<User />
+					</li>
+					<li>
+						<User />
+					</li>
+					<li>
+						<User />
+					</li>
+					<li>
+						<User />
+					</li>
+				</ul>
 			</MyFollowersWrap>
 			<MediumBtnDiv>
-				<MediumBtn type="button">유저 검색 하기</MediumBtn>
+				<Link to="/search">
+					<MediumBtn>유저 검색 하기</MediumBtn>
+				</Link>
 			</MediumBtnDiv>
 		</>
 	);
