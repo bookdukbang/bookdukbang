@@ -16,30 +16,27 @@ const MyFollowersP = styled.p`
 	margin: 0 0 3rem 2rem;
 `;
 
+const MediumBtnUserSearch = styled(MediumBtn)`
+	text-align: center;
+`;
+
 function MyFollowers() {
 	return (
 		<>
 			<MyFollowersWrap>
 				<MyFollowersP>MyFollowers</MyFollowersP>
 				<ul>
-					<li>
-						<User />
-					</li>
-					<li>
-						<User />
-					</li>
-					<li>
-						<User />
-					</li>
-					<li>
-						<User />
-					</li>
+					<User />
+					<User />
+					<User />
+					<User />
+					<User />
 				</ul>
 			</MyFollowersWrap>
 			<MediumBtnDiv>
-				<Link to="/search">
-					<MediumBtn>유저 검색 하기</MediumBtn>
-				</Link>
+				<MediumBtnUserSearch as={Link} to="/search">
+					유저 검색 하기
+				</MediumBtnUserSearch>
 			</MediumBtnDiv>
 		</>
 	);
