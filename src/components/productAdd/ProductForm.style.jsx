@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NoneProductImg from '../../assets/none-product.png';
+// import NoneProductImg from '../../assets/none-product.png';
 import { ButtonStyle } from '../common/Button.style';
 
 const ProductFormStyle = styled.form`
@@ -29,15 +29,12 @@ const ProductFormStyle = styled.form`
 
 const ProductImgWrap = styled.div`
 	max-width: 55rem;
-	padding-top: 80%;
-	/* height: 44rem; */
-	background-image: url(${NoneProductImg});
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 55rem 44rem;
+	text-align: center;
 	margin-bottom: 3rem;
 	position: relative;
 	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 0.1rem solid ${({ theme }) => theme.grayColor4};
 
 	& label {
 		position: absolute;
@@ -45,10 +42,18 @@ const ProductImgWrap = styled.div`
 		bottom: 1rem;
 	}
 
+	& img {
+		width: 100%;
+		min-height: 20rem;
+		max-height: 44rem;
+	}
+
 	@media ${({ theme }) => theme.size.mobile} {
 		background-size: 32rem 25.6rem;
 	}
 `;
+
+const ProductImg = styled.img``;
 
 const ProductBtn = styled(ButtonStyle)`
 	padding: 1.8rem 0;
@@ -66,4 +71,4 @@ const ProductBtn = styled(ButtonStyle)`
 	}
 `;
 
-export { ProductFormStyle, ProductImgWrap, ProductBtn };
+export { ProductFormStyle, ProductImgWrap, ProductBtn, ProductImg };

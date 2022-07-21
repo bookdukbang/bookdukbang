@@ -9,7 +9,7 @@ import {
 	NextBtn,
 } from './PostViewImg.style';
 
-function PostViewImg({ uploadImgs, setUploadImgs }) {
+function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [currentAllCount, setCurrentAllCount] = useState(0);
 	const [isShow, setIsShow] = useState(false);
@@ -71,21 +71,27 @@ function PostViewImg({ uploadImgs, setUploadImgs }) {
 	return (
 		<PostImgWrap>
 			<PostImgList ref={slideRef}>
-				{uploadImgs.map((item) => (
-					<PostImgLi
-						key={item.lastModified}
-						id={item.lastModified}
-						bgUrl={URL.createObjectURL(item)}
-					>
-						<span>{item.name}</span>
-						<PostImgDeleteBtn
-							type="button"
-							onClick={onClickDeleteImg}
+				{!isView &&
+					uploadImgs.map((item) => (
+						<PostImgLi
+							key={item.lastModified}
+							id={item.lastModified}
 						>
-							<span>이미지 삭제</span>
-						</PostImgDeleteBtn>
-					</PostImgLi>
-				))}
+							<img src={URL.createObjectURL(item)} alt="" />
+							<PostImgDeleteBtn
+								type="button"
+								onClick={onClickDeleteImg}
+							>
+								<span>이미지 삭제</span>
+							</PostImgDeleteBtn>
+						</PostImgLi>
+					))}
+				{isView &&
+					uploadImgs.map((item) => (
+						<PostImgLi key={item} bgUrl={item}>
+							<img src={item} alt="" />
+						</PostImgLi>
+					))}
 			</PostImgList>
 			<PostArrowBtnWrap isShow={isShow}>
 				<PrevBtn type="button" onClick={onClickPrevBtn}>

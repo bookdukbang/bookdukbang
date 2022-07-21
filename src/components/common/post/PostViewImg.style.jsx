@@ -21,20 +21,16 @@ const PostImgList = styled.ul`
 		height: 22rem;
 	}
 `;
+
 const PostImgLi = styled.li`
 	width: 100%;
-	padding-top: 64.5%;
+	padding-top: 64.4%;
 	border: 1px solid ${({ theme }) => theme.grayColor4};
 	border-radius: 1rem;
 	position: absolute;
 	top: 0;
 	overflow: hidden;
 	box-sizing: border-box;
-
-	background-image: url(${({ bgUrl }) => bgUrl});
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
 
 	&:nth-child(1) {
 		transform: translateX(0) translateY(0);
@@ -50,10 +46,22 @@ const PostImgLi = styled.li`
 		${({ theme }) => theme.a11yHidden()};
 	}
 
+	& img {
+		/* width: 100%;
+		min-height: 20rem;
+		max-height: 48.3rem; */
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 50%;
+		transform: translateY(50%);
+	}
+
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 100%;
 	}
 `;
+
 const PostImgDeleteBtn = styled.button`
 	width: 5rem;
 	height: 5rem;
@@ -66,6 +74,7 @@ const PostImgDeleteBtn = styled.button`
 	position: absolute;
 	right: 0;
 	top: 0;
+
 	& span {
 		${({ theme }) => theme.a11yHidden()};
 	}
@@ -82,8 +91,8 @@ const PostArrowBtnWrap = styled.div`
 	left: 0;
 	right: 0;
 	top: 50%;
-	transform: translateY(-100%);
-	display: ${({ isShow }) => (isShow ? 'block' : 'none')};
+	transform: translateY(-50%);
+
 	&::after {
 		clear: both;
 		content: '';

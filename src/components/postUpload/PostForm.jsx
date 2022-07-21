@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants';
 import User from '../common/user/User';
 import {
@@ -27,6 +27,10 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 			console.error(err);
 		}
 	}
+
+	useEffect(() => {
+		console.log(serverImg);
+	}, [serverImg]);
 
 	// 이미지 서버화 네이밍 결과 배열 serverImg
 	const onSubmitImg = (e) => {
@@ -66,8 +70,8 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 					</PostTextareaWrap>
 					<PostUploadImg
 						uploadImgs={uploadImgs}
-						serverImg={serverImg}
 						setUploadImgs={setUploadImgs}
+						isMulty={true}
 					/>
 				</fieldset>
 			</PostFormStyle>
