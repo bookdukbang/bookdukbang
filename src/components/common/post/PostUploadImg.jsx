@@ -2,19 +2,16 @@ import { IMG_UPLOAD_MAXCOUNT } from '../../../constants';
 import React, { useEffect, useState } from 'react';
 import { ImgFileLabel, ImgFileInput } from './PostUploadImg.style';
 
-function PostUploadImg({ uploadImgs, serverImg, setUploadImgs }) {
+function PostUploadImg({ uploadImgs, setUploadImgs, isMulty }) {
 	const [remainderNum, setRemainderNum] = useState(IMG_UPLOAD_MAXCOUNT);
 
 	useEffect(() => {
 		setRemainderNum(IMG_UPLOAD_MAXCOUNT - uploadImgs.length);
 	}, [uploadImgs]);
 
-	useEffect(() => {
-		console.log('serverImg', serverImg);
-	}, [serverImg]);
-
 	const validation = (file) => {
-		console.log(file);
+		console.log('file', file);
+
 		const fileTypes = [
 			'image/jpg',
 			'image/gif',
@@ -24,10 +21,17 @@ function PostUploadImg({ uploadImgs, serverImg, setUploadImgs }) {
 			'image/tif',
 			'image/heic',
 		];
+		let isHasImg = -1;
 
-		const isHasImg = uploadImgs.findIndex(
-			(val) => val.lastModified === file.lastModified,
-		);
+		if (isMulty) {
+			isHasImg = uploadImgs.findIndex(
+				(val) => val.lastModified === file.lastModified,
+			);
+		}
+
+		if (file === undefined) {
+			return false;
+		}
 
 		if (isHasImg >= 0) {
 			alert('이미 첨부된 파일입니다.');
@@ -51,15 +55,21 @@ function PostUploadImg({ uploadImgs, serverImg, setUploadImgs }) {
 	const onChangeImgUploadBtn = (e) => {
 		const files = e.target.files;
 
-		if (remainderNum < files.length) {
-			alert(
-				`이미지는 최대 ${IMG_UPLOAD_MAXCOUNT}개까지 올릴 수 있습니다.`,
-			);
-		} else {
-			for (let i = 0; i < files.length; i++) {
-				if (validation(files[i])) {
-					setUploadImgs((cur) => [...cur, files[i]]);
+		if (isMulty) {
+			if (remainderNum < files.length) {
+				alert(
+					`이미지는 최대 ${IMG_UPLOAD_MAXCOUNT}개까지 올릴 수 있습니다.`,
+				);
+			} else {
+				for (let i = 0; i < files.length; i++) {
+					if (validation(files[i])) {
+						setUploadImgs((cur) => [...cur, files[i]]);
+					}
 				}
+			}
+		} else {
+			if (validation(files[0])) {
+				setUploadImgs(files[0]);
 			}
 		}
 	};
@@ -73,7 +83,7 @@ function PostUploadImg({ uploadImgs, serverImg, setUploadImgs }) {
 				id="chooseFile"
 				name="chooseFile"
 				onChange={onChangeImgUploadBtn}
-				multiple
+				multiple={isMulty}
 			/>
 		</>
 	);
