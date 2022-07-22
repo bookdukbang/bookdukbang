@@ -21,15 +21,11 @@ const UserLink = styled(Link)`
 	}
 `;
 function SearchCard({ user }) {
-	const userLink = `/profile/${user.accountname}`;
+	const userLink = `/user/${user.accountname}`;
 	return (
 		<SearchCardLi>
 			<UserLink to={userLink}>
-				<User
-					profileUrl={user.image}
-					userName={user.username}
-					accoutName={user.accountname}
-				/>
+				<User author={user} />
 			</UserLink>
 		</SearchCardLi>
 	);

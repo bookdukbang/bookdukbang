@@ -3,7 +3,7 @@ import HeaderLogo from '../../../assets/HeaderLogo.png';
 import Profile from '../../../assets/profile.png';
 import PostingIcon from '../../../assets/PostingIcon.png';
 import LogoutIcon from '../../../assets/LogoutIcon.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	HeaderStyle,
 	FeedHeaderWrap,
@@ -20,11 +20,17 @@ import {
 } from './FeedHeader.style';
 
 function FeedHeader({ children, isHome }) {
+	const navigate = useNavigate();
+	const onClickLogout = () => {
+		window.localStorage.removeItem('user');
+		navigate('/');
+	};
+
 	return (
 		<HeaderStyle>
 			<FeedHeaderWrap>
 				<LogoWrap isHome={isHome}>
-					<Link to="/">
+					<Link to="/feed">
 						<LogoImg src={HeaderLogo} alt="북덕방" />
 					</Link>
 				</LogoWrap>
@@ -34,18 +40,21 @@ function FeedHeader({ children, isHome }) {
 				{children}
 				<HeaderUl>
 					<li>
-						<a href="/">
+						<Link to="/myprofile">
 							<ProfileImg src={Profile} alt="프로필" />
-						</a>
+						</Link>
 					</li>
 					<li>
-						<HeaderPosting as="a" href="/">
-							<PostingImg src={PostingIcon} alt="포스팅" />
+						<HeaderPosting as={Link} to="/postUpload">
+							<PostingImg
+								src={PostingIcon}
+								alt="포스팅 작성하기"
+							/>
 							<span>Posting</span>
 						</HeaderPosting>
 					</li>
 					<li>
-						<HeaderBtnLogout>
+						<HeaderBtnLogout onClick={onClickLogout}>
 							<LogoutImg src={LogoutIcon} alt="로그아웃" />
 							<span>Logout</span>
 						</HeaderBtnLogout>

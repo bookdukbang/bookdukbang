@@ -93,7 +93,7 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 		e.preventDefault();
 		postUploadAPI().then((d) => {
 			console.log(d);
-			navigate(`/post${d.post.id}`);
+			navigate(`/post/${d.post.id}`);
 		});
 	};
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
 	Profilestyle,
@@ -126,11 +127,15 @@ function ProfileInfo() {
 					<Follow>
 						<ProfileFollow>
 							<Followers>followers</Followers>
-							<FollowNumStyle>2950</FollowNumStyle>
+							<FollowNumStyle>
+								<Link to="/follower">2950</Link>
+							</FollowNumStyle>
 						</ProfileFollow>
 						<ProfileFollowing>
 							<Followers>followings</Followers>
-							<FollowNumStyle>128</FollowNumStyle>
+							<FollowNumStyle>
+								<Link to="/follower">128</Link>
+							</FollowNumStyle>
 						</ProfileFollowing>
 					</Follow>
 				</Profilestyle>

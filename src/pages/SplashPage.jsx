@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import splashImg from '../assets/splashImg.png';
 import SplashHeader from '../components/splash/SplashHeader';
 import Wrap from '../components/common/Wrap';
-import {
-	TitleStyle,
-	Maintitle,
-	Subtitle,
-} from '../components/splash/SplashTitle.style';
-import {
-	SplashBtnDiv,
-	SplashBtn,
-} from '../components/splash/SplashButton.style';
 import Footer from '../components/common/Footer';
+import Splash from '../components/splash/Splash';
+import SplashLogin from '../components/splash/SplashLogin';
 
 const BackgroundImg = styled.div`
 	position: absolute;
@@ -34,23 +27,14 @@ const Container = styled(Wrap)`
 	justify-content: center;
 `;
 
-function Splash() {
+function SplashPage() {
+	const [isNext, setIsNext] = useState(false);
 	return (
 		<BackgroundImg>
 			<SplashHeader />
 
 			<Container>
-				<TitleStyle>
-					<Maintitle>노래하며 수 가슴에 할지니, </Maintitle>
-					<Maintitle>이것을 싹이 타오르고 듣는다.</Maintitle>
-					<Subtitle>보라. 없는 착목한는 광야에서 이것이다.</Subtitle>
-				</TitleStyle>
-
-				<SplashBtnDiv>
-					<SplashBtn type="button">
-						다양한 친구들을 만나보세요!
-					</SplashBtn>
-				</SplashBtnDiv>
+				{isNext ? <SplashLogin /> : <Splash setIsNext={setIsNext} />}
 			</Container>
 
 			<Footer isHome />
@@ -58,4 +42,4 @@ function Splash() {
 	);
 }
 
-export default Splash;
+export default SplashPage;
