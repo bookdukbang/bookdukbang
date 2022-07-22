@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
-import { SERVER_URL, USER_TOKEN, POST_ID } from '../../../constants';
+import { SERVER_URL, USER_TOKEN } from '../../../constants';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 
@@ -17,10 +17,10 @@ const CommentContainerStyle = styled.div`
 	}
 `;
 
-function CommentContainer() {
+function CommentContainer({ postId }) {
 	const [postComments, setPostComments] = useState(null);
 	async function commentAPI() {
-		const reqPath = `/post/${POST_ID}/comments`;
+		const reqPath = `/post/${postId}/comments`;
 
 		try {
 			const res = await fetch(SERVER_URL + reqPath, {
@@ -48,7 +48,7 @@ function CommentContainer() {
 	return (
 		<CommentContainerStyle>
 			<ul>
-				{postComments !== null &&
+				{postComments !== '' &&
 					postComments
 						.reverse()
 						.map((item) => (

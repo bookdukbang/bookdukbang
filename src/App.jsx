@@ -52,7 +52,7 @@ function App() {
 					exact
 					element={<FeedNoFollowersPage />}
 				/>
-				<Route path="/post" exact element={<PostView />} />
+				<Route path="/post:id" exact element={<PostView />} />
 				<Route path="/followerlist" exact element={<FollowerList />} />
 				<Route path="/product" exact element={<ProductPage />} />
 			</Routes>
