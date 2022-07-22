@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NoneProductImg from '../../assets/none-product.png';
 import PostUploadImg from '../common/post/PostUploadImg';
 import { SERVER_URL, USER_TOKEN } from '../../constants';
@@ -11,6 +12,7 @@ import {
 } from './ProductForm.style';
 
 function ProductForm() {
+	const navigate = useNavigate();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [priceCom, setPriceCom] = useState('');
 	const [isDisable, setIsDisable] = useState(true);
@@ -21,7 +23,8 @@ function ProductForm() {
 		itemImage: '',
 	});
 
-	async function imageUpload(file) {
+	// 서버로 이미지 보내기
+	async function imgServerAPI(file) {
 		const formData = new FormData();
 		formData.append('image', file);
 		const reqPath = '/image/uploadfile';
@@ -38,6 +41,7 @@ function ProductForm() {
 		}
 	}
 
+	// 서버로 form 보내기
 	async function productUploadAPI() {
 		const reqPath = '/product';
 		const productData = {
@@ -55,17 +59,14 @@ function ProductForm() {
 				body: JSON.stringify(productData),
 			});
 			const json = await res.json();
-			console.log(json);
-
 			return json;
 		} catch (err) {
 			console.error(err.message);
 		}
 	}
 
+	// input 입력 유무로 버튼 활성화
 	useEffect(() => {
-		console.log(productInfo);
-
 		if (
 			productInfo.itemName === '' ||
 			productInfo.price === '' ||
@@ -76,13 +77,13 @@ function ProductForm() {
 		} else {
 			setIsDisable(false);
 		}
-		console.log(isDisable);
 	}, [productInfo]);
 
+	// 이미지 파일이 업로드 되면 이미지 서버주소 받기
 	useEffect(() => {
-		// 이미지 서버화 네이밍
 		if (uploadImgs.length !== 0) {
-			imageUpload(uploadImgs)
+			window.URL.revokeObjectURL(URL.createObjectURL(uploadImgs));
+			imgServerAPI(uploadImgs)
 				.then((d) => SERVER_URL + '/' + d.filename)
 				.then((src) =>
 					setProductInfo((cur) => ({ ...cur, itemImage: src })),
@@ -90,11 +91,7 @@ function ProductForm() {
 		}
 	}, [uploadImgs]);
 
-	const onSubmitImg = (e) => {
-		e.preventDefault();
-		productUploadAPI();
-	};
-
+	// 인풋 입력 값 받기
 	const onChangeProductInput = (e) => {
 		if (e.target.name === 'productName') {
 			setProductInfo((cur) => ({ ...cur, itemName: e.target.value }));
@@ -109,13 +106,19 @@ function ProductForm() {
 		}
 	};
 
+	// 가격에 콤마넣기
 	const onBlurCommaPrice = (e) => {
-		//가격에 콤마넣기
 		const addComma = (num) => {
 			const regexp = /\B(?=(\d{3})+(?!\d))/g;
 			return num.replace(regexp, ',');
 		};
 		setPriceCom(addComma(e.target.value));
+	};
+
+	// 서버에 입력 form 제출
+	const onSubmitImg = (e) => {
+		e.preventDefault();
+		productUploadAPI().then(navigate('/myprofile'));
 	};
 
 	return (

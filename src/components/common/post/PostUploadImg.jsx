@@ -5,13 +5,13 @@ import { ImgFileLabel, ImgFileInput } from './PostUploadImg.style';
 function PostUploadImg({ uploadImgs, setUploadImgs, isMulty }) {
 	const [remainderNum, setRemainderNum] = useState(IMG_UPLOAD_MAXCOUNT);
 
+	// 멀티 업로드 시, 이미지 갯수 확인
 	useEffect(() => {
 		setRemainderNum(IMG_UPLOAD_MAXCOUNT - uploadImgs.length);
 	}, [uploadImgs]);
 
+	// 이미지 파일 검사
 	const validation = (file) => {
-		console.log('file', file);
-
 		const fileTypes = [
 			'image/jpg',
 			'image/gif',
@@ -52,10 +52,12 @@ function PostUploadImg({ uploadImgs, setUploadImgs, isMulty }) {
 		}
 	};
 
+	// 이미지 업로드
 	const onChangeImgUploadBtn = (e) => {
 		const files = e.target.files;
 
 		if (isMulty) {
+			// 1개 이상 이미지 업로드
 			if (remainderNum < files.length) {
 				alert(
 					`이미지는 최대 ${IMG_UPLOAD_MAXCOUNT}개까지 올릴 수 있습니다.`,
@@ -68,11 +70,13 @@ function PostUploadImg({ uploadImgs, setUploadImgs, isMulty }) {
 				}
 			}
 		} else {
+			// 1개 이미지 업로드
 			if (validation(files[0])) {
 				setUploadImgs(files[0]);
 			}
 		}
 	};
+
 	return (
 		<>
 			<ImgFileLabel htmlFor="chooseFile">
