@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import splashImg from '../assets/splashImg.png';
 import SplashHeader from '../components/splash/SplashHeader';
@@ -29,6 +30,7 @@ const Container = styled(Wrap)`
 
 function SplashPage() {
 	const [isNext, setIsNext] = useState(false);
+
 	return (
 		<BackgroundImg>
 			<SplashHeader />

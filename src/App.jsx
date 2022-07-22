@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import JoinPage from './pages/JoinPage';
@@ -17,182 +17,41 @@ import PostView from './pages/PostView';
 import FollowerList from './pages/FollowerList';
 import ProductPage from './pages/ProductPage';
 import FeedNoFollowersPage from './pages/FeedNoFollowersPage';
+import ProfileEdit from './pages/ProfileEdit';
 
 function App() {
-	const [userInfo, setUserInfo] = useState(null);
-	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
-	}, []);
-
 	return (
 		<>
 			<Routes>
 				<Route path="/" exact element={<SplashPage />} />
-				<Route
-					path="/login"
-					exact
-					element={
-						userInfo !== null ? (
-							<LoginPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/join"
-					exact
-					element={
-						userInfo !== null ? (
-							<JoinPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
+				<Route path="/login" exact element={<LoginPage />} />
+				<Route path="/join" exact element={<JoinPage />} />
 				<Route
 					path="/join/profile"
 					exact
-					element={
-						userInfo !== null ? (
-							<JoinProfilePage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
+					element={<JoinProfilePage />}
 				/>
-				<Route
-					path="/search"
-					exact
-					element={
-						userInfo !== null ? (
-							<SearchPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/myprofile"
-					exact
-					element={
-						userInfo !== null ? (
-							<MyProfile />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/user/:id"
-					exact
-					element={
-						userInfo !== null ? (
-							<UserProfilePage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/errorPage"
-					exact
-					element={
-						userInfo !== null ? (
-							<ErrorPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/postUpload"
-					exact
-					element={
-						userInfo !== null ? (
-							<PostUploadPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
+				<Route path="/search" exact element={<SearchPage />} />
+				<Route path="/myprofile" exact element={<MyProfile />} />
+				<Route path="/user/:id" exact element={<UserProfilePage />} />
+				<Route path="/errorPage" exact element={<ErrorPage />} />
+				<Route path="/postUpload" exact element={<PostUploadPage />} />
 				<Route
 					path="/chatcontent"
 					exact
-					element={
-						userInfo !== null ? (
-							<ChatContentPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
+					element={<ChatContentPage />}
 				/>
-				<Route
-					path="/chat"
-					exact
-					element={
-						userInfo !== null ? (
-							<ChatListPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/feed"
-					exact
-					element={
-						userInfo !== null ? (
-							<FeedPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
+				<Route path="/chat" exact element={<ChatListPage />} />
+				<Route path="/feed" exact element={<FeedPage />} />
 				<Route
 					path="/nofollowers"
 					exact
-					element={
-						userInfo !== null ? (
-							<FeedNoFollowersPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
+					element={<FeedNoFollowersPage />}
 				/>
-				<Route
-					path="/post/:id"
-					exact
-					element={
-						userInfo !== null ? (
-							<PostView />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/follower/:id"
-					exact
-					element={
-						userInfo !== null ? (
-							<FollowerList />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
-				<Route
-					path="/product"
-					exact
-					element={
-						userInfo !== null ? (
-							<ProductPage />
-						) : (
-							<Navigate replace={true} to="/" />
-						)
-					}
-				/>
+				<Route path="/post/:id" exact element={<PostView />} />
+				<Route path="/follower/:id" exact element={<FollowerList />} />
+				<Route path="/product" exact element={<ProductPage />} />
+				<Route path="/profileEdit" exact element={<ProfileEdit />} />
 			</Routes>
 		</>
 	);
