@@ -7,6 +7,7 @@ import {
 } from '../common/Input.style';
 import FormWrap from '../common/FormWrap.style';
 import { BigBtnDiv, BigBtn } from '../common/Button.style';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
 	const [id, setId] = useState('');
@@ -16,6 +17,8 @@ function LoginForm() {
 	const [msg, setMsg] = useState('');
 	const [isDisabled, setIsDisabled] = useState(true);
 	const [isEmail, setIsEmail] = useState(true);
+
+	const navigate = useNavigate();
 
 	const url = 'https://mandarin.api.weniv.co.kr';
 
@@ -77,10 +80,12 @@ function LoginForm() {
 
 			// 로그인 성공
 			if (result.status !== 422) {
-				localStorage.setItem('token', result.user.token);
+				localStorage.setItem('user', JSON.stringify(result.user));
+				// 받아올 때 이렇게 사용하기 JSON.parse(localStorage.getItem('user'));
 				setIsWrong(false);
 				setMsg('');
 				console.log('로그인 완료!');
+				navigate('/');
 			} else {
 				// 로그인 실패
 				setMsg(result.message);
