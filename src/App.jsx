@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import JoinPage from './pages/JoinPage';
+import JoinProfilePage from './pages/JoinProfilePage';
 import SearchPage from './pages/SearchPage';
 import MyProfile from './pages/MyProfile';
 import ErrorPage from './pages/404Page';
@@ -21,6 +23,12 @@ function App() {
 		<>
 			<Routes>
 				<Route path="/login" exact element={<LoginPage />} />
+				<Route path="/join" exact element={<JoinPage />} />
+				<Route
+					path="/join/profile"
+					exact
+					element={<JoinProfilePage />}
+				/>
 				<Route path="/search" exact element={<SearchPage />} />
 				<Route path="/myprofile" exact element={<MyProfile />} />
 				<Route
