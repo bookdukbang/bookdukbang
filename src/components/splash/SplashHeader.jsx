@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderLogo from '../../assets/SplashHeaderLogo.png';
 import Wrap from '../../components/common/Wrap';
@@ -18,9 +19,9 @@ function Splash() {
 		<HeaderStyle>
 			<Wrap>
 				<h1>
-					<a href="/">
+					<Link to="/">
 						<LogoImg src={HeaderLogo} alt="북덕방" />
-					</a>
+					</Link>
 				</h1>
 			</Wrap>
 		</HeaderStyle>

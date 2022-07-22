@@ -20,7 +20,7 @@ const SplashBtnDiv = styled.div`
 
 const SplashBtn = styled(ButtonStyle)`
 	padding: 2.8rem 0;
-	font-size: 3.6rem;
+	font-size: 3rem;
 	margin-top: 5.5rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		padding: 1.7rem 0;
@@ -38,6 +38,7 @@ const LoginBtnDiv = styled(SplashBtnDiv)`
 `;
 
 const LoginBtn = styled(ButtonStyle)`
+	text-align: center;
 	padding: 2rem 0;
 	font-size: 2.4rem;
 	margin-top: 2rem;

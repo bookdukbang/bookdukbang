@@ -49,6 +49,7 @@ function CommentContainer({ postId }) {
 		<CommentContainerStyle>
 			<ul>
 				{postComments !== '' &&
+					postComments !== null &&
 					postComments
 						.reverse()
 						.map((item) => (

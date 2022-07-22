@@ -85,7 +85,7 @@ function LoginForm() {
 				setIsWrong(false);
 				setMsg('');
 				console.log('로그인 완료!');
-				navigate('/');
+				navigate('/feed');
 			} else {
 				// 로그인 실패
 				setMsg(result.message);

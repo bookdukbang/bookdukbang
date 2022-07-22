@@ -1,17 +1,10 @@
 import styled from 'styled-components';
 import searchIcon from '../../assets/icon-search.png';
 
-const SearchHeaderStyle = styled.header`
-	background-color: ${({ theme }) => theme.bgMainColor};
-	padding: 1.6rem 0;
-
-	@media ${({ theme }) => theme.size.mobile} {
-		padding: 1rem 2rem;
-	}
-`;
-
 const SearchForm = styled.form`
 	width: 55rem;
+	margin-left: 3%;
+
 	@media ${({ theme }) => theme.size.tablet} {
 		width: 30.6rem;
 	}
@@ -46,4 +39,4 @@ const SearchInput = styled.input`
 	}
 `;
 
-export { SearchHeaderStyle, SearchInput, SearchForm };
+export { SearchInput, SearchForm };
