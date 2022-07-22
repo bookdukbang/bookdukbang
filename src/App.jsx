@@ -38,7 +38,7 @@ function App() {
 				/>
 				<Route path="/errorPage" exact element={<ErrorPage />} />
 				<Route path="/postUpload" exact element={<PostUploadPage />} />
-				<Route path="/splash" exact element={<Splash />} />
+				<Route path="/" exact element={<Splash />} />
 				<Route path="/splashLogin" exact element={<SplashLogin />} />
 				<Route
 					path="/chatcontent"
@@ -46,7 +46,7 @@ function App() {
 					element={<ChatContentPage />}
 				/>
 				<Route path="/chat" exact element={<ChatListPage />} />
-				<Route path="/" exact element={<FeedPage />} />
+				<Route path="/feed" exact element={<FeedPage />} />
 				<Route
 					path="/nofollowers"
 					exact
