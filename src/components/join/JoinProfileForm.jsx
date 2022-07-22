@@ -67,7 +67,6 @@ function JoinProfileForm() {
 				},
 			});
 			const result = await response.json();
-			console.log(result);
 			if (result.message === '이미 가입된 계정ID 입니다.') {
 				setMsgAccountName(result.message);
 				setIsAccountName(false);
@@ -86,12 +85,11 @@ function JoinProfileForm() {
 				},
 			});
 			const userResult = await res.json();
-			console.log(userResult);
 			if (userResult.message === '회원가입 성공') {
 				navigate('/login');
 			}
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 

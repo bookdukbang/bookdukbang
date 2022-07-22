@@ -102,7 +102,6 @@ function JoinForm() {
 				body: JSON.stringify(loginData),
 			});
 			const result = await response.json();
-			console.log(result);
 
 			// 통신할 때 유효성 검사
 			if (result.message === '사용 가능한 이메일 입니다.') {
@@ -135,7 +134,7 @@ function JoinForm() {
 				setMsg(result.message);
 			}
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 

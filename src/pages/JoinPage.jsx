@@ -15,8 +15,6 @@ const JoinArticle = styled.article`
 `;
 
 function JoinPage() {
-	console.log();
-
 	return (
 		<>
 			<Header />
