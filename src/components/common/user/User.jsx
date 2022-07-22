@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
 
@@ -31,6 +31,12 @@ const UserName = styled.p`
 		font-weight: 300;
 	}
 
+	&::after {
+		clear: both;
+		content: '';
+		display: block;
+	}
+
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.6rem;
 		& span {
@@ -40,9 +46,6 @@ const UserName = styled.p`
 `;
 
 function User({ author }) {
-	useEffect(() => {
-		console.log(author);
-	}, []);
 	if (author === null) {
 		author = {
 			image: NoneProfile,
