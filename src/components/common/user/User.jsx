@@ -58,7 +58,7 @@ function User({ author }) {
 		<>
 			<UserProfileImg src={author.image} alt={author.username} />
 			<UserName>
-				{author.username} <span>{author.accountname}</span>
+				{author.username} <span>@ {author.accountname}</span>
 			</UserName>
 		</>
 	);

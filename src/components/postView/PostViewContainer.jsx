@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { SERVER_URL, USER_TOKEN, POST_ID } from '../../constants';
+import { SERVER_URL, USER_TOKEN } from '../../constants';
 import PostViewImg from '../common/post/PostViewImg';
 import CommentContainer from './comment/CommentContainer';
 import PostCard from './PostCard';
@@ -26,9 +27,11 @@ const PostContextWrap = styled.div`
 function PostViewContainer() {
 	const [postContext, setPostContext] = useState(null);
 	const [postImgs, setPostImgs] = useState(null);
+	const { id } = useParams();
+	const postId = id;
 
 	async function postViewAPI() {
-		const reqPath = `/post/${POST_ID}`;
+		const reqPath = `/post/${postId}`;
 
 		try {
 			const res = await fetch(SERVER_URL + reqPath, {
@@ -65,9 +68,11 @@ function PostViewContainer() {
 							postContext={postContext}
 							postImgs={postImgs}
 						/>
-						<CommentContainer />
+						<CommentContainer postId={postId} />
 					</PostContextWrap>
-					<PostViewImg uploadImgs={postImgs} isView={true} />
+					{postContext.image !== '' && (
+						<PostViewImg uploadImgs={postImgs} isView={true} />
+					)}
 				</>
 			)}
 		</PostViewSection>
