@@ -6,14 +6,6 @@ const MainText = styled(MainTitle)`
 	background-color: red;
 `;
 
-// // 논프로필 이미지
-// const NoneProfileImg = styled.img`
-// 	display: block;
-// 	margin: auto;
-// 	margin-top: 1rem;
-// `;
-
-// 프로필감싸는건가?
 const ProfileArticle = styled.article`
 	margin-top: 9rem;
 	margin-bottom: 5rem;
@@ -53,11 +45,4 @@ const ImgUploadBtnStyle = styled(ImgUploadBtn)`
 	}
 `;
 
-export {
-	MainText,
-	ProfileArticle,
-	NoneProfile,
-	ImgUpload,
-	ImgUploadBtnStyle,
-	// NoneProfileImg,
-};
+export { MainText, ProfileArticle, NoneProfile, ImgUpload, ImgUploadBtnStyle };
