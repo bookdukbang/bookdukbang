@@ -19,9 +19,17 @@ const CommentContainerStyle = styled.div`
 
 function CommentContainer({ postId }) {
 	const [postComments, setPostComments] = useState(null);
+	const [isCommentUpload, setIsCommentUpload] = useState(false);
+
+	useEffect(() => {
+		if (isCommentUpload) {
+			commentAPI();
+			setIsCommentUpload(false);
+		}
+	}, [isCommentUpload]);
+
 	async function commentAPI() {
 		const reqPath = `/post/${postId}/comments`;
-
 		try {
 			const res = await fetch(SERVER_URL + reqPath, {
 				method: 'GET',
@@ -56,7 +64,12 @@ function CommentContainer({ postId }) {
 							<Comment key={item.id} commentInfo={item} />
 						))}
 			</ul>
-			{postComments !== null && <CommentForm />}
+			{postComments !== null && (
+				<CommentForm
+					postId={postId}
+					setIsCommentUpload={setIsCommentUpload}
+				/>
+			)}
 		</CommentContainerStyle>
 	);
 }
