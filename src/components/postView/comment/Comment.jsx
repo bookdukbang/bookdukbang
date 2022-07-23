@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
-const CommentWrap = styled.li`
+const CommentLi = styled.li`
 	font-size: 1.6rem;
 	& + li {
 		margin-top: 3rem;
@@ -60,12 +60,15 @@ const CommentTime = styled.span`
 const UserComment = styled.p`
 	font-weight: 300;
 `;
-//{ profileUrl, userName, writeTime, userComment }
+
 function Comment({ commentInfo }) {
 	const [writeAuthor, setWriteAuthor] = useState(null);
+	const [writeDate, setWriteDate] = useState(null);
+	const [writeTime, setWriteTime] = useState(null);
 
 	useEffect(() => {
 		setWriteAuthor(commentInfo.author);
+		setWriteDate(commentInfo.createdAt);
 	}, []);
 
 	useEffect(() => {
@@ -79,10 +82,28 @@ function Comment({ commentInfo }) {
 		}
 	}, [writeAuthor]);
 
+	useEffect(() => {
+		if (writeDate !== null) {
+			const getTimeGap = (time) => {
+				const ms = Date.parse(time);
+				const now = Date.now();
+				const gap = (now - ms) / 1000;
+				if (gap < 60) return `${parseInt(gap)}초`;
+				else if (gap < 3600) return `${parseInt(gap / 60)}분`;
+				else if (gap < 86400) return `${parseInt(gap / 3600)}시간`;
+				else if (gap < 2592000) return `${parseInt(gap / 86400)}일`;
+				else return `${parseInt(gap / 2592000)}달`;
+			};
+			setWriteTime(getTimeGap(writeDate));
+		} else {
+			setWriteTime('0초');
+		}
+	}, [writeDate]);
+
 	return (
 		<>
 			{writeAuthor && (
-				<CommentWrap>
+				<CommentLi>
 					<Link to={'/profile/' + writeAuthor.accountname}>
 						<UserProfileImg
 							src={writeAuthor.image}
@@ -92,9 +113,9 @@ function Comment({ commentInfo }) {
 					<UserName to={'/profile/' + writeAuthor.accountname}>
 						{writeAuthor.username}
 					</UserName>
-					<CommentTime>{'0'} 전</CommentTime>
+					<CommentTime>{writeTime} 전</CommentTime>
 					<UserComment>{commentInfo.content}</UserComment>
-				</CommentWrap>
+				</CommentLi>
 			)}
 		</>
 	);
