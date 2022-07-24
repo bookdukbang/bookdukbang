@@ -93,7 +93,7 @@ function BookList() {
 				))}
 			</BookListWrap>
 			<MediumBtnDiv>
-				<MediumBtnUpload as={Link} to="/profileEdit">
+				<MediumBtnUpload as={Link} to="/product">
 					상품 등록하기
 				</MediumBtnUpload>
 			</MediumBtnDiv>
