@@ -16,7 +16,6 @@ import FeedPage from './pages/FeedPage';
 import PostView from './pages/PostView';
 import FollowerList from './pages/FollowerList';
 import ProductPage from './pages/ProductPage';
-import FeedNoFollowersPage from './pages/FeedNoFollowersPage';
 import ProfileEdit from './pages/ProfileEdit';
 
 function App() {
@@ -43,11 +42,6 @@ function App() {
 				/>
 				<Route path="/chat" exact element={<ChatListPage />} />
 				<Route path="/feed" exact element={<FeedPage />} />
-				<Route
-					path="/nofollowers"
-					exact
-					element={<FeedNoFollowersPage />}
-				/>
 				<Route path="/post/:id" exact element={<PostView />} />
 				<Route path="/follower/:id" exact element={<FollowerList />} />
 				<Route path="/product" exact element={<ProductPage />} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MediumBtn, MediumBtnDiv } from '../common/Button.style';
-import User from './User';
+import UserFollowing from './UserFollowing';
 
 const MyFollowersWrap = styled.div`
 	background-color: ${({ theme }) => theme.bgMainColor};
@@ -20,17 +20,13 @@ const MediumBtnUserSearch = styled(MediumBtn)`
 	text-align: center;
 `;
 
-function MyFollowers() {
+function MyFollowings() {
 	return (
 		<>
 			<MyFollowersWrap>
-				<MyFollowersP>MyFollowers</MyFollowersP>
+				<MyFollowersP>MyFollowings</MyFollowersP>
 				<ul>
-					<User />
-					<User />
-					<User />
-					<User />
-					<User />
+					<UserFollowing />
 				</ul>
 			</MyFollowersWrap>
 			<MediumBtnDiv>
@@ -42,4 +38,4 @@ function MyFollowers() {
 	);
 }
 
-export default MyFollowers;
+export default MyFollowings;
