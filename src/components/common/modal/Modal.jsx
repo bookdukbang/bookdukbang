@@ -4,6 +4,9 @@ const ModalBg = styled.div`
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.2);
+	position: fixed;
+	left: 0;
+	top: 0;
 `;
 const ModalWrap = styled.div`
 	width: 40rem;
@@ -50,16 +53,18 @@ const ModalBtn = styled.button`
 	}
 `;
 
-function Modal({ ModalName, onClickCancelBtn, onClickDeleteBtn }) {
+function Modal({ ModalInfo }) {
 	return (
 		<ModalBg>
 			<ModalWrap>
-				<ModalTitle>{ModalName}을 삭제할까요?</ModalTitle>
-				<ModalBtn type="button" onClick={onClickCancelBtn}>
+				<ModalTitle>
+					{ModalInfo.title}을 {ModalInfo.whatDo}할까요?
+				</ModalTitle>
+				<ModalBtn type="button" onClick={ModalInfo.cancel}>
 					취소
 				</ModalBtn>
-				<ModalBtn type="button" onClick={onClickDeleteBtn}>
-					삭제
+				<ModalBtn type="button" onClick={ModalInfo.delete}>
+					{ModalInfo.whatDo}
 				</ModalBtn>
 			</ModalWrap>
 		</ModalBg>
