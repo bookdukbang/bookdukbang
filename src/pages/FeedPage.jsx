@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Feed from '../components/common/Feed';
-import FollowingFeed from '../components/feeds/FollowingFeed';
+import FollowingFeed from '../components/feed/FollowingFeed';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
-import BookList from '../components/feeds/BookList';
-import FeedNoFollowers from '../components/feeds/FeedNoFollowings';
-import MyFollowings from '../components/feeds/MyFollowings';
-import User from '../components/feeds/User';
+import BookList from '../components/feed/BookList';
+import FeedNoFollowers from '../components/feed/FeedNoFollowings';
+import MyFollowings from '../components/feed/MyFollowings';
+import User from '../components/feed/User';
 import NavigatorMenu from '../components/navigator/NavigatorMenu';
 import { SERVER_URL } from '../constants';
 
