@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVER_URL, USER_TOKEN } from '../../constants';
+import { SERVER_URL } from '../../constants';
 import User from '../common/user/User';
 import {
 	PostFormStyle,
@@ -76,7 +76,7 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 			const res = await fetch(SERVER_URL + reqPath, {
 				method: 'POST',
 				headers: {
-					Authorization: `Bearer ${USER_TOKEN}`,
+					Authorization: `Bearer ${userInfo.token}`,
 					'Content-type': 'application/json',
 				},
 				body: JSON.stringify(postData),

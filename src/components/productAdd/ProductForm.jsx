@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NoneProductImg from '../../assets/none-product.png';
 import PostUploadImg from '../common/post/PostUploadImg';
-import { SERVER_URL, USER_TOKEN } from '../../constants';
+import { SERVER_URL } from '../../constants';
 import { InputStyle, LabelStyle } from '../common/Input.style';
 import {
 	ProductBtn,
@@ -13,6 +13,7 @@ import {
 
 function ProductForm() {
 	const navigate = useNavigate();
+	const [userInfo, setUserInfo] = useState(null);
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [priceCom, setPriceCom] = useState('');
 	const [isDisable, setIsDisable] = useState(true);
@@ -22,6 +23,10 @@ function ProductForm() {
 		link: '',
 		itemImage: '',
 	});
+
+	useEffect(() => {
+		setUserInfo(JSON.parse(localStorage.getItem('user')));
+	}, []);
 
 	// 서버로 이미지 보내기
 	async function imgServerAPI(file) {
@@ -53,7 +58,7 @@ function ProductForm() {
 			const res = await fetch(SERVER_URL + reqPath, {
 				method: 'POST',
 				headers: {
-					Authorization: `Bearer ${USER_TOKEN}`,
+					Authorization: `Bearer ${userInfo.token}`,
 					'Content-type': 'application/json',
 				},
 				body: JSON.stringify(productData),
