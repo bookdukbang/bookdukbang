@@ -8,14 +8,9 @@ import {
 	WriteBtn,
 } from './CommentForm.style';
 
-function CommentForm({ postId, setIsCommentUpload }) {
+function CommentForm({ postId, setIsCommentUpload, userInfo }) {
 	const [isDisabled, setIsDisabled] = useState(true);
-	const [userInfo, setUserInfo] = useState(null);
 	const [commentVal, setCommentVal] = useState('');
-
-	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
-	}, []);
 
 	useEffect(() => {
 		if (commentVal === '') {

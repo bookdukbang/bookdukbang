@@ -1,67 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
-const CommentLi = styled.li`
-	font-size: 1.6rem;
-	& + li {
-		margin-top: 3rem;
-	}
-	@media ${({ theme }) => theme.size.mobile} {
-		font-size: 1.4rem;
-		& + div {
-			margin-top: 1rem;
-		}
-	}
-`;
-const UserProfileImg = styled.img`
-	border-radius: 50rem;
-	border: 0.1rem solid ${({ theme }) => theme.grayColor4};
-	width: 4rem;
-	height: 4rem;
-	box-sizing: border-box;
-	float: left;
-	margin-right: 1rem;
-	background-color: ${({ theme }) => theme.grayColor4};
+import {
+	CommentLi,
+	UserProfileImg,
+	UserName,
+	CommentTime,
+	UserComment,
+	CommentMoreBtn,
+} from './Comment.style';
 
-	@media ${({ theme }) => theme.size.mobile} {
-		width: 3rem;
-		height: 3rem;
-		margin-right: 0.7rem;
-	}
-`;
-
-const UserName = styled(Link)`
-	grid-column: 2 / 3;
-	font-weight: 700;
-`;
-
-const CommentTime = styled.span`
-	font-size: 1.4rem;
-	color: ${({ theme }) => theme.grayColor2};
-	font-weight: 300;
-
-	&::before {
-		content: '';
-		display: inline-block;
-		margin: 0 0.5rem;
-		width: 0.3rem;
-		height: 0.3rem;
-		vertical-align: middle;
-		border-radius: 50%;
-		background-color: ${({ theme }) => theme.grayColor2};
-	}
-
-	@media ${({ theme }) => theme.size.mobile} {
-		font-size: 1.2rem;
-	}
-`;
-
-const UserComment = styled.p`
-	font-weight: 300;
-`;
-
-function Comment({ commentInfo }) {
+function Comment({ commentInfo, setModalInfo }) {
 	const [writeAuthor, setWriteAuthor] = useState(null);
 	const [writeDate, setWriteDate] = useState(null);
 	const [writeTime, setWriteTime] = useState(null);
@@ -100,10 +49,18 @@ function Comment({ commentInfo }) {
 		}
 	}, [writeDate]);
 
+	const onClickMoreBtn = (e) => {
+		setModalInfo({
+			state: true,
+			commentId: e.target.parentNode.id,
+			commentUser: e.target.parentNode.children[1].textContent,
+		});
+	};
+
 	return (
 		<>
 			{writeAuthor && (
-				<CommentLi>
+				<CommentLi id={commentInfo.id}>
 					<Link to={'/profile/' + writeAuthor.accountname}>
 						<UserProfileImg
 							src={writeAuthor.image}
@@ -115,6 +72,9 @@ function Comment({ commentInfo }) {
 					</UserName>
 					<CommentTime>{writeTime} 전</CommentTime>
 					<UserComment>{commentInfo.content}</UserComment>
+					<CommentMoreBtn type="button" onClick={onClickMoreBtn}>
+						<span>더보기</span>
+					</CommentMoreBtn>
 				</CommentLi>
 			)}
 		</>
