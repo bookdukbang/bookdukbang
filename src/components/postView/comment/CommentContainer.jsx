@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
 import styled from 'styled-components';
-import { SERVER_URL, USER_TOKEN } from '../../../constants';
+import { SERVER_URL } from '../../../constants';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
+import CommetModal from './CommetModal';
 
 const CommentContainerStyle = styled.div`
 	margin-top: 1rem;
@@ -17,22 +17,39 @@ const CommentContainerStyle = styled.div`
 	}
 `;
 
-function CommentContainer({ postId }) {
+function CommentContainer({ postId, userInfo }) {
 	const [postComments, setPostComments] = useState(null);
+	const [isCommentUpload, setIsCommentUpload] = useState(false);
+	const [modalInfo, setModalInfo] = useState({
+		state: false,
+		commentId: null,
+		commentUser: null,
+	});
+
+	useEffect(() => {
+		commentAPI();
+	}, []);
+
+	useEffect(() => {
+		if (isCommentUpload) {
+			commentAPI();
+			setIsCommentUpload(false);
+		}
+	}, [isCommentUpload]);
+
 	async function commentAPI() {
 		const reqPath = `/post/${postId}/comments`;
-
 		try {
 			const res = await fetch(SERVER_URL + reqPath, {
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${USER_TOKEN}`,
+					Authorization: `Bearer ${userInfo.token}`,
 					'Content-type': 'application/json',
 				},
 			});
 
 			const json = await res.json();
-			setPostComments(json.comments);
+			setPostComments(json.comments.reverse());
 		} catch (err) {
 			if (err.state === 404) {
 				alert(err.message);
@@ -41,22 +58,35 @@ function CommentContainer({ postId }) {
 		}
 	}
 
-	useEffect(() => {
-		commentAPI();
-	}, []);
-
 	return (
 		<CommentContainerStyle>
 			<ul>
 				{postComments !== '' &&
 					postComments !== null &&
-					postComments
-						.reverse()
-						.map((item) => (
-							<Comment key={item.id} commentInfo={item} />
-						))}
+					postComments.map((item) => (
+						<Comment
+							key={item.id}
+							commentInfo={item}
+							setModalInfo={setModalInfo}
+						/>
+					))}
 			</ul>
-			{postComments !== null && <CommentForm />}
+			{postComments !== null && (
+				<CommentForm
+					postId={postId}
+					setIsCommentUpload={setIsCommentUpload}
+					userInfo={userInfo}
+				/>
+			)}
+			{modalInfo.state && (
+				<CommetModal
+					postId={postId}
+					userInfo={userInfo}
+					modalInfo={modalInfo}
+					setModalInfo={setModalInfo}
+					setIsCommentUpload={setIsCommentUpload}
+				/>
+			)}
 		</CommentContainerStyle>
 	);
 }

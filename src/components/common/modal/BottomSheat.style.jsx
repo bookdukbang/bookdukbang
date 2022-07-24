@@ -1,9 +1,12 @@
-import React from 'react';
 import styled from 'styled-components';
+
 const BottomSheatBg = styled.div`
 	width: 100vw;
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.2);
+	position: fixed;
+	left: 0;
+	top: 0;
 `;
 const BottomSheatWrap = styled.div`
 	width: 100%;
@@ -37,11 +40,4 @@ const BottomSheatWrap = styled.div`
 	}
 `;
 
-function BottomSheat({ children }) {
-	return (
-		<BottomSheatBg>
-			<BottomSheatWrap>{children}</BottomSheatWrap>
-		</BottomSheatBg>
-	);
-}
-export default BottomSheat;
+export { BottomSheatBg, BottomSheatWrap };

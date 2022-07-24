@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { SERVER_URL, USER_TOKEN } from '../../constants/index';
+import { SERVER_URL } from '../../constants/index';
 import FeedHeader from '../common/header/FeedHeader';
 import { SearchInput, SearchForm } from './SearchHeader.style';
 
 function SearchHeader({ setSearchList }) {
+	const [userInfo, setUserInfo] = useState(null);
 	const [keyword, setKeyword] = useState('');
+
+	useEffect(() => {
+		setUserInfo(JSON.parse(localStorage.getItem('user')));
+	}, []);
+
+	useEffect(() => {
+		const reg = /^[0-9a-zA-Zㄱ-힣][0-9a-zA-Zㄱ-힣 ]*$/;
+		const iskeyword = reg.test(keyword);
+		if (keyword === '' || !iskeyword) {
+			setSearchList(null);
+		}
+	}, [keyword]);
 
 	async function searchAPI() {
 		const reqPath = `/user/searchuser/?keyword=${keyword}`;
@@ -13,7 +26,7 @@ function SearchHeader({ setSearchList }) {
 			const res = await fetch(SERVER_URL + reqPath, {
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${USER_TOKEN}`,
+					Authorization: `Bearer ${userInfo.token}`,
 					'Content-type': 'application/json',
 				},
 			});
@@ -25,28 +38,18 @@ function SearchHeader({ setSearchList }) {
 		}
 	}
 
-	useEffect(() => {
-		const reg = /^[0-9a-zA-Zㄱ-힣][0-9a-zA-Zㄱ-힣 ]*$/;
-		const iskeyword = reg.test(keyword);
-
-		if (keyword === '' || !iskeyword) {
-			setSearchList(null);
-		} else {
-			searchAPI();
-		}
-	}, [keyword]);
-
 	const onChangeSearch = (event) => {
 		setKeyword(event.target.value);
 	};
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
+		searchAPI();
 	};
 
 	return (
 		<FeedHeader>
-			<SearchForm action="" onSubmit={onSubmitForm}>
+			<SearchForm method="GET" onSubmit={onSubmitForm}>
 				<label htmlFor="userSearch">유저 계정 검색</label>
 				<SearchInput
 					type="text"

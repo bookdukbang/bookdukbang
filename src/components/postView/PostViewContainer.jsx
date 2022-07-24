@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { SERVER_URL, USER_TOKEN } from '../../constants';
+import { SERVER_URL } from '../../constants';
 import PostViewImg from '../common/post/PostViewImg';
 import CommentContainer from './comment/CommentContainer';
 import PostCard from './PostCard';
+// import BottomSheat from '../common/modal/BottomSheat';
 
 const PostViewSection = styled.section`
 	min-height: 48.5rem;
@@ -26,9 +27,18 @@ const PostContextWrap = styled.div`
 
 function PostViewContainer() {
 	const [postContext, setPostContext] = useState(null);
+	const [userInfo, setUserInfo] = useState(null);
 	const [postImgs, setPostImgs] = useState(null);
 	const { id } = useParams();
 	const postId = id;
+
+	useEffect(() => {
+		setUserInfo(JSON.parse(localStorage.getItem('user')));
+	}, []);
+
+	useEffect(() => {
+		userInfo !== null && postViewAPI();
+	}, [userInfo]);
 
 	async function postViewAPI() {
 		const reqPath = `/post/${postId}`;
@@ -37,7 +47,7 @@ function PostViewContainer() {
 			const res = await fetch(SERVER_URL + reqPath, {
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${USER_TOKEN}`,
+					Authorization: `Bearer ${userInfo.token}`,
 					'Content-type': 'application/json',
 				},
 			});
@@ -48,9 +58,6 @@ function PostViewContainer() {
 			console.error(err);
 		}
 	}
-	useEffect(() => {
-		postViewAPI();
-	}, []);
 
 	useEffect(() => {
 		if (postContext !== null) {
@@ -59,23 +66,28 @@ function PostViewContainer() {
 	}, [postContext]);
 
 	return (
-		<PostViewSection>
-			<h2>포스팅 상세 페이지</h2>
-			{postContext && postImgs && (
-				<>
-					<PostContextWrap>
-						<PostCard
-							postContext={postContext}
-							postImgs={postImgs}
-						/>
-						<CommentContainer postId={postId} />
-					</PostContextWrap>
-					{postContext.image !== '' && (
-						<PostViewImg uploadImgs={postImgs} isView={true} />
-					)}
-				</>
-			)}
-		</PostViewSection>
+		<>
+			<PostViewSection>
+				<h2>포스팅 상세 페이지</h2>
+				{userInfo !== null && postContext && postImgs && (
+					<>
+						<PostContextWrap>
+							<PostCard
+								postContext={postContext}
+								postImgs={postImgs}
+							/>
+							<CommentContainer
+								userInfo={userInfo}
+								postId={postId}
+							/>
+						</PostContextWrap>
+						{postContext.image !== '' && (
+							<PostViewImg uploadImgs={postImgs} isView={true} />
+						)}
+					</>
+				)}
+			</PostViewSection>
+		</>
 	);
 }
 export default PostViewContainer;
