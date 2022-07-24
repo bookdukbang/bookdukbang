@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Feed from '../components/common/Feed';
+import FollowingFeed from '../components/Feed/FollowingFeed';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
 import BookList from '../components/Feed/BookList';
-import MyFollowers from '../components/Feed/MyFollowers';
+import FeedNoFollowers from '../components/Feed/FeedNoFollowings';
+import MyFollowings from '../components/Feed/MyFollowings';
 import User from '../components/Feed/User';
 import NavigatorMenu from '../components/navigator/NavigatorMenu';
+import { SERVER_URL } from '../constants';
 
 const FeedWrap = styled(Wrap)`
 	display: flex;
@@ -26,6 +29,16 @@ const MySection = styled.section`
 
 const FollowerFeed = styled.section`
 	width: 72rem;
+	&.noFollowers {
+		padding: 25rem 0;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@media ${({ theme }) => theme.size.mobile} {
+			padding: 20rem 0;
+		}
+	}
 `;
 
 const FollowerAside = styled.aside`
@@ -40,6 +53,32 @@ const IrH2 = styled.h2`
 `;
 
 function FeedPage() {
+	const [isFollowing, setIsFollowing] = useState(false);
+	const token = JSON.parse(localStorage.getItem('user')).token;
+
+	async function Feedlist() {
+		try {
+			const response = await fetch(SERVER_URL + '/post/feed', {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
+				},
+			});
+			const result = await response.json();
+			if (result.posts.length === 0) {
+				setIsFollowing(false);
+			} else {
+				setIsFollowing(true);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	useEffect(() => {
+		Feedlist();
+	}, []);
+
 	return (
 		<>
 			<FeedHeader isHome />
@@ -49,13 +88,22 @@ function FeedPage() {
 					<User />
 					<BookList />
 				</MySection>
-				<FollowerFeed>
-					<IrH2>Follower Feed Section</IrH2>
-					<Feed />
-					<Feed />
-				</FollowerFeed>
+				{!isFollowing && (
+					<FollowerFeed className="noFollowers">
+						<IrH2>Follower Feed Section</IrH2>
+
+						<FeedNoFollowers />
+					</FollowerFeed>
+				)}
+				{isFollowing && (
+					<FollowerFeed>
+						<IrH2>Follower Feed Section</IrH2>
+						<FollowingFeed />
+						<Feed />
+					</FollowerFeed>
+				)}
 				<FollowerAside>
-					<MyFollowers />
+					<MyFollowings />
 				</FollowerAside>
 			</FeedWrap>
 			<NavigatorMenu />

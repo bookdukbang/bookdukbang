@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { NoneProfileSmall } from '../common/user/UserUpload';
 
@@ -21,12 +22,20 @@ const UserInfo = styled.h2`
 `;
 
 function User() {
+	const MyImageSrc = JSON.parse(localStorage.getItem('user')).image;
+	const MyName = JSON.parse(localStorage.getItem('user')).username;
+	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
+
 	return (
 		<UserLi>
-			<NoneProfileSmall />
+			<Link to="/myprofile">
+				<NoneProfileSmall
+					style={{ backgroundImage: `url(${MyImageSrc})` }}
+				/>
+			</Link>
 			<UserInfo>
-				애월읍 위니브 감귤농장
-				<p>@ weniv_Mandarin</p>
+				{MyName}
+				<p>@ {MyAccountName}</p>
 			</UserInfo>
 		</UserLi>
 	);
