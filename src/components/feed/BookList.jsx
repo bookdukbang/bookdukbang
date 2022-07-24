@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-// import BookImg from '../../assets/BookListImg.png';
 import { MediumBtn, MediumBtnDiv } from '../common/Button.style';
 import { Link } from 'react-router-dom';
 import { SERVER_URL } from '../../constants';
