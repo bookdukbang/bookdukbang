@@ -1,6 +1,5 @@
 import React from 'react';
 import HeaderLogo from '../../../assets/HeaderLogo.png';
-import Profile from '../../../assets/profile.png';
 import PostingIcon from '../../../assets/PostingIcon.png';
 import LogoutIcon from '../../../assets/LogoutIcon.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,6 +24,7 @@ function FeedHeader({ children, isHome }) {
 		window.localStorage.removeItem('user');
 		navigate('/');
 	};
+	const MyImageSrc = JSON.parse(localStorage.getItem('user')).image;
 
 	return (
 		<HeaderStyle>
@@ -41,7 +41,7 @@ function FeedHeader({ children, isHome }) {
 				<HeaderUl>
 					<li>
 						<Link to="/myprofile">
-							<ProfileImg src={Profile} alt="프로필" />
+							<ProfileImg src={MyImageSrc} alt="프로필" />
 						</Link>
 					</li>
 					<li>
