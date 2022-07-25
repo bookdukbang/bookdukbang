@@ -54,7 +54,7 @@ function LikeButton({ hearted, heartCount, id }) {
 			setIsLike(result.post.hearted);
 			setLikeNum(result.post.heartCount);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}
 
