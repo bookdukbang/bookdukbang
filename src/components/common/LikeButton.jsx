@@ -35,7 +35,7 @@ function LikeButton({ hearted, heartCount, id }) {
 		setUserInfo(JSON.parse(localStorage.getItem('user')));
 	}, []);
 
-	const [like, setLike] = useState(hearted);
+	const [isLike, setIsLike] = useState(hearted);
 	const [LikeNum, setLikeNum] = useState(heartCount);
 
 	async function onClickheartedBtn() {
@@ -51,7 +51,7 @@ function LikeButton({ hearted, heartCount, id }) {
 				headers: headers,
 			});
 			const result = await res.json();
-			setLike(result.post.hearted);
+			setIsLike(result.post.hearted);
 			setLikeNum(result.post.heartCount);
 		} catch (error) {
 			console.log(error);
@@ -70,10 +70,10 @@ function LikeButton({ hearted, heartCount, id }) {
 				headers: headers,
 			});
 			const result = await res.json();
-			setLike(result.post.hearted);
+			setIsLike(result.post.hearted);
 			setLikeNum(result.post.heartCount);
 		} catch (error) {
-			console.log(error);
+			console.error;
 		}
 	}
 
@@ -82,12 +82,12 @@ function LikeButton({ hearted, heartCount, id }) {
 			<dt>
 				<LikeBtn
 					type="button"
-					onClick={like ? onCancelheartedBtn : onClickheartedBtn}
+					onClick={isLike ? onCancelheartedBtn : onClickheartedBtn}
 				>
-					{like ? (
-						<RedHeartImg src={RedHeart} alt="빨간하트" />
+					{isLike ? (
+						<RedHeartImg src={RedHeart} alt="좋아요취소" />
 					) : (
-						<HeartImg src={Heart} alt="빈하트" />
+						<HeartImg src={Heart} alt="좋아요" />
 					)}
 				</LikeBtn>
 			</dt>
