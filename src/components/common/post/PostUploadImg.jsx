@@ -7,7 +7,9 @@ function PostUploadImg({ uploadImgs, setUploadImgs, isMulty }) {
 
 	// 멀티 업로드 시, 이미지 갯수 확인
 	useEffect(() => {
-		setRemainderNum(IMG_UPLOAD_MAXCOUNT - uploadImgs.length);
+		if (isMulty) {
+			setRemainderNum(IMG_UPLOAD_MAXCOUNT - uploadImgs.length);
+		}
 	}, [uploadImgs]);
 
 	// 이미지 파일 검사
