@@ -53,6 +53,7 @@ const ImgUploadBtnMedium = styled(ImgUploadBtn)`
 	height: 4.5rem;
 	left: 13.5rem;
 	top: 13.5rem;
+
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 3rem;
 		height: 3rem;
@@ -64,7 +65,6 @@ const ImgUploadBtnMedium = styled(ImgUploadBtn)`
 // 중간 사이즈 업로드 버튼 안의 이미지
 const ImgUploadMedium = styled.img`
 	width: 2.1rem;
-
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 1.4rem;
 		vertical-align: baseline;

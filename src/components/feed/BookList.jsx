@@ -25,7 +25,7 @@ const BookBtn = styled.button`
 		position: absolute;
 		border: 0;
 		border-radius: 1rem;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.6);
 		top: 0;
 		left: 0;
 		z-index: -1;
@@ -92,7 +92,7 @@ function BookList() {
 				))}
 			</BookListWrap>
 			<MediumBtnDiv>
-				<MediumBtnUpload as={Link} to="/product">
+				<MediumBtnUpload type="button" as={Link} to="/product">
 					상품 등록하기
 				</MediumBtnUpload>
 			</MediumBtnDiv>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -13,6 +13,7 @@ import {
 	ImgUploadMedium,
 	NoneProfileMedium,
 } from '../common/user/UserUpload';
+import { SERVER_URL } from '../../constants';
 
 const ProfileDiv = styled.div`
 	display: flex;
@@ -21,16 +22,36 @@ const ProfileDiv = styled.div`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	border-radius: 1rem;
 	flex-wrap: wrap;
+	gap: 2.8rem;
+	justify-content: flex-start;
 	@media ${({ theme }) => theme.size.mobile} {
 		position: relative;
 		padding-bottom: 2rem;
+		flex-direction: column;
+		align-items: center;
+		gap: 0;
 	}
+`;
+
+const DivStyle = styled.div`
+	position: relative;
 `;
 
 const NoneProfileMediumStyle = styled(NoneProfileMedium)`
 	@media ${({ theme }) => theme.size.mobile} {
 		margin: -6rem 0 1rem;
 	}
+`;
+
+const ImgUploadBtnMediumStyle = styled(ImgUploadBtnMedium)`
+	@media ${({ theme }) => theme.size.mobile} {
+		top: 3rem;
+	}
+`;
+
+const ImgUploadMediumStyle = styled(ImgUploadMedium)`
+	display: block;
+	margin: 25% auto;
 `;
 
 const ProfileText = styled.p`
@@ -46,23 +67,31 @@ const ProfileText = styled.p`
 
 const Follow = styled.div`
 	display: flex;
+	gap: 2rem;
 `;
 
 const ProfileFollow = styled.dl`
 	display: flex;
 	align-items: flex-end;
 	@media ${({ theme }) => theme.size.mobile} {
-		flex-direction: column-reverse;
-		align-items: center;
 		position: absolute;
 		top: 2rem;
+		left: 4.8rem;
+		flex-direction: column-reverse;
+		align-items: center;
 	}
 `;
 
-const ProfileFollowing = styled(ProfileFollow)`
-	margin-left: 2rem;
+const ProfileFollowing = styled.dl`
+	display: flex;
+	align-items: flex-end;
+
 	@media ${({ theme }) => theme.size.mobile} {
+		position: absolute;
+		top: 2rem;
 		right: 4.8rem;
+		flex-direction: column-reverse;
+		align-items: center;
 	}
 `;
 
@@ -94,33 +123,66 @@ const MediumBtnDivStyle = styled(MediumBtnDiv)`
 	display: none;
 	@media ${({ theme }) => theme.size.mobile} {
 		display: block;
-		max-width: 12rem;
+		width: 12rem;
 	}
 `;
 
 function ProfileInfo() {
+	const token = JSON.parse(localStorage.getItem('user')).token;
+
+	const [myInfo, setMyInfo] = useState('');
+
+	async function myInformation() {
+		try {
+			const res = await fetch(SERVER_URL + '/user/myinfo', {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
+				},
+			});
+			const result = await res.json();
+			setMyInfo(result.user);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	useEffect(() => {
+		myInformation();
+	}, []);
+
 	return (
 		<>
 			<ProfileDiv>
-				<NoneProfileMediumStyle>
-					<ImgUploadBtnMedium type="button">
-						<ImgUploadMedium
+				<DivStyle>
+					<NoneProfileMediumStyle
+						style={{ backgroundImage: `url(${myInfo.image})` }}
+					/>
+					<ImgUploadBtnMediumStyle
+						type="button"
+						as={Link}
+						to="/profileEdit"
+					>
+						<ImgUploadMediumStyle
 							src={setting}
 							alt="내 프로필 수정 버튼"
 						/>
-					</ImgUploadBtnMedium>
-				</NoneProfileMediumStyle>
+					</ImgUploadBtnMediumStyle>
+				</DivStyle>
 
 				<Profilestyle>
 					<TextDiv>
-						<ProfileName>애월읍 위니브 책농장</ProfileName>
-						<SmallProfileEmail>@ weniv_Mandarin</SmallProfileEmail>
+						<ProfileName>{myInfo.username}</ProfileName>
+						<SmallProfileEmail>
+							@ {myInfo.accountname}
+						</SmallProfileEmail>
 
-						<ProfileText>
-							애월읍 감귤 전국 배송, 귤따기 체험, 감귤농장
-						</ProfileText>
+						<ProfileText>{myInfo.intro}</ProfileText>
 						<MediumBtnDivStyle>
-							<MediumBtn type="button">상품등록</MediumBtn>
+							<MediumBtn type="button" as={Link} to="/product">
+								상품등록
+							</MediumBtn>
 						</MediumBtnDivStyle>
 					</TextDiv>
 
@@ -128,13 +190,17 @@ function ProfileInfo() {
 						<ProfileFollow>
 							<Followers>followers</Followers>
 							<FollowNumStyle>
-								<Link to="/follower">2950</Link>
+								<Link to="/follower">
+									{myInfo.followerCount}
+								</Link>
 							</FollowNumStyle>
 						</ProfileFollow>
 						<ProfileFollowing>
 							<Followers>followings</Followers>
 							<FollowNumStyle>
-								<Link to="/follower">128</Link>
+								<Link to="/follower">
+									{myInfo.followingCount}
+								</Link>
 							</FollowNumStyle>
 						</ProfileFollowing>
 					</Follow>
