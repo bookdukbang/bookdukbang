@@ -16,7 +16,7 @@ import FeedPage from './pages/FeedPage';
 import PostView from './pages/PostView';
 import FollowerList from './pages/FollowerList';
 import ProductPage from './pages/ProductPage';
-import ProfileEdit from './pages/ProfileEdit';
+import ProfileEditPage from './pages/ProfileEditPage';
 
 function App() {
 	return (
@@ -45,7 +45,11 @@ function App() {
 				<Route path="/post/:id" exact element={<PostView />} />
 				<Route path="/follower/:id" exact element={<FollowerList />} />
 				<Route path="/product" exact element={<ProductPage />} />
-				<Route path="/profileEdit" exact element={<ProfileEdit />} />
+				<Route
+					path="/profileEdit"
+					exact
+					element={<ProfileEditPage />}
+				/>
 			</Routes>
 		</>
 	);
