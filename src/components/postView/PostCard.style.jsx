@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import HeartIcon from '../../assets/heart.png';
 import CommentIcon from '../../assets/comment.png';
 
 const UserWrap = styled.div`
@@ -48,10 +47,6 @@ const ReactionWrap = styled.dl`
 		background-size: 2rem;
 		float: left;
 
-		&:first-of-type {
-			background-image: url(${HeartIcon});
-		}
-
 		&:nth-of-type(2) {
 			background-image: url(${CommentIcon});
 		}
@@ -63,6 +58,7 @@ const ReactionWrap = styled.dl`
 
 	& dd {
 		float: left;
+		font-weight: 700;
 
 		&:last-of-type {
 			font-weight: 300;

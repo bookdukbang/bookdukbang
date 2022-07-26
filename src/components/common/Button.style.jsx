@@ -28,6 +28,9 @@ const BigBtn = styled(ButtonStyle)`
 	&.disabled {
 		opacity: 0.7;
 	}
+	&:disabled {
+		opacity: 0.7;
+	}
 	@media (max-width: 390px) {
 		padding: 1rem 0;
 		font-size: 2rem;

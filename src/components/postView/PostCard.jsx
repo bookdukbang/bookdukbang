@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import User from '../common/user/User';
+import LikeButton from '../common/LikeButton';
 import {
 	UserWrap,
 	PostText,
@@ -22,10 +23,12 @@ function PostCard({ postContext }) {
 			<PostText>{postContext.content}</PostText>
 
 			<ReactionWrap>
-				<dt>
-					<span>좋아요</span>
-				</dt>
-				<dd>{postContext.heartCount}</dd>
+				<LikeButton
+					hearted={postContext.hearted}
+					heartCount={postContext.heartCount}
+					id={postContext.id}
+				/>
+
 				<dt>
 					<span>댓글</span>
 				</dt>
