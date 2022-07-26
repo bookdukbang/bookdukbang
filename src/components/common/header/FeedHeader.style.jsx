@@ -116,7 +116,7 @@ const ProfileImg = styled.img`
 	background-color: ${({ theme }) => theme.grayColor4};
 	border-radius: 50rem;
 	box-sizing: border-box;
-
+	height: 5rem;
 	width: 5rem;
 `;
 
