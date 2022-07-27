@@ -4,6 +4,7 @@ import { ImgUploadBtn } from '../Button.style';
 
 // 제일 큰 사이즈 논프로필
 const NoneProfileBig = styled.div`
+	border: 1px solid ${({ theme }) => theme.grayColor4};
 	width: 25rem;
 	height: 25rem;
 	border-radius: 50%;
@@ -38,6 +39,7 @@ const ImgUploadBig = styled.img`
 
 // 중간 사이즈 논프로필
 const NoneProfileMedium = styled(NoneProfileBig)`
+	border: 1px solid ${({ theme }) => theme.grayColor4};
 	width: 18rem;
 	height: 18rem;
 	@media ${({ theme }) => theme.size.mobile} {
@@ -73,6 +75,7 @@ const ImgUploadMedium = styled.img`
 
 // 제일 작은 사이즈 논프로필
 const NoneProfileSmall = styled(NoneProfileBig)`
+	border: 1px solid ${({ theme }) => theme.grayColor4};
 	width: 5.2rem;
 	height: 5.2rem;
 	margin: 0 2rem 0 0;
