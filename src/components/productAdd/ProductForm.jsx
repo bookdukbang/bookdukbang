@@ -81,10 +81,12 @@ function ProductForm() {
 				body: formData,
 			});
 			const json = await res.json();
-
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
 			return json;
 		} catch (err) {
-			console.error(err.message);
+			console.error(err);
 		}
 	}
 
@@ -121,7 +123,7 @@ function ProductForm() {
 			navigate(-1);
 			return json;
 		} catch (err) {
-			console.error(err.message);
+			console.error(err);
 		}
 	}
 
