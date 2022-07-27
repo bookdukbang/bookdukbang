@@ -5,6 +5,9 @@ import PlusBtn from '../../assets/plus_btn.png';
 import { SERVER_URL } from '../../constants';
 import ProductModal from './ProductModal';
 
+const BookDivCont = styled.div`
+	cursor: pointer;
+`;
 const BookContainer = styled.div`
 	display: grid;
 	grid-template-columns: 31.5rem 31.5rem;
@@ -153,25 +156,25 @@ function ProductRegister() {
 		<>
 			<BookContainer>
 				{books?.map((item) => (
-					<BookBtn
-						type="button"
-						style={{
-							backgroundImage: `url(${item.itemImage})`,
-						}}
-						key={item.id}
-						onClick={onClickMoreBtn}
-					>
-						<BookInfo>
-							<BookTitle>{item.itemName}</BookTitle>
-							<BookCost>
-								{`${item.price}`.replace(
-									/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-									',',
-								)}{' '}
-								원
-							</BookCost>
-						</BookInfo>
-					</BookBtn>
+					<BookDivCont key={item.id} onClick={onClickMoreBtn}>
+						<BookBtn
+							type="button"
+							style={{
+								backgroundImage: `url(${item.itemImage})`,
+							}}
+						>
+							<BookInfo>
+								<BookTitle>{item.itemName}</BookTitle>
+								<BookCost>
+									{`${item.price}`.replace(
+										/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+										',',
+									)}{' '}
+									원
+								</BookCost>
+							</BookInfo>
+						</BookBtn>
+					</BookDivCont>
 				))}
 				<BookRegister>
 					<RegisterBtn as={Link} to="/product">
