@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../constants/index';
 import FeedHeader from '../common/header/FeedHeader';
-import { SearchInput, SearchForm } from './SearchHeader.style';
+import { SearchInput, SearchForm, SearchBtn } from './SearchHeader.style';
 
 function SearchHeader({ setSearchList }) {
+	const navigate = useNavigate();
 	const [userInfo, setUserInfo] = useState(null);
 	const [keyword, setKeyword] = useState('');
 
@@ -32,6 +34,9 @@ function SearchHeader({ setSearchList }) {
 			});
 
 			const json = await res.json();
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
 			setSearchList(json);
 		} catch (err) {
 			console.error(err);
@@ -44,7 +49,9 @@ function SearchHeader({ setSearchList }) {
 
 	const onSubmitForm = (event) => {
 		event.preventDefault();
-		searchAPI();
+		if (keyword !== '') {
+			searchAPI();
+		}
 	};
 
 	return (
@@ -59,6 +66,9 @@ function SearchHeader({ setSearchList }) {
 					onChange={onChangeSearch}
 					value={keyword}
 				/>
+				<SearchBtn type="submit">
+					<span>검색하기</span>
+				</SearchBtn>
 			</SearchForm>
 		</FeedHeader>
 	);
