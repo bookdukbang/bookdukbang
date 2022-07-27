@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import JoinPage from './pages/JoinPage';
 import JoinProfilePage from './pages/JoinProfilePage';
 import SearchPage from './pages/SearchPage';
-import MyProfile from './pages/MyProfile';
+import MyProfilePage from './pages/MyProfilePage';
 import ErrorPage from './pages/404Page';
 import PostUploadPage from './pages/PostUploadPage';
 import SplashPage from './pages/SplashPage';
@@ -31,7 +31,7 @@ function App() {
 					element={<JoinProfilePage />}
 				/>
 				<Route path="/search" exact element={<SearchPage />} />
-				<Route path="/myprofile" exact element={<MyProfile />} />
+				<Route path="/myprofile" exact element={<MyProfilePage />} />
 				<Route path="/user/:id" exact element={<UserProfilePage />} />
 				<Route path="/errorPage" exact element={<ErrorPage />} />
 				<Route path="/postUpload" exact element={<PostUploadPage />} />

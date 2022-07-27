@@ -5,6 +5,7 @@ import ProductRegister from '../components/profile/ProductRegister';
 import Feed from '../components/common/Feed';
 import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
+import MyFeed from '../components/profile/MyFeed';
 
 const ProfileWrap = styled.div`
 	display: flex;
@@ -17,6 +18,7 @@ const DivArray = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+	width: 65rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 37rem;
 	}
@@ -25,7 +27,7 @@ const DivArray = styled.div`
 const FeedWrap = styled.div`
 	display: flex;
 	flex-direction: column;
-	max-width: 72rem;
+	width: 72rem;
 	border-radius: 1rem;
 	background-color: ${({ theme }) => theme.bgsubColor};
 	@media ${({ theme }) => theme.size.mobile} {
@@ -44,7 +46,7 @@ function MyProfile() {
 						<ProductRegister />
 					</DivArray>
 					<FeedWrap>
-						<Feed />
+						<MyFeed />
 						<Feed />
 					</FeedWrap>
 				</ProfileWrap>

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Book from '../../assets/BookListImg.png';
 import PlusBtn from '../../assets/plus_btn.png';
+import { SERVER_URL } from '../../constants';
+import ProductModal from './ProductModal';
 
+const BookDivCont = styled.div`
+	cursor: pointer;
+`;
 const BookContainer = styled.div`
 	display: grid;
 	grid-template-columns: 31.5rem 31.5rem;
@@ -21,21 +26,30 @@ const BookContainer = styled.div`
 	}
 `;
 
-const BookList = styled.div`
+const BookBtn = styled.button`
 	display: flex;
 	flex-direction: column;
 	position: relative;
-`;
-
-const BookBtn = styled.button`
-	background-color: transparent;
-	padding: 0;
-	border: none;
-`;
-
-const BookImg = styled.img`
 	width: 100%;
 	height: 100%;
+	border: 0;
+	border-radius: 1rem;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	z-index: -1;
+	&::after {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		border: 0;
+		border-radius: 1rem;
+		background-color: rgba(0, 0, 0, 0.6);
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
 `;
 
 const BookInfo = styled.div`
@@ -53,6 +67,7 @@ const BookTitle = styled.p`
 	font-size: 1.6rem;
 	color: ${({ theme }) => theme.grayColor5};
 	text-align: left;
+	z-index: 10;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 14px;
@@ -62,7 +77,9 @@ const BookTitle = styled.p`
 const BookCost = styled.p`
 	font-weight: 700;
 	font-size: 1.4rem;
+	text-align: left;
 	color: ${({ theme }) => theme.mainColor};
+	z-index: 10;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 14px;
@@ -87,10 +104,12 @@ const RegisterBtn = styled.button`
 	border: none;
 	background-color: transparent;
 	margin-bottom: 1rem;
+	text-align: center;
 `;
 
 const PlusBtnImg = styled.img`
 	width: 7rem;
+	margin-bottom: 1rem;
 `;
 
 const RegisterTitle = styled.p`
@@ -100,44 +119,75 @@ const RegisterTitle = styled.p`
 `;
 
 function ProductRegister() {
+	const token = JSON.parse(localStorage.getItem('user')).token;
+	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
+	const [books, setBooks] = useState(null);
+	const [modalInfo, setModalInfo] = useState({
+		state: false,
+	});
+
+	async function MyBookList() {
+		try {
+			const res = await fetch(SERVER_URL + `/product/${MyAccountName}`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
+				},
+			});
+			const result = await res.json();
+			setBooks(result.product);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	useEffect(() => {
+		MyBookList();
+	}, []);
+
+	const onClickMoreBtn = () => {
+		setModalInfo({
+			state: true,
+		});
+	};
+
 	return (
 		<>
 			<BookContainer>
-				<BookList>
-					<BookBtn type="button">
-						<BookImg src={Book} alt="책 이미지" />
-
-						<BookInfo>
-							<BookTitle>책제목</BookTitle>
-							<BookCost>99,000원</BookCost>
-						</BookInfo>
-					</BookBtn>
-				</BookList>
-				<BookList>
-					<BookBtn type="button">
-						<BookImg src={Book} alt="책 이미지" />
-
-						<BookInfo>
-							<BookTitle>책제목</BookTitle>
-							<BookCost>99,000원</BookCost>
-						</BookInfo>
-					</BookBtn>
-				</BookList>
-				<BookList>
-					<BookBtn type="button">
-						<BookImg src={Book} alt="책 이미지" />
-						<BookInfo>
-							<BookTitle>책제목</BookTitle>
-							<BookCost>99,000원</BookCost>
-						</BookInfo>
-					</BookBtn>
-				</BookList>
+				{books?.map((item) => (
+					<BookDivCont key={item.id} onClick={onClickMoreBtn}>
+						<BookBtn
+							type="button"
+							style={{
+								backgroundImage: `url(${item.itemImage})`,
+							}}
+						>
+							<BookInfo>
+								<BookTitle>{item.itemName}</BookTitle>
+								<BookCost>
+									{`${item.price}`.replace(
+										/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+										',',
+									)}{' '}
+									원
+								</BookCost>
+							</BookInfo>
+						</BookBtn>
+					</BookDivCont>
+				))}
 				<BookRegister>
-					<RegisterBtn type="button">
-						<PlusBtnImg src={PlusBtn} alt="상품등록 버튼" />
+					<RegisterBtn as={Link} to="/product">
+						<PlusBtnImg src={PlusBtn} alt="" />
+						<RegisterTitle>상품등록</RegisterTitle>
 					</RegisterBtn>
-					<RegisterTitle>상품등록</RegisterTitle>
 				</BookRegister>
+				{modalInfo.state && (
+					<ProductModal
+						modalInfo={modalInfo}
+						setModalInfo={setModalInfo}
+					/>
+				)}
 			</BookContainer>
 		</>
 	);
