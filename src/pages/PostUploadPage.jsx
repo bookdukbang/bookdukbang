@@ -27,7 +27,10 @@ function PostUploadPage() {
 		<>
 			<PostUpHeader isDisable={isDisable} />
 			<PostUpWrap>
-				<PostUpContainer setDisable={setDisable} />
+				<PostUpContainer
+					isDisable={isDisable}
+					setDisable={setDisable}
+				/>
 			</PostUpWrap>
 		</>
 	);

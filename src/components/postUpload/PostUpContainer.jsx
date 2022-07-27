@@ -17,13 +17,14 @@ const PostUploadSection = styled.section`
 	}
 `;
 
-function PostUpContainer({ setDisable }) {
+function PostUpContainer({ isDisable, setDisable }) {
 	const [uploadImgs, setUploadImgs] = useState([]);
 
 	return (
 		<PostUploadSection>
 			<h2>포스팅 작성 페이지</h2>
 			<PostForm
+				isDisable={isDisable}
 				uploadImgs={uploadImgs}
 				setUploadImgs={setUploadImgs}
 				setDisable={setDisable}
