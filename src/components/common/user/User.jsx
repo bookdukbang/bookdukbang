@@ -48,7 +48,6 @@ const UserName = styled.p`
 `;
 
 function User({ author }) {
-	// const [userImg, setUserImg] = useState();
 	if (author === null) {
 		author = {
 			image: NoneProfile,
@@ -61,7 +60,7 @@ function User({ author }) {
 		const regexp =
 			/(^https:\/\/mandarin.api.weniv.co.kr\/)[0-9]+\.[a-zA-Z]+$/g;
 
-		if (regexp.test(author.image)) {
+		if (!regexp.test(author.image)) {
 			author.image = NoneProfile;
 		}
 	}, []);
