@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { SERVER_URL } from '../../constants';
 import PostViewImg from '../common/post/PostViewImg';
 import CommentContainer from './comment/CommentContainer';
 import PostCard from './PostCard';
-// import BottomSheat from '../common/modal/BottomSheat';
 
 const PostViewSection = styled.section`
 	min-height: 48.5rem;
@@ -26,6 +25,7 @@ const PostContextWrap = styled.div`
 `;
 
 function PostViewContainer() {
+	const navigate = useNavigate();
 	const [postContext, setPostContext] = useState(null);
 	const [userInfo, setUserInfo] = useState(null);
 	const [postImgs, setPostImgs] = useState(null);
@@ -53,6 +53,11 @@ function PostViewContainer() {
 			});
 
 			const json = await res.json();
+
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
+
 			setPostContext(json.post);
 		} catch (err) {
 			console.error(err);

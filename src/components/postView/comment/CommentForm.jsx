@@ -1,5 +1,6 @@
-import { SERVER_URL } from '../../../constants';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { SERVER_URL } from '../../../constants';
 import NoneProfile from '../../../assets/profile.png';
 import {
 	WriteForm,
@@ -9,6 +10,7 @@ import {
 } from './CommentForm.style';
 
 function CommentForm({ postId, setIsCommentUpload, userInfo }) {
+	const navigate = useNavigate();
 	const [isDisabled, setIsDisabled] = useState(true);
 	const [commentVal, setCommentVal] = useState('');
 
@@ -38,9 +40,14 @@ function CommentForm({ postId, setIsCommentUpload, userInfo }) {
 				body: JSON.stringify(commentData),
 			});
 			const json = await res.json();
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
+			setIsCommentUpload(true);
+			setCommentVal('');
 			return json;
 		} catch (err) {
-			console.error(err.message);
+			console.error(err);
 		}
 	}
 
@@ -48,16 +55,12 @@ function CommentForm({ postId, setIsCommentUpload, userInfo }) {
 		setCommentVal(e.target.value);
 	};
 
-	// 댓글 작성하고 날리기
+	// form submit event
 	const onSubmitForm = (e) => {
 		e.preventDefault();
-		commentAPI()
-			.then(() => {
-				setIsCommentUpload(true);
-			})
-			.finally(() => {
-				setCommentVal('');
-			});
+		if (!isDisabled) {
+			commentAPI();
+		}
 	};
 
 	return (
