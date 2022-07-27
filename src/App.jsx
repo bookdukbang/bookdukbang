@@ -32,7 +32,7 @@ function App() {
 				/>
 				<Route path="/search" exact element={<SearchPage />} />
 				<Route path="/myprofile" exact element={<MyProfilePage />} />
-				<Route path="/user" exact element={<UserProfilePage />} />
+				<Route path="/user/:id" exact element={<UserProfilePage />} />
 				<Route path="/errorPage" exact element={<ErrorPage />} />
 				<Route path="/postUpload" exact element={<PostUploadPage />} />
 				<Route

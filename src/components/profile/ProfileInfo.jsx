@@ -131,6 +131,7 @@ function ProfileInfo() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 
 	const [myInfo, setMyInfo] = useState('');
+	const [myId, setMyId] = useState('');
 
 	async function myInformation() {
 		try {
@@ -143,6 +144,7 @@ function ProfileInfo() {
 			});
 			const result = await res.json();
 			setMyInfo(result.user);
+			setMyId(result.user._id);
 		} catch (error) {
 			console.error(error);
 		}
@@ -159,11 +161,7 @@ function ProfileInfo() {
 					<NoneProfileMediumStyle
 						style={{ backgroundImage: `url(${myInfo.image})` }}
 					/>
-					<ImgUploadBtnMediumStyle
-						type="button"
-						as={Link}
-						to="/profileEdit"
-					>
+					<ImgUploadBtnMediumStyle as={Link} to="/profileEdit">
 						<ImgUploadMediumStyle
 							src={setting}
 							alt="내 프로필 수정 버튼"
@@ -180,7 +178,7 @@ function ProfileInfo() {
 
 						<ProfileText>{myInfo.intro}</ProfileText>
 						<MediumBtnDivStyle>
-							<MediumBtn type="button" as={Link} to="/product">
+							<MediumBtn as={Link} to="/product">
 								상품등록
 							</MediumBtn>
 						</MediumBtnDivStyle>
@@ -190,7 +188,7 @@ function ProfileInfo() {
 						<ProfileFollow>
 							<Followers>followers</Followers>
 							<FollowNumStyle>
-								<Link to="/follower">
+								<Link to={`/follower/${myId}`}>
 									{myInfo.followerCount}
 								</Link>
 							</FollowNumStyle>
@@ -198,7 +196,7 @@ function ProfileInfo() {
 						<ProfileFollowing>
 							<Followers>followings</Followers>
 							<FollowNumStyle>
-								<Link to="/follower">
+								<Link to={`/following/${myId}`}>
 									{myInfo.followingCount}
 								</Link>
 							</FollowNumStyle>

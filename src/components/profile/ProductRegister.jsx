@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PlusBtn from '../../assets/plus_btn.png';
 import { SERVER_URL } from '../../constants';
+import ProductModal from './ProductModal';
 
 const BookContainer = styled.div`
 	display: grid;
@@ -100,10 +101,12 @@ const RegisterBtn = styled.button`
 	border: none;
 	background-color: transparent;
 	margin-bottom: 1rem;
+	text-align: center;
 `;
 
 const PlusBtnImg = styled.img`
 	width: 7rem;
+	margin-bottom: 1rem;
 `;
 
 const RegisterTitle = styled.p`
@@ -116,6 +119,9 @@ function ProductRegister() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
 	const [books, setBooks] = useState(null);
+	const [modalInfo, setModalInfo] = useState({
+		state: false,
+	});
 
 	async function MyBookList() {
 		try {
@@ -137,36 +143,48 @@ function ProductRegister() {
 		MyBookList();
 	}, []);
 
+	const onClickMoreBtn = () => {
+		setModalInfo({
+			state: true,
+		});
+	};
+
 	return (
 		<>
 			<BookContainer>
-				{books?.map((item, i) => (
-					<Link to="/product/detail" key={i}>
-						<BookBtn
-							type="button"
-							style={{
-								backgroundImage: `url(${item.itemImage})`,
-							}}
-						>
-							<BookInfo>
-								<BookTitle>{item.itemName}</BookTitle>
-								<BookCost>
-									{`${item.price}`.replace(
-										/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-										',',
-									)}{' '}
-									원
-								</BookCost>
-							</BookInfo>
-						</BookBtn>
-					</Link>
+				{books?.map((item) => (
+					<BookBtn
+						type="button"
+						style={{
+							backgroundImage: `url(${item.itemImage})`,
+						}}
+						key={item.id}
+						onClick={onClickMoreBtn}
+					>
+						<BookInfo>
+							<BookTitle>{item.itemName}</BookTitle>
+							<BookCost>
+								{`${item.price}`.replace(
+									/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+									',',
+								)}{' '}
+								원
+							</BookCost>
+						</BookInfo>
+					</BookBtn>
 				))}
 				<BookRegister>
-					<RegisterBtn type="button" as={Link} to="/product">
-						<PlusBtnImg src={PlusBtn} alt="상품등록 버튼" />
+					<RegisterBtn as={Link} to="/product">
+						<PlusBtnImg src={PlusBtn} alt="" />
+						<RegisterTitle>상품등록</RegisterTitle>
 					</RegisterBtn>
-					<RegisterTitle>상품등록</RegisterTitle>
 				</BookRegister>
+				{modalInfo.state && (
+					<ProductModal
+						modalInfo={modalInfo}
+						setModalInfo={setModalInfo}
+					/>
+				)}
 			</BookContainer>
 		</>
 	);

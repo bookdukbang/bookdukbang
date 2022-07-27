@@ -132,7 +132,6 @@ function MyFeed() {
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
 		postId: null,
-		commentUser: null,
 	});
 
 	useEffect(() => {
@@ -163,7 +162,6 @@ function MyFeed() {
 		setModalInfo({
 			state: true,
 			postId: postId,
-			// commentUser: e.target.parentNode.children[1].textContent,
 		});
 	};
 
@@ -215,10 +213,8 @@ function MyFeed() {
 						{modalInfo.state && (
 							<MyModal
 								postId={item.id}
-								// userInfo={userInfo}
 								modalInfo={modalInfo}
 								setModalInfo={setModalInfo}
-								// setIsCommentUpload={setIsCommentUpload}
 							/>
 						)}
 					</FeedWrapper>
