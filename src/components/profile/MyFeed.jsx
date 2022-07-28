@@ -25,12 +25,10 @@ function MyFeed() {
 			);
 			const feedResult = await feedRes.json();
 			setFeeds(feedResult.post);
-			console.log(feedResult);
 		} catch (error) {
 			console.error(error);
 		}
 	}
-	console.log(feeds);
 
 	return (
 		<>

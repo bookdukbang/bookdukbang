@@ -86,7 +86,13 @@ function BookList() {
 					>
 						<BookTitle>
 							{item.itemName}
-							<span>{item.price}원</span>
+							<span>
+								{`${item.price}`.replace(
+									/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+									',',
+								)}{' '}
+								원
+							</span>
 						</BookTitle>
 					</BookBtn>
 				))}
