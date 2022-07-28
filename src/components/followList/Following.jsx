@@ -91,8 +91,8 @@ function Followings() {
 	return (
 		<>
 			{Following !== null &&
-				Following.map((item, id) => (
-					<UserLi key={id}>
+				Following.map((item) => (
+					<UserLi key={item._id}>
 						<NoneProfileSmall
 							style={{
 								backgroundImage: `url(${item.image})`,

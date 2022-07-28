@@ -60,6 +60,7 @@ const UserInfo = styled.p`
 		font-size: 1.6rem;
 		color: ${({ theme }) => theme.grayColor2};
 		${({ theme }) => theme.TextShortening()}
+		max-width: 45rem;
 		@media ${({ theme }) => theme.size.mobile} {
 			font-size: 1.4rem;
 		}
