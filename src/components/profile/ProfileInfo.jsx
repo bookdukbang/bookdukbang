@@ -144,7 +144,7 @@ function ProfileInfo() {
 			});
 			const result = await res.json();
 			setMyInfo(result.user);
-			setMyId(result.user._id);
+			setMyId(result.user.accountname);
 		} catch (error) {
 			console.error(error);
 		}
