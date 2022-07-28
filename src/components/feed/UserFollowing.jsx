@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SERVER_URL } from '../../constants';
 import { NoneProfileSmall } from '../common/user/UserUpload';
@@ -53,11 +54,13 @@ function UserFollowing() {
 			{Following !== null &&
 				Following?.map((item, i) => (
 					<UserLi key={i}>
-						<NoneProfileSmall
-							style={{
-								backgroundImage: `url(${item.image})`,
-							}}
-						/>
+						<Link to={`/user/${item.accountname}`}>
+							<NoneProfileSmall
+								style={{
+									backgroundImage: `url(${item.image})`,
+								}}
+							/>
+						</Link>
 						<UserInfo>
 							{item.username}
 							<p>@ {item.accountname}</p>
