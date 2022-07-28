@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import NoneProductImg from '../../assets/none-product.png';
 import { ButtonStyle } from '../common/Button.style';
 
 const ProductFormStyle = styled.form`
@@ -30,11 +29,14 @@ const ProductFormStyle = styled.form`
 const ProductImgWrap = styled.div`
 	max-width: 55rem;
 	text-align: center;
-	margin-bottom: 3rem;
 	position: relative;
 	border-radius: 0.5rem;
 	overflow: hidden;
 	border: 0.1rem solid ${({ theme }) => theme.grayColor4};
+
+	& + div {
+		margin-top: 3rem;
+	}
 
 	& label {
 		position: absolute;

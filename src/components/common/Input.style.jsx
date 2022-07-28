@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 
 const InputDiv = styled.div`
-	/* display: flex;
-	flex-direction: column;
-	align-items: center; */
-	max-width: 55rem;
 	margin-bottom: 1rem;
-	@media (max-width: 390px) {
-		max-width: 32rem;
-	}
 `;
 
 const LabelStyle = styled.label`

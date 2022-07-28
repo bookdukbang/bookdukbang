@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
 
@@ -25,10 +25,12 @@ const UserName = styled.p`
 	font-weight: 700;
 
 	& span {
+		/* width: 52rem; */
 		display: block;
 		color: ${({ theme }) => theme.grayColor2};
 		font-size: 1.6rem;
 		font-weight: 300;
+		${({ theme }) => theme.TextShortening()}
 	}
 
 	&::after {
@@ -53,6 +55,15 @@ function User({ author }) {
 			accountname: 'none_account',
 		};
 	}
+
+	useEffect(() => {
+		const regexp =
+			/(^https:\/\/mandarin.api.weniv.co.kr\/)[0-9]+\.[a-zA-Z]+$/g;
+
+		if (!regexp.test(author.image)) {
+			author.image = NoneProfile;
+		}
+	}, []);
 
 	return (
 		<>

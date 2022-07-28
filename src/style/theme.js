@@ -16,6 +16,7 @@ const TextShortening = () => {
         display: -webkit-box;
         -webkit-box-orient: vertical;
         overflow: hidden;
+		-webkit-line-clamp: 1;
         text-overflow: ellipsis;
         word-break: break-all;
     `;

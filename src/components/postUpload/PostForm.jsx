@@ -9,7 +9,7 @@ import {
 } from './PostForm.style';
 import PostUploadImg from '../common/post/PostUploadImg';
 
-function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
+function PostForm({ isDisable, uploadImgs, setUploadImgs, setDisable }) {
 	const navigate = useNavigate();
 	const [userInfo, setUserInfo] = useState(null);
 	const [postInfo, setPostInfo] = useState({
@@ -57,10 +57,12 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 				body: formData,
 			});
 			const json = await res.json();
-
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
 			return json;
 		} catch (err) {
-			console.error(err.message);
+			console.error(err);
 		}
 	}
 
@@ -91,10 +93,9 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 	// 서버에 입력 form 제출
 	const onSubmitForm = (e) => {
 		e.preventDefault();
-		postUploadAPI().then((d) => {
-			console.log(d);
-			navigate(`/post/${d.post.id}`);
-		});
+		if (!isDisable) {
+			postUploadAPI().then((d) => navigate(`/post/${d.post.id}`));
+		}
 	};
 
 	const onChangeTextarea = (e) => {
@@ -125,6 +126,7 @@ function PostForm({ uploadImgs, setUploadImgs, setDisable }) {
 							name="postText"
 							placeholder="게시글 입력하기..."
 							onChange={onChangeTextarea}
+							required
 						></PostTextarea>
 					</PostTextareaWrap>
 					<PostUploadImg

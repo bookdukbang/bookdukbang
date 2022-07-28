@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { SERVER_URL } from '../../../constants';
 import Comment from './Comment';
@@ -18,6 +19,7 @@ const CommentContainerStyle = styled.div`
 `;
 
 function CommentContainer({ postId, userInfo }) {
+	const navigate = useNavigate();
 	const [postComments, setPostComments] = useState(null);
 	const [isCommentUpload, setIsCommentUpload] = useState(false);
 	const [modalInfo, setModalInfo] = useState({
@@ -37,6 +39,7 @@ function CommentContainer({ postId, userInfo }) {
 		}
 	}, [isCommentUpload]);
 
+	// 해당 게시글의 댓글 불러오기
 	async function commentAPI() {
 		const reqPath = `/post/${postId}/comments`;
 		try {
@@ -49,12 +52,14 @@ function CommentContainer({ postId, userInfo }) {
 			});
 
 			const json = await res.json();
+
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
+
 			setPostComments(json.comments.reverse());
 		} catch (err) {
-			if (err.state === 404) {
-				alert(err.message);
-			}
-			console.error(err.message);
+			console.error(err);
 		}
 	}
 
