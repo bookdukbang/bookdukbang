@@ -7,11 +7,11 @@ import {
 	Profilestyle,
 } from './ProfileName.style';
 import MoreBtns from '../../assets/moreBtn.png';
-import Heart from '../../assets/heart.png';
 import Comment from '../../assets/comment.png';
 import { NoneProfileSmall } from './user/UserUpload';
 import PostViewImg from './post/PostViewImg';
 import MyModal from '../profile/MyModal';
+import LikeButton from '../common/LikeButton';
 
 const FeedWrapper = styled.div`
 	padding: 3rem 2rem 4.8rem;
@@ -33,10 +33,6 @@ const MoreBtnImg = styled.img`
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 2.4rem;
 	}
-`;
-
-const HeartImg = styled.img`
-	width: 1.6rem;
 `;
 
 const CommentImg = styled.img`
@@ -63,17 +59,6 @@ const CommentDiv = styled.div`
 const HeartInfo = styled.div`
 	display: flex;
 	align-items: center;
-`;
-
-const HeartNum = styled.p`
-	margin-left: 0.7rem;
-	margin-right: 1.2rem;
-	font-weight: 700;
-	font-size: 1.6rem;
-	color: ${({ theme }) => theme.grayColor1};
-	@media ${({ theme }) => theme.size.mobile} {
-		font-size: 1.4rem;
-	}
 `;
 
 const CommentInfo = styled.div`
@@ -149,8 +134,11 @@ function Feed({ item, author, postId }) {
 
 			<CommentDiv>
 				<HeartInfo>
-					<HeartImg src={Heart} alt="좋아요" />
-					<HeartNum>{item.heartCount}</HeartNum>
+					<LikeButton
+						hearted={item.hearted}
+						heartCount={item.heartCount}
+						id={item.id}
+					/>
 				</HeartInfo>
 				<Link to={`/post/${item.id}`}>
 					<CommentInfo>
