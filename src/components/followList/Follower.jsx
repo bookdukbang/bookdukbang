@@ -7,11 +7,12 @@ import {
 	FollowBtn,
 	FollowingBtn,
 } from '../followList/FollowList.style';
+import { useParams } from 'react-router-dom';
 
 function Followers() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
-	const AccountName = JSON.parse(localStorage.getItem('user')).accountname;
 
+	const { id } = useParams();
 	const [Follower, setFollower] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +27,7 @@ function Followers() {
 	async function UserFollowerList() {
 		try {
 			const res = await fetch(
-				SERVER_URL + `/profile/${AccountName}/follower?limit=30`,
+				SERVER_URL + `/profile/${id}/follower?limit=30`,
 				{
 					method: 'GET',
 					headers: {
@@ -59,8 +60,8 @@ function Followers() {
 				},
 			);
 			const result = await res.json();
-			console.log(result);
 			setIsLoading(true);
+			return result;
 		} catch (error) {
 			console.error(error);
 		}
@@ -80,8 +81,8 @@ function Followers() {
 				},
 			);
 			const result = await res.json();
-			console.log(result);
 			setIsLoading(true);
+			return result;
 		} catch (error) {
 			console.error(error);
 		}
@@ -90,8 +91,8 @@ function Followers() {
 	return (
 		<>
 			{Follower !== null &&
-				Follower.map((item, i) => (
-					<UserLi key={i}>
+				Follower.map((item, id) => (
+					<UserLi key={id}>
 						<NoneProfileSmall
 							style={{
 								backgroundImage: `url(${item.image})`,
@@ -99,7 +100,7 @@ function Followers() {
 						/>
 						<UserInfo>
 							{item.username}
-							<p>@ {item.accountname}</p>
+							<span>@ {item.accountname}</span>
 						</UserInfo>
 
 						{item.isfollow ? (

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ButtonStyle } from '../common/Button.style';
 
-const HeaderText = styled.p`
+const HeaderText = styled.h2`
 	font-weight: 700;
 	font-size: 1.6rem;
 	color: ${({ theme }) => theme.textColor};
@@ -51,15 +51,15 @@ const UserLi = styled.li`
 	}
 `;
 
-const UserInfo = styled.h2`
+const UserInfo = styled.p`
 	font-weight: 700;
 	font-size: 2rem;
-	${({ theme }) => theme.TextShortening()}
 
-	& p {
+	& span {
 		font-weight: 300;
 		font-size: 1.6rem;
 		color: ${({ theme }) => theme.grayColor2};
+		${({ theme }) => theme.TextShortening()}
 		@media ${({ theme }) => theme.size.mobile} {
 			font-size: 1.4rem;
 		}
