@@ -5,22 +5,24 @@ import RedHeart from '../../assets/redheart.png';
 import { SERVER_URL } from '../../constants';
 
 const HeartImg = styled.img`
-	width: 2rem;
-	height: 2rem;
-	margin-right: 0.6rem;
+	padding-top: 0.3rem;
+	width: 1.6rem;
 `;
 
 const RedHeartImg = styled.img`
-	width: 2rem;
-	height: 2rem;
-	margin-right: 0.6rem;
+	padding-top: 0.3rem;
+	width: 1.6rem;
 `;
 
 const HeartNum = styled.dd`
-	margin-right: 0.2rem;
+	margin-left: 0.7rem;
+	margin-right: 1.2rem;
 	font-weight: 700;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	color: ${({ theme }) => theme.grayColor1};
+	@media ${({ theme }) => theme.size.mobile} {
+		font-size: 1.4rem;
+	}
 `;
 
 const LikeBtn = styled.button`
