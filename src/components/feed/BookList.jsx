@@ -90,7 +90,7 @@ function BookList() {
 								{`${item.price}`.replace(
 									/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
 									',',
-								)}{' '}
+								)}
 								원
 							</span>
 						</BookTitle>
