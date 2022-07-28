@@ -2,7 +2,6 @@ import React from 'react';
 import FeedHeader from '../components/common/header/FeedHeader';
 import ProfileInfo from '../components/profile/ProfileInfo';
 import ProductRegister from '../components/profile/ProductRegister';
-import Feed from '../components/common/Feed';
 import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
 import MyFeed from '../components/profile/MyFeed';
@@ -47,7 +46,6 @@ function MyProfile() {
 					</DivArray>
 					<FeedWrap>
 						<MyFeed />
-						<Feed />
 					</FeedWrap>
 				</ProfileWrap>
 			</Wrap>

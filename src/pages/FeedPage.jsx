@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Feed from '../components/common/Feed';
 import FollowingFeed from '../components/feed/FollowingFeed';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
@@ -99,7 +98,6 @@ function FeedPage() {
 					<FollowerFeed>
 						<IrH2>Follower Feed Section</IrH2>
 						<FollowingFeed />
-						<Feed />
 					</FollowerFeed>
 				)}
 				<FollowerAside>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import BookList from '../../assets/BookListImg02.png';
 import {
 	ProfileName,
 	BigProfileEmail,
@@ -10,6 +10,8 @@ import MoreBtns from '../../assets/moreBtn.png';
 import Heart from '../../assets/heart.png';
 import Comment from '../../assets/comment.png';
 import { NoneProfileSmall } from './user/UserUpload';
+import PostViewImg from './post/PostViewImg';
+import MyModal from '../profile/MyModal';
 
 const FeedWrapper = styled.div`
 	padding: 3rem 2rem 4.8rem;
@@ -30,13 +32,6 @@ const MoreBtnImg = styled.img`
 	width: 3rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 2.4rem;
-	}
-`;
-
-const BookListImg = styled.img`
-	width: 68rem;
-	@media ${({ theme }) => theme.size.mobile} {
-		width: 34rem;
 	}
 `;
 
@@ -121,37 +116,63 @@ const ProfilestyleDiv = styled(Profilestyle)`
 	}
 `;
 
-function Feed() {
+function Feed({ item, author, postId }) {
+	const [modalInfo, setModalInfo] = useState({
+		state: false,
+		postId: null,
+	});
+	const onClickMoreBtn = () => {
+		setModalInfo({
+			state: true,
+			postId: postId,
+		});
+	};
 	return (
 		<FeedWrapper>
 			<ProfileDiv>
-				<NoneProfileSmall />
+				<NoneProfileSmall
+					style={{
+						backgroundImage: `url(${author.image})`,
+					}}
+				/>
 				<ProfilestyleDiv>
-					<ProfileName>애월읍 위니브 감귤농장</ProfileName>
-					<BigProfileEmail>@ weniv_Mandarin </BigProfileEmail>
+					<ProfileName>{author.username}</ProfileName>
+					<BigProfileEmail>@ {author.accountname}</BigProfileEmail>
 				</ProfilestyleDiv>
 			</ProfileDiv>
-			<FeedText>
-				옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여,
-				뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할
-				넣는 풍부하게 뛰노는 인생의 힘있다.
-			</FeedText>
-			<BookListImg src={BookList} alt="책 이미지" />
+
+			<FeedText>{item.content}</FeedText>
+
+			{item.image !== '' && (
+				<PostViewImg uploadImgs={item.image.split(',')} isView={true} />
+			)}
 
 			<CommentDiv>
 				<HeartInfo>
 					<HeartImg src={Heart} alt="좋아요" />
-					<HeartNum>58</HeartNum>
+					<HeartNum>{item.heartCount}</HeartNum>
 				</HeartInfo>
-				<CommentInfo>
-					<CommentImg src={Comment} alt="댓글" />
-					<CommentNum> 12</CommentNum>
-				</CommentInfo>
-				<Date>2020년 10월 21일</Date>
+				<Link to={`/post/${item.id}`}>
+					<CommentInfo>
+						<CommentImg src={Comment} alt="댓글" />
+						<CommentNum>{item.commentCount}</CommentNum>
+					</CommentInfo>
+				</Link>
+				<Date>
+					{item.createdAt.slice(0, 4)}년 {item.createdAt.slice(5, 7)}
+					월 {item.createdAt.slice(8, 10)}일
+				</Date>
 			</CommentDiv>
-			<MoreBtn type="button">
+			<MoreBtn type="button" onClick={onClickMoreBtn}>
 				<MoreBtnImg src={MoreBtns} alt="더보기" />
 			</MoreBtn>
+			{modalInfo.state && (
+				<MyModal
+					postId={item.id}
+					modalInfo={modalInfo}
+					setModalInfo={setModalInfo}
+				/>
+			)}
 		</FeedWrapper>
 	);
 }
