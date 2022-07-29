@@ -7,6 +7,7 @@ const ModalBg = styled.div`
 	position: fixed;
 	left: 0;
 	top: 0;
+	z-index: 800;
 `;
 const ModalWrap = styled.div`
 	width: 40rem;

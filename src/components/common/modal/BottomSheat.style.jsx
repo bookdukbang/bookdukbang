@@ -7,6 +7,7 @@ const BottomSheatBg = styled.div`
 	position: fixed;
 	left: 0;
 	top: 0;
+	z-index: 800;
 `;
 const BottomSheatWrap = styled.div`
 	width: 100%;
@@ -16,7 +17,6 @@ const BottomSheatWrap = styled.div`
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	z-index: 1000;
 
 	&::before {
 		content: '';

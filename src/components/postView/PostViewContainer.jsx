@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { SERVER_URL } from '../../constants';
+import FeedModal from '../common/feed/FeedModal';
 import PostViewImg from '../common/post/PostViewImg';
 import CommentContainer from './comment/CommentContainer';
 import PostCard from './PostCard';
@@ -31,6 +32,11 @@ function PostViewContainer() {
 	const [postImgs, setPostImgs] = useState(null);
 	const { id } = useParams();
 	const postId = id;
+	const [modalInfo, setModalInfo] = useState({
+		state: false,
+		postUser: null,
+		postId: postId,
+	});
 
 	useEffect(() => {
 		setUserInfo(JSON.parse(localStorage.getItem('user')));
@@ -80,6 +86,7 @@ function PostViewContainer() {
 							<PostCard
 								postContext={postContext}
 								postImgs={postImgs}
+								setModalInfo={setModalInfo}
 							/>
 							<CommentContainer
 								userInfo={userInfo}
@@ -88,6 +95,13 @@ function PostViewContainer() {
 						</PostContextWrap>
 						{postContext.image !== '' && (
 							<PostViewImg uploadImgs={postImgs} isView={true} />
+						)}
+						{modalInfo.state && (
+							<FeedModal
+								postId={postId}
+								modalInfo={modalInfo}
+								setModalInfo={setModalInfo}
+							/>
 						)}
 					</>
 				)}

@@ -10,7 +10,7 @@ import MoreBtns from '../../assets/moreBtn.png';
 import Comment from '../../assets/comment.png';
 import { NoneProfileSmall } from './user/UserUpload';
 import PostViewImg from './post/PostViewImg';
-import MyModal from '../profile/MyModal';
+import FeedModal from './feed/FeedModal';
 import LikeButton from '../common/LikeButton';
 
 const FeedWrapper = styled.div`
@@ -104,11 +104,13 @@ const ProfilestyleDiv = styled(Profilestyle)`
 function Feed({ item, author, postId }) {
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
+		postUser: null,
 		postId: null,
 	});
 	const onClickMoreBtn = () => {
 		setModalInfo({
 			state: true,
+			postUser: author.accountname,
 			postId: postId,
 		});
 	};
@@ -157,7 +159,7 @@ function Feed({ item, author, postId }) {
 				<MoreBtnImg src={MoreBtns} alt="더보기" />
 			</MoreBtn>
 			{modalInfo.state && (
-				<MyModal
+				<FeedModal
 					postId={item.id}
 					modalInfo={modalInfo}
 					setModalInfo={setModalInfo}
