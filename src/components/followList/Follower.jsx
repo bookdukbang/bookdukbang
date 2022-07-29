@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants';
 import { NoneProfileSmall } from '../common/user/UserUpload';
-import {
-	UserLi,
-	UserInfo,
-	FollowBtn,
-	FollowingBtn,
-} from '../followList/FollowList.style';
+import { UserLi, UserInfo, FollowBtn, FollowingBtn } from './FollowList.style';
 import { useParams } from 'react-router-dom';
 
 function Followers() {
