@@ -13,8 +13,8 @@ const BookContainer = styled.div`
 	margin-top: 2rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		flex-wrap: nowrap;
-		overflow-x: scroll;
-		overflow-y: hidden;
+		max-width: 34rem;
+		overflow: auto hidden;
 		${({ theme }) => theme.ScrollbarStyle()}
 	}
 `;
