@@ -67,7 +67,10 @@ function User({ author }) {
 
 	return (
 		<>
-			<Link to={`user/${author.accountname}`}>
+			<Link
+				to={`user/${author.accountname}`}
+				state={{ userId: author.accountname }}
+			>
 				<UserProfileImg src={author.image} alt={author.username} />
 			</Link>
 			<UserName>

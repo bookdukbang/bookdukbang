@@ -66,9 +66,7 @@ const CommentTime = styled.span`
 
 const UserComment = styled.p`
 	font-weight: 300;
-	max-width: 51rem;
-	float: right;
-	word-break: break-word;
+	word-break: break-all;
 `;
 
 const CommentMoreBtn = styled.button`
