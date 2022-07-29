@@ -10,14 +10,14 @@ function Splash({ setIsNext }) {
 	return (
 		<>
 			<TitleStyle>
-				<Maintitle>노래하며 수 가슴에 할지니, </Maintitle>
-				<Maintitle>이것을 싹이 타오르고 듣는다.</Maintitle>
-				<Subtitle>보라. 없는 착목한는 광야에서 이것이다.</Subtitle>
+				<Maintitle>책을 교환하다, </Maintitle>
+				<Maintitle>마음을 교환하다.</Maintitle>
+				<Subtitle>나눔서점, BOOK덕방과 함께해요</Subtitle>
 			</TitleStyle>
 
 			<SplashBtnDiv>
 				<SplashBtn type="button" onClick={onClickNextPageBtn}>
-					다양한 친구들을 만나보세요!
+					다양한 북더기들을 만나보세요!
 				</SplashBtn>
 			</SplashBtnDiv>
 		</>
