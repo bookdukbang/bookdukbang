@@ -17,7 +17,6 @@ import { SERVER_URL } from '../../constants';
 
 const ProfileDiv = styled.div`
 	display: flex;
-	justify-content: center;
 	padding: 3rem;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	border-radius: 1rem;

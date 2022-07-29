@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PlusBtn from '../../assets/plus_btn.png';
 import { SERVER_URL } from '../../constants';
-import ProductModal from './ProductModal';
+import Product from '../common/Product';
 
 const BookContainer = styled.div`
 	display: flex;
@@ -16,72 +16,6 @@ const BookContainer = styled.div`
 		overflow-x: scroll;
 		overflow-y: hidden;
 		${({ theme }) => theme.ScrollbarStyle()}
-	}
-`;
-
-const BookDivCont = styled.div`
-	cursor: pointer;
-`;
-
-const BookBtn = styled.button`
-	position: relative;
-	width: 31.5rem;
-	height: 25.2rem;
-	border: 0;
-	border-radius: 1rem;
-	background-size: cover;
-	background-position: center;
-	position: relative;
-	z-index: -1;
-	@media ${({ theme }) => theme.size.mobile} {
-		width: 15rem;
-		height: 12rem;
-	}
-	&::after {
-		content: '';
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		border: 0;
-		border-radius: 1rem;
-		background-color: rgba(0, 0, 0, 0.6);
-		top: 0;
-		left: 0;
-		z-index: -1;
-	}
-`;
-
-const BookInfo = styled.div`
-	position: absolute;
-	bottom: 2.1rem;
-	left: 2.1rem;
-	@media ${({ theme }) => theme.size.mobile} {
-		bottom: 1rem;
-		left: 1rem;
-	}
-`;
-
-const BookTitle = styled.p`
-	font-weight: 400;
-	font-size: 1.6rem;
-	color: ${({ theme }) => theme.grayColor5};
-	text-align: left;
-	z-index: 10;
-	@media ${({ theme }) => theme.size.mobile} {
-		font-weight: 400;
-		font-size: 14px;
-	}
-`;
-
-const BookCost = styled.p`
-	font-weight: 700;
-	font-size: 1.4rem;
-	text-align: left;
-	color: ${({ theme }) => theme.mainColor};
-	z-index: 10;
-	@media ${({ theme }) => theme.size.mobile} {
-		font-weight: 400;
-		font-size: 14px;
 	}
 `;
 
@@ -122,10 +56,6 @@ function ProductRegister() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
 	const [books, setBooks] = useState(null);
-	const [modalInfo, setModalInfo] = useState({
-		state: false,
-	});
-
 	async function MyBookList() {
 		try {
 			const res = await fetch(SERVER_URL + `/product/${MyAccountName}`, {
@@ -146,35 +76,11 @@ function ProductRegister() {
 		MyBookList();
 	}, []);
 
-	const onClickMoreBtn = () => {
-		setModalInfo({
-			state: true,
-		});
-	};
-
 	return (
 		<>
 			<BookContainer>
 				{books?.map((item) => (
-					<BookDivCont key={item.id} onClick={onClickMoreBtn}>
-						<BookBtn
-							type="button"
-							style={{
-								backgroundImage: `url(${item.itemImage})`,
-							}}
-						>
-							<BookInfo>
-								<BookTitle>{item.itemName}</BookTitle>
-								<BookCost>
-									{`${item.price}`.replace(
-										/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-										',',
-									)}{' '}
-									원
-								</BookCost>
-							</BookInfo>
-						</BookBtn>
-					</BookDivCont>
+					<Product key={item.id} item={item} />
 				))}
 				<BookRegister>
 					<RegisterBtn as={Link} to="/product">
@@ -182,12 +88,6 @@ function ProductRegister() {
 						<RegisterTitle>상품등록</RegisterTitle>
 					</RegisterBtn>
 				</BookRegister>
-				{modalInfo.state && (
-					<ProductModal
-						modalInfo={modalInfo}
-						setModalInfo={setModalInfo}
-					/>
-				)}
 			</BookContainer>
 		</>
 	);
