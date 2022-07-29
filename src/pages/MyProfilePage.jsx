@@ -5,6 +5,7 @@ import ProductRegister from '../components/profile/ProductRegister';
 import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
 import MyFeed from '../components/profile/MyFeed';
+import NavigatorMenu from '../components/navigator/NavigatorMenu';
 
 const ProfileWrap = styled.div`
 	display: flex;
@@ -49,6 +50,7 @@ function MyProfile() {
 					</FeedWrap>
 				</ProfileWrap>
 			</Wrap>
+			<NavigatorMenu />
 		</>
 	);
 }
