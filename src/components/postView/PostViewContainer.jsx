@@ -21,6 +21,8 @@ const PostViewSection = styled.section`
 `;
 
 const PostContextWrap = styled.div`
+	/* max-width: 62rem; */
+	flex-basis: 62rem;
 	flex-grow: 1;
 `;
 
