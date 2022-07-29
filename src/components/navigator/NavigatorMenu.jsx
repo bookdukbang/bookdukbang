@@ -27,7 +27,7 @@ function NavigatorMenu() {
 		<>
 			{isMobile && (
 				<NavigatorWrap>
-					<MenuBtn to="/">
+					<MenuBtn to="/feed">
 						<HomeIcon />
 						<span>HOME</span>
 					</MenuBtn>
