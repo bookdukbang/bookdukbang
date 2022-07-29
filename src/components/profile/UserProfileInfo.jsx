@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
 	ProfileName,
@@ -9,16 +9,31 @@ import { SmallBtn, SmallBtnDiv } from '../common/Button.style';
 import { NoneProfileMedium } from '../common/user/UserUpload';
 import share from '../../assets/share.png';
 import chat from '../../assets/chat.png';
+import { SERVER_URL } from '../../constants';
+import { Link, useLocation } from 'react-router-dom';
 
 const ProfileDiv = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;
 	padding: 3rem;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	border-radius: 1rem;
 `;
 
+const InfoDiv = styled.div`
+	display: flex;
+	gap: 2.8rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		position: relative;
+		flex-direction: column;
+		align-items: center;
+		gap: 0;
+	}
+`;
+
 const NoneProfileMediumStyle = styled(NoneProfileMedium)`
+	margin: 0;
 	@media ${({ theme }) => theme.size.mobile} {
 		margin: -6rem 0 1rem;
 	}
@@ -32,11 +47,13 @@ const ProfileText = styled.p`
 	margin-bottom: 2.2rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-size: 1.4rem;
+		margin-bottom: 0;
 	}
 `;
 
 const Follow = styled.div`
 	display: flex;
+	gap: 2rem;
 `;
 
 const ProfileFollow = styled.dl`
@@ -46,14 +63,21 @@ const ProfileFollow = styled.dl`
 		flex-direction: column-reverse;
 		align-items: center;
 		position: absolute;
-		top: 2rem;
+		top: -1rem;
+		left: 2rem;
 	}
 `;
 
-const ProfileFollowing = styled(ProfileFollow)`
-	margin-left: 2rem;
+const ProfileFollowing = styled.dl`
+	display: flex;
+	align-items: flex-end;
+
 	@media ${({ theme }) => theme.size.mobile} {
-		right: 3rem;
+		position: absolute;
+		top: -1rem;
+		right: 2rem;
+		flex-direction: column-reverse;
+		align-items: center;
 	}
 `;
 
@@ -79,16 +103,6 @@ const FollowNumStyle = styled.dd`
 
 const TextDiv = styled.div`
 	word-break: break-all;
-`;
-
-const InfoDiv = styled.div`
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-
-	@media ${({ theme }) => theme.size.mobile} {
-		position: relative;
-	}
 `;
 
 const Btns = styled.div`
@@ -137,32 +151,60 @@ const FollowBtn = styled(SmallBtn)`
 `;
 
 function UserProfileInfo() {
+	const token = JSON.parse(localStorage.getItem('user')).token;
+	const location = useLocation();
+	const data = location.state.data;
+	const [author, setAuthor] = useState('');
+
+	async function userProfile() {
+		try {
+			const res = await fetch(SERVER_URL + `/post/${data.postId}`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
+				},
+			});
+			const result = await res.json();
+			setAuthor(result.post.author);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	useEffect(() => {
+		userProfile();
+	}, []);
 	return (
 		<>
 			<ProfileDiv>
 				<InfoDiv>
-					<NoneProfileMediumStyle />
+					<NoneProfileMediumStyle
+						style={{ backgroundImage: `url(${author.image})` }}
+					/>
 
 					<Profilestyle>
 						<TextDiv>
-							<ProfileName>애월읍 위니브 책농장</ProfileName>
+							<ProfileName>{author.username}</ProfileName>
 							<SmallProfileEmail>
-								@ weniv_Mandarin
+								@ {author.accountname}
 							</SmallProfileEmail>
 
-							<ProfileText>
-								애월읍 감귤 전국 배송, 귤따기 체험, 감귤농장
-							</ProfileText>
+							<ProfileText>{author.intro}</ProfileText>
 						</TextDiv>
 
 						<Follow>
 							<ProfileFollow>
 								<Followers>followers</Followers>
-								<FollowNumStyle>2950</FollowNumStyle>
+								<FollowNumStyle>
+									{author.followerCount}
+								</FollowNumStyle>
 							</ProfileFollow>
 							<ProfileFollowing>
 								<Followers>followings</Followers>
-								<FollowNumStyle>128</FollowNumStyle>
+								<FollowNumStyle>
+									{author.followingCount}
+								</FollowNumStyle>
 							</ProfileFollowing>
 						</Follow>
 					</Profilestyle>
@@ -178,7 +220,7 @@ function UserProfileInfo() {
 						<FollowBtn type="button">팔로우</FollowBtn>
 					</SmallBtnDivStyle>
 					<SmallBtnDivStyle>
-						<ShareBtn type="button">
+						<ShareBtn as={Link} to="/chat">
 							<img src={chat} alt="채팅" />
 							<span>Chat</span>
 						</ShareBtn>

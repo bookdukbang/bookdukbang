@@ -1,40 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import Book from '../../assets/BookListImg.png';
+// import Book from '../../assets/BookListImg.png';
+import { SERVER_URL } from '../../constants';
 
 const BookContainer = styled.div`
-	display: grid;
-	grid-template-columns: 31.5rem 31.5rem;
-	grid-template-rows: 25.2rem 25.2rem;
-	row-gap: 2.2rem;
-	column-gap: 2rem;
-	border-radius: 1rem;
-	margin-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 2rem;
+	margin-top: 2rem;
 	@media ${({ theme }) => theme.size.mobile} {
-		grid-template-columns: 15rem 15rem 15rem 15rem;
-		grid-template-rows: 12rem;
-		gap: 0.5rem;
-		margin-left: 1rem;
+		flex-wrap: nowrap;
 		overflow-x: scroll;
 		overflow-y: hidden;
+		${({ theme }) => theme.ScrollbarStyle()}
 	}
 `;
 
 const BookList = styled.div`
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	position: relative;
+	position: relative; */
 `;
 
 const BookBtn = styled.button`
-	background-color: transparent;
-	padding: 0;
-	border: none;
-`;
-
-const BookImg = styled.img`
-	width: 100%;
-	height: 100%;
+	position: relative;
+	width: 31.5rem;
+	height: 25.2rem;
+	border: 0;
+	border-radius: 1rem;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	z-index: -1;
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 15rem;
+		height: 12rem;
+	}
+	&::after {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		border: 0;
+		border-radius: 1rem;
+		background-color: rgba(0, 0, 0, 0.6);
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
 `;
 
 const BookInfo = styled.div`
@@ -69,38 +84,57 @@ const BookCost = styled.p`
 `;
 
 function UserProductRegister() {
+	const token = JSON.parse(localStorage.getItem('user')).token;
+	const location = useLocation();
+	const data = location.state.data;
+	const [userBooks, setUserBooks] = useState(null);
+
+	async function userProduct() {
+		try {
+			const res = await fetch(
+				SERVER_URL + `/product/${data.accountname}`,
+				{
+					method: 'GET',
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-type': 'application/json',
+					},
+				},
+			);
+			const result = await res.json();
+			setUserBooks(result.product);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	useEffect(() => {
+		userProduct();
+	}, []);
 	return (
 		<>
 			<BookContainer>
-				<BookList>
-					<BookBtn type="button">
-						<BookImg src={Book} alt="책 이미지" />
-
-						<BookInfo>
-							<BookTitle>책제목</BookTitle>
-							<BookCost>99,000원</BookCost>
-						</BookInfo>
-					</BookBtn>
-				</BookList>
-				<BookList>
-					<BookBtn type="button">
-						<BookImg src={Book} alt="책 이미지" />
-
-						<BookInfo>
-							<BookTitle>책제목</BookTitle>
-							<BookCost>99,000원</BookCost>
-						</BookInfo>
-					</BookBtn>
-				</BookList>
-				<BookList>
-					<BookBtn type="button">
-						<BookImg src={Book} alt="책 이미지" />
-						<BookInfo>
-							<BookTitle>책제목</BookTitle>
-							<BookCost>99,000원</BookCost>
-						</BookInfo>
-					</BookBtn>
-				</BookList>
+				{userBooks?.map((item) => (
+					<BookList key={item.id}>
+						<BookBtn
+							type="button"
+							style={{
+								backgroundImage: `url(${item.itemImage})`,
+							}}
+						>
+							<BookInfo>
+								<BookTitle>{item.itemName}</BookTitle>
+								<BookCost>
+									{`${item.price}`.replace(
+										/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+										',',
+									)}{' '}
+									원
+								</BookCost>
+							</BookInfo>
+						</BookBtn>
+					</BookList>
+				))}
 			</BookContainer>
 		</>
 	);
