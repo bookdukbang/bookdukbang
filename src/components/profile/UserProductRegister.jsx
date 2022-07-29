@@ -21,21 +21,18 @@ const BookContainer = styled.div`
 function UserProductRegister() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const location = useLocation();
-	const data = location.state.data;
+	const data = location.state.userId;
 	const [userBooks, setUserBooks] = useState(null);
 
 	async function userProduct() {
 		try {
-			const res = await fetch(
-				SERVER_URL + `/product/${data.accountname}`,
-				{
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
+			const res = await fetch(SERVER_URL + `/product/${data}`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
 				},
-			);
+			});
 			const result = await res.json();
 			setUserBooks(result.product);
 		} catch (error) {
