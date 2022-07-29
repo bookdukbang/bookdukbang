@@ -154,7 +154,6 @@ function UserProfileInfo() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const location = useLocation();
 	const data = location.state.userId;
-	console.log(data);
 	const [user, setUser] = useState('');
 	async function userProfile() {
 		try {

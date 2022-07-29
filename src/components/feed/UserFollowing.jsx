@@ -41,7 +41,6 @@ function UserFollowing() {
 			);
 			const result = await res.json();
 			setFollowing(result);
-			console.log(result);
 		} catch (error) {
 			console.error(error);
 		}

@@ -55,7 +55,6 @@ function UserProfilePage() {
 			});
 			const feedResult = await feedRes.json();
 			setFeeds(feedResult.post);
-			console.log(feedResult.post);
 		} catch (error) {
 			console.error(error);
 		}
