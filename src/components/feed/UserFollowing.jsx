@@ -52,9 +52,12 @@ function UserFollowing() {
 	return (
 		<>
 			{Following !== null &&
-				Following?.map((item, i) => (
-					<UserLi key={i}>
-						<Link to={`/user/${item.accountname}`}>
+				Following?.map((item) => (
+					<UserLi key={item._id}>
+						<Link
+							to={`/user/${item.accountname}`}
+							state={{ userId: item.accountname }}
+						>
 							<NoneProfileSmall
 								style={{
 									backgroundImage: `url(${item.image})`,

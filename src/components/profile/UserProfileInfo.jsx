@@ -153,12 +153,11 @@ const FollowBtn = styled(SmallBtn)`
 function UserProfileInfo() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const location = useLocation();
-	const data = location.state.data;
-	const [author, setAuthor] = useState('');
-
+	const data = location.state.userId;
+	const [user, setUser] = useState('');
 	async function userProfile() {
 		try {
-			const res = await fetch(SERVER_URL + `/post/${data.postId}`, {
+			const res = await fetch(SERVER_URL + `/profile/${data}`, {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -166,7 +165,7 @@ function UserProfileInfo() {
 				},
 			});
 			const result = await res.json();
-			setAuthor(result.post.author);
+			setUser(result.profile);
 		} catch (error) {
 			console.error(error);
 		}
@@ -175,42 +174,39 @@ function UserProfileInfo() {
 	useEffect(() => {
 		userProfile();
 	}, []);
+
 	return (
 		<>
 			<ProfileDiv>
 				<InfoDiv>
 					<NoneProfileMediumStyle
-						style={{ backgroundImage: `url(${author.image})` }}
+						style={{ backgroundImage: `url(${user.image})` }}
 					/>
 
 					<Profilestyle>
 						<TextDiv>
-							<ProfileName>{author.username}</ProfileName>
+							<ProfileName>{user.username}</ProfileName>
 							<SmallProfileEmail>
-								@ {author.accountname}
+								@ {user.accountname}
 							</SmallProfileEmail>
 
-							<ProfileText>{author.intro}</ProfileText>
+							<ProfileText>{user.intro}</ProfileText>
 						</TextDiv>
 
 						<Follow>
 							<ProfileFollow>
 								<Followers>followers</Followers>
 								<FollowNumStyle>
-									<Link
-										to={`/follower/${author.accountname}`}
-									>
-										{author.followerCount}
+									<Link to={`/follower/${user.accountname}`}>
+										{user.followerCount}
 									</Link>
 								</FollowNumStyle>
 							</ProfileFollow>
 							<ProfileFollowing>
 								<Followers>followings</Followers>
 								<FollowNumStyle>
-									<Link
-										to={`/following/${author.accountname}`}
-									>
-										{author.followingCount}
+									<Link to={`/following/${user.accountname}`}>
+										{user.followingCount}
 									</Link>
 								</FollowNumStyle>
 							</ProfileFollowing>

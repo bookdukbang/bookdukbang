@@ -39,23 +39,20 @@ const FeedWrap = styled.div`
 function UserProfilePage() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const location = useLocation();
-	const data = location.state.data;
+	const data = location.state.userId;
 	const [feeds, setFeeds] = useState(null);
 	useEffect(() => {
 		userFeeds();
 	}, []);
 	async function userFeeds() {
 		try {
-			const feedRes = await fetch(
-				SERVER_URL + `/post/${data.accountname}/userpost`,
-				{
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
+			const feedRes = await fetch(SERVER_URL + `/post/${data}/userpost`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
 				},
-			);
+			});
 			const feedResult = await feedRes.json();
 			setFeeds(feedResult.post);
 		} catch (error) {
