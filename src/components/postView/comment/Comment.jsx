@@ -57,17 +57,19 @@ function Comment({ commentInfo, setModalInfo }) {
 		});
 	};
 
+	const onErrorImg = (e) => {
+		e.target.src = NoneProfile;
+	};
+
 	return (
 		<>
 			{writeAuthor && (
 				<CommentLi id={commentInfo.id}>
-					<Link
-						to={'/user/' + writeAuthor.accountname}
-						state={{ userId: writeAuthor.accountname }}
-					>
+					<Link to={'/user/' + writeAuthor.accountname}>
 						<UserProfileImg
 							src={writeAuthor.image}
 							alt={writeAuthor.username}
+							onError={onErrorImg}
 						/>
 					</Link>
 					<div id={writeAuthor.accountname}>

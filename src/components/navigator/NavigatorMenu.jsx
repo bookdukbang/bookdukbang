@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigatorWrap, MenuBtn, PostingBtn } from './NavigatorMenu.style';
 import { ReactComponent as HomeIcon } from '../../assets/icon_home.svg';
 import { ReactComponent as ChatIcon } from '../../assets/icon_message.svg';
@@ -15,11 +15,19 @@ function NavigatorMenu() {
 		}
 	});
 
+	useEffect(() => {
+		if (window.innerWidth <= 390) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+	}, []);
+
 	return (
 		<>
 			{isMobile && (
 				<NavigatorWrap>
-					<MenuBtn to="/">
+					<MenuBtn to="/feed">
 						<HomeIcon />
 						<span>HOME</span>
 					</MenuBtn>

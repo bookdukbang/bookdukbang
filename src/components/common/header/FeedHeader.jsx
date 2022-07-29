@@ -25,6 +25,9 @@ function FeedHeader({ children, isHome }) {
 		navigate('/');
 	};
 	const MyImageSrc = JSON.parse(localStorage.getItem('user')).image;
+	const onClickBack = () => {
+		navigate(-1);
+	};
 
 	return (
 		<HeaderStyle>
@@ -34,7 +37,7 @@ function FeedHeader({ children, isHome }) {
 						<LogoImg src={HeaderLogo} alt="북덕방" />
 					</Link>
 				</LogoWrap>
-				<BackBtn type="button" isHome={isHome}>
+				<BackBtn type="button" isHome={isHome} onClick={onClickBack}>
 					<span>뒤로가기</span>
 				</BackBtn>
 				{children}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavigatorMenu from '../components/navigator/NavigatorMenu';
 import SearchContainer from '../components/search/SearchContainer';
 import SearchHeader from '../components/search/SearchHeader';
 
@@ -9,6 +10,7 @@ function SearchPage() {
 		<>
 			<SearchHeader setSearchList={setSearchList} />
 			<SearchContainer searchList={searchList} />
+			<NavigatorMenu />
 		</>
 	);
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Feed from '../components/common/Feed';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
+import NavigatorMenu from '../components/navigator/NavigatorMenu';
 import UserProductRegister from '../components/profile/UserProductRegister';
 import UserProfileInfo from '../components/profile/UserProfileInfo';
 import { SERVER_URL } from '../constants';
@@ -81,6 +82,7 @@ function UserProfilePage() {
 					</FeedWrap>
 				</ProfileWrap>
 			</Wrap>
+			<NavigatorMenu />
 		</>
 	);
 }

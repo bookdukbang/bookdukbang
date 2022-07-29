@@ -6,6 +6,7 @@ import {
 	FollowerSection,
 	Title,
 } from '../components/followList/FollowList.style';
+import NavigatorMenu from '../components/navigator/NavigatorMenu';
 
 function FollowerList() {
 	return (
@@ -20,6 +21,7 @@ function FollowerList() {
 					<Follower />
 				</ul>
 			</FollowerSection>
+			<NavigatorMenu />
 		</>
 	);
 }

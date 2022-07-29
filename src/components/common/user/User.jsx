@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
@@ -56,22 +56,18 @@ function User({ author }) {
 		};
 	}
 
-	useEffect(() => {
-		const regexp =
-			/(^https:\/\/mandarin.api.weniv.co.kr\/)[0-9]+\.[a-zA-Z]+$/g;
-
-		if (!regexp.test(author.image)) {
-			author.image = NoneProfile;
-		}
-	}, []);
+	const onErrorImg = (e) => {
+		e.target.src = NoneProfile;
+	};
 
 	return (
 		<>
-			<Link
-				to={`user/${author.accountname}`}
-				state={{ userId: author.accountname }}
-			>
-				<UserProfileImg src={author.image} alt={author.username} />
+			<Link to={`/user/${author.accountname}`}>
+				<UserProfileImg
+					src={author.image}
+					alt={author.username}
+					onError={onErrorImg}
+				/>
 			</Link>
 			<UserName>
 				{author.username} <span>@ {author.accountname}</span>
