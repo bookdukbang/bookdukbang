@@ -8,6 +8,7 @@ import {
 	PrevBtn,
 	NextBtn,
 } from './PostViewImg.style';
+import NoneImg from '../../../assets/none-product.png';
 
 function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -68,6 +69,11 @@ function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 		}
 	};
 
+	// 이미지가 에러 뜰 때 대타 이미지
+	const onErrorImg = (e) => {
+		e.target.src = NoneImg;
+	};
+
 	return (
 		<PostImgWrap>
 			<PostImgList ref={slideRef}>
@@ -77,7 +83,11 @@ function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 							key={item.lastModified + i}
 							id={item.lastModified}
 						>
-							<img src={URL.createObjectURL(item)} alt="" />
+							<img
+								src={URL.createObjectURL(item)}
+								alt=""
+								onError={onErrorImg}
+							/>
 							<PostImgDeleteBtn
 								type="button"
 								onClick={onClickDeleteImg}
@@ -89,7 +99,7 @@ function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 				{isView &&
 					uploadImgs.map((item, i) => (
 						<PostImgLi key={item + i} bgUrl={item}>
-							<img src={item} alt="" />
+							<img src={item} alt="" onError={onErrorImg} />
 						</PostImgLi>
 					))}
 			</PostImgList>

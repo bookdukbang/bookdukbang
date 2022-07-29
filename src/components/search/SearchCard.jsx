@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import React from 'react';
 import User from '../common/user/User';
 
@@ -13,20 +12,11 @@ const SearchCardLi = styled.li`
 		background-color: ${({ theme }) => theme.bgMainColor};
 	}
 `;
-const UserLink = styled(Link)`
-	&::after {
-		clear: both;
-		content: '';
-		display: block;
-	}
-`;
+
 function SearchCard({ user }) {
-	const userLink = `/user/${user.accountname}`;
 	return (
 		<SearchCardLi>
-			<UserLink to={userLink}>
-				<User author={user} />
-			</UserLink>
+			<User author={user} />
 		</SearchCardLi>
 	);
 }
