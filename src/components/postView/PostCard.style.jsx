@@ -17,6 +17,7 @@ const PostCardWrap = styled.div`
 	padding: 3rem;
 	border-radius: 1rem;
 	background-color: ${({ theme }) => theme.bgMainColor};
+	position: relative;
 
 	@media ${({ theme }) => theme.size.mobile} {
 		padding: 2rem 1.5rem;
@@ -25,6 +26,7 @@ const PostCardWrap = styled.div`
 const PostText = styled.p`
 	font-size: 2rem;
 	text-align: justify;
+	word-break: break-all;
 	& + p {
 		margin-top: 1rem;
 	}
@@ -83,4 +85,20 @@ const ReactionWrap = styled.dl`
 	}
 `;
 
-export { UserWrap, PostText, PostCardWrap, ReactionWrap };
+const MoreBtn = styled.button`
+	width: 3rem;
+	position: absolute;
+	top: 3rem;
+	right: 2rem;
+	border: none;
+	background-color: transparent;
+
+	& img {
+		width: 3rem;
+		@media ${({ theme }) => theme.size.mobile} {
+			width: 2.4rem;
+		}
+	}
+`;
+
+export { UserWrap, PostText, PostCardWrap, ReactionWrap, MoreBtn };

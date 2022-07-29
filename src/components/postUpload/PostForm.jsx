@@ -9,37 +9,45 @@ import {
 } from './PostForm.style';
 import PostUploadImg from '../common/post/PostUploadImg';
 
-function PostForm({ isDisable, uploadImgs, setUploadImgs, setDisable }) {
+function PostForm({
+	isDisable,
+	uploadImgs,
+	setUploadImgs,
+	setDisable,
+	formFinishAPI,
+	postInfo,
+	setPostInfo,
+	isImgNone, // 나중에 삭제하기
+}) {
 	const navigate = useNavigate();
 	const [userInfo, setUserInfo] = useState(null);
-	const [postInfo, setPostInfo] = useState({
-		content: '',
-		image: '',
-	});
 
 	useEffect(() => {
-		setPostInfo((cur) => ({
-			...cur,
-			image: '',
-		}));
-		imgServerAPI(uploadImgs).then((d) => {
-			d.map((file) => {
-				const serverUrl = SERVER_URL + '/' + file.filename;
-				setPostInfo((cur) => {
-					if (cur.image === '') {
-						return {
-							...cur,
-							image: serverUrl,
-						};
-					} else {
-						return {
-							...cur,
-							image: `${cur.image},${serverUrl}`,
-						};
-					}
+		if (!isImgNone) {
+			setPostInfo((cur) => ({
+				...cur,
+				image: '',
+			}));
+			imgServerAPI(uploadImgs).then((d) => {
+				d.map((file) => {
+					const serverUrl = SERVER_URL + '/' + file.filename;
+					setPostInfo((cur) => {
+						if (cur.image === '') {
+							return {
+								...cur,
+								image: serverUrl,
+							};
+						} else {
+							return {
+								...cur,
+								image: `${cur.image},${serverUrl}`,
+							};
+						}
+					});
+					// setUploadImgs((cur) => [...cur, serverUrl]);
 				});
 			});
-		});
+		}
 	}, [uploadImgs]);
 
 	useEffect(() => {
@@ -66,35 +74,11 @@ function PostForm({ isDisable, uploadImgs, setUploadImgs, setDisable }) {
 		}
 	}
 
-	// 서버로 form 보내기
-	async function postUploadAPI() {
-		const reqPath = '/post';
-		const postData = {
-			post: {
-				...postInfo,
-			},
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${userInfo.token}`,
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(postData),
-			});
-			const json = await res.json();
-			return json;
-		} catch (err) {
-			console.error(err.message);
-		}
-	}
-
 	// 서버에 입력 form 제출
 	const onSubmitForm = (e) => {
 		e.preventDefault();
 		if (!isDisable) {
-			postUploadAPI().then((d) => navigate(`/post/${d.post.id}`));
+			formFinishAPI();
 		}
 	};
 
@@ -109,11 +93,7 @@ function PostForm({ isDisable, uploadImgs, setUploadImgs, setDisable }) {
 
 	return (
 		<>
-			<PostFormStyle
-				method="POST"
-				onSubmit={onSubmitForm}
-				id="postUpload"
-			>
+			<PostFormStyle method="POST" onSubmit={onSubmitForm} id="postForm">
 				<fieldset>
 					<legend>포스팅 글쓰기</legend>
 					<div>
@@ -126,14 +106,17 @@ function PostForm({ isDisable, uploadImgs, setUploadImgs, setDisable }) {
 							name="postText"
 							placeholder="게시글 입력하기..."
 							onChange={onChangeTextarea}
+							value={postInfo.content}
 							required
 						></PostTextarea>
 					</PostTextareaWrap>
-					<PostUploadImg
-						uploadImgs={uploadImgs}
-						setUploadImgs={setUploadImgs}
-						isMulty={true}
-					/>
+					{!isImgNone && (
+						<PostUploadImg
+							uploadImgs={uploadImgs}
+							setUploadImgs={setUploadImgs}
+							isMulty={true}
+						/>
+					)}
 				</fieldset>
 			</PostFormStyle>
 		</>

@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import User from '../common/user/User';
+import MoreBtns from '../../assets/moreBtn.png';
 import LikeButton from '../common/LikeButton';
 import {
 	UserWrap,
 	PostText,
 	PostCardWrap,
 	ReactionWrap,
+	MoreBtn,
 } from './PostCard.style';
 
-function PostCard({ postContext }) {
+function PostCard({ postContext, setModalInfo }) {
 	const [writeDate, setWriteDate] = useState('');
 
 	useEffect(() => {
 		setWriteDate(postContext.createdAt.slice(0, 10).split('-'));
 	}, []);
+
+	const onClickMoreBtn = () => {
+		setModalInfo((cur) => ({
+			...cur,
+			state: true,
+			postUser: postContext.author.accountname,
+		}));
+	};
 
 	return (
 		<PostCardWrap>
@@ -40,6 +50,9 @@ function PostCard({ postContext }) {
 					{writeDate[0]}년 {writeDate[1]}월 {writeDate[2]}일
 				</dd>
 			</ReactionWrap>
+			<MoreBtn type="button" onClick={onClickMoreBtn}>
+				<img src={MoreBtns} alt="더보기" />
+			</MoreBtn>
 		</PostCardWrap>
 	);
 }

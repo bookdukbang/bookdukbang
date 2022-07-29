@@ -18,6 +18,7 @@ import FollowerList from './pages/FollowerListPage';
 import FollowingList from './pages/FollowingListPage';
 import ProductPage from './pages/ProductPage';
 import ProfileEditPage from './pages/ProfileEditPage';
+import PostEditPage from './pages/PostEditPage';
 
 function App() {
 	return (
@@ -44,6 +45,7 @@ function App() {
 				<Route path="/chat" exact element={<ChatListPage />} />
 				<Route path="/feed" exact element={<FeedPage />} />
 				<Route path="/post/:id" exact element={<PostView />} />
+				<Route path="/post/edit/:id" exact element={<PostEditPage />} />
 				<Route path="/follower/:id" exact element={<FollowerList />} />
 				<Route
 					path="/following/:id"
