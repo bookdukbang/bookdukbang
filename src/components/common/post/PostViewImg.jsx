@@ -11,7 +11,7 @@ import {
 
 function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const [currentAllCount, setCurrentAllCount] = useState(0);
+	const [currentAllCount, setCurrentAllCount] = useState(false);
 	const [isShow, setIsShow] = useState(false);
 	const slideRef = useRef(null);
 
@@ -72,9 +72,9 @@ function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 		<PostImgWrap>
 			<PostImgList ref={slideRef}>
 				{!isView &&
-					uploadImgs.map((item) => (
+					uploadImgs.map((item, i) => (
 						<PostImgLi
-							key={item.lastModified}
+							key={item.lastModified + i}
 							id={item.lastModified}
 						>
 							<img src={URL.createObjectURL(item)} alt="" />
@@ -87,20 +87,22 @@ function PostViewImg({ uploadImgs, setUploadImgs, isView }) {
 						</PostImgLi>
 					))}
 				{isView &&
-					uploadImgs.map((item) => (
-						<PostImgLi key={item} bgUrl={item}>
+					uploadImgs.map((item, i) => (
+						<PostImgLi key={item + i} bgUrl={item}>
 							<img src={item} alt="" />
 						</PostImgLi>
 					))}
 			</PostImgList>
-			<PostArrowBtnWrap isShow={isShow}>
-				<PrevBtn type="button" onClick={onClickPrevBtn}>
-					<span>왼쪽</span>
-				</PrevBtn>
-				<NextBtn type="button" onClick={onClickNextBtn}>
-					<span>오른쪽</span>
-				</NextBtn>
-			</PostArrowBtnWrap>
+			{isShow && (
+				<PostArrowBtnWrap isShow={isShow}>
+					<PrevBtn type="button" onClick={onClickPrevBtn}>
+						<span>왼쪽</span>
+					</PrevBtn>
+					<NextBtn type="button" onClick={onClickNextBtn}>
+						<span>오른쪽</span>
+					</NextBtn>
+				</PostArrowBtnWrap>
+			)}
 		</PostImgWrap>
 	);
 }

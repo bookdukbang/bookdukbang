@@ -6,11 +6,13 @@ const PostImgWrap = styled.div`
 	position: relative;
 	flex-basis: 75rem;
 	overflow: hidden;
+	min-height: 44rem;
 	@media ${({ theme }) => theme.size.tablet} {
-		flex-basis: 59vw;
-		margin-bottom: 1rem;
+		flex-basis: 60vw;
+		min-height: 55vmin;
 	}
 	@media ${({ theme }) => theme.size.mobile} {
+		min-height: 22rem;
 		flex-basis: 22rem;
 	}
 `;
@@ -47,9 +49,6 @@ const PostImgLi = styled.li`
 	}
 
 	& img {
-		/* width: 100%;
-		min-height: 20rem;
-		max-height: 48.3rem; */
 		width: 100%;
 		position: absolute;
 		left: 0;
