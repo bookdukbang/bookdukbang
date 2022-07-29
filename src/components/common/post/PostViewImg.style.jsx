@@ -89,8 +89,8 @@ const PostArrowBtnWrap = styled.div`
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 50%;
-	transform: translateY(-50%);
+	top: 0;
+	transform: translateY(20vmin);
 
 	&::after {
 		clear: both;
@@ -100,6 +100,10 @@ const PostArrowBtnWrap = styled.div`
 
 	& button + button {
 		float: right;
+	}
+
+	@media ${({ theme }) => theme.size.tablet} {
+		transform: translateY(26vmin);
 	}
 `;
 

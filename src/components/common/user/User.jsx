@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NoneProfile from '../../../assets/profile.png';
 
@@ -25,7 +26,6 @@ const UserName = styled.p`
 	font-weight: 700;
 
 	& span {
-		/* width: 52rem; */
 		display: block;
 		color: ${({ theme }) => theme.grayColor2};
 		font-size: 1.6rem;
@@ -67,7 +67,9 @@ function User({ author }) {
 
 	return (
 		<>
-			<UserProfileImg src={author.image} alt={author.username} />
+			<Link to={`user/${author.accountname}`}>
+				<UserProfileImg src={author.image} alt={author.username} />
+			</Link>
 			<UserName>
 				{author.username} <span>@ {author.accountname}</span>
 			</UserName>
