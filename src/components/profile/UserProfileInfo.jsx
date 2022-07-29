@@ -197,13 +197,21 @@ function UserProfileInfo() {
 							<ProfileFollow>
 								<Followers>followers</Followers>
 								<FollowNumStyle>
-									{author.followerCount}
+									<Link
+										to={`/follower/${author.accountname}`}
+									>
+										{author.followerCount}
+									</Link>
 								</FollowNumStyle>
 							</ProfileFollow>
 							<ProfileFollowing>
 								<Followers>followings</Followers>
 								<FollowNumStyle>
-									{author.followingCount}
+									<Link
+										to={`/following/${author.accountname}`}
+									>
+										{author.followingCount}
+									</Link>
 								</FollowNumStyle>
 							</ProfileFollowing>
 						</Follow>

@@ -55,6 +55,8 @@ const BookInfo = styled.div`
 	position: absolute;
 	bottom: 2.1rem;
 	left: 2.1rem;
+	text-align: left;
+	z-index: 10;
 	@media ${({ theme }) => theme.size.mobile} {
 		bottom: 1rem;
 		left: 1rem;
@@ -65,8 +67,6 @@ const BookTitle = styled.p`
 	font-weight: 400;
 	font-size: 1.6rem;
 	color: ${({ theme }) => theme.grayColor5};
-	text-align: left;
-	z-index: 10;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 14px;
@@ -76,9 +76,7 @@ const BookTitle = styled.p`
 const BookCost = styled.p`
 	font-weight: 700;
 	font-size: 1.4rem;
-	text-align: left;
 	color: ${({ theme }) => theme.mainColor};
-	z-index: 10;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 14px;

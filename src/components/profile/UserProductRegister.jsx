@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-// import Book from '../../assets/BookListImg.png';
 import { SERVER_URL } from '../../constants';
 
 const BookContainer = styled.div`
@@ -19,9 +18,7 @@ const BookContainer = styled.div`
 `;
 
 const BookList = styled.div`
-	/* display: flex;
-	flex-direction: column;
-	position: relative; */
+	cursor: pointer;
 `;
 
 const BookBtn = styled.button`
@@ -56,6 +53,7 @@ const BookInfo = styled.div`
 	position: absolute;
 	bottom: 2.1rem;
 	left: 2.1rem;
+	text-align: left;
 	@media ${({ theme }) => theme.size.mobile} {
 		bottom: 1rem;
 		left: 1rem;
@@ -66,7 +64,6 @@ const BookTitle = styled.p`
 	font-weight: 400;
 	font-size: 1.6rem;
 	color: ${({ theme }) => theme.grayColor5};
-	text-align: left;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 14px;
