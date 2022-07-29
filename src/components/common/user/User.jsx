@@ -26,7 +26,6 @@ const UserName = styled.p`
 	font-weight: 700;
 
 	& span {
-		/* width: 52rem; */
 		display: block;
 		color: ${({ theme }) => theme.grayColor2};
 		font-size: 1.6rem;

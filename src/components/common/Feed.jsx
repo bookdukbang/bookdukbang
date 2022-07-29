@@ -114,10 +114,14 @@ function Feed({ item, author, postId }) {
 			postId: postId,
 		});
 	};
+	const data = {
+		postId: postId,
+		accountname: author.accountname,
+	};
 	return (
 		<FeedWrapper>
 			<ProfileDiv>
-				<Link to={`/user/${author.accountname}`}>
+				<Link to={`/user/${author.accountname}`} state={{ data: data }}>
 					<NoneProfileSmall
 						style={{
 							backgroundImage: `url(${author.image})`,
