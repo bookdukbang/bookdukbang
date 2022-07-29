@@ -58,7 +58,7 @@ const CommentDiv = styled.div`
 
 const HeartInfo = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 `;
 
 const CommentInfo = styled.div`
