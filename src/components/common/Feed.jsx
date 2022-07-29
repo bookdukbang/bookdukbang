@@ -115,11 +115,13 @@ function Feed({ item, author, postId }) {
 	return (
 		<FeedWrapper>
 			<ProfileDiv>
-				<NoneProfileSmall
-					style={{
-						backgroundImage: `url(${author.image})`,
-					}}
-				/>
+				<Link to={`/user/${author.accountname}`}>
+					<NoneProfileSmall
+						style={{
+							backgroundImage: `url(${author.image})`,
+						}}
+					/>
+				</Link>
 				<ProfilestyleDiv>
 					<ProfileName>{author.username}</ProfileName>
 					<BigProfileEmail>@ {author.accountname}</BigProfileEmail>

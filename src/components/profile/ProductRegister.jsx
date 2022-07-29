@@ -5,39 +5,38 @@ import PlusBtn from '../../assets/plus_btn.png';
 import { SERVER_URL } from '../../constants';
 import ProductModal from './ProductModal';
 
-const BookDivCont = styled.div`
-	cursor: pointer;
-`;
 const BookContainer = styled.div`
-	display: grid;
-	grid-template-columns: 31.5rem 31.5rem;
-	grid-template-rows: 25.2rem 25.2rem;
-	row-gap: 2.2rem;
-	column-gap: 2rem;
-	border-radius: 1rem;
-	margin-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 2rem;
+	margin-top: 2rem;
 	@media ${({ theme }) => theme.size.mobile} {
-		grid-template-columns: 15rem 15rem 15rem 15rem;
-		grid-template-rows: 12rem;
-		gap: 0.5rem;
-		margin-left: 1rem;
+		flex-wrap: nowrap;
 		overflow-x: scroll;
 		overflow-y: hidden;
+		${({ theme }) => theme.ScrollbarStyle()}
 	}
 `;
 
+const BookDivCont = styled.div`
+	cursor: pointer;
+`;
+
 const BookBtn = styled.button`
-	display: flex;
-	flex-direction: column;
 	position: relative;
-	width: 100%;
-	height: 100%;
+	width: 31.5rem;
+	height: 25.2rem;
 	border: 0;
 	border-radius: 1rem;
 	background-size: cover;
 	background-position: center;
 	position: relative;
 	z-index: -1;
+	@media ${({ theme }) => theme.size.mobile} {
+		width: 15rem;
+		height: 12rem;
+	}
 	&::after {
 		content: '';
 		width: 100%;
@@ -89,8 +88,9 @@ const BookCost = styled.p`
 const BookRegister = styled.div`
 	border: 1px dashed ${({ theme }) => theme.grayColor2};
 	border-radius: 1rem;
-	width: 100%;
-	height: 100%;
+	width: 31.5rem;
+	height: 25.2rem;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
