@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ButtonStyle } from '../common//Button.style';
-import Wrap from '../common/Wrap';
-import HeaderLogo from '../../assets/HeaderLogo.png';
+import { ButtonStyle } from '../Button.style';
+import Wrap from '../Wrap';
+import HeaderLogo from '../../../assets/HeaderLogo.png';
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 2.7rem 0;
@@ -38,7 +38,7 @@ const PostUploadBtn = styled(ButtonStyle)`
 	}
 `;
 
-function PostUpHeader({ isDisable }) {
+function PostHeader({ isDisable, btnTxt }) {
 	return (
 		<HeaderStyle>
 			<Wrap>
@@ -49,14 +49,14 @@ function PostUpHeader({ isDisable }) {
 				</h1>
 				<PostUploadBtn
 					type="submit"
-					form="postUpload"
+					form="postForm"
 					disabled={isDisable}
 				>
-					업로드
+					{btnTxt}
 				</PostUploadBtn>
 			</Wrap>
 		</HeaderStyle>
 	);
 }
 
-export default PostUpHeader;
+export default PostHeader;

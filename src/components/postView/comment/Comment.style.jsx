@@ -15,6 +15,11 @@ const CommentLi = styled.li`
 			margin-top: 1rem;
 		}
 	}
+	&::after {
+		content: '';
+		display: block;
+		clear: both;
+	}
 `;
 const UserProfileImg = styled.img`
 	border-radius: 50rem;
@@ -61,6 +66,9 @@ const CommentTime = styled.span`
 
 const UserComment = styled.p`
 	font-weight: 300;
+	max-width: 51rem;
+	float: right;
+	word-break: break-word;
 `;
 
 const CommentMoreBtn = styled.button`

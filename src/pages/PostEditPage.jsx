@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Wrap from '../components/common/Wrap';
-import PostUpContainer from '../components/postUpload/PostUpContainer';
-import PostHeader from '../components/common/post/PostHeader';
+import PostEditContainer from '../components/postEdit/PostEditContainer';
+import PostUpHeader from '../components/common/post/PostHeader';
 
 const PostUpWrap = styled(Wrap)`
 	margin-top: 3rem;
@@ -20,14 +20,13 @@ const PostUpWrap = styled(Wrap)`
 	}
 `;
 
-function PostUploadPage() {
+function PostEditPage() {
 	const [isDisable, setDisable] = useState(true);
-
 	return (
 		<>
-			<PostHeader isDisable={isDisable} btnTxt={'업로드'} />
+			<PostUpHeader isDisable={isDisable} btnTxt={'수정'} />
 			<PostUpWrap>
-				<PostUpContainer
+				<PostEditContainer
 					isDisable={isDisable}
 					setDisable={setDisable}
 				/>
@@ -36,4 +35,4 @@ function PostUploadPage() {
 	);
 }
 
-export default PostUploadPage;
+export default PostEditPage;

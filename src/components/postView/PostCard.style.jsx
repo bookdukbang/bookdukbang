@@ -26,6 +26,7 @@ const PostCardWrap = styled.div`
 const PostText = styled.p`
 	font-size: 2rem;
 	text-align: justify;
+	word-break: break-all;
 	& + p {
 		margin-top: 1rem;
 	}

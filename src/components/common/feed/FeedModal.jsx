@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { BottomSheatBg, BottomSheatWrap } from '../modal/BottomSheat.style';
 import Modal from '../modal/Modal';
 import { SERVER_URL } from '../../../constants';
 
 function FeedModal({ postId, setModalInfo, modalInfo }) {
+	const { id } = useParams();
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const loginUser = JSON.parse(localStorage.getItem('user')).accountname;
 	const navigate = useNavigate();
@@ -26,6 +27,11 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);
 			alert(result.message);
+			if (id !== undefined) {
+				navigate('/feed');
+			} else {
+				navigate('/myprofile');
+			}
 			return result;
 		} catch (error) {
 			console.error(error);
@@ -97,7 +103,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 						{loginUser === modalInfo.postUser ? (
 							<>
 								<button type="button">삭제</button>
-								<Link to="/">수정</Link>
+								<Link to={`/post/edit/${postId}`}>수정</Link>
 							</>
 						) : (
 							<button type="button">신고</button>

@@ -61,7 +61,7 @@ function Comment({ commentInfo, setModalInfo }) {
 		<>
 			{writeAuthor && (
 				<CommentLi id={commentInfo.id}>
-					<Link to={'/profile/' + writeAuthor.accountname}>
+					<Link to={'/user/' + writeAuthor.accountname}>
 						<UserProfileImg
 							src={writeAuthor.image}
 							alt={writeAuthor.username}

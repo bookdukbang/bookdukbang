@@ -45,6 +45,7 @@ const FeedText = styled.p`
 	font-size: 2rem;
 	margin: 2.5rem auto 2rem;
 	box-sizing: border-box;
+	word-break: break-all;
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 1.6rem;

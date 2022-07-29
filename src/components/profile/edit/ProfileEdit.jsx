@@ -76,6 +76,9 @@ function ProfileEdit() {
 				body: formData,
 			});
 			const json = await res.json();
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
 			return json;
 		} catch (err) {
 			alert(err.message);
