@@ -110,14 +110,14 @@ function CommetModal({
 			{isShow ? (
 				<BottomSheatBg onClick={onClickBottomSheet}>
 					<BottomSheatWrap>
-						{userInfo.username === modalInfo.commentUser ? (
+						{userInfo.accountname === modalInfo.commentUser ? (
 							<button type="button">삭제</button>
 						) : (
 							<button type="button">신고</button>
 						)}
 					</BottomSheatWrap>
 				</BottomSheatBg>
-			) : userInfo.username === modalInfo.commentUser ? (
+			) : userInfo.accountname === modalInfo.commentUser ? (
 				<Modal ModalInfo={deleteModal} />
 			) : (
 				<Modal ModalInfo={reportModal} />

@@ -53,7 +53,7 @@ function Comment({ commentInfo, setModalInfo }) {
 		setModalInfo({
 			state: true,
 			commentId: e.target.parentNode.id,
-			commentUser: e.target.parentNode.children[1].textContent,
+			commentUser: e.target.parentNode.children[1].id,
 		});
 	};
 
@@ -61,17 +61,26 @@ function Comment({ commentInfo, setModalInfo }) {
 		<>
 			{writeAuthor && (
 				<CommentLi id={commentInfo.id}>
-					<Link to={'/user/' + writeAuthor.accountname}>
+					<Link
+						to={'/user/' + writeAuthor.accountname}
+						state={{ userId: writeAuthor.accountname }}
+					>
 						<UserProfileImg
 							src={writeAuthor.image}
 							alt={writeAuthor.username}
 						/>
 					</Link>
-					<UserName to={'/profile/' + writeAuthor.accountname}>
-						{writeAuthor.username}
-					</UserName>
-					<CommentTime>{writeTime} 전</CommentTime>
-					<UserComment>{commentInfo.content}</UserComment>
+					<div id={writeAuthor.accountname}>
+						<div>
+							<UserName
+								to={'/profile/' + writeAuthor.accountname}
+							>
+								{writeAuthor.username}
+							</UserName>
+							<CommentTime>{writeTime} 전</CommentTime>
+						</div>
+						<UserComment>{commentInfo.content}</UserComment>
+					</div>
 					<CommentMoreBtn type="button" onClick={onClickMoreBtn}>
 						<span>더보기</span>
 					</CommentMoreBtn>
