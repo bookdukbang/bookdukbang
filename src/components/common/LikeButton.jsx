@@ -5,17 +5,24 @@ import RedHeart from '../../assets/redheart.png';
 import { SERVER_URL } from '../../constants';
 
 const HeartImg = styled.img`
-	padding-top: 0.3rem;
-	width: 1.6rem;
+	padding-top: 0.4rem;
+	width: 1.5rem;
+	margin-right: 0.7rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		padding-top: 0.2rem;
+	}
 `;
 
 const RedHeartImg = styled.img`
-	padding-top: 0.3rem;
+	padding-top: 0.4rem;
 	width: 1.6rem;
+	margin-right: 0.7rem;
+	@media ${({ theme }) => theme.size.mobile} {
+		padding-top: 0.2rem;
+	}
 `;
 
 const HeartNum = styled.dd`
-	margin-left: 0.7rem;
 	margin-right: 1.2rem;
 	font-weight: 700;
 	font-size: 1.6rem;
