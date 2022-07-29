@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Feed from '../components/common/Feed';
 import FeedHeader from '../components/common/header/FeedHeader';
@@ -39,15 +39,14 @@ const FeedWrap = styled.div`
 
 function UserProfilePage() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
-	const location = useLocation();
-	const data = location.state.userId;
+	let { id } = useParams();
 	const [feeds, setFeeds] = useState(null);
 	useEffect(() => {
 		userFeeds();
 	}, []);
 	async function userFeeds() {
 		try {
-			const feedRes = await fetch(SERVER_URL + `/post/${data}/userpost`, {
+			const feedRes = await fetch(SERVER_URL + `/post/${id}/userpost`, {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,

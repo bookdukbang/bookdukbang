@@ -10,7 +10,7 @@ import { NoneProfileMedium } from '../common/user/UserUpload';
 import share from '../../assets/share.png';
 import chat from '../../assets/chat.png';
 import { SERVER_URL } from '../../constants';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProfileDiv = styled.div`
 	display: flex;
@@ -152,12 +152,11 @@ const FollowBtn = styled(SmallBtn)`
 
 function UserProfileInfo() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
-	const location = useLocation();
-	const data = location.state.userId;
+	let { id } = useParams();
 	const [user, setUser] = useState('');
 	async function userProfile() {
 		try {
-			const res = await fetch(SERVER_URL + `/profile/${data}`, {
+			const res = await fetch(SERVER_URL + `/profile/${id}`, {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,

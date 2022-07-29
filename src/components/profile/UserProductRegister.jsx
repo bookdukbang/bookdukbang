@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { SERVER_URL } from '../../constants';
 import Product from '../common/Product';
@@ -20,13 +20,12 @@ const BookContainer = styled.div`
 
 function UserProductRegister() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
-	const location = useLocation();
-	const data = location.state.userId;
+	let { id } = useParams();
 	const [userBooks, setUserBooks] = useState(null);
 
 	async function userProduct() {
 		try {
-			const res = await fetch(SERVER_URL + `/product/${data}`, {
+			const res = await fetch(SERVER_URL + `/product/${id}`, {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
