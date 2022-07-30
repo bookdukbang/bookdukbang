@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ProductModal from '../profile/ProductModal';
+import ProductModal from '../../profile/ProductModal';
 
 const BookDivCont = styled.div`
 	cursor: pointer;
@@ -66,7 +66,7 @@ const BookCost = styled.p`
 	}
 `;
 
-export default function Product({ item }) {
+function ProductBtn({ item }) {
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
 	});
@@ -105,3 +105,4 @@ export default function Product({ item }) {
 		</BookDivCont>
 	);
 }
+export default ProductBtn;

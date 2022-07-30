@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { SERVER_URL } from '../../constants';
-import Product from '../common/Product';
+import ProductBtn from '../common/product/ProductBtn';
 
 const BookContainer = styled.div`
 	display: flex;
@@ -46,7 +46,7 @@ function UserProductRegister() {
 		<>
 			<BookContainer>
 				{userBooks?.map((item) => (
-					<Product key={item.id} item={item} />
+					<ProductBtn key={item.id} item={item} />
 				))}
 			</BookContainer>
 		</>

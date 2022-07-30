@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PlusBtn from '../../assets/plus_btn.png';
 import { SERVER_URL } from '../../constants';
-import Product from '../common/Product';
+import ProductBtn from '../common/product/ProductBtn';
 
 const BookContainer = styled.div`
 	display: flex;
@@ -80,7 +80,7 @@ function ProductRegister() {
 		<>
 			<BookContainer>
 				{books?.map((item) => (
-					<Product key={item.id} item={item} />
+					<ProductBtn key={item.id} item={item} />
 				))}
 				<BookRegister>
 					<RegisterBtn as={Link} to="/product">
