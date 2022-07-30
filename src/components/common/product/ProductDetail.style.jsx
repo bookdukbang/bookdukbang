@@ -15,7 +15,6 @@ const ProductWrap = styled.div`
 	right: 0;
 	bottom: 0;
 	top: 0;
-	/* box-sizing: border-box; */
 	${({ theme }) => theme.ScrollbarStyle()}
 
 	& > div {
@@ -90,6 +89,8 @@ const PriceSpan = styled.span`
 	display: inline-block;
 	margin-left: 2rem;
 	font-size: 1.6rem;
+	font-weight: 700;
+	color: ${({ theme }) => theme.mainColor};
 	&::before {
 		content: '';
 		width: 0.2rem;
@@ -97,9 +98,9 @@ const PriceSpan = styled.span`
 		top: 0;
 		bottom: 0;
 		left: -1rem;
-		margin: auto;
+		margin: 0.3rem auto;
 
-		background-color: ${({ theme }) => theme.mainColor};
+		background-color: ${({ theme }) => theme.grayColor4};
 	}
 `;
 
