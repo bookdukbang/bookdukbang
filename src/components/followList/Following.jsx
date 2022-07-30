@@ -3,6 +3,7 @@ import { SERVER_URL } from '../../constants';
 import { NoneProfileSmall } from '../common/user/UserUpload';
 import { useParams } from 'react-router-dom';
 import { UserLi, FollowingBtn, FollowBtn, UserInfo } from './FollowList.style';
+import { Link } from 'react-router-dom';
 
 function Followings() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
@@ -88,11 +89,13 @@ function Followings() {
 			{Following !== null &&
 				Following.map((item) => (
 					<UserLi key={item._id}>
-						<NoneProfileSmall
-							style={{
-								backgroundImage: `url(${item.image})`,
-							}}
-						/>
+						<Link to={`/user/${item.accountname}`}>
+							<NoneProfileSmall
+								style={{
+									backgroundImage: `url(${item.image})`,
+								}}
+							/>
+						</Link>
 						<UserInfo>
 							{item.username}
 							<span>@ {item.accountname}</span>
