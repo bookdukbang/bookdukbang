@@ -28,7 +28,7 @@ function Header({ children }) {
 		<HeaderStyle>
 			<Wrap>
 				<h1>
-					<Link to="/">
+					<Link to="/feed">
 						<LogoImg src={HeaderLogo} alt="북덕방" />
 					</Link>
 				</h1>
