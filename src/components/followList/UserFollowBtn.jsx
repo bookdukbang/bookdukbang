@@ -20,7 +20,7 @@ const FollowingBtn = styled(SmallBtn)`
 	}
 `;
 
-function UserFollow({ accountname, isfollow, setIsfollow }) {
+function UserFollowBtn({ accountname, isfollow, setIsfollow }) {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 
 	// 팔로우
@@ -81,4 +81,4 @@ function UserFollow({ accountname, isfollow, setIsfollow }) {
 	);
 }
 
-export default UserFollow;
+export default UserFollowBtn;

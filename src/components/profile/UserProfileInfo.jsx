@@ -11,7 +11,7 @@ import share from '../../assets/share.png';
 import chat from '../../assets/chat.png';
 import { SERVER_URL } from '../../constants';
 import { Link, useParams } from 'react-router-dom';
-import UserFollow from '../followList/UserFollow';
+import UserFollowBtn from '../followList/UserFollowBtn';
 
 const ProfileDiv = styled.div`
 	display: flex;
@@ -217,7 +217,7 @@ function UserProfileInfo() {
 						</ShareBtn>
 					</SmallBtnDivStyle>
 					<SmallBtnDivStyle>
-						<UserFollow
+						<UserFollowBtn
 							accountname={user.accountname}
 							isfollow={isfollow}
 							setIsfollow={setIsfollow}
