@@ -35,7 +35,7 @@ function NavigatorMenu() {
 						<ChatIcon />
 						<span>CHAT</span>
 					</MenuBtn>
-					<PostingBtn to="/postUplod">
+					<PostingBtn to="/postUpload">
 						<span>포스팅 올리기</span>
 					</PostingBtn>
 
