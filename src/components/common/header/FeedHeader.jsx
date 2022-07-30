@@ -63,8 +63,8 @@ function FeedHeader({ children, isHome }) {
 						</HeaderBtnLogout>
 					</li>
 				</HeaderUl>
-				<MoreBtn type="button">
-					<span>더보기 버튼</span>
+				<MoreBtn type="button" onClick={onClickLogout}>
+					<span>로그아웃 버튼</span>
 				</MoreBtn>
 			</FeedHeaderWrap>
 		</HeaderStyle>
