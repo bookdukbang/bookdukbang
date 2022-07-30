@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Wrap from '../Wrap';
 import BackIcon from '../../../assets/arrowLeft.png';
 // import MoreIcon from '../../../assets/moreBtn.png';
-import LogoutIcon from '../../../assets/icon_logout_mobile.png';
+import LogoutIcon from '../../../assets/LogoutIcon.png';
 
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
@@ -63,9 +63,22 @@ const BackBtn = styled.button`
 	}
 `;
 
+const BtnWrap = styled.div`
+	display: none;
+
+	@media ${({ theme }) => theme.size.mobile} {
+		display: flex;
+		gap: 0 1rem;
+	}
+`;
 const MoreBtn = styled.button`
 	${MobileBtn}
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50rem;
 	background-image: url(${LogoutIcon});
+	background-color: ${({ theme }) => theme.grayColor4};
+	background-size: 1.8rem;
 	@media ${({ theme }) => theme.size.mobile} {
 		display: block;
 	}
@@ -142,4 +155,5 @@ export {
 	PostingImg,
 	LogoutImg,
 	HeaderBtnLogout,
+	BtnWrap,
 };

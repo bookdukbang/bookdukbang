@@ -16,7 +16,9 @@ import {
 	PostingImg,
 	LogoutImg,
 	HeaderBtnLogout,
+	BtnWrap,
 } from './FeedHeader.style';
+import DarkModeBtn from '../../darkmode/DarkModeBtn';
 
 function FeedHeader({ children, isHome }) {
 	const navigate = useNavigate();
@@ -63,9 +65,12 @@ function FeedHeader({ children, isHome }) {
 						</HeaderBtnLogout>
 					</li>
 				</HeaderUl>
-				<MoreBtn type="button" onClick={onClickLogout}>
-					<span>로그아웃 버튼</span>
-				</MoreBtn>
+				<BtnWrap>
+					<DarkModeBtn isMain={false} />
+					<MoreBtn type="button" onClick={onClickLogout}>
+						<span>로그아웃 버튼</span>
+					</MoreBtn>
+				</BtnWrap>
 			</FeedHeaderWrap>
 		</HeaderStyle>
 	);
