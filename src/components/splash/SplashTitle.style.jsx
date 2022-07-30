@@ -31,7 +31,6 @@ const Subtitle = styled.p`
 
 const JoinTitleP = styled.p`
 	text-align: center;
-	margin-top: 3.4rem;
 	color: ${({ theme }) => theme.whiteColor};
 	font-weight: 400;
 	font-size: 2.4rem;
