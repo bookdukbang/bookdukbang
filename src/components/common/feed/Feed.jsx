@@ -103,7 +103,6 @@ const ProfilestyleDiv = styled(Profilestyle)`
 `;
 
 function Feed({ item, author, postId }) {
-	// const [imgArr, setImgArr] = useState(null);
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
 		postUser: null,
@@ -119,7 +118,6 @@ function Feed({ item, author, postId }) {
 
 	return (
 		<>
-			{/* {imgArr !== null && ( */}
 			<FeedWrapper>
 				<ProfileDiv>
 					<Link to={`/user/${author.accountname}`}>
@@ -177,7 +175,6 @@ function Feed({ item, author, postId }) {
 					/>
 				)}
 			</FeedWrapper>
-			{/* )} */}
 		</>
 	);
 }
