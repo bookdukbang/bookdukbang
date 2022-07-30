@@ -10,7 +10,7 @@ const SearchSection = styled.section`
 
 	@media ${({ theme }) => theme.size.mobile} {
 		background-color: rgba(255, 255, 255, 0);
-		margin: 1rem 0;
+		margin: 1rem 0 9rem;
 		padding: 0;
 	}
 `;

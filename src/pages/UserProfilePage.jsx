@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Feed from '../components/common/feed/Feed';
 import FeedHeader from '../components/common/header/FeedHeader';
-import Wrap from '../components/common/Wrap';
+import { NavigaterWrapping } from '../components/common/Wrap';
 import NavigatorMenu from '../components/navigator/NavigatorMenu';
 import UserProductRegister from '../components/profile/UserProductRegister';
 import UserProfileInfo from '../components/profile/UserProfileInfo';
@@ -62,7 +62,7 @@ function UserProfilePage() {
 	return (
 		<>
 			<FeedHeader />
-			<Wrap>
+			<NavigaterWrapping>
 				<ProfileWrap>
 					<DivArray>
 						<UserProfileInfo />
@@ -80,7 +80,7 @@ function UserProfilePage() {
 							))}
 					</FeedWrap>
 				</ProfileWrap>
-			</Wrap>
+			</NavigaterWrapping>
 			<NavigatorMenu />
 		</>
 	);
