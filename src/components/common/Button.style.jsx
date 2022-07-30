@@ -9,6 +9,7 @@ const ButtonStyle = styled.button`
 	display: block;
 	box-sizing: border-box;
 	font-weight: 700;
+	text-align: center;
 `;
 
 // 1. '로그인', '프로필 정보', '회원가입', '프로필 수정', '상품 등록' 페이지에서 사용되는 버튼 사이즈.

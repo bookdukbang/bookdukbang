@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ProductModal from '../../profile/ProductModal';
+// import ProductModal from '../../profile/ProductModa222l';
+import ProductDetail from './ProductDetail';
 
 const BookDivCont = styled.div`
 	cursor: pointer;
@@ -69,40 +70,44 @@ const BookCost = styled.p`
 function ProductBtn({ item }) {
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
+		productId: '',
 	});
 
 	const onClickMoreBtn = () => {
 		setModalInfo({
 			state: true,
+			productId: item.id,
 		});
 	};
 
 	return (
-		<BookDivCont key={item.id} onClick={onClickMoreBtn}>
-			<BookBtn
-				type="button"
-				style={{
-					backgroundImage: `url(${item.itemImage})`,
-				}}
-			>
-				<BookInfo>
-					<BookTitle>{item.itemName}</BookTitle>
-					<BookCost>
-						{`${item.price}`.replace(
-							/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-							',',
-						)}{' '}
-						원
-					</BookCost>
-				</BookInfo>
-			</BookBtn>
+		<>
+			<BookDivCont key={item.id} onClick={onClickMoreBtn}>
+				<BookBtn
+					type="button"
+					style={{
+						backgroundImage: `url(${item.itemImage})`,
+					}}
+				>
+					<BookInfo>
+						<BookTitle>{item.itemName}</BookTitle>
+						<BookCost>
+							{`${item.price}`.replace(
+								/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+								',',
+							)}
+							원
+						</BookCost>
+					</BookInfo>
+				</BookBtn>
+			</BookDivCont>
 			{modalInfo.state && (
-				<ProductModal
+				<ProductDetail
 					modalInfo={modalInfo}
 					setModalInfo={setModalInfo}
 				/>
 			)}
-		</BookDivCont>
+		</>
 	);
 }
 export default ProductBtn;

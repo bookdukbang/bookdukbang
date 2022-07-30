@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
 	InputDiv,
 	InputStyle,
@@ -6,32 +6,17 @@ import {
 	ErrorText,
 } from '../common/Input.style';
 
-function ProductPrice({ setProductInfo, errorInfo, setErrorInfo }) {
-	const [priceCom, setPriceCom] = useState('');
-
-	// 가격에 콤마넣기
-	const onBlurCommaPrice = (e) => {
-		const addComma = (num) => {
-			const regexp = /\B(?=(\d{3})+(?!\d))/g;
-			return num.replace(regexp, ',');
-		};
-		setPriceCom(addComma(e.target.value));
-	};
+function ProductPrice({
+	setProductInfo,
+	errorInfo,
+	setErrorInfo,
+	productInfo,
+}) {
+	const commaRegexp = /\B(?=(\d{3})+(?!\d))/g; // 3단위 마다 ,넣기
 
 	// onchange event
 	const onChangeProductPrice = (e) => {
-		validation(e.target.value);
-		setProductInfo((cur) => ({
-			...cur,
-			price: parseInt(e.target.value.replace(/[^0-9]/g, '')),
-		}));
-		setPriceCom(e.target.value.replace(/[^0-9]/g, ''));
-	};
-
-	// productName 유효성 검사
-	function validation(price) {
-		const regexp = /[^0-9]/g;
-		if (price === '') {
+		if (e.target.value === '') {
 			setErrorInfo((cur) => ({
 				...cur,
 				price: {
@@ -39,8 +24,20 @@ function ProductPrice({ setProductInfo, errorInfo, setErrorInfo }) {
 					message: '필수 입력사항을 입력해주세요.',
 				},
 			}));
-			return false;
-		} else if (regexp.test(price)) {
+			setProductInfo((cur) => ({ ...cur, price: '' }));
+		} else if (validation(e.target.value)) {
+			setProductInfo((cur) => ({
+				...cur,
+				price: parseInt(e.target.value.replace(/[^0-9]/g, '')),
+			}));
+		}
+	};
+
+	// productName 유효성 검사
+	function validation(price) {
+		const regexp = /[^0-9,]/g;
+
+		if (regexp.test(price)) {
 			setErrorInfo((cur) => ({
 				...cur,
 				price: {
@@ -71,9 +68,8 @@ function ProductPrice({ setProductInfo, errorInfo, setErrorInfo }) {
 				placeholder="숫자만 입력 가능합니다."
 				autoComplete="off"
 				onChange={onChangeProductPrice}
-				onBlur={onBlurCommaPrice}
 				className={`${errorInfo.price.state ? 'error' : ''}`}
-				value={priceCom}
+				value={String(productInfo.price).replace(commaRegexp, ',')}
 				maxLength={9}
 				required
 			/>

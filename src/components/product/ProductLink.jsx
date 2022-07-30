@@ -9,14 +9,7 @@ import {
 function ProductLink({ productInfo, setProductInfo, errorInfo, setErrorInfo }) {
 	// onchange event
 	const onChangeProductLink = (e) => {
-		validation(e.target.value);
-		setProductInfo((cur) => ({ ...cur, link: e.target.value }));
-	};
-
-	// ProductLink 유효성 검사
-	function validation(link) {
-		const regexp = /^(http(s)?:\/\/)([^/]*)/gi;
-		if (link === '') {
+		if (e.target.value === '') {
 			setErrorInfo((cur) => ({
 				...cur,
 				link: {
@@ -24,8 +17,19 @@ function ProductLink({ productInfo, setProductInfo, errorInfo, setErrorInfo }) {
 					message: '필수 입력사항을 입력해주세요.',
 				},
 			}));
-			return false;
-		} else if (!regexp.test(link)) {
+			setProductInfo((cur) => ({ ...cur, price: '' }));
+		} else if (validation(e.target.value)) {
+			setProductInfo((cur) => ({
+				...cur,
+				link: e.target.value,
+			}));
+		}
+	};
+
+	// ProductLink 유효성 검사
+	function validation(link) {
+		const regexp = /^(http(s)?:\/\/)([^/]*)/gi;
+		if (!regexp.test(link)) {
 			setErrorInfo((cur) => ({
 				...cur,
 				link: {

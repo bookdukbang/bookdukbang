@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MediumBtn, MediumBtnDiv } from '../common/Button.style';
 import { Link } from 'react-router-dom';
 import { SERVER_URL } from '../../constants';
+import ProductDetail from '../common/product/ProductDetail';
 
 const BookListWrap = styled.div`
 	margin: 3rem 0;
@@ -17,7 +18,7 @@ const BookBtn = styled.button`
 	position: relative;
 	background-size: cover;
 	background-position: center;
-	z-index: -1;
+	z-index: 1;
 	&::after {
 		content: '';
 		width: 100%;
@@ -55,6 +56,10 @@ function BookList() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
 	const [books, setBooks] = useState(null);
+	const [modalInfo, setModalInfo] = useState({
+		state: false,
+		productId: '',
+	});
 	async function MyBookList() {
 		try {
 			const res = await fetch(SERVER_URL + `/product/${MyAccountName}`, {
@@ -73,16 +78,26 @@ function BookList() {
 	useEffect(() => {
 		MyBookList();
 	}, []);
+
+	const onClickMoreBtn = (e) => {
+		setModalInfo({
+			state: true,
+			productId: e.currentTarget.id,
+		});
+	};
+
 	return (
 		<>
 			<BookListWrap>
-				{books?.map((item, i) => (
+				{books?.map((item) => (
 					<BookBtn
-						key={i}
+						key={item.id}
+						id={item.id}
 						type="button"
 						style={{
 							backgroundImage: `url(${item.itemImage})`,
 						}}
+						onClick={onClickMoreBtn}
 					>
 						<BookTitle>
 							{item.itemName}
@@ -97,6 +112,12 @@ function BookList() {
 					</BookBtn>
 				))}
 			</BookListWrap>
+			{modalInfo.state && (
+				<ProductDetail
+					modalInfo={modalInfo}
+					setModalInfo={setModalInfo}
+				/>
+			)}
 			<MediumBtnDiv>
 				<MediumBtnUpload as={Link} to="/product">
 					상품 등록하기
