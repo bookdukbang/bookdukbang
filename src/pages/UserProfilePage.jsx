@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Feed from '../components/common/Feed';
+import Feed from '../components/common/feed/Feed';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
 import NavigatorMenu from '../components/navigator/NavigatorMenu';

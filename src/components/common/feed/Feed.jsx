@@ -5,13 +5,13 @@ import {
 	ProfileName,
 	BigProfileEmail,
 	Profilestyle,
-} from './ProfileName.style';
-import MoreBtns from '../../assets/moreBtn.png';
-import Comment from '../../assets/comment.png';
-import { NoneProfileSmall } from './user/UserUpload';
-import PostViewImg from './post/PostViewImg';
-import FeedModal from './feed/FeedModal';
-import LikeButton from '../common/LikeButton';
+} from '../ProfileName.style';
+import MoreBtns from '../../../assets/moreBtn.png';
+import Comment from '../../../assets/comment.png';
+import { NoneProfileSmall } from '../user/UserUpload';
+import PostViewImg from '../post/PostViewImg';
+import FeedModal from './FeedModal';
+import LikeButton from '../LikeButton';
 
 const FeedWrapper = styled.div`
 	padding: 3rem 2rem 4.8rem;

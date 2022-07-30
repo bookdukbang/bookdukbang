@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../constants';
-import Feed from '../common/Feed';
+import Feed from '../common/feed/Feed';
 
 function MyFeed() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
