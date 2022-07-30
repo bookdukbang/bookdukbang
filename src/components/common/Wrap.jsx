@@ -9,4 +9,10 @@ const Wrap = styled.div`
 	}
 `;
 
+export const NavigaterWrapping = styled(Wrap)`
+	@media ${({ theme }) => theme.size.mobile} {
+		margin-bottom: 7rem;
+	}
+`;
+
 export default Wrap;

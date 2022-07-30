@@ -11,7 +11,7 @@ const ChatWrap = styled(Wrap)`
 	gap: 3rem;
 	margin-top: 2.7rem;
 	@media ${({ theme }) => theme.size.mobile} {
-		margin-top: 1rem;
+		margin: 1rem 0 7rem;
 	}
 `;
 

@@ -23,7 +23,7 @@ const FollowerSection = styled.section`
 	${({ theme }) => theme.ScrollbarStyle()}
 	@media ${({ theme }) => theme.size.mobile} {
 		background-color: ${({ theme }) => theme.bgsubColor};
-		margin: 0;
+		margin: 0 0 7rem;
 		padding: 1rem;
 	}
 `;
