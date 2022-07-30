@@ -31,6 +31,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 				navigate('/feed');
 			} else {
 				navigate('/myprofile');
+				window.location.reload();
 			}
 			return result;
 		} catch (error) {
@@ -43,7 +44,6 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 		title: '게시글',
 		whatDo: '삭제',
 		cancel: () => {
-			alert('취소 되었습니다.');
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);
 		},
@@ -80,7 +80,6 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 		title: '게시글',
 		whatDo: '신고',
 		cancel: () => {
-			alert('취소 되었습니다.');
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);
 		},
