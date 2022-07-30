@@ -2,7 +2,7 @@ import React from 'react';
 import FeedHeader from '../components/common/header/FeedHeader';
 import ProfileInfo from '../components/profile/ProfileInfo';
 import ProductRegister from '../components/profile/ProductRegister';
-import Wrap from '../components/common/Wrap';
+import { NavigaterWrapping } from '../components/common/Wrap';
 import styled from 'styled-components';
 import MyFeed from '../components/profile/MyFeed';
 import NavigatorMenu from '../components/navigator/NavigatorMenu';
@@ -39,7 +39,7 @@ function MyProfile() {
 	return (
 		<>
 			<FeedHeader />
-			<Wrap>
+			<NavigaterWrapping>
 				<ProfileWrap>
 					<DivArray>
 						<ProfileInfo />
@@ -49,7 +49,7 @@ function MyProfile() {
 						<MyFeed />
 					</FeedWrap>
 				</ProfileWrap>
-			</Wrap>
+			</NavigaterWrapping>
 			<NavigatorMenu />
 		</>
 	);

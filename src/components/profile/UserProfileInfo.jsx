@@ -11,6 +11,7 @@ import share from '../../assets/share.png';
 import chat from '../../assets/chat.png';
 import { SERVER_URL } from '../../constants';
 import { Link, useParams } from 'react-router-dom';
+import UserFollowBtn from '../followList/UserFollowBtn';
 
 const ProfileDiv = styled.div`
 	display: flex;
@@ -143,17 +144,12 @@ const ShareBtn = styled(SmallBtn)`
 	}
 `;
 
-const FollowBtn = styled(SmallBtn)`
-	padding: 1.3rem 13.7rem;
-	@media ${({ theme }) => theme.size.mobile} {
-		padding: 0.7rem 3.7rem;
-	}
-`;
-
 function UserProfileInfo() {
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	let { id } = useParams();
 	const [user, setUser] = useState('');
+	const [isfollow, setIsfollow] = useState(null);
+
 	async function userProfile() {
 		try {
 			const res = await fetch(SERVER_URL + `/profile/${id}`, {
@@ -165,6 +161,7 @@ function UserProfileInfo() {
 			});
 			const result = await res.json();
 			setUser(result.profile);
+			setIsfollow(result.profile.isfollow);
 		} catch (error) {
 			console.error(error);
 		}
@@ -220,7 +217,11 @@ function UserProfileInfo() {
 						</ShareBtn>
 					</SmallBtnDivStyle>
 					<SmallBtnDivStyle>
-						<FollowBtn type="button">팔로우</FollowBtn>
+						<UserFollowBtn
+							accountname={user.accountname}
+							isfollow={isfollow}
+							setIsfollow={setIsfollow}
+						/>
 					</SmallBtnDivStyle>
 					<SmallBtnDivStyle>
 						<ShareBtn as={Link} to="/chat">

@@ -66,6 +66,9 @@ function PostViewContainer() {
 				throw navigate('/errorPage');
 			}
 
+			if (!('image' in json.post)) {
+				json.post['image'] = '';
+			}
 			setPostContext(json.post);
 		} catch (err) {
 			console.error(err);
@@ -87,7 +90,6 @@ function PostViewContainer() {
 						<PostContextWrap>
 							<PostCard
 								postContext={postContext}
-								postImgs={postImgs}
 								setModalInfo={setModalInfo}
 							/>
 							<CommentContainer
@@ -95,7 +97,7 @@ function PostViewContainer() {
 								postId={postId}
 							/>
 						</PostContextWrap>
-						{postContext.image !== '' && (
+						{postContext.image !== '' && 'image' in postContext && (
 							<PostViewImg uploadImgs={postImgs} isView={true} />
 						)}
 						{modalInfo.state && (

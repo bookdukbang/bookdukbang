@@ -4,6 +4,7 @@ import FeedHeader from '../components/common/header/FeedHeader';
 import Error from '../assets/errorImg.png';
 import { ButtonStyle } from '../components/common/Button.style';
 import Wrap from '../components/common/Wrap';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
 	height: 85vh;
@@ -39,10 +40,6 @@ const ErrorBtn = styled(ButtonStyle)`
 	padding: 1rem 0;
 	font-size: 2rem;
 	margin: 2rem auto 0;
-	display: none;
-	@media ${({ theme }) => theme.size.mobile} {
-		display: block;
-	}
 `;
 
 function ErrorPage() {
@@ -55,8 +52,8 @@ function ErrorPage() {
 
 					<Title>페이지를 찾을 수 없습니다. :(</Title>
 
-					<ErrorBtn as="a" href="/">
-						이전 페이지
+					<ErrorBtn as={Link} to="/feed">
+						홈으로 가기
 					</ErrorBtn>
 				</Container>
 			</Wrap>

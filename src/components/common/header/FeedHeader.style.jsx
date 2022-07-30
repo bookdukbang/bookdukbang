@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import Wrap from '../Wrap';
 import BackIcon from '../../../assets/arrowLeft.png';
-import MoreIcon from '../../../assets/moreBtn.png';
+// import MoreIcon from '../../../assets/moreBtn.png';
+import LogoutIcon from '../../../assets/icon_logout_mobile.png';
 
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
@@ -64,7 +65,7 @@ const BackBtn = styled.button`
 
 const MoreBtn = styled.button`
 	${MobileBtn}
-	background-image: url(${MoreIcon});
+	background-image: url(${LogoutIcon});
 	@media ${({ theme }) => theme.size.mobile} {
 		display: block;
 	}

@@ -14,8 +14,10 @@ const FeedWrap = styled(Wrap)`
 	display: flex;
 	gap: 3rem;
 	margin-top: 3rem;
+
 	@media ${({ theme }) => theme.size.mobile} {
 		justify-content: center;
+		margin-bottom: 7rem;
 	}
 `;
 

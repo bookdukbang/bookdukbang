@@ -117,57 +117,65 @@ function Feed({ item, author, postId }) {
 	};
 
 	return (
-		<FeedWrapper>
-			<ProfileDiv>
-				<Link to={`/user/${author.accountname}`}>
-					<NoneProfileSmall
-						style={{
-							backgroundImage: `url(${author.image})`,
-						}}
+		<>
+			<FeedWrapper>
+				<ProfileDiv>
+					<Link to={`/user/${author.accountname}`}>
+						<NoneProfileSmall
+							style={{
+								backgroundImage: `url(${author.image})`,
+							}}
+						/>
+					</Link>
+					<ProfilestyleDiv>
+						<ProfileName>{author.username}</ProfileName>
+						<BigProfileEmail>
+							@ {author.accountname}
+						</BigProfileEmail>
+					</ProfilestyleDiv>
+				</ProfileDiv>
+
+				<FeedText>{item.content}</FeedText>
+
+				{'image' in item && item.image !== '' && (
+					<PostViewImg
+						uploadImgs={item.image.split(',')}
+						isView={true}
 					/>
-				</Link>
-				<ProfilestyleDiv>
-					<ProfileName>{author.username}</ProfileName>
-					<BigProfileEmail>@ {author.accountname}</BigProfileEmail>
-				</ProfilestyleDiv>
-			</ProfileDiv>
+				)}
 
-			<FeedText>{item.content}</FeedText>
-
-			{item.image !== '' && (
-				<PostViewImg uploadImgs={item.image.split(',')} isView={true} />
-			)}
-
-			<CommentDiv>
-				<HeartInfo>
-					<LikeButton
-						hearted={item.hearted}
-						heartCount={item.heartCount}
-						id={item.id}
+				<CommentDiv>
+					<HeartInfo>
+						<LikeButton
+							hearted={item.hearted}
+							heartCount={item.heartCount}
+							id={item.id}
+						/>
+					</HeartInfo>
+					<Link to={`/post/${item.id}`}>
+						<CommentInfo>
+							<CommentImg src={Comment} alt="댓글" />
+							<CommentNum>{item.commentCount}</CommentNum>
+						</CommentInfo>
+					</Link>
+					<Date>
+						{item.createdAt.slice(0, 4)}년
+						{item.createdAt.slice(5, 7)}월
+						{item.createdAt.slice(8, 10)}일
+					</Date>
+				</CommentDiv>
+				<MoreBtn type="button" onClick={onClickMoreBtn}>
+					<MoreBtnImg src={MoreBtns} alt="더보기" />
+				</MoreBtn>
+				{modalInfo.state && (
+					<FeedModal
+						postId={item.id}
+						modalInfo={modalInfo}
+						setModalInfo={setModalInfo}
 					/>
-				</HeartInfo>
-				<Link to={`/post/${item.id}`}>
-					<CommentInfo>
-						<CommentImg src={Comment} alt="댓글" />
-						<CommentNum>{item.commentCount}</CommentNum>
-					</CommentInfo>
-				</Link>
-				<Date>
-					{item.createdAt.slice(0, 4)}년 {item.createdAt.slice(5, 7)}
-					월 {item.createdAt.slice(8, 10)}일
-				</Date>
-			</CommentDiv>
-			<MoreBtn type="button" onClick={onClickMoreBtn}>
-				<MoreBtnImg src={MoreBtns} alt="더보기" />
-			</MoreBtn>
-			{modalInfo.state && (
-				<FeedModal
-					postId={item.id}
-					modalInfo={modalInfo}
-					setModalInfo={setModalInfo}
-				/>
-			)}
-		</FeedWrapper>
+				)}
+			</FeedWrapper>
+		</>
 	);
 }
 
