@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL } from '../../../constants';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ProductImg, ProductImgWrap } from '../../productAdd/ProductForm.style';
+import { ProductImg, ProductImgWrap } from '../../product/ProductForm.style';
 import { BottomSheatBg } from '../modal/BottomSheat.style';
 import User from '../../common/user/User';
 import NoneImg from '../../../assets/none-product.png';
@@ -140,7 +140,11 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 							</BigBtn>
 							{productInfo.author.accountname === loginUser && (
 								<>
-									<ModifyBtn to="/">수정</ModifyBtn>
+									<ModifyBtn
+										to={`/product/edit/${productInfo.id}`}
+									>
+										수정
+									</ModifyBtn>
 									<DeleteBtn
 										type="button"
 										onClick={onClickDelete}

@@ -19,6 +19,7 @@ import FollowingList from './pages/FollowingListPage';
 import ProductPage from './pages/ProductPage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import PostEditPage from './pages/PostEditPage';
+import ProductEditPage from './pages/ProductEditPage';
 
 function App() {
 	return (
@@ -53,6 +54,11 @@ function App() {
 					element={<FollowingList />}
 				/>
 				<Route path="/product" exact element={<ProductPage />} />
+				<Route
+					path="/product/edit/:id"
+					exact
+					element={<ProductEditPage />}
+				/>
 				<Route
 					path="/profileEdit"
 					exact

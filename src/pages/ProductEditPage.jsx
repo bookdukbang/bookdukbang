@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProductForm from '../components/product/ProductForm';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
@@ -24,8 +24,9 @@ const ProductHeaderTitle = styled.span`
 	}
 `;
 
-function ProductPage() {
+function ProductEditPage() {
 	const navigate = useNavigate();
+	const { id } = useParams();
 	const token = JSON.parse(localStorage.getItem('user')).token;
 	const [productInfo, setProductInfo] = useState({
 		itemName: '',
@@ -47,13 +48,47 @@ function ProductPage() {
 			message: '',
 		},
 		itemImage: {
-			state: false,
+			state: true,
 		},
 	});
 
-	// 서버로 form 보내기
+	useEffect(() => {
+		productUploadAPI();
+	}, []);
+
+	// 상품 데이터 받아오기
 	async function productUploadAPI() {
-		const reqPath = '/product';
+		const reqPath = `/product/detail/${id}`;
+
+		try {
+			const res = await fetch(SERVER_URL + reqPath, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
+				},
+			});
+			const json = await res.json();
+
+			if (json.status === 404) {
+				throw navigate('/errorPage');
+			}
+
+			setProductInfo((cur) => ({
+				...cur,
+				itemName: json.product.itemName,
+				price: json.product.price,
+				link: json.product.link,
+				itemImage: json.product.itemImage,
+			}));
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
+	// 상품 데이터 보내기
+	async function productModifyAPI() {
+		const reqPath = `/product/${id}`;
 		const productData = {
 			product: {
 				...productInfo,
@@ -61,7 +96,7 @@ function ProductPage() {
 		};
 		try {
 			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'POST',
+				method: 'PUT',
 				headers: {
 					Authorization: `Bearer ${token}`,
 					'Content-type': 'application/json',
@@ -72,14 +107,6 @@ function ProductPage() {
 
 			if (json.status === 404) {
 				throw navigate('/errorPage');
-			} else if (json.status === 422) {
-				throw setErrorInfo((cur) => ({
-					...cur,
-					price: {
-						state: true,
-						message: json.message,
-					},
-				}));
 			}
 			navigate(-1);
 			return json;
@@ -95,15 +122,15 @@ function ProductPage() {
 			</FeedHeader>
 			<ProductWrap>
 				<ProductForm
-					formAPI={productUploadAPI}
+					formAPI={productModifyAPI}
 					productInfo={productInfo}
 					setProductInfo={setProductInfo}
 					errorInfo={errorInfo}
 					setErrorInfo={setErrorInfo}
-					isEdit={false}
+					isEdit={true}
 				/>
 			</ProductWrap>
 		</>
 	);
 }
-export default ProductPage;
+export default ProductEditPage;

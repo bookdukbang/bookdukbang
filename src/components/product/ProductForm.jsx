@@ -19,38 +19,17 @@ const ImgErrorText = styled(ErrorText)`
 	margin-bottom: 3rem;
 `;
 
-function ProductForm() {
+function ProductForm({
+	productInfo,
+	setProductInfo,
+	errorInfo,
+	setErrorInfo,
+	formAPI,
+	isEdit,
+}) {
 	const navigate = useNavigate();
-	const [userInfo, setUserInfo] = useState(null);
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [isDisable, setIsDisable] = useState(true);
-	const [productInfo, setProductInfo] = useState({
-		itemName: '',
-		price: '',
-		link: '',
-		itemImage: '',
-	});
-	const [errorInfo, setErrorInfo] = useState({
-		itemName: {
-			state: false,
-			message: '',
-		},
-		price: {
-			state: false,
-			message: '',
-		},
-		link: {
-			state: false,
-			message: '',
-		},
-		itemImage: {
-			state: false,
-		},
-	});
-
-	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
-	}, []);
 
 	useEffect(() => {
 		if (productInfo.itemImage === '') {
@@ -90,43 +69,6 @@ function ProductForm() {
 		}
 	}
 
-	// 서버로 form 보내기
-	async function productUploadAPI() {
-		const reqPath = '/product';
-		const productData = {
-			product: {
-				...productInfo,
-			},
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${userInfo.token}`,
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(productData),
-			});
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			} else if (json.status === 422) {
-				throw setErrorInfo((cur) => ({
-					...cur,
-					price: {
-						state: true,
-						message: json.message,
-					},
-				}));
-			}
-			navigate(-1);
-			return json;
-		} catch (err) {
-			console.error(err);
-		}
-	}
-
 	// error 상태에 따라 버튼 활성화
 	useEffect(() => {
 		setIsDisable(
@@ -135,6 +77,7 @@ function ProductForm() {
 				errorInfo.link.state ||
 				errorInfo.itemImage.state,
 		);
+		console.log(isDisable);
 	}, [errorInfo]);
 
 	// 이미지 파일이 업로드 되면 이미지 서버주소 받기
@@ -153,7 +96,7 @@ function ProductForm() {
 	const onSubmitImg = (e) => {
 		e.preventDefault();
 		if (!isDisable) {
-			productUploadAPI();
+			formAPI();
 		}
 	};
 
@@ -162,11 +105,10 @@ function ProductForm() {
 			<fieldset>
 				<legend>상품등록 양식</legend>
 				<ProductImgWrap>
-					{uploadImgs.length !== 0 ? (
+					{uploadImgs.length !== 0 || isEdit ? (
 						<ProductImg
-							src={URL.createObjectURL(uploadImgs)}
-							alt={uploadImgs.name}
-							id={uploadImgs.lastModified}
+							src={productInfo.itemImage}
+							alt={productInfo.itemName}
 						/>
 					) : (
 						<ProductImg src={NoneProductImg} alt="상품 이미지" />
@@ -187,6 +129,7 @@ function ProductForm() {
 					setErrorInfo={setErrorInfo}
 				/>
 				<ProductPrice
+					productInfo={productInfo}
 					setProductInfo={setProductInfo}
 					errorInfo={errorInfo}
 					setErrorInfo={setErrorInfo}
