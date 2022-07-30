@@ -26,6 +26,7 @@ const InputStyle = styled.input`
 	color: ${({ theme }) => theme.textColor};
 	padding: 2rem;
 	box-sizing: border-box;
+	background-color: ${({ theme }) => theme.bgsubColor};
 	::placeholder {
 		color: ${({ theme }) => theme.grayColor3};
 	}

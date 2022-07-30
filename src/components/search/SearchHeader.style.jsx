@@ -19,7 +19,6 @@ const SearchInput = styled.input`
 	padding: 2rem;
 	box-sizing: border-box;
 	border: none;
-	background-color: ${({ theme }) => theme.grayColor5};
 	font-size: 2rem;
 	border-radius: 1rem;
 
