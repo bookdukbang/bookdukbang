@@ -31,7 +31,7 @@ const SplashBtn = styled(ButtonStyle)`
 `;
 
 const LoginBtnDiv = styled(SplashBtnDiv)`
-	margin: 9.3rem auto 0;
+	margin: 1rem auto;
 	@media ${({ theme }) => theme.size.mobile} {
 		max-width: 32rem;
 	}
