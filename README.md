@@ -99,7 +99,7 @@
 
 ### 문제 상황
 
-유저의 프로필 사진을 클릭했을 경우 유저 프로필 페이지로 이동하기 위해서는 유저의 accountname이 필요하다. 그래서 프로필 사진 Link의 state에서 userId를 지정해준 후 다음 페이지에서 useLocation을 사용하여 state의 userId에 접근하도록 하였다.
+유저의 프로필 사진을 클릭했을 경우 유저 프로필 페이지로 이동하기 위해서는 유저의 accountname이 필요했습니다. 그래서 프로필 사진 Link의 state에서 userId를 지정해준 후 다음 페이지에서 useLocation을 사용하여 state의 userId에 접근하도록 하였습니다.
 
 ```jsx
 <Link
@@ -114,14 +114,14 @@ import { useLocation } from 'react-router-dom';
 const location = useLocation();
 const data = location.state.userId;
 
-const res = await fetch(SERVER_URL + `/각각의 API/${data}`, {
+const res = await fetch(SERVER_URL + `/각각의 API/${data}`, {  // 생략 
 ```
 
-그 결과 프로필 사진을 클릭한 경우에만 userId를 받아올 수 있기 때문에 주소창 url에 `user/유저acccountname`을 적용했을 경우에는 빈 화면이 나오는 현상이 발생하였다.
+그 결과 프로필 사진을 클릭한 경우에만 userId를 받아올 수 있기 때문에 주소창 url에 `user/유저acccountname`을 적용했을 경우에는 빈 화면이 나오는 현상이 발생하였습니다.
 
 ### 해결 방법
 
-App.jsx의 라우트 연결에서 path를 `/user/:id`로 지정하고 :id 파라미터의 정보를 가져오기 위해 react-router-dom의 useParams라는 훅을 사용하였다. useParams의 정보를 id라는 변수에 저장하여 파라미터를 사용함으로써 프로필 사진이 클릭되었을 때 뿐만이 아니라 주소창에 url을 직접 적용하여도 페이지가 성공적으로 렌더링 되었다.
+App.jsx의 라우트 연결에서 path를 `/user/:id`로 지정하고 :id 파라미터의 정보를 가져오기 위해 react-router-dom의 useParams라는 훅을 사용하였습니다. useParams의 정보를 id라는 변수에 저장하여 파라미터를 사용함으로써 프로필 사진이 클릭되었을 때 뿐만이 아니라 주소창에 url을 직접 적용하여도 페이지가 성공적으로 렌더링 되었습니다.
 
 ```jsx
 <Link to={`/user/${author.accountname}`}>
@@ -132,7 +132,7 @@ import { useParams } from 'react-router-dom';
 
 let { id } = useParams();
 
-const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {
+const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략 
 ```
 
 ```jsx
@@ -143,9 +143,74 @@ const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {
 />
 ```
 
-## 2. 트러블 슈팅
+## 2. 다크모드
 
-내용적기
+### 문제 상황
+
+- 변수를 전달하기 위해 props를 계속 내려 받아야하는 문제
+    
+    위 코드에서는 `<DarkModeBtn/>`가 `App.js`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
+    
+- 재랜더링 시, 다크모드 설정 초기화
+    
+    새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서  `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌어 지는 문제가 발생했습니다.
+    
+### 해결 방법
+
+- `useContext` 사용해  상태 관리
+    
+    이를 해결하기 위해 상태 관리 툴을 생각했습니다. 이 문제의 경우, 관리되는 변수가 가볍고 복잡하지 않아 상태관리를 도와 주는 툴로  ****useContext****을 사용했습니다. 이를 통해 `<DarkModeBtn/>`가 `App.js` 외에서도 자유롭게 사용되도록 해결했습니다.
+    
+- `로컬 스토리지`로 사용자의 모드 저장하기
+    
+    사용자가 설정한 값을 저장하도록 브라우저의 저장소인 `로컬 스토리지`를 사용하여 `mode`가 바뀔 때 `로컬 스토리지`에도 값이 저장되도록 수정해 재랜더링 되더라도 다크모드 또는 라이트 모드가 유지되게 해결했습니다.
+    
+```jsx
+import { createContext } from 'react';
+export const ThemeModeContext = createContext(null);
+```
+
+```jsx
+import DarkModeBtn from './components/darkmode/DarkModeBtn';
+import { ThemeModeContext } from './context/ThemeModeContext';
+import { ThemeProvider } from 'styled-components';
+import theme from './style/theme';
+
+function App() {
+    const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
+    const [mode, setMode] = useState(LocalTheme);
+
+    return (
+        <>
+            <ThemeModeContext.Provider value={{ mode, setMode }}>
+                <ThemeProvider theme={theme[mode]}>
+			               // 생략
+                    <DarkModeBtn/>
+                </ThemeProvider>
+            </ThemeModeContext.Provider>
+        </>
+    );
+}
+```
+
+```jsx
+import React, { useContext } from 'react';
+import { ThemeModeContext } from '../../context/ThemeModeContext';
+
+function DarkModeBtn({ isMain }) {
+	  const { mode, setMode } = useContext(ThemeModeContext);
+    const onClickMode = () => {
+	    	if (mode === 'light') {
+    			setMode('dark');
+    			localStorage.setItem('mode', JSON.stringify('dark'));
+	    	} else {
+    			setMode('light');
+    			localStorage.setItem('mode', JSON.stringify('light'));
+    		}
+    	};
+	//생략
+}
+```
 
 ## 3. 트러블 슈팅
 
