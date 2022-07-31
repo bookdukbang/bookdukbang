@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import React from 'react';
 
 const FollowBtn = styled(SmallBtn)`
-	width: 30vmin;
+	width: 25vmin;
 	padding: 1.3rem 0;
 	@media ${({ theme }) => theme.size.mobile} {
 		padding: 0.7rem 0;
@@ -12,7 +12,7 @@ const FollowBtn = styled(SmallBtn)`
 `;
 
 const FollowingBtn = styled(SmallBtn)`
-	width: 30vmin;
+	width: 25vmin;
 	padding: 1.3rem 0;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	color: ${({ theme }) => theme.mainColor};
