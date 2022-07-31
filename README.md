@@ -44,15 +44,15 @@
 
 |                                       0. [splash](#splash)                                       |                                      1. [로그인](#로그인)                                      |
 | :----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/splash_web.gif"/><img src="src/assets/gif/splash_mob.gif" width="300"/> | <img src="src/assets/gif/login_web.gif"/><img src="src/assets/gif/login_mob.gif" width="300"/> |
+| <img src="src/assets/gif/splash_web.gif"/><img src="src/assets/gif/splash_mob.gif" width="250"/> | <img src="src/assets/gif/login_web.gif"/><img src="src/assets/gif/login_mob.gif" width="250"/> |
 
 |                                       2. [회원가입](#회원가입)                                       |                                       3. [프로필 설정](#회원가입)                                        |
 | :--------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/회원가입_web.gif"/><img src="src/assets/gif/회원가입_mob.gif" width="300"/> | <img src="src/assets/gif/프로필설정_web.gif"/><img src="src/assets/gif/프로필설정_mob.gif" width="300"/> |
+| <img src="src/assets/gif/회원가입_web.gif"/><img src="src/assets/gif/회원가입_mob.gif" width="250"/> | <img src="src/assets/gif/프로필설정_web.gif"/><img src="src/assets/gif/프로필설정_mob.gif" width="250"/> |
 
 |                                    4. [홈 피드](#홈피드)                                     |                                     5. [검색](#검색하기)                                     |
 | :------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/피드_web.gif"/><img src="src/assets/gif/피드_mob.gif" width="300"/> | <img src="src/assets/gif/검색_web.gif"/><img src="src/assets/gif/검색_mob.gif" width="300"/> |
+| <img src="src/assets/gif/피드_web.gif"/><img src="src/assets/gif/피드_mob.gif" width="250"/> | <img src="src/assets/gif/검색_web.gif"/><img src="src/assets/gif/검색_mob.gif" width="250"/> |
 
 |                     6. [게시물 등록](#게시글작성)                     |                      7. [게시글 상세](#게시글상세)                       |
 | :-------------------------------------------------------------------: | :----------------------------------------------------------------------: |
@@ -68,15 +68,15 @@
 
 |                                     12. [내 프로필](#내_프로필)                                      |                                  13. [사용자 프로필 수정](#프로필수정)                                   |
 | :--------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/내프로필_web.gif"/><img src="src/assets/gif/내프로필_mob.gif" width="300"/> | <img src="src/assets/gif/프로필수정_web.gif"/><img src="src/assets/gif/프로필수정_mob.gif" width="300"/> |
+| <img src="src/assets/gif/내프로필_web.gif"/><img src="src/assets/gif/내프로필_mob.gif" width="250"/> | <img src="src/assets/gif/프로필수정_web.gif"/><img src="src/assets/gif/프로필수정_mob.gif" width="250"/> |
 
 |                                        14. [타 유저 프로필](#유저_프로필)                                        |                                          15. [팔로우 & 팔로잉 목록](#팔로워_팔로잉)                                          |
 | :--------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/타 유저 프로필_web.gif"/><img src="src/assets/gif/타 유저 프로필_mob.gif" width="300"/> | <img src="src/assets/gif/팔로우 & 팔로잉 목록_web.gif"/><img src="src/assets/gif/팔로우 & 팔로잉 목록_mob.gif" width="300"/> |
+| <img src="src/assets/gif/타 유저 프로필_web.gif"/><img src="src/assets/gif/타 유저 프로필_mob.gif" width="250"/> | <img src="src/assets/gif/팔로우 & 팔로잉 목록_web.gif"/><img src="src/assets/gif/팔로우 & 팔로잉 목록_mob.gif" width="250"/> |
 
-|                                    16. [좋아요](#좋아요_버튼)                                    |                                      17. [팔로우 & 언팔로우](#팔로워_팔로잉)                                       |
-| :----------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/좋아요_web.gif"/><img src="src/assets/gif/좋아요_mob.gif" width="300"/> | <img src="src/assets/gif/팔로우 & 언팔로우_web.gif"/><img src="src/assets/gif/팔로우 & 언팔로우.gif" width="300"/> |
+|                                    16. [좋아요](#좋아요_버튼)                                    |                                        17. [팔로우 & 언팔로우](#팔로워_팔로잉)                                         |
+| :----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
+| <img src="src/assets/gif/좋아요_web.gif"/><img src="src/assets/gif/좋아요_mob.gif" width="250"/> | <img src="src/assets/gif/팔로우 & 언팔로우_web.gif"/><img src="src/assets/gif/팔로우 & 언팔로우_mob.gif" width="250"/> |
 
 |                 18. [판매 상품 등록](#상품_등록)                  |                  19. [판매 상품 상세](#상품_등록)                  |
 | :---------------------------------------------------------------: | :----------------------------------------------------------------: |
@@ -88,7 +88,7 @@
 
 |                                      22. [로그아웃](#로그아웃)                                       |                                       23. [채팅방](#채팅)                                        |
 | :--------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |
-| <img src="src/assets/gif/로그아웃_web.gif"/><img src="src/assets/gif/로그아웃_mob.gif" width="300"/> | <img src="src/assets/gif/채팅방_web.gif"/><img src="src/assets/gif/채팅방_mob.gif" width="300"/> |
+| <img src="src/assets/gif/로그아웃_web.gif"/><img src="src/assets/gif/로그아웃_mob.gif" width="250"/> | <img src="src/assets/gif/채팅방_web.gif"/><img src="src/assets/gif/채팅방_mob.gif" width="250"/> |
 
 # 💥트러블 슈팅(핵심 로직)
 
