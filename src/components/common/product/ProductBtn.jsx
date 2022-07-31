@@ -50,7 +50,7 @@ const BookInfo = styled.div`
 const BookTitle = styled.p`
 	font-weight: 400;
 	font-size: 1.6rem;
-	color: ${({ theme }) => theme.grayColor5};
+	color: ${({ theme }) => theme.whiteColor};
 	@media ${({ theme }) => theme.size.mobile} {
 		font-weight: 400;
 		font-size: 14px;

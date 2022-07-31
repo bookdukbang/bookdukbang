@@ -35,7 +35,7 @@ const BookBtn = styled.button`
 
 const BookTitle = styled.p`
 	text-align: left;
-	color: ${({ theme }) => theme.grayColor5};
+	color: ${({ theme }) => theme.whiteColor};
 	font-weight: 400;
 	font-size: 1.6rem;
 	padding: 0 2rem;
