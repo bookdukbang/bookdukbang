@@ -1,6 +1,7 @@
 ![info_bookduk](https://user-images.githubusercontent.com/96187560/182022886-db840a94-49ea-4c66-8811-ab4544678f65.jpg)
 
 # 📚 BOOK덕방
+
 ### 개요
 
 -   북덕방 서비스는 자신의 스토어에서 읽지 않는 책들을 서로 교환하며 방치되어 있던 책은 필요한 사람에게 전달하면서 자신에게 필요한 책도 얻을 수 있는 SNS 플랫폼입니다.
@@ -19,7 +20,6 @@
 `React` `Styled-Component` `JavaScript` `HTML/CSS`
 `Git` `Github` `Github Issues` [`Figma`](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
 
-
 # 📘 역할 분담
 
 ## 💞 김민영
@@ -36,23 +36,23 @@
 
 ## 💞 추지혜
 
-|                                                   **Info**                                                   | **UI 구현**                                                                                                   | **기능 구현**                                                                                                                                                                                                                                                                                   | **기타**                                                                                                              |
-| :----------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
-| **blog**: [chooing](https://velog.io/@chumil7432) </br> **github**: [JIHYE CHOO](https://github.com/chooing) | - 게시글 작성<br/>- 게시글 상세<br/>- [검색](#검색하기) <br/>- 모달<br/>- 모바일 하단 탭 메뉴<br/>- 상품 등록 <br/> - 다크모드| - 게시글 [등록](#게시글작성)/[상세](#게시글상세)/[수정/삭제/신고](#게시글_수정_신고_삭제)<br/>- 상품 [등록](#상품_등록)/상세/[수정/삭제](#상품_수정_삭제) <br/>- 댓글 작성/[삭제/신고](#댓글_신고_삭제), 댓글 리스트<br/>- [프로필 수정](#프로필수정) <br/>- [유저 검색](#검색하기) <br/>- 모달 <br/> - 다크모드 | - 반응형 디자인 제작<br/>- routes 설계 및 구현<br/>- 이미지 파일 업로드/수정/삭제/미리보기<br/>- 이미지 슬라이더 구현 |
+|                                                   **Info**                                                   | **UI 구현**                                                                                                                    | **기능 구현**                                                                                                                                                                                                                                                                                                    | **기타**                                                                                                              |
+| :----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| **blog**: [chooing](https://velog.io/@chumil7432) </br> **github**: [JIHYE CHOO](https://github.com/chooing) | - 게시글 작성<br/>- 게시글 상세<br/>- [검색](#검색하기) <br/>- 모달<br/>- 모바일 하단 탭 메뉴<br/>- 상품 등록 <br/> - 다크모드 | - 게시글 [등록](#게시글작성)/[상세](#게시글상세)/[수정/삭제/신고](#게시글_수정_신고_삭제)<br/>- 상품 [등록](#상품_등록)/상세/[수정/삭제](#상품_수정_삭제) <br/>- 댓글 작성/[삭제/신고](#댓글_신고_삭제), 댓글 리스트<br/>- [프로필 수정](#프로필수정) <br/>- [유저 검색](#검색하기) <br/>- 모달 <br/> - 다크모드 | - 반응형 디자인 제작<br/>- routes 설계 및 구현<br/>- 이미지 파일 업로드/수정/삭제/미리보기<br/>- 이미지 슬라이더 구현 |
 
 # 📗 기능 및 UI
 
-|                       0. [splash](#splash)                        |                    1. [로그인](#로그인)                     |
-| :---------------------------------------------------------------: | :---------------------------------------------------------: |
-| <img src="asset/images/gif/splash.gif" width="230" height="400"/> | <img src="src/assets/gif/login.gif" width="230" height=""/> |
+|           0. [splash](#splash)           |                                1. [로그인](#로그인)                                |
+| :--------------------------------------: | :--------------------------------------------------------------------------------: |
+| <img src="asset/images/gif/splash.gif"/> | <img src="src/assets/gif/login_web.gif"/><img src="src/assets/gif/login_mob.gif"/> |
 
-|                     2. [회원가입](#회원가입)                     |                        3. [프로필 설정](#회원가입)                         |
-| :--------------------------------------------------------------: | :------------------------------------------------------------------------: |
-| <img src="asset/images/gif/logIn.gif" width="230" height="400"/> | <img src="asset/images/gif/registerProfile.gif" width="230" height="400"/> |
+|                                 2. [회원가입](#회원가입)                                 |                                 3. [프로필 설정](#회원가입)                                  |
+| :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
+| <img src="src/assets/gif/회원가입_web.gif"/><img src="src/assets/gif/회원가입_mob.gif"/> | <img src="src/assets/gif/프로필설정_web.gif"/><img src="src/assets/gif/프로필설정_mob.gif"/> |
 
-|                       4. [홈 피드](#홈피드)                       |                      5. [검색](#검색하기)                       |
-| :---------------------------------------------------------------: | :-------------------------------------------------------------: |
-| <img src="asset/images/gif/search.gif" width="230" height="400"/> | <img src="asset/images/gif/home.gif" width="230" height="400"/> |
+|                              4. [홈 피드](#홈피드)                               |                      5. [검색](#검색하기)                       |
+| :------------------------------------------------------------------------------: | :-------------------------------------------------------------: |
+| <img src="src/assets/gif/피드_web.gif"/><img src="src/assets/gif/피드_mob.gif"/> | <img src="asset/images/gif/home.gif" width="230" height="400"/> |
 
 |                     6. [게시물 등록](#게시글작성)                     |                      7. [게시글 상세](#게시글상세)                       |
 | :-------------------------------------------------------------------: | :----------------------------------------------------------------------: |
@@ -66,9 +66,9 @@
 | :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
 | <img src="asset/images/gif/deletReply.gif" width="230" height="400"/> | <img src="asset/images/gif/addProduct.gif" width="230" height="400"/> |
 
-|                      12. [내 프로필](#내_프로필)                      |                 13. [사용자 프로필 수정](#프로필수정)                 |
-| :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
-| <img src="asset/images/gif/deletReply.gif" width="230" height="400"/> | <img src="asset/images/gif/addProduct.gif" width="230" height="400"/> |
+|                               12. [내 프로필](#내_프로필)                                |                            13. [사용자 프로필 수정](#프로필수정)                             |
+| :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
+| <img src="src/assets/gif/내프로필_web.gif"/><img src="src/assets/gif/내프로필_mob.gif"/> | <img src="src/assets/gif/프로필수정_web.gif"/><img src="src/assets/gif/프로필수정_mob.gif"/> |
 
 |                   14. [타 유저 프로필](#유저_프로필)                   |               15. [팔로우 & 팔로잉 목록](#팔로워_팔로잉)               |
 | :--------------------------------------------------------------------: | :--------------------------------------------------------------------: |
@@ -89,10 +89,6 @@
 |                     22. [로그아웃](#로그아웃)                     |                        23. [채팅방](#채팅)                         |
 | :---------------------------------------------------------------: | :----------------------------------------------------------------: |
 | <img src="asset/images/gif/follow.gif" width="230" height="400"/> | <img src="asset/images/gif/chatgif.gif" width="230" height="400"/> |
-
-|                     22. 다크 모드 & 라이트 모드                    |
-| :---------------------------------------------------------------: |
-| <img src="asset/images/gif/follow.gif" width="230" height="400"/> |  
 
 # 💥트러블 슈팅(핵심 로직)
 
@@ -115,7 +111,7 @@ import { useLocation } from 'react-router-dom';
 const location = useLocation();
 const data = location.state.userId;
 
-const res = await fetch(SERVER_URL + `/각각의 API/${data}`, {  // 생략 
+const res = await fetch(SERVER_URL + `/각각의 API/${data}`, {  // 생략
 ```
 
 그 결과 프로필 사진을 클릭한 경우에만 userId를 받아올 수 있기 때문에 주소창 url에 `user/유저acccountname`을 적용했을 경우에는 빈 화면이 나오는 현상이 발생하였습니다.
@@ -133,29 +129,22 @@ import { useParams } from 'react-router-dom';
 
 let { id } = useParams();
 
-const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략 
+const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략
 ```
 
 ```jsx
-<Route
-	path="/user/:id"
-	exact
-	element={<UserProfilePage />}
-/>
+<Route path="/user/:id" exact element={<UserProfilePage />} />
 ```
 
 ## 2. 다크모드
 
 ### 문제 상황
 
-- 변수를 전달하기 위해 props를 계속 내려 받아야하는 문제
-    
+-   변수를 전달하기 위해 props를 계속 내려 받아야하는 문제
     위 코드에서는 `<DarkModeBtn/>`가 `App.js`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
-    
-- 재렌더링 시, 다크모드 설정 초기화
-    
-    새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서  `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌어 지는 문제가 발생했습니다.
-    
+-   재렌더링 시, 다크모드 설정 초기화
+    새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서 `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌어 지는 문제가 발생했습니다.
+
 ```jsx
 import { ThemeProvider } from 'styled-components';
 import theme from './style/theme';
@@ -163,38 +152,35 @@ import GlobalStyles from './style/global';
 import DarkModeBtn from './components/darkmode/DarkModeBtn';
 
 function App() {
-    const [mode, setMode] = useState('light');
-    return (
-        <>
-            <ThemeProvider theme={theme[mode]}>
-			          <GlobalStyles />
-			           // 생략
-                <DarkModeBtn mode={mode} setMode={setMode}/>
-            </ThemeProvider>
-        </>
-    );
+	const [mode, setMode] = useState('light');
+	return (
+		<>
+			<ThemeProvider theme={theme[mode]}>
+				<GlobalStyles />
+				// 생략
+				<DarkModeBtn mode={mode} setMode={setMode} />
+			</ThemeProvider>
+		</>
+	);
 }
 ```
 
 ```jsx
 import React from 'react';
 
-function DarkModeBtn({ mode, setMode}) {
-    const { mode, setMode } = useContext(ThemeModeContext);
-    // 생략
+function DarkModeBtn({ mode, setMode }) {
+	const { mode, setMode } = useContext(ThemeModeContext);
+	// 생략
 }
 ```
-    
+
 ### 해결 방법
 
-- `useContext` 사용해  상태 관리
-    
-    이를 해결하기 위해 상태 관리 툴을 생각했습니다. 이 문제의 경우, 관리되는 변수가 가볍고 복잡하지 않아 상태관리를 도와 주는 툴로  ****useContext****을 사용했습니다. 이를 통해 `<DarkModeBtn/>`가 `App.js` 외에서도 자유롭게 사용되도록 해결했습니다.
-    
-- `로컬 스토리지`로 사용자의 모드 저장하기
-    
+-   `useContext` 사용해 상태 관리
+    이를 해결하기 위해 상태 관리 툴을 생각했습니다. 이 문제의 경우, 관리되는 변수가 가볍고 복잡하지 않아 상태관리를 도와 주는 툴로 \***\*useContext\*\***을 사용했습니다. 이를 통해 `<DarkModeBtn/>`가 `App.js` 외에서도 자유롭게 사용되도록 해결했습니다.
+-   `로컬 스토리지`로 사용자의 모드 저장하기
     사용자가 설정한 값을 저장하도록 브라우저의 저장소인 `로컬 스토리지`를 사용하여 `mode`가 바뀔 때 `로컬 스토리지`에도 값이 저장되도록 수정해 재랜더링 되더라도 다크모드 또는 라이트 모드가 유지되게 해결했습니다.
-    
+
 ```jsx
 import { createContext } from 'react';
 export const ThemeModeContext = createContext(null);
@@ -207,19 +193,19 @@ import { ThemeProvider } from 'styled-components';
 import theme from './style/theme';
 
 function App() {
-    const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
-    const [mode, setMode] = useState(LocalTheme);
+	const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
+	const [mode, setMode] = useState(LocalTheme);
 
-    return (
-        <>
-            <ThemeModeContext.Provider value={{ mode, setMode }}>
-                <ThemeProvider theme={theme[mode]}>
-			               // 생략
-                    <DarkModeBtn/>
-                </ThemeProvider>
-            </ThemeModeContext.Provider>
-        </>
-    );
+	return (
+		<>
+			<ThemeModeContext.Provider value={{ mode, setMode }}>
+				<ThemeProvider theme={theme[mode]}>
+					// 생략
+					<DarkModeBtn />
+				</ThemeProvider>
+			</ThemeModeContext.Provider>
+		</>
+	);
 }
 ```
 
@@ -228,16 +214,16 @@ import React, { useContext } from 'react';
 import { ThemeModeContext } from '../../context/ThemeModeContext';
 
 function DarkModeBtn({ isMain }) {
-	  const { mode, setMode } = useContext(ThemeModeContext);
-    const onClickMode = () => {
-	    	if (mode === 'light') {
-    			setMode('dark');
-    			localStorage.setItem('mode', JSON.stringify('dark'));
-	    	} else {
-    			setMode('light');
-    			localStorage.setItem('mode', JSON.stringify('light'));
-    		}
-    	};
+	const { mode, setMode } = useContext(ThemeModeContext);
+	const onClickMode = () => {
+		if (mode === 'light') {
+			setMode('dark');
+			localStorage.setItem('mode', JSON.stringify('dark'));
+		} else {
+			setMode('light');
+			localStorage.setItem('mode', JSON.stringify('light'));
+		}
+	};
 	//생략
 }
 ```
@@ -246,13 +232,12 @@ function DarkModeBtn({ isMain }) {
 
 ### 문제상황
 
-팔로우/팔로잉 리스트를 불러와서 추가로 해당 유저에 대해  팔로우/언팔로우 기능을 구현하기 위해 해당  api를 호출하였고, 삼항연산자를 사용하여 isfollow 값이 true, false에 따라 `팔로잉`/ `팔로우` 버튼을 화면에 나타내 주었습니다. 추가로 `팔로잉` 버튼을 누르면 언팔로우 기능이 동작하며, `팔로우` 버튼을 누르면 팔로잉 기능이 동작되게 구현하였습니다.
+팔로우/팔로잉 리스트를 불러와서 추가로 해당 유저에 대해 팔로우/언팔로우 기능을 구현하기 위해 해당 api를 호출하였고, 삼항연산자를 사용하여 isfollow 값이 true, false에 따라 `팔로잉`/ `팔로우` 버튼을 화면에 나타내 주었습니다. 추가로 `팔로잉` 버튼을 누르면 언팔로우 기능이 동작하며, `팔로우` 버튼을 누르면 팔로잉 기능이 동작되게 구현하였습니다.
 
 그 결과 `팔로잉`, `팔로우` 버튼을 클릭하면 팔로우/ 언팔로우 기능이 동작하면서 isfollow 값이 바뀌어 그 값에 따른 버튼 모양이 다시 화면에 나타나야 하는데, 그 결과가 다시 화면에 렌더링 되지 않는 문제가 발생했습니다.
 
 ```jsx
- function Followings() {
-
+function Followings() {
 	const { id } = useParams();
 	const [Following, setFollowing] = useState(null);
 
@@ -286,12 +271,12 @@ function DarkModeBtn({ isMain }) {
 		}
 	}
 
-return (
+	return (
 		<>
 			{Following !== null &&
 				Following.map((item) => (
 					<UserLi key={item._id}>
-						 // 생략
+						// 생략
 						{item.isfollow ? (
 							<FollowingBtn
 								type="button"
@@ -318,7 +303,7 @@ return (
 
 ### 해결방법
 
-`isLoading`이라는 변수를 만들어 초기값을 false로 설정하였고, 팔로우/언팔로우 api가 호출될때마다 true로 바꿔주었습니다. 팔로우/언팔로우 기능이 수행되면서 useEffect로 해당 변수 변화를 감지해 팔로우/팔로잉 리스트가 다시 호출되면서 바뀐 isfollow값에 따른 버튼이 다시 화면에 렌더링 되었습니다. 
+`isLoading`이라는 변수를 만들어 초기값을 false로 설정하였고, 팔로우/언팔로우 api가 호출될때마다 true로 바꿔주었습니다. 팔로우/언팔로우 기능이 수행되면서 useEffect로 해당 변수 변화를 감지해 팔로우/팔로잉 리스트가 다시 호출되면서 바뀐 isfollow값에 따른 버튼이 다시 화면에 렌더링 되었습니다.
 
 ```jsx
 function Followings() {
@@ -339,7 +324,7 @@ const [isLoading, setIsLoading] = useState(false);
 		try {
 			// 생략
 			setIsLoading(true);
-		} 
+		}
 	    // 생략
 	}
 
@@ -348,7 +333,7 @@ const [isLoading, setIsLoading] = useState(false);
 		try {
 			// 생략
 	    setIsLoading(true);
-		} 
+		}
       // 생략
 	}
 }
@@ -364,8 +349,8 @@ const [isLoading, setIsLoading] = useState(false);
 -   이미지는 asset 폴더에 저장/폴더이름은 소문자로/해당 컴포넌트 2번 이상 사용되면 common 폴더에 저장 하는 방식으로 파일/폴더 이름의 컨벤션을 지정하였습니다.
 
 ### Github Issues https://github.com/bookdukbang/bookdukbang/pull/16/
-- 협업하기에 팀원 간의 작업을 파악하고 코드리뷰를 주고 받으며 충돌을 방지하기 위해 `Github Issues`를 활용하여 원활한 협업에 도움이 되었습니다.
 
+-   협업하기에 팀원 간의 작업을 파악하고 코드리뷰를 주고 받으며 충돌을 방지하기 위해 `Github Issues`를 활용하여 원활한 협업에 도움이 되었습니다.
 
 # 📝 레슨런
 
@@ -373,16 +358,14 @@ const [isLoading, setIsLoading] = useState(false);
 
 -   협업 방식으로 Git Flow 전략을 사용하여 소스코드를 관리하여 기존의 5가지 브랜치로 나누지 않고 필요하다고 생각되는 3가지 브랜치(main, develop, feature)로 줄여서 적용하였습니다.
 -   초반에 팀원 인원 수의 감소로 원래 4명의 분량으로 생각하여 반응형까지 고려하기에 어려움을 겪었지만, 3명으로도 적절히 분량을 분배하여 완성하였습니다.
--   팀원이 PR을 올릴 때, 반드시 모든 팀원이 코드 리뷰 후 확인 코멘트를 남기면 merge하는 절차를 만들어 타인의 코드를 보는 경험을 하고 다양한 코드 방식을 알게 되었습니다. 
+-   팀원이 PR을 올릴 때, 반드시 모든 팀원이 코드 리뷰 후 확인 코멘트를 남기면 merge하는 절차를 만들어 타인의 코드를 보는 경험을 하고 다양한 코드 방식을 알게 되었습니다.
 -   디자인 경험이 있는 팀원이 피그마로 반응형 디자인 시안을 제작해 기존의 모바일 웹 버전만 있는 프로젝트를 업그레이드 하여 반응형 웹 페이지로 제작하였습니다.
-
 
 ### Achieving Needs
 
-- 프로젝트 후반부로 갈 수록 문서에 정리해두는 과정이 부족해 프로젝트 이슈 발생 시 원인과 해결에 대한 아카이빙이 미흡되었음을 알고 개선해야겠다고 느꼈습니다.
-- 초기에 계획한 타입스크립트나 리덕스 등 다양한 기술을 사용하지 못해 아쉬웠고 useMemo 등 렌더링의 최적화 하는 방식으로 리펙토링이 필요하다고 생각했습니다.
-- 폴더 및 파일 분기에 대한 각자의 기준이 다르다보니 파일마다 일관된 형식이 아니고 재사용성을 고려하지 못한 부분이 아쉬웠습니다.
-
+-   프로젝트 후반부로 갈 수록 문서에 정리해두는 과정이 부족해 프로젝트 이슈 발생 시 원인과 해결에 대한 아카이빙이 미흡되었음을 알고 개선해야겠다고 느꼈습니다.
+-   초기에 계획한 타입스크립트나 리덕스 등 다양한 기술을 사용하지 못해 아쉬웠고 useMemo 등 렌더링의 최적화 하는 방식으로 리펙토링이 필요하다고 생각했습니다.
+-   폴더 및 파일 분기에 대한 각자의 기준이 다르다보니 파일마다 일관된 형식이 아니고 재사용성을 고려하지 못한 부분이 아쉬웠습니다.
 
 # 📕 기능상세
 
