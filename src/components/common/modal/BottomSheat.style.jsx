@@ -37,6 +37,7 @@ const BottomSheatWrap = styled.div`
 		background-color: transparent;
 		padding: 1.1rem 2.5rem;
 		text-align: left;
+		color: ${({ theme }) => theme.textColor};
 	}
 `;
 
