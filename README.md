@@ -95,9 +95,53 @@
 
 # 💥트러블 슈팅(핵심 로직)
 
-## 1. 트러블 슈팅
+## 1. useLocation / useParams
 
-내용적기
+### 문제 상황
+
+유저의 프로필 사진을 클릭했을 경우 유저 프로필 페이지로 이동하기 위해서는 유저의 accountname이 필요하다. 그래서 프로필 사진 Link의 state에서 userId를 지정해준 후 다음 페이지에서 useLocation을 사용하여 state의 userId에 접근하도록 하였다.
+
+```jsx
+<Link
+	to={`/user/${author.accountname}`}
+	state={{ userId: author.accountname }}
+>
+```
+
+```jsx
+import { useLocation } from 'react-router-dom';
+
+const location = useLocation();
+const data = location.state.userId;
+
+const res = await fetch(SERVER_URL + `/각각의 API/${data}`, {
+```
+
+그 결과 프로필 사진을 클릭한 경우에만 userId를 받아올 수 있기 때문에 주소창 url에 `user/유저acccountname`을 적용했을 경우에는 빈 화면이 나오는 현상이 발생하였다.
+
+### 해결 방법
+
+App.jsx의 라우트 연결에서 path를 `/user/:id`로 지정하고 :id 파라미터의 정보를 가져오기 위해 react-router-dom의 useParams라는 훅을 사용하였다. useParams의 정보를 id라는 변수에 저장하여 파라미터를 사용함으로써 프로필 사진이 클릭되었을 때 뿐만이 아니라 주소창에 url을 직접 적용하여도 페이지가 성공적으로 렌더링 되었다.
+
+```jsx
+<Link to={`/user/${author.accountname}`}>
+```
+
+```jsx
+import { useParams } from 'react-router-dom';
+
+let { id } = useParams();
+
+const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {
+```
+
+```jsx
+<Route
+	path="/user/:id"
+	exact
+	element={<UserProfilePage />}
+/>
+```
 
 ## 2. 트러블 슈팅
 
