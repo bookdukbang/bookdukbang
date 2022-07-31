@@ -47,6 +47,9 @@ const FollowerAside = styled.aside`
 	@media ${({ theme }) => theme.size.mobile} {
 		display: none;
 	}
+	@media ${({ theme }) => theme.size.tablet} {
+		display: none;
+	}
 `;
 
 const IrH2 = styled.h2`
