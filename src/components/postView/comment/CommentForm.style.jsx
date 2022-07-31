@@ -46,7 +46,8 @@ const UserProfileImg = styled.img`
 `;
 
 const WriteInput = styled.input`
-	padding: 1rem 0;
+	padding: 1rem;
+	border-radius: 0.5rem;
 	position: absolute;
 	left: 0;
 	right: 0;

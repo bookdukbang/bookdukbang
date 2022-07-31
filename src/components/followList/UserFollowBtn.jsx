@@ -4,19 +4,21 @@ import styled from 'styled-components';
 import React from 'react';
 
 const FollowBtn = styled(SmallBtn)`
-	padding: 1.3rem 13.7rem;
+	width: 30vmin;
+	padding: 1.3rem 0;
 	@media ${({ theme }) => theme.size.mobile} {
-		padding: 0.7rem 3.7rem;
+		padding: 0.7rem 0;
 	}
 `;
 
 const FollowingBtn = styled(SmallBtn)`
-	padding: 1.3rem 13rem;
+	width: 30vmin;
+	padding: 1.3rem 0;
 	background-color: ${({ theme }) => theme.bgMainColor};
 	color: ${({ theme }) => theme.mainColor};
 	border: 0.1rem solid ${({ theme }) => theme.mainColor};
 	@media ${({ theme }) => theme.size.mobile} {
-		padding: 0.7rem 3.7rem;
+		padding: 0.7rem 0;
 	}
 `;
 

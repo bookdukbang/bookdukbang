@@ -6,7 +6,7 @@ import { NoneProfileSmall } from '../common/user/UserUpload';
 
 const UserLi = styled.li`
 	display: flex;
-	background-color: ${({ theme }) => theme.whiteColor};
+	background-color: ${({ theme }) => theme.bgMainColor};
 	border-radius: 1rem;
 	padding: 2rem;
 `;

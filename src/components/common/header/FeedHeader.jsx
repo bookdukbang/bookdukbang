@@ -1,5 +1,6 @@
-import React from 'react';
-import HeaderLogo from '../../../assets/HeaderLogo.png';
+import React, { useContext } from 'react';
+import HeaderLogoLight from '../../../assets/HeaderLogo.png';
+import HeaderLogoDark from '../../../assets/logo_dark.png';
 import PostingIcon from '../../../assets/PostingIcon.png';
 import LogoutIcon from '../../../assets/LogoutIcon.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,9 +17,13 @@ import {
 	PostingImg,
 	LogoutImg,
 	HeaderBtnLogout,
+	BtnWrap,
 } from './FeedHeader.style';
+import DarkModeBtn from '../../darkmode/DarkModeBtn';
+import { ThemeModeContext } from '../../../context/ThemeModeContext';
 
 function FeedHeader({ children, isHome }) {
+	const { mode } = useContext(ThemeModeContext);
 	const navigate = useNavigate();
 	const onClickLogout = () => {
 		window.localStorage.removeItem('user');
@@ -34,7 +39,11 @@ function FeedHeader({ children, isHome }) {
 			<FeedHeaderWrap>
 				<LogoWrap isHome={isHome}>
 					<Link to="/feed">
-						<LogoImg src={HeaderLogo} alt="북덕방" />
+						{mode === 'light' ? (
+							<LogoImg src={HeaderLogoLight} alt="북덕방" />
+						) : (
+							<LogoImg src={HeaderLogoDark} alt="북덕방" />
+						)}
 					</Link>
 				</LogoWrap>
 				<BackBtn type="button" isHome={isHome} onClick={onClickBack}>
@@ -63,9 +72,12 @@ function FeedHeader({ children, isHome }) {
 						</HeaderBtnLogout>
 					</li>
 				</HeaderUl>
-				<MoreBtn type="button" onClick={onClickLogout}>
-					<span>로그아웃 버튼</span>
-				</MoreBtn>
+				<BtnWrap>
+					<DarkModeBtn isMain={false} />
+					<MoreBtn type="button" onClick={onClickLogout}>
+						<span>로그아웃 버튼</span>
+					</MoreBtn>
+				</BtnWrap>
 			</FeedHeaderWrap>
 		</HeaderStyle>
 	);

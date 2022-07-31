@@ -41,7 +41,7 @@ const Title = styled.h2`
 
 const UserLi = styled.li`
 	display: flex;
-	background-color: ${({ theme }) => theme.whiteColor};
+	background-color: ${({ theme }) => theme.bgMainColor};
 	border-radius: 1rem;
 	padding: 1rem 1.5rem;
 	margin-bottom: 3rem;

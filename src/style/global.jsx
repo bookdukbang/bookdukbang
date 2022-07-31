@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
         font-size: inherit;
     }
 
+    input{
+        background-color: ${({ theme }) => theme.bgsubColor};
+    }
+
     button{
         cursor: pointer;
     }

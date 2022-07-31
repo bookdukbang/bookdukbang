@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import HeaderLogoLight from '../../../assets/HeaderLogo.png';
+import HeaderLogoDark from '../../../assets/logo_dark.png';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ButtonStyle } from '../Button.style';
 import Wrap from '../Wrap';
-import HeaderLogo from '../../../assets/HeaderLogo.png';
+import { ThemeModeContext } from '../../../context/ThemeModeContext';
 const HeaderStyle = styled.header`
 	background-color: ${({ theme }) => theme.bgMainColor};
 	padding: 2.7rem 0;
@@ -39,12 +41,17 @@ const PostUploadBtn = styled(ButtonStyle)`
 `;
 
 function PostHeader({ isDisable, btnTxt }) {
+	const { mode } = useContext(ThemeModeContext);
 	return (
 		<HeaderStyle>
 			<Wrap>
 				<h1>
 					<Link to="/feed">
-						<LogoImg src={HeaderLogo} alt="북덕방" />
+						{mode === 'light' ? (
+							<LogoImg src={HeaderLogoLight} alt="북덕방" />
+						) : (
+							<LogoImg src={HeaderLogoDark} alt="북덕방" />
+						)}
 					</Link>
 				</h1>
 				<PostUploadBtn

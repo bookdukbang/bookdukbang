@@ -65,7 +65,7 @@ const ProfileFollow = styled.dl`
 		align-items: center;
 		position: absolute;
 		top: -1rem;
-		left: 2rem;
+		left: 0;
 	}
 `;
 
@@ -76,7 +76,7 @@ const ProfileFollowing = styled.dl`
 	@media ${({ theme }) => theme.size.mobile} {
 		position: absolute;
 		top: -1rem;
-		right: 2rem;
+		right: 0;
 		flex-direction: column-reverse;
 		align-items: center;
 	}
@@ -118,13 +118,16 @@ const SmallBtnDivStyle = styled(SmallBtnDiv)`
 
 const ShareBtn = styled(SmallBtn)`
 	padding: 1.2rem 2rem;
-	background-color: ${({ theme }) => theme.whiteColor};
+	background-color: ${({ theme }) => theme.bgMainColor};
 	color: ${({ theme }) => theme.grayColor2};
 	border: 1px solid ${({ theme }) => theme.grayColor4};
 	width: 12rem;
 	& img {
 		width: 2.5rem;
 		margin-right: 0.7rem;
+	}
+	&:hover {
+		background-color: ${({ theme }) => theme.bgsubColor};
 	}
 	@media ${({ theme }) => theme.size.mobile} {
 		width: 3.8rem;
