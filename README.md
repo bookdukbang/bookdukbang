@@ -17,7 +17,8 @@
 # 📕 기술 및 개발환경
 
 `React` `Styled-Component` `JavaScript` `HTML/CSS`
-`Git` `Github` `Github Issues` `Figma`
+`Git` `Github` `Github Issues` [`Figma`](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
+
 
 # 📘 역할 분담
 
@@ -355,7 +356,7 @@ const [isLoading, setIsLoading] = useState(false);
 
 # 📒프로젝트를 하며 겪은 이슈
 
-### 코딩 컨벤션, 커밋 컨벤션, 파일/폴더 이름 컨벤션
+### [코딩 컨벤션](https://www.notion.so/c57e3d6607f64d2ab80f937fbea18d7e), [커밋 컨벤션](https://www.notion.so/d1f251287a7d4e73a03350bee1930710), 파일/폴더 이름 컨벤션
 
 -   각자 스타일이 다르기 때문에 협업 전 가독성과 개발 방식 통합을 위해 코딩 컨벤션과 커밋 컨벤션의 필요함을 느꼈습니다.
 -   기존에 존재하는 컨벤션 자료를 참고하여 저희에게 맞는 컨벤션을 만들었습니다.
