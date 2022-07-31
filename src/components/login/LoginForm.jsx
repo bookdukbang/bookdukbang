@@ -76,7 +76,6 @@ function LoginForm() {
 				body: JSON.stringify(loginData),
 			});
 			const result = await response.json();
-			console.log(result);
 
 			// 로그인 성공
 			if (result.status !== 422) {
@@ -84,7 +83,6 @@ function LoginForm() {
 				// 받아올 때 이렇게 사용하기 JSON.parse(localStorage.getItem('user'));
 				setIsWrong(false);
 				setMsg('');
-				console.log('로그인 완료!');
 				navigate('/feed');
 			} else {
 				// 로그인 실패
