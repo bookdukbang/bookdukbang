@@ -151,9 +151,38 @@ const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략
     
     위 코드에서는 `<DarkModeBtn/>`가 `App.js`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
     
-- 재랜더링 시, 다크모드 설정 초기화
+- 재더링 시, 다크모드 설정 초기화
     
     새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서  `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌어 지는 문제가 발생했습니다.
+    
+```jsx
+import { ThemeProvider } from 'styled-components';
+import theme from './style/theme';
+import GlobalStyles from './style/global';
+import DarkModeBtn from './components/darkmode/DarkModeBtn';
+
+function App() {
+    const [mode, setMode] = useState('light');
+    return (
+        <>
+            <ThemeProvider theme={theme[mode]}>
+			          <GlobalStyles />
+			           // 생략
+                <DarkModeBtn mode={mode} setMode={setMode}/>
+            </ThemeProvider>
+        </>
+    );
+}
+```
+
+```jsx
+import React from 'react';
+
+function DarkModeBtn({ mode, setMode}) {
+    const { mode, setMode } = useContext(ThemeModeContext);
+    // 생략
+}
+```
     
 ### 해결 방법
 
@@ -212,9 +241,117 @@ function DarkModeBtn({ isMain }) {
 }
 ```
 
-## 3. 트러블 슈팅
+## 3. 팔로우 / 언팔로우
 
-내용적기
+### 문제상황
+
+팔로우/팔로잉 리스트를 불러와서 추가로 해당 유저에 대해  팔로우/언팔로우 기능을 구현하기 위해 해당  api를 호출하였고, 삼항연산자를 사용하여 isfollow 값이 true, false에 따라 `팔로잉`/ `팔로우` 버튼을 화면에 나타내 주었습니다. 추가로 `팔로잉` 버튼을 누르면 언팔로우 기능이 동작하며, `팔로우` 버튼을 누르면 팔로잉 기능이 동작되게 구현하였습니다.
+
+그 결과 `팔로잉`, `팔로우` 버튼을 클릭하면 팔로우/ 언팔로우 기능이 동작하면서 isfollow 값이 바뀌어 그 값에 따른 버튼 모양이 다시 화면에 나타나야 하는데, 그 결과가 다시 화면에 렌더링 되지 않는 문제가 발생했습니다.
+
+```jsx
+ function Followings() {
+
+	const { id } = useParams();
+	const [Following, setFollowing] = useState(null);
+
+	// 팔로잉 리스트, 팔로우 리스트(UserFollowList())
+	async function UserFollowingList() {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	useEffect(() => {
+		UserFollowingList();
+	}, []);
+
+	// 팔로우
+	async function Follow(useraccount) {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	// 언팔로우
+	async function UnFollow(useraccount) {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+return (
+		<>
+			{Following !== null &&
+				Following.map((item) => (
+					<UserLi key={item._id}>
+						 // 생략
+						{item.isfollow ? (
+							<FollowingBtn
+								type="button"
+								onClick={() => UnFollow(item.accountname)}
+							>
+								팔로잉
+							</FollowingBtn>
+						) : (
+							<FollowBtn
+								type="button"
+								onClick={() => Follow(item.accountname)}
+							>
+								팔로우
+							</FollowBtn>
+						)}
+					</UserLi>
+				))}
+		</>
+	);
+}
+```
+
+그 결과 `팔로잉`, `팔로우` 버튼을 클릭하면 팔로우/ 언팔로우 기능이 동작하면서 isfollow 값이 바뀌어 그 값에 따른 버튼 모양이 다시 화면에 나타나야 하는데, 그 결과가 다시 화면에 렌더링 되지 않는 문제가 발생했습니다.
+
+### 해결방법
+
+`isLoading`이라는 변수를 만들어 초기값을 false로 설정하였고, 팔로우/언팔로우 api가 호출될때마다 true로 바꿔주었습니다. 팔로우/언팔로우 기능이 수행되면서 useEffect로 해당 변수 변화를 감지해 팔로우/팔로잉 리스트가 다시 호출되면서 바뀐 isfollow값에 따른 버튼이 다시 화면에 렌더링 되었습니다. 
+
+```jsx
+function Followings() {
+
+const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		if (isLoading) {
+			UserFollowingList();
+			setIsLoading(false);
+		}
+	}, [isLoading]);
+
+// 생략
+
+	// 팔로우
+	async function Follow(useraccount) {
+		try {
+			// 생략
+			setIsLoading(true);
+		} 
+	    // 생략
+	}
+
+	// 언팔로우
+	async function UnFollow(useraccount) {
+		try {
+			// 생략
+	    setIsLoading(true);
+		} 
+      // 생략
+	}
+}
+```
 
 # 📒프로젝트를 하며 겪은 이슈
 
