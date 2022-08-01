@@ -92,7 +92,7 @@
 
 # 💥트러블 슈팅(핵심 로직)
 
-## 1. useLocation / useParams
+## 1. 유저 프로필 페이지 - useLocation / useParams
 
 ### 문제 상황
 
@@ -136,7 +136,7 @@ const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략
 <Route path="/user/:id" exact element={<UserProfilePage />} />
 ```
 
-## 2. 다크모드
+## 2. 다크모드 - useContext / 로컬 스토리지
 
 ### 문제 상황
 
@@ -228,7 +228,7 @@ function DarkModeBtn({ isMain }) {
 }
 ```
 
-## 3. 팔로우 / 언팔로우
+## 3. 팔로우 / 언팔로우 - useEffect
 
 ### 문제상황
 
