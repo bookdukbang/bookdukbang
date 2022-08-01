@@ -350,7 +350,7 @@ const [isLoading, setIsLoading] = useState(false);
 -   각자 스타일이 다르기 때문에 협업 전 가독성과 개발 방식 통합을 위해 코딩 컨벤션과 커밋 컨벤션의 필요함을 느꼈습니다.
 -   기존에 존재하는 컨벤션 자료를 참고하여 저희에게 맞는 컨벤션을 만들었습니다.
 -   eslint, prettier 파일을 만들어 자동 설정했습니다.
--   이미지는 asset 폴더에 저장/폴더이름은 소문자로/해당 컴포넌트 2번 이상 사용되면 common 폴더에 저장 하는 방식으로 파일/폴더 이름의 컨벤션을 지정하였습니다.
+-   이미지는 asset 폴더에 저장, 폴더이름은 소문자로, 해당 컴포넌트 2번 이상 사용되면 common 폴더에 저장 하는 방식으로 파일, 폴더 이름의 컨벤션을 지정하였습니다.
 
 ### Github Issues https://github.com/bookdukbang/bookdukbang/pull/16/
 
