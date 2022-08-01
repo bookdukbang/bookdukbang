@@ -149,9 +149,9 @@ const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략
 ### 문제 상황
 
 -   변수를 전달하기 위해 props를 계속 내려 받아야하는 문제
-    위 코드에서는 `<DarkModeBtn/>`가 `App.js`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
+   <br/> 기존 코드에서는 `<DarkModeBtn/>`가 `App.js`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
 -   재렌더링 시, 다크모드 설정 초기화
-    새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서 `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌어 지는 문제가 발생했습니다.
+   <br/>새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서 `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌어 지는 문제가 발생했습니다.
 
 ```jsx
 import { ThemeProvider } from 'styled-components';
