@@ -20,9 +20,9 @@
 `React` `Styled-Component` `JavaScript` `HTML/CSS`
 `Git` `Github` `Github Issues` [`Figma`](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
 
-- 피그마 링크: [Figma](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
-- 커밋 컨벤션 링크: [커밋 컨벤션](https://www.notion.so/d1f251287a7d4e73a03350bee1930710)
-- 코드 컨벤션 링크: [코딩 컨벤션](https://www.notion.so/c57e3d6607f64d2ab80f937fbea18d7e), 
+-   피그마 링크: [Figma](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
+-   커밋 컨벤션 링크: [커밋 컨벤션](https://www.notion.so/d1f251287a7d4e73a03350bee1930710)
+-   코드 컨벤션 링크: [코딩 컨벤션](https://www.notion.so/c57e3d6607f64d2ab80f937fbea18d7e),
 
 # 📘 역할 분담
 
@@ -149,9 +149,9 @@ const res = await fetch(SERVER_URL + `/각각의 API/${id}`, {  // 생략
 ### 문제 상황
 
 -   변수를 전달하기 위해 props를 계속 내려 받아야하는 문제
-   <br/> 기존 코드에서는 `<DarkModeBtn/>`가 `App.jsx`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
+    <br/> 기존 코드에서는 `<DarkModeBtn/>`가 `App.jsx`외에서 사용될 때는 `mode`, `setMode`를 계속 넘겨 자식 컴포넌트로 넘겨주어 불필요한 props가 전달되면서 상태 관리가 복잡해지게 되었습니다.
 -   재렌더링 시, 다크모드 설정 초기화
-   <br/>새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서 `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌는 문제가 발생했습니다.
+    <br/>새로운 페이지로 넘어갈 때나 새로고침을 할 때 렌더링 되면서 `mode`의 기본값인 **light**로 돌아가 다크모드일 때 라이트모드로 바뀌는 문제가 발생했습니다.
 
 ```jsx
 import { ThemeProvider } from 'styled-components';
@@ -185,7 +185,7 @@ function DarkModeBtn({ mode, setMode }) {
 ### 해결 방법
 
 -   `useContext` 사용해 상태 관리
-   <br/> 이를 해결하기 위해 상태 관리 툴을 생각했습니다. 이 문제의 경우, 관리되는 변수가 가볍고 복잡하지 않아 상태관리를 도와주는 툴로 **useContext**을 사용했습니다. 이를 통해 `<DarkModeBtn/>`가 `App.jsx` 외에서도 자유롭게 사용되도록 해결했습니다.
+    <br/> 이를 해결하기 위해 상태 관리 툴을 생각했습니다. 이 문제의 경우, 관리되는 변수가 가볍고 복잡하지 않아 상태관리를 도와주는 툴로 **useContext**을 사용했습니다. 이를 통해 `<DarkModeBtn/>`가 `App.jsx` 외에서도 자유롭게 사용되도록 해결했습니다.
 -   `로컬 스토리지`로 사용자의 모드 저장하기
     <br/> 사용자가 설정한 값을 저장하도록 브라우저의 저장소인 `로컬 스토리지`를 사용하여 `mode`가 바뀔 때 `로컬 스토리지`에도 값이 저장되도록 수정해 재랜더링 되더라도 다크모드 또는 라이트 모드가 유지되게 해결했습니다.
 
@@ -201,19 +201,19 @@ import { ThemeProvider } from 'styled-components';
 import theme from './style/theme';
 
 function App() {
- const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
- const [mode, setMode] = useState(LocalTheme);
+	const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
+	const [mode, setMode] = useState(LocalTheme);
 
- return (
-  <>
-   <ThemeModeContext.Provider value={{ mode, setMode }}>
-    <ThemeProvider theme={theme[mode]}>
-    // 생략
-    <DarkModeBtn />
-    </ThemeProvider>
-   </ThemeModeContext.Provider>
-  </>
- );
+	return (
+		<>
+			<ThemeModeContext.Provider value={{ mode, setMode }}>
+				<ThemeProvider theme={theme[mode]}>
+					// 생략
+					<DarkModeBtn />
+				</ThemeProvider>
+			</ThemeModeContext.Provider>
+		</>
+	);
 }
 ```
 
@@ -222,17 +222,17 @@ import React, { useContext } from 'react';
 import { ThemeModeContext } from '../../context/ThemeModeContext';
 
 function DarkModeBtn({ isMain }) {
- const { mode, setMode } = useContext(ThemeModeContext);
- const onClickMode = () => {
-  if (mode === 'light') {
-   setMode('dark');
-   localStorage.setItem('mode', JSON.stringify('dark'));
-  } else {
-   setMode('light');
-   localStorage.setItem('mode', JSON.stringify('light'));
-  }
- };
- //생략
+	const { mode, setMode } = useContext(ThemeModeContext);
+	const onClickMode = () => {
+		if (mode === 'light') {
+			setMode('dark');
+			localStorage.setItem('mode', JSON.stringify('dark'));
+		} else {
+			setMode('light');
+			localStorage.setItem('mode', JSON.stringify('light'));
+		}
+	};
+	//생략
 }
 ```
 
@@ -246,64 +246,64 @@ function DarkModeBtn({ isMain }) {
 
 ```jsx
 function Followings() {
- const { id } = useParams();
- const [Following, setFollowing] = useState(null);
+	const { id } = useParams();
+	const [Following, setFollowing] = useState(null);
 
- // 팔로잉 리스트, 팔로우 리스트(UserFollowList())
- async function UserFollowingList() {
-  try {
-	// 생략
-  } catch (error) {
-	console.error(error);
-  }
- }
- useEffect(() => {
-	UserFollowingList();
- }, []);
+	// 팔로잉 리스트, 팔로우 리스트(UserFollowList())
+	async function UserFollowingList() {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	useEffect(() => {
+		UserFollowingList();
+	}, []);
 
- // 팔로우
- async function Follow(useraccount) {
-  try {
-	// 생략
-  } catch (error) {
-	console.error(error);
-  }
- }
+	// 팔로우
+	async function Follow(useraccount) {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
- // 언팔로우
- async function UnFollow(useraccount) {
-  try {
-	// 생략
-  } catch (error) {
-	console.error(error);
-  }
-}
+	// 언팔로우
+	async function UnFollow(useraccount) {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
- return (
-  <>
-		{Following !== null &&
-			Following.map((item) => (
-				<UserLi key={item._id}>
-					// 생략
-					{item.isfollow ? (
-						<FollowingBtn
-							type="button"
-							onClick={() => UnFollow(item.accountname)}
-						>
-							팔로잉
-						</FollowingBtn>
-					) : (
-						<FollowBtn
-							type="button"
-							onClick={() => Follow(item.accountname)}
-						>
-							팔로우
-						</FollowBtn>
-					)}
-				</UserLi>
-			))}
-  </>
- );
+	return (
+		<>
+			{Following !== null &&
+				Following.map((item) => (
+					<UserLi key={item._id}>
+						// 생략
+						{item.isfollow ? (
+							<FollowingBtn
+								type="button"
+								onClick={() => UnFollow(item.accountname)}
+							>
+								팔로잉
+							</FollowingBtn>
+						) : (
+							<FollowBtn
+								type="button"
+								onClick={() => Follow(item.accountname)}
+							>
+								팔로우
+							</FollowBtn>
+						)}
+					</UserLi>
+				))}
+		</>
+	);
 }
 ```
 
@@ -626,7 +626,7 @@ src
  ┣ constants
  ┃ ┗ index.js
  ┣ context
- ┃ ┗ ThemeModeContext.jsx 
+ ┃ ┗ ThemeModeContext.jsx
  ┣ pages
  ┃ ┣ 404Page.jsx
  ┃ ┣ ChatContentPage.jsx
