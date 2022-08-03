@@ -201,19 +201,19 @@ import { ThemeProvider } from 'styled-components';
 import theme from './style/theme';
 
 function App() {
-	const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
-	const [mode, setMode] = useState(LocalTheme);
+ const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
+ const [mode, setMode] = useState(LocalTheme);
 
-	return (
-		<>
-			<ThemeModeContext.Provider value={{ mode, setMode }}>
-				<ThemeProvider theme={theme[mode]}>
-					// 생략
-					<DarkModeBtn />
-				</ThemeProvider>
-			</ThemeModeContext.Provider>
-		</>
-	);
+ return (
+  <>
+   <ThemeModeContext.Provider value={{ mode, setMode }}>
+    <ThemeProvider theme={theme[mode]}>
+    // 생략
+    <DarkModeBtn />
+    </ThemeProvider>
+   </ThemeModeContext.Provider>
+  </>
+ );
 }
 ```
 
@@ -222,17 +222,17 @@ import React, { useContext } from 'react';
 import { ThemeModeContext } from '../../context/ThemeModeContext';
 
 function DarkModeBtn({ isMain }) {
-	const { mode, setMode } = useContext(ThemeModeContext);
-	const onClickMode = () => {
-		if (mode === 'light') {
-			setMode('dark');
-			localStorage.setItem('mode', JSON.stringify('dark'));
-		} else {
-			setMode('light');
-			localStorage.setItem('mode', JSON.stringify('light'));
-		}
-	};
-	//생략
+ const { mode, setMode } = useContext(ThemeModeContext);
+ const onClickMode = () => {
+  if (mode === 'light') {
+   setMode('dark');
+   localStorage.setItem('mode', JSON.stringify('dark'));
+  } else {
+   setMode('light');
+   localStorage.setItem('mode', JSON.stringify('light'));
+  }
+ };
+ //생략
 }
 ```
 
@@ -246,64 +246,64 @@ function DarkModeBtn({ isMain }) {
 
 ```jsx
 function Followings() {
-	const { id } = useParams();
-	const [Following, setFollowing] = useState(null);
+ const { id } = useParams();
+ const [Following, setFollowing] = useState(null);
 
-	// 팔로잉 리스트, 팔로우 리스트(UserFollowList())
-	async function UserFollowingList() {
-		try {
-			// 생략
-		} catch (error) {
-			console.error(error);
-		}
-	}
-	useEffect(() => {
-		UserFollowingList();
-	}, []);
+ // 팔로잉 리스트, 팔로우 리스트(UserFollowList())
+ async function UserFollowingList() {
+  try {
+	// 생략
+  } catch (error) {
+	console.error(error);
+  }
+ }
+ useEffect(() => {
+	UserFollowingList();
+ }, []);
 
-	// 팔로우
-	async function Follow(useraccount) {
-		try {
-			// 생략
-		} catch (error) {
-			console.error(error);
-		}
-	}
+ // 팔로우
+ async function Follow(useraccount) {
+  try {
+	// 생략
+  } catch (error) {
+	console.error(error);
+  }
+ }
 
-	// 언팔로우
-	async function UnFollow(useraccount) {
-		try {
-			// 생략
-		} catch (error) {
-			console.error(error);
-		}
-	}
+ // 언팔로우
+ async function UnFollow(useraccount) {
+  try {
+	// 생략
+  } catch (error) {
+	console.error(error);
+  }
+}
 
-	return (
-		<>
-			{Following !== null &&
-				Following.map((item) => (
-					<UserLi key={item._id}>
-						// 생략
-						{item.isfollow ? (
-							<FollowingBtn
-								type="button"
-								onClick={() => UnFollow(item.accountname)}
-							>
-								팔로잉
-							</FollowingBtn>
-						) : (
-							<FollowBtn
-								type="button"
-								onClick={() => Follow(item.accountname)}
-							>
-								팔로우
-							</FollowBtn>
-						)}
-					</UserLi>
-				))}
-		</>
-	);
+ return (
+  <>
+		{Following !== null &&
+			Following.map((item) => (
+				<UserLi key={item._id}>
+					// 생략
+					{item.isfollow ? (
+						<FollowingBtn
+							type="button"
+							onClick={() => UnFollow(item.accountname)}
+						>
+							팔로잉
+						</FollowingBtn>
+					) : (
+						<FollowBtn
+							type="button"
+							onClick={() => Follow(item.accountname)}
+						>
+							팔로우
+						</FollowBtn>
+					)}
+				</UserLi>
+			))}
+  </>
+ );
 }
 ```
 
