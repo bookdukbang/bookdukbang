@@ -20,9 +20,13 @@
 `React` `Styled-Component` `JavaScript` `HTML/CSS`
 `Git` `Github` `Github Issues` [`Figma`](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
 
--   피그마 링크: [Figma](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
--   커밋 컨벤션 링크: [커밋 컨벤션](https://www.notion.so/d1f251287a7d4e73a03350bee1930710)
--   코드 컨벤션 링크: [코딩 컨벤션](https://www.notion.so/c57e3d6607f64d2ab80f937fbea18d7e),
+-   피그마 링크: [💻Figma 시안 보러가기](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
+-   커밋 컨벤션 링크: [💻커밋 컨벤션 보러가기](https://www.notion.so/d1f251287a7d4e73a03350bee1930710)
+-   코드 컨벤션 링크: [💻코딩 컨벤션 보러가기](https://www.notion.so/c57e3d6607f64d2ab80f937fbea18d7e)
+-   반응형 기준:
+    - PC: 1000px 이상
+    - tablet: 1000px 미만
+    - mobile: 390px 미만
 
 # 📘 역할 분담
 
@@ -512,144 +516,36 @@ const [isLoading, setIsLoading] = useState(false);
 -   style: 글로벌스타일, 테마가 들어있는 폴더
 
 ```
-src
- ┣ assets
- ┣ components
- ┃ ┣ chat
- ┃ ┃ ┣ ChatContent.jsx
- ┃ ┃ ┣ ChatList.jsx
- ┃ ┃ ┣ ChatList.style.jsx
- ┃ ┃ ┗ MessageBottom.jsx
- ┃ ┣ common
- ┃ ┃ ┣ feed
- ┃ ┃ ┃ ┣ Feed.jsx
- ┃ ┃ ┃ ┗ FeedModal.jsx
- ┃ ┃ ┣ header
- ┃ ┃ ┃ ┣ FeedHeader.jsx
- ┃ ┃ ┃ ┣ FeedHeader.style.jsx
- ┃ ┃ ┃ ┗ Header.jsx
- ┃ ┃ ┣ modal
- ┃ ┃ ┃ ┣ BottomSheat.style.jsx
- ┃ ┃ ┃ ┗ Modal.jsx
- ┃ ┃ ┣ post
- ┃ ┃ ┃ ┣ PostHeader.jsx
- ┃ ┃ ┃ ┣ PostUploadImg.jsx
- ┃ ┃ ┃ ┣ PostUploadImg.style.jsx
- ┃ ┃ ┃ ┣ PostViewImg.jsx
- ┃ ┃ ┃ ┗ PostViewImg.style.jsx
- ┃ ┃ ┣ product
- ┃ ┃ ┃ ┣ ProductBtn.jsx
- ┃ ┃ ┃ ┣ ProductDetail.jsx
- ┃ ┃ ┃ ┗ ProductDetail.style.jsx
- ┃ ┃ ┣ user
- ┃ ┃ ┃ ┣ User.jsx
- ┃ ┃ ┃ ┗ UserUpload.jsx
- ┃ ┃ ┣ Button.style.jsx
- ┃ ┃ ┣ Footer.jsx
- ┃ ┃ ┣ FormWrap.style.jsx
- ┃ ┃ ┣ Input.style.jsx
- ┃ ┃ ┣ LikeButton.jsx
- ┃ ┃ ┣ MainTitle.jsx
- ┃ ┃ ┣ ProfileName.style.jsx
- ┃ ┃ ┗ Wrap.jsx
- ┃ ┣ feed
- ┃ ┃ ┣ BookList.jsx
- ┃ ┃ ┣ FeedNoFollowings.jsx
- ┃ ┃ ┣ FollowingFeed.jsx
- ┃ ┃ ┣ MyFollowings.jsx
- ┃ ┃ ┣ User.jsx
- ┃ ┃ ┗ UserFollowing.jsx
- ┃ ┣ followList
- ┃ ┃ ┣ Follower.jsx
- ┃ ┃ ┣ Following.jsx
- ┃ ┃ ┣ FollowList.style.jsx
- ┃ ┃ ┗ UserFollowBtn.jsx
- ┃ ┣ join
- ┃ ┃ ┣ JoinForm.jsx
- ┃ ┃ ┣ JoinProfile.style.jsx
- ┃ ┃ ┗ JoinProfileForm.jsx
- ┃ ┣ darkmode
- ┃ ┃ ┗ DarkModeBtn.jsx
- ┃ ┣ login
- ┃ ┃ ┗ LoginForm.jsx
- ┃ ┣ navigator
- ┃ ┃ ┣ NavigatorMenu.jsx
- ┃ ┃ ┗ NavigatorMenu.style.jsx
- ┃ ┣ postEdit
- ┃ ┃ ┣ PostEditContainer.jsx
- ┃ ┃ ┗ PostEditHeader.jsx
- ┃ ┣ postUpload
- ┃ ┃ ┣ PostForm.jsx
- ┃ ┃ ┣ PostForm.style.jsx
- ┃ ┃ ┗ PostUpContainer.jsx
- ┃ ┣ postView
- ┃ ┃ ┣ comment
- ┃ ┃ ┃ ┣ Comment.jsx
- ┃ ┃ ┃ ┣ Comment.style.jsx
- ┃ ┃ ┃ ┣ CommentContainer.jsx
- ┃ ┃ ┃ ┣ CommentForm.jsx
- ┃ ┃ ┃ ┣ CommentForm.style.jsx
- ┃ ┃ ┃ ┗ CommetModal.jsx
- ┃ ┃ ┣ PostCard.jsx
- ┃ ┃ ┣ PostCard.style.jsx
- ┃ ┃ ┗ PostViewContainer.jsx
- ┃ ┣ product
- ┃ ┃ ┣ ProductForm.jsx
- ┃ ┃ ┣ ProductForm.style.jsx
- ┃ ┃ ┣ ProductLink.jsx
- ┃ ┃ ┣ ProductName.jsx
- ┃ ┃ ┗ ProductPrice.jsx
- ┃ ┣ profile
- ┃ ┃ ┣ edit
- ┃ ┃ ┃ ┣ EditAccount.jsx
- ┃ ┃ ┃ ┣ EditIntro.jsx
- ┃ ┃ ┃ ┣ EditUsername.jsx
- ┃ ┃ ┃ ┗ ProfileEdit.jsx
- ┃ ┃ ┣ MyFeed.jsx
- ┃ ┃ ┣ ProductRegister.jsx
- ┃ ┃ ┣ ProfileInfo.jsx
- ┃ ┃ ┣ UserProductRegister.jsx
- ┃ ┃ ┗ UserProfileInfo.jsx
- ┃ ┣ search
- ┃ ┃ ┣ SearchCard.jsx
- ┃ ┃ ┣ SearchContainer.jsx
- ┃ ┃ ┣ SearchContainer.style.jsx
- ┃ ┃ ┣ SearchHeader.jsx
- ┃ ┃ ┗ SearchHeader.style.jsx
- ┃ ┗ splash
- ┃ ┃ ┣ Splash.jsx
- ┃ ┃ ┣ SplashButton.style.jsx
- ┃ ┃ ┣ SplashHeader.jsx
- ┃ ┃ ┣ SplashLogin.jsx
- ┃ ┃ ┗ SplashTitle.style.jsx
- ┣ constants
- ┃ ┗ index.js
- ┣ context
- ┃ ┗ ThemeModeContext.jsx
- ┣ pages
- ┃ ┣ 404Page.jsx
- ┃ ┣ ChatContentPage.jsx
- ┃ ┣ ChatListPage.jsx
- ┃ ┣ FeedPage.jsx
- ┃ ┣ FollowerList.jsx
- ┃ ┣ FollowerListPage.jsx
- ┃ ┣ FollowingListPage.jsx
- ┃ ┣ JoinPage.jsx
- ┃ ┣ JoinProfilePage.jsx
- ┃ ┣ LoginPage.jsx
- ┃ ┣ MyProfilePage.jsx
- ┃ ┣ PostEditPage.jsx
- ┃ ┣ PostUploadPage.jsx
- ┃ ┣ PostView.jsx
- ┃ ┣ ProductEditPage.jsx
- ┃ ┣ ProductPage.jsx
- ┃ ┣ ProfileEditPage.jsx
- ┃ ┣ SearchPage.jsx
- ┃ ┣ SplashPage.jsx
- ┃ ┗ UserProfilePage.jsx
- ┣ style
- ┃ ┣ global.jsx
- ┃ ┗ theme.js
- ┣ App.jsx
- ┗ index.js
+📦src
+ ┣ 📁 assets
+ ┣ 📁 components
+ ┃ ┣ 📁 chat
+ ┃ ┣ 📁 common
+ ┃ ┃ ┣ 📁 feed
+ ┃ ┃ ┣ 📁 header
+ ┃ ┃ ┣ 📁 modal
+ ┃ ┃ ┣ 📁 post
+ ┃ ┃ ┣ 📁 product
+ ┃ ┃ ┣ 📁 user
+ ┃ ┣ 📁 feed
+ ┃ ┣ 📁 followList
+ ┃ ┣ 📁 join
+ ┃ ┣ 📁 darkmode
+ ┃ ┣ 📁 login
+ ┃ ┣ 📁 navigator
+ ┃ ┣ 📁 postEdit
+ ┃ ┣ 📁 postUpload
+ ┃ ┣ 📁 postView
+ ┃ ┃ ┣ 📁 comment
+ ┃ ┣ 📁 product
+ ┃ ┣ 📁 profile
+ ┃ ┃ ┣ 📁 edit
+ ┃ ┣ 📁 search
+ ┃ ┗ 📁 splash
+ ┣ 📁 constants
+ ┣ 📁 context
+ ┣ 📁 pages
+ ┣ 📁 style
+ ┣ 📜 App.jsx
+ ┗ 📜 index.js
 ```
