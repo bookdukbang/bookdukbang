@@ -51,6 +51,8 @@ sketch
 .runtimeconfig.json
 .firebase/
 
+.env
+
 # End of https://www.toptal.com/developers/gitignore/api/firebase
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,react
