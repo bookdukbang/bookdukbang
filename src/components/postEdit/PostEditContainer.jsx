@@ -82,7 +82,7 @@ function PostEditContainer({ isDisable, setDisable }) {
 			const json = await res.json();
 
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			navigate(`/post/${json.post.id}`);
 

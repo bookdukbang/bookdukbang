@@ -54,9 +54,7 @@ const RegisterTitle = styled.p`
 
 function ProductRegister() {
 	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	const MyAccountName = JSON.parse(
-		sessionStorage.getItem('user'),
-	).accountname;
+	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [books, setBooks] = useState(null);
 	async function MyBookList() {
 		try {
@@ -85,7 +83,7 @@ function ProductRegister() {
 					<ProductBtn key={item.id} item={item} />
 				))}
 				<BookRegister>
-					<RegisterBtn as={Link} to="/product">
+					<RegisterBtn as={Link} to="/product/upload">
 						<PlusBtnImg src={PlusBtn} alt="" />
 						<RegisterTitle>상품등록</RegisterTitle>
 					</RegisterBtn>

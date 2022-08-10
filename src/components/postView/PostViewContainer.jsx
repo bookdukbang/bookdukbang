@@ -63,7 +63,7 @@ function PostViewContainer() {
 			const json = await res.json();
 
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 
 			if (!('image' in json.post)) {
@@ -88,14 +88,8 @@ function PostViewContainer() {
 				{userInfo !== null && postContext && postImgs && (
 					<>
 						<PostContextWrap>
-							<PostCard
-								postContext={postContext}
-								setModalInfo={setModalInfo}
-							/>
-							<CommentContainer
-								userInfo={userInfo}
-								postId={postId}
-							/>
+							<PostCard postContext={postContext} setModalInfo={setModalInfo} />
+							<CommentContainer userInfo={userInfo} postId={postId} />
 						</PostContextWrap>
 						{postContext.image !== '' && 'image' in postContext && (
 							<PostViewImg uploadImgs={postImgs} isView={true} />

@@ -24,16 +24,12 @@ const UserInfo = styled.h2`
 function User() {
 	const MyImageSrc = JSON.parse(sessionStorage.getItem('user')).image;
 	const MyName = JSON.parse(sessionStorage.getItem('user')).username;
-	const MyAccountName = JSON.parse(
-		sessionStorage.getItem('user'),
-	).accountname;
+	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 
 	return (
 		<UserLi>
-			<Link to="/myprofile">
-				<NoneProfileSmall
-					style={{ backgroundImage: `url(${MyImageSrc})` }}
-				/>
+			<Link to="/my">
+				<NoneProfileSmall style={{ backgroundImage: `url(${MyImageSrc})` }} />
 			</Link>
 			<UserInfo>
 				{MyName}

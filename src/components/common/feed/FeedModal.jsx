@@ -22,7 +22,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			});
 			const result = await res.json();
 			if (result.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);
@@ -30,7 +30,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			if (id !== undefined) {
 				navigate('/feed');
 			} else {
-				navigate('/myprofile');
+				navigate('/my');
 				window.location.reload();
 			}
 			return result;
@@ -63,7 +63,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			});
 			const result = await res.json();
 			if (result.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);

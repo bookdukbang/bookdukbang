@@ -54,9 +54,7 @@ const MediumBtnUpload = styled(MediumBtn)`
 
 function BookList() {
 	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	const MyAccountName = JSON.parse(
-		sessionStorage.getItem('user'),
-	).accountname;
+	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [books, setBooks] = useState(null);
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
@@ -104,24 +102,15 @@ function BookList() {
 						<BookTitle>
 							{item.itemName}
 							<span>
-								{`${item.price}`.replace(
-									/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-									',',
-								)}
-								원
+								{`${item.price}`.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
 							</span>
 						</BookTitle>
 					</BookBtn>
 				))}
 			</BookListWrap>
-			{modalInfo.state && (
-				<ProductDetail
-					modalInfo={modalInfo}
-					setModalInfo={setModalInfo}
-				/>
-			)}
+			{modalInfo.state && <ProductDetail modalInfo={modalInfo} setModalInfo={setModalInfo} />}
 			<MediumBtnDiv>
-				<MediumBtnUpload as={Link} to="/product">
+				<MediumBtnUpload as={Link} to="/product/upload">
 					상품 등록하기
 				</MediumBtnUpload>
 			</MediumBtnDiv>

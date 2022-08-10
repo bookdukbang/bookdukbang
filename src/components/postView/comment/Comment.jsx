@@ -74,9 +74,7 @@ function Comment({ commentInfo, setModalInfo }) {
 					</Link>
 					<div id={writeAuthor.accountname}>
 						<div>
-							<UserName
-								to={'/profile/' + writeAuthor.accountname}
-							>
+							<UserName to={'/user/' + writeAuthor.accountname}>
 								{writeAuthor.username}
 							</UserName>
 							<CommentTime>{writeTime} 전</CommentTime>

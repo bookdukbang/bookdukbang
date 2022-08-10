@@ -3,12 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NoneProductImg from '../../assets/none-product.png';
 import PostUploadImg from '../common/post/PostUploadImg';
 import { SERVER_URL } from '../../constants';
-import {
-	ProductBtn,
-	ProductFormStyle,
-	ProductImgWrap,
-	ProductImg,
-} from './ProductForm.style';
+import { ProductBtn, ProductFormStyle, ProductImgWrap, ProductImg } from './ProductForm.style';
 import ProductName from './ProductName';
 import ProductPrice from './ProductPrice';
 import ProductLink from './ProductLink';
@@ -19,14 +14,7 @@ const ImgErrorText = styled(ErrorText)`
 	margin-bottom: 3rem;
 `;
 
-function ProductForm({
-	productInfo,
-	setProductInfo,
-	errorInfo,
-	setErrorInfo,
-	formAPI,
-	isEdit,
-}) {
+function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, formAPI, isEdit }) {
 	const navigate = useNavigate();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [isDisable, setIsDisable] = useState(true);
@@ -61,7 +49,7 @@ function ProductForm({
 			});
 			const json = await res.json();
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			return json;
 		} catch (err) {
@@ -86,9 +74,7 @@ function ProductForm({
 			window.URL.revokeObjectURL(URL.createObjectURL(uploadImgs));
 			imgServerAPI(uploadImgs)
 				.then((d) => SERVER_URL + '/' + d.filename)
-				.then((src) =>
-					setProductInfo((cur) => ({ ...cur, itemImage: src })),
-				);
+				.then((src) => setProductInfo((cur) => ({ ...cur, itemImage: src })));
 		}
 	}, [uploadImgs]);
 
@@ -106,10 +92,7 @@ function ProductForm({
 				<legend>상품등록 양식</legend>
 				<ProductImgWrap>
 					{uploadImgs.length !== 0 || isEdit ? (
-						<ProductImg
-							src={productInfo.itemImage}
-							alt={productInfo.itemName}
-						/>
+						<ProductImg src={productInfo.itemImage} alt={productInfo.itemName} />
 					) : (
 						<ProductImg src={NoneProductImg} alt="상품 이미지" />
 					)}

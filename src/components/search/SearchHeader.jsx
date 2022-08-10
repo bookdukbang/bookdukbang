@@ -35,7 +35,7 @@ function SearchHeader({ setSearchList }) {
 
 			const json = await res.json();
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			setSearchList(json);
 		} catch (err) {

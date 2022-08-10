@@ -52,16 +52,13 @@ function FeedHeader({ children, isHome }) {
 				{children}
 				<HeaderUl>
 					<li>
-						<Link to="/myprofile">
+						<Link to="/my">
 							<ProfileImg src={MyImageSrc} alt="프로필" />
 						</Link>
 					</li>
 					<li>
-						<HeaderPosting as={Link} to="/postUpload">
-							<PostingImg
-								src={PostingIcon}
-								alt="포스팅 작성하기"
-							/>
+						<HeaderPosting as={Link} to="/post/upload">
+							<PostingImg src={PostingIcon} alt="포스팅 작성하기" />
 							<span>Posting</span>
 						</HeaderPosting>
 					</li>

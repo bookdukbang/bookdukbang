@@ -49,7 +49,7 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 			const json = await res.json();
 
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 
 			setProductInfo(json.product);
@@ -77,16 +77,13 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 
 	async function deleteProductAPI() {
 		try {
-			const res = await fetch(
-				SERVER_URL + `/product/${modalInfo.productId}`,
-				{
-					method: 'DELETE',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
+			const res = await fetch(SERVER_URL + `/product/${modalInfo.productId}`, {
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${token}`,
+					'Content-type': 'application/json',
 				},
-			);
+			});
 			const result = await res.json();
 			if (result.status === 404) {
 				throw navigate('/errorPage');
@@ -123,10 +120,7 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 						</ProductImgWrap>
 						<h3>{productInfo.itemName}</h3>
 						<PriceSpan>
-							{`${productInfo.price}`.replace(
-								/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-								',',
-							)}
+							{`${productInfo.price}`.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
 							원
 						</PriceSpan>
 						<BtnWrap>
@@ -140,15 +134,10 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 							</BigBtn>
 							{productInfo.author.accountname === loginUser && (
 								<>
-									<ModifyBtn
-										to={`/product/edit/${productInfo.id}`}
-									>
+									<ModifyBtn to={`/product/edit/${productInfo.id}`}>
 										수정
 									</ModifyBtn>
-									<DeleteBtn
-										type="button"
-										onClick={onClickDelete}
-									>
+									<DeleteBtn type="button" onClick={onClickDelete}>
 										삭제
 									</DeleteBtn>
 								</>

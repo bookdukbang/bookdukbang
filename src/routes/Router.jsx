@@ -15,7 +15,7 @@ import FeedPage from '../pages/FeedPage';
 import PostView from '../pages/PostView';
 import FollowerList from '../pages/FollowerListPage';
 import FollowingList from '../pages/FollowingListPage';
-import ProductPage from '../pages/ProductPage';
+import ProductUploadPage from '../pages/ProductUploadPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 import PostEditPage from '../pages/PostEditPage';
 import ProductEditPage from '../pages/ProductEditPage';
@@ -46,11 +46,7 @@ export default function Router() {
 					element={<PrivateRouter isShowFeed element={<JoinProfilePage />} />}
 				/>
 				<Route path="/search" exact element={<PrivateRouter element={<SearchPage />} />} />
-				<Route
-					path="/myprofile"
-					exact
-					element={<PrivateRouter element={<MyProfilePage />} />}
-				/>
+				<Route path="/my" exact element={<PrivateRouter element={<MyProfilePage />} />} />
 				<Route
 					path="/user/:id"
 					exact
@@ -62,7 +58,7 @@ export default function Router() {
 					element={<PrivateRouter element={<PostUploadPage />} />}
 				/>
 				<Route
-					path="/chatcontent"
+					path="/chat/:id"
 					exact
 					element={<PrivateRouter element={<ChatContentPage />} />}
 				/>
@@ -85,9 +81,9 @@ export default function Router() {
 					element={<PrivateRouter element={<FollowingList />} />}
 				/>
 				<Route
-					path="/product"
+					path="/product/upload"
 					exact
-					element={<PrivateRouter element={<ProductPage />} />}
+					element={<PrivateRouter element={<ProductUploadPage />} />}
 				/>
 				<Route
 					path="/product/edit/:id"
@@ -95,12 +91,12 @@ export default function Router() {
 					element={<PrivateRouter element={<ProductEditPage />} />}
 				/>
 				<Route
-					path="/profileEdit"
+					path="/my/edit"
 					exact
 					element={<PrivateRouter element={<ProfileEditPage />} />}
 				/>
 
-				<Route path="/errorPage" exact element={<ErrorPage />} />
+				<Route path="/error" exact element={<ErrorPage />} />
 			</Routes>
 		</>
 	);
