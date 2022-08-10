@@ -8,7 +8,6 @@ import MyProfilePage from '../pages/MyProfilePage';
 import ErrorPage from '../pages/404Page';
 import PostUploadPage from '../pages/PostUploadPage';
 import SplashPage from '../pages/SplashPage';
-
 import UserProfilePage from '../pages/UserProfilePage';
 import ChatContentPage from '../pages/ChatContentPage';
 import ChatListPage from '../pages/ChatListPage';
@@ -20,50 +19,88 @@ import ProductPage from '../pages/ProductPage';
 import ProfileEditPage from '../pages/ProfileEditPage';
 import PostEditPage from '../pages/PostEditPage';
 import ProductEditPage from '../pages/ProductEditPage';
+import PrivateRouter from './PrivateRouter';
 
 export default function Router() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" exact element={<SplashPage />} />
-				<Route path="/login" exact element={<LoginPage />} />
-				<Route path="/join" exact element={<JoinPage />} />
+				<Route
+					path="/"
+					exact
+					element={<PrivateRouter isShowFeed element={<SplashPage />} />}
+				/>
+				<Route
+					path="/login"
+					exact
+					element={<PrivateRouter isShowFeed element={<LoginPage />} />}
+				/>
+				<Route
+					path="/join"
+					exact
+					element={<PrivateRouter isShowFeed element={<JoinPage />} />}
+				/>
 				<Route
 					path="/join/profile"
 					exact
-					element={<JoinProfilePage />}
+					element={<PrivateRouter isShowFeed element={<JoinProfilePage />} />}
 				/>
-				<Route path="/search" exact element={<SearchPage />} />
-				<Route path="/myprofile" exact element={<MyProfilePage />} />
-				<Route path="/user/:id" exact element={<UserProfilePage />} />
-				<Route path="/errorPage" exact element={<ErrorPage />} />
-				<Route path="/postUpload" exact element={<PostUploadPage />} />
+				<Route path="/search" exact element={<PrivateRouter element={<SearchPage />} />} />
+				<Route
+					path="/myprofile"
+					exact
+					element={<PrivateRouter element={<MyProfilePage />} />}
+				/>
+				<Route
+					path="/user/:id"
+					exact
+					element={<PrivateRouter element={<UserProfilePage />} />}
+				/>
+				<Route
+					path="/post/upload"
+					exact
+					element={<PrivateRouter element={<PostUploadPage />} />}
+				/>
 				<Route
 					path="/chatcontent"
 					exact
-					element={<ChatContentPage />}
+					element={<PrivateRouter element={<ChatContentPage />} />}
 				/>
-				<Route path="/chat" exact element={<ChatListPage />} />
-				<Route path="/feed" exact element={<FeedPage />} />
-				<Route path="/post/:id" exact element={<PostView />} />
-				<Route path="/post/edit/:id" exact element={<PostEditPage />} />
-				<Route path="/follower/:id" exact element={<FollowerList />} />
+				<Route path="/chat" exact element={<PrivateRouter element={<ChatListPage />} />} />
+				<Route path="/feed" exact element={<PrivateRouter element={<FeedPage />} />} />
+				<Route path="/post/:id" exact element={<PrivateRouter element={<PostView />} />} />
+				<Route
+					path="/post/edit/:id"
+					exact
+					element={<PrivateRouter element={<PostEditPage />} />}
+				/>
+				<Route
+					path="/follower/:id"
+					exact
+					element={<PrivateRouter element={<FollowerList />} />}
+				/>
 				<Route
 					path="/following/:id"
 					exact
-					element={<FollowingList />}
+					element={<PrivateRouter element={<FollowingList />} />}
 				/>
-				<Route path="/product" exact element={<ProductPage />} />
+				<Route
+					path="/product"
+					exact
+					element={<PrivateRouter element={<ProductPage />} />}
+				/>
 				<Route
 					path="/product/edit/:id"
 					exact
-					element={<ProductEditPage />}
+					element={<PrivateRouter element={<ProductEditPage />} />}
 				/>
 				<Route
 					path="/profileEdit"
 					exact
-					element={<ProfileEditPage />}
+					element={<PrivateRouter element={<ProfileEditPage />} />}
 				/>
+
+				<Route path="/errorPage" exact element={<ErrorPage />} />
 			</Routes>
 		</>
 	);
