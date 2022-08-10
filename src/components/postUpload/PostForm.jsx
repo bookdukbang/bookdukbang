@@ -51,7 +51,7 @@ function PostForm({
 	}, [uploadImgs]);
 
 	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
+		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
 	}, []);
 
 	// 서버로 이미지 보내기

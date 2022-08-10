@@ -41,7 +41,7 @@ function PostViewContainer() {
 	});
 
 	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
+		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
 	}, []);
 
 	useEffect(() => {

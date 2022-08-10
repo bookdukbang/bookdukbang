@@ -20,7 +20,7 @@ const PostUploadSection = styled.section`
 `;
 
 function PostUpContainer({ isDisable, setDisable }) {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const navigate = useNavigate();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [postInfo, setPostInfo] = useState({

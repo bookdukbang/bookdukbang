@@ -53,8 +53,10 @@ const RegisterTitle = styled.p`
 `;
 
 function ProductRegister() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const MyAccountName = JSON.parse(
+		sessionStorage.getItem('user'),
+	).accountname;
 	const [books, setBooks] = useState(null);
 	async function MyBookList() {
 		try {

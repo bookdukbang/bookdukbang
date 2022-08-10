@@ -19,8 +19,8 @@ import {
 function ProductDetail({ modalInfo, setModalInfo }) {
 	const navigate = useNavigate();
 	const { id } = useParams();
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const loginUser = JSON.parse(localStorage.getItem('user')).accountname;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const loginUser = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [isShow, setIsShow] = useState(true);
 	const [productInfo, setProductInfo] = useState(null);
 

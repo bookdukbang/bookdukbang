@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 function Followers() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	const { id } = useParams();
 	const [Follower, setFollower] = useState(null);

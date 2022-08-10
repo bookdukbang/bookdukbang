@@ -6,8 +6,8 @@ import { SERVER_URL } from '../../../constants';
 
 function FeedModal({ postId, setModalInfo, modalInfo }) {
 	const { id } = useParams();
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const loginUser = JSON.parse(localStorage.getItem('user')).accountname;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const loginUser = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const navigate = useNavigate();
 	const [isShow, setIsShow] = useState(true);
 

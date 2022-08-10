@@ -3,8 +3,10 @@ import { SERVER_URL } from '../../constants';
 import Feed from '../common/feed/Feed';
 
 function MyFeed() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const myAccountName = JSON.parse(localStorage.getItem('user')).accountname;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const myAccountName = JSON.parse(
+		sessionStorage.getItem('user'),
+	).accountname;
 	const [feeds, setFeeds] = useState(null);
 
 	useEffect(() => {

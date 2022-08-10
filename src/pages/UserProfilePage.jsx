@@ -38,7 +38,7 @@ const FeedWrap = styled.div`
 `;
 
 function UserProfilePage() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	let { id } = useParams();
 	const [feeds, setFeeds] = useState(null);
 	useEffect(() => {

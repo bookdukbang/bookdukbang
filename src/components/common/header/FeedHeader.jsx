@@ -26,10 +26,10 @@ function FeedHeader({ children, isHome }) {
 	const { mode } = useContext(ThemeModeContext);
 	const navigate = useNavigate();
 	const onClickLogout = () => {
-		window.localStorage.removeItem('user');
+		window.sessionStorage.removeItem('user');
 		navigate('/');
 	};
-	const MyImageSrc = JSON.parse(localStorage.getItem('user')).image;
+	const MyImageSrc = JSON.parse(sessionStorage.getItem('user')).image;
 	const onClickBack = () => {
 		navigate(-1);
 	};

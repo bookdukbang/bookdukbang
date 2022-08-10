@@ -127,7 +127,7 @@ const MediumBtnDivStyle = styled(MediumBtnDiv)`
 `;
 
 function ProfileInfo() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	const [myInfo, setMyInfo] = useState('');
 	const [myId, setMyId] = useState('');

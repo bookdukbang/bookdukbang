@@ -58,7 +58,7 @@ const IrH2 = styled.h2`
 
 function FeedPage() {
 	const [isFollowing, setIsFollowing] = useState(false);
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	async function Feedlist() {
 		try {

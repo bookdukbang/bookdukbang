@@ -10,7 +10,7 @@ function SearchHeader({ setSearchList }) {
 	const [keyword, setKeyword] = useState('');
 
 	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
+		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
 	}, []);
 
 	useEffect(() => {

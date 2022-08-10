@@ -21,7 +21,7 @@ const PostEditSection = styled.section`
 //
 function PostEditContainer({ isDisable, setDisable }) {
 	const { id } = useParams();
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const navigate = useNavigate();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [postInfo, setPostInfo] = useState({
