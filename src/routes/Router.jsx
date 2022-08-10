@@ -4,7 +4,6 @@ import LoginPage from '../pages/LoginPage';
 import JoinPage from '../pages/JoinPage';
 import JoinProfilePage from '../pages/JoinProfilePage';
 import SearchPage from '../pages/SearchPage';
-// import MyProfilePage from '../pages/MyProfilePage';
 import ErrorPage from '../pages/404Page';
 import PostUploadPage from '../pages/PostUploadPage';
 import SplashPage from '../pages/SplashPage';
@@ -46,7 +45,6 @@ export default function Router() {
 					element={<PrivateRouter isShowFeed element={<JoinProfilePage />} />}
 				/>
 				<Route path="/search" exact element={<PrivateRouter element={<SearchPage />} />} />
-				{/* <Route path="/my" exact element={<PrivateRouter element={<MyProfilePage />} />} /> */}
 				<Route
 					path="/user/:id"
 					exact
