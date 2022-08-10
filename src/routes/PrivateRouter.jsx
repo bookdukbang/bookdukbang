@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-export default function PrivateRouter({ isShowFeed, element }) {
+function PrivateRouter({ isShowFeed, element }) {
 	const isLogin = sessionStorage.getItem('user') === null ? false : true;
 
 	if (isShowFeed) {
@@ -10,3 +10,5 @@ export default function PrivateRouter({ isShowFeed, element }) {
 		return isLogin ? element : <Navigate to="/" />;
 	}
 }
+
+export default PrivateRouter;

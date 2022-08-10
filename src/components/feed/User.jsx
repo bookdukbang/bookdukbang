@@ -28,7 +28,7 @@ function User() {
 
 	return (
 		<UserLi>
-			<Link to="/my">
+			<Link to={`/user/${MyAccountName}`}>
 				<NoneProfileSmall style={{ backgroundImage: `url(${MyImageSrc})` }} />
 			</Link>
 			<UserInfo>

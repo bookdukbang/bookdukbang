@@ -7,6 +7,7 @@ import { ReactComponent as UserIcon } from '../../assets/icon_user.svg';
 
 function NavigatorMenu() {
 	const [isMobile, setIsMobile] = useState(false);
+	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	window.addEventListener('resize', (e) => {
 		if (e.target.innerWidth <= 390) {
 			setIsMobile(true);
@@ -44,7 +45,7 @@ function NavigatorMenu() {
 						<span>SEARCH</span>
 					</MenuBtn>
 
-					<MenuBtn to="/my">
+					<MenuBtn to={`/user/${MyAccountName}`}>
 						<UserIcon />
 						<span>PROFILE</span>
 					</MenuBtn>

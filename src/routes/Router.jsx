@@ -4,11 +4,10 @@ import LoginPage from '../pages/LoginPage';
 import JoinPage from '../pages/JoinPage';
 import JoinProfilePage from '../pages/JoinProfilePage';
 import SearchPage from '../pages/SearchPage';
-import MyProfilePage from '../pages/MyProfilePage';
+// import MyProfilePage from '../pages/MyProfilePage';
 import ErrorPage from '../pages/404Page';
 import PostUploadPage from '../pages/PostUploadPage';
 import SplashPage from '../pages/SplashPage';
-import UserProfilePage from '../pages/UserProfilePage';
 import ChatContentPage from '../pages/ChatContentPage';
 import ChatListPage from '../pages/ChatListPage';
 import FeedPage from '../pages/FeedPage';
@@ -20,6 +19,7 @@ import ProfileEditPage from '../pages/ProfileEditPage';
 import PostEditPage from '../pages/PostEditPage';
 import ProductEditPage from '../pages/ProductEditPage';
 import PrivateRouter from './PrivateRouter';
+import UserRouter from './UserRouter';
 
 export default function Router() {
 	return (
@@ -46,11 +46,11 @@ export default function Router() {
 					element={<PrivateRouter isShowFeed element={<JoinProfilePage />} />}
 				/>
 				<Route path="/search" exact element={<PrivateRouter element={<SearchPage />} />} />
-				<Route path="/my" exact element={<PrivateRouter element={<MyProfilePage />} />} />
+				{/* <Route path="/my" exact element={<PrivateRouter element={<MyProfilePage />} />} /> */}
 				<Route
 					path="/user/:id"
 					exact
-					element={<PrivateRouter element={<UserProfilePage />} />}
+					element={<PrivateRouter element={<UserRouter />} />}
 				/>
 				<Route
 					path="/post/upload"

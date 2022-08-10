@@ -30,6 +30,7 @@ function FeedHeader({ children, isHome }) {
 		navigate('/');
 	};
 	const MyImageSrc = JSON.parse(sessionStorage.getItem('user')).image;
+	const MyAccountname = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const onClickBack = () => {
 		navigate(-1);
 	};
@@ -52,7 +53,7 @@ function FeedHeader({ children, isHome }) {
 				{children}
 				<HeaderUl>
 					<li>
-						<Link to="/my">
+						<Link to={`/user/${MyAccountname}`}>
 							<ProfileImg src={MyImageSrc} alt="프로필" />
 						</Link>
 					</li>
