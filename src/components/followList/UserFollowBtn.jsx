@@ -23,7 +23,7 @@ const FollowingBtn = styled(SmallBtn)`
 `;
 
 function UserFollowBtn({ accountname, isfollow, setIsfollow }) {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	// 팔로우
 	async function Follow(useraccount) {

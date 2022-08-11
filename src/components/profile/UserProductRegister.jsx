@@ -19,7 +19,7 @@ const BookContainer = styled.div`
 `;
 
 function UserProductRegister() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	let { id } = useParams();
 	const [userBooks, setUserBooks] = useState(null);
 

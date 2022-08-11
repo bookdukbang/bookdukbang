@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../../constants';
 import NoneProfile from '../../../assets/profile.png';
-import {
-	WriteForm,
-	UserProfileImg,
-	WriteInput,
-	WriteBtn,
-} from './CommentForm.style';
+import { WriteForm, UserProfileImg, WriteInput, WriteBtn } from './CommentForm.style';
 
 function CommentForm({ postId, setIsCommentUpload, userInfo }) {
 	const navigate = useNavigate();
@@ -41,7 +36,7 @@ function CommentForm({ postId, setIsCommentUpload, userInfo }) {
 			});
 			const json = await res.json();
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			setIsCommentUpload(true);
 			setCommentVal('');

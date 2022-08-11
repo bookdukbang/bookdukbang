@@ -148,7 +148,7 @@ const ShareBtn = styled(SmallBtn)`
 `;
 
 function UserProfileInfo() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	let { id } = useParams();
 	const [user, setUser] = useState('');
 	const [isfollow, setIsfollow] = useState(null);

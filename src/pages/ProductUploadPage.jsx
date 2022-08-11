@@ -24,9 +24,9 @@ const ProductHeaderTitle = styled.span`
 	}
 `;
 
-function ProductPage() {
+function ProductUploadPage() {
 	const navigate = useNavigate();
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const [productInfo, setProductInfo] = useState({
 		itemName: '',
 		price: '',
@@ -71,7 +71,7 @@ function ProductPage() {
 			const json = await res.json();
 
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			} else if (json.status === 422) {
 				throw setErrorInfo((cur) => ({
 					...cur,
@@ -106,4 +106,4 @@ function ProductPage() {
 		</>
 	);
 }
-export default ProductPage;
+export default ProductUploadPage;

@@ -3,7 +3,7 @@ import { SERVER_URL } from '../../constants';
 import Feed from '../common/feed/Feed';
 
 function FollowingFeed() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const [FollowingPost, setFollowingPost] = useState(null);
 
 	async function FollowingFeedList() {

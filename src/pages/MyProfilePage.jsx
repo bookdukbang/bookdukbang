@@ -35,7 +35,7 @@ const FeedWrap = styled.div`
 	}
 `;
 
-function MyProfile() {
+function MyProfilePage() {
 	return (
 		<>
 			<FeedHeader />
@@ -55,4 +55,4 @@ function MyProfile() {
 	);
 }
 
-export default MyProfile;
+export default MyProfilePage;

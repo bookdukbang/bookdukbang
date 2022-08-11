@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SERVER_URL } from '../../constants';
 import User from '../common/user/User';
-import {
-	PostFormStyle,
-	PostTextareaWrap,
-	PostTextarea,
-} from './PostForm.style';
+import { PostFormStyle, PostTextareaWrap, PostTextarea } from './PostForm.style';
 import PostUploadImg from '../common/post/PostUploadImg';
 
 function PostForm({
@@ -51,7 +47,7 @@ function PostForm({
 	}, [uploadImgs]);
 
 	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
+		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
 	}, []);
 
 	// 서버로 이미지 보내기
@@ -66,7 +62,7 @@ function PostForm({
 			});
 			const json = await res.json();
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			return json;
 		} catch (err) {

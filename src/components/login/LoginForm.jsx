@@ -29,7 +29,7 @@ function LoginForm() {
 		},
 	};
 
-	const localStorage = window.localStorage;
+	const sessionStorage = window.sessionStorage;
 
 	// 이메일 유효성 검사
 	function checkEmail(target) {
@@ -79,8 +79,8 @@ function LoginForm() {
 
 			// 로그인 성공
 			if (result.status !== 422) {
-				localStorage.setItem('user', JSON.stringify(result.user));
-				// 받아올 때 이렇게 사용하기 JSON.parse(localStorage.getItem('user'));
+				sessionStorage.setItem('user', JSON.stringify(result.user));
+				// 받아올 때 이렇게 사용하기 JSON.parse(sessionStorage.getItem('user'));
 				setIsWrong(false);
 				setMsg('');
 				navigate('/feed');

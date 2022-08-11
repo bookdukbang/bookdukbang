@@ -26,10 +26,11 @@ function FeedHeader({ children, isHome }) {
 	const { mode } = useContext(ThemeModeContext);
 	const navigate = useNavigate();
 	const onClickLogout = () => {
-		window.localStorage.removeItem('user');
+		window.sessionStorage.removeItem('user');
 		navigate('/');
 	};
-	const MyImageSrc = JSON.parse(localStorage.getItem('user')).image;
+	const MyImageSrc = JSON.parse(sessionStorage.getItem('user')).image;
+	const MyAccountname = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const onClickBack = () => {
 		navigate(-1);
 	};
@@ -52,16 +53,13 @@ function FeedHeader({ children, isHome }) {
 				{children}
 				<HeaderUl>
 					<li>
-						<Link to="/myprofile">
+						<Link to={`/user/${MyAccountname}`}>
 							<ProfileImg src={MyImageSrc} alt="프로필" />
 						</Link>
 					</li>
 					<li>
-						<HeaderPosting as={Link} to="/postUpload">
-							<PostingImg
-								src={PostingIcon}
-								alt="포스팅 작성하기"
-							/>
+						<HeaderPosting as={Link} to="/post/upload">
+							<PostingImg src={PostingIcon} alt="포스팅 작성하기" />
 							<span>Posting</span>
 						</HeaderPosting>
 					</li>

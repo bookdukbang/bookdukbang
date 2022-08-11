@@ -6,7 +6,7 @@ import { UserLi, FollowingBtn, FollowBtn, UserInfo } from './FollowList.style';
 import { Link } from 'react-router-dom';
 
 function Followings() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	const { id } = useParams();
 	const [Following, setFollowing] = useState(null);

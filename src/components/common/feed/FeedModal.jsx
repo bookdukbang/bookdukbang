@@ -6,8 +6,8 @@ import { SERVER_URL } from '../../../constants';
 
 function FeedModal({ postId, setModalInfo, modalInfo }) {
 	const { id } = useParams();
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const loginUser = JSON.parse(localStorage.getItem('user')).accountname;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const loginUser = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const navigate = useNavigate();
 	const [isShow, setIsShow] = useState(true);
 
@@ -22,7 +22,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			});
 			const result = await res.json();
 			if (result.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);
@@ -30,7 +30,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			if (id !== undefined) {
 				navigate('/feed');
 			} else {
-				navigate('/myprofile');
+				navigate('/my');
 				window.location.reload();
 			}
 			return result;
@@ -63,7 +63,7 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			});
 			const result = await res.json();
 			if (result.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);

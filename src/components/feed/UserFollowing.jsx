@@ -23,8 +23,10 @@ const UserInfo = styled.h2`
 `;
 
 function UserFollowing() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const MyAccountName = JSON.parse(localStorage.getItem('user')).accountname;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const MyAccountName = JSON.parse(
+		sessionStorage.getItem('user'),
+	).accountname;
 	const [Following, setFollowing] = useState(null);
 
 	async function UserFollowingList() {

@@ -27,7 +27,7 @@ function ProfileEdit() {
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [userInfo, setUserInfo] = useState({
 		isChange: false,
-		info: JSON.parse(localStorage.getItem('user')),
+		info: JSON.parse(sessionStorage.getItem('user')),
 	});
 	const [errorInfo, setErrorInfo] = useState({
 		username: {
@@ -59,7 +59,7 @@ function ProfileEdit() {
 	// 성공적으로 수정이 완료되면 로컬에 저장 및 마이프로필 페이지로 이동
 	useEffect(() => {
 		if (userInfo.isChange) {
-			localStorage.setItem('user', JSON.stringify(userInfo.info));
+			sessionStorage.setItem('user', JSON.stringify(userInfo.info));
 			setUserInfo((cur) => ({ ...cur, isChange: false }));
 			navigate(`/myprofile`);
 		}

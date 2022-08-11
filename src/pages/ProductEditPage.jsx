@@ -27,7 +27,7 @@ const ProductHeaderTitle = styled.span`
 function ProductEditPage() {
 	const navigate = useNavigate();
 	const { id } = useParams();
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const [productInfo, setProductInfo] = useState({
 		itemName: '',
 		price: '',

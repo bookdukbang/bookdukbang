@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import ProductModal from '../../profile/ProductModa222l';
 import ProductDetail from './ProductDetail';
 
 const BookDivCont = styled.div`
@@ -92,21 +91,12 @@ function ProductBtn({ item }) {
 					<BookInfo>
 						<BookTitle>{item.itemName}</BookTitle>
 						<BookCost>
-							{`${item.price}`.replace(
-								/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-								',',
-							)}
-							원
+							{`${item.price}`.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원
 						</BookCost>
 					</BookInfo>
 				</BookBtn>
 			</BookDivCont>
-			{modalInfo.state && (
-				<ProductDetail
-					modalInfo={modalInfo}
-					setModalInfo={setModalInfo}
-				/>
-			)}
+			{modalInfo.state && <ProductDetail modalInfo={modalInfo} setModalInfo={setModalInfo} />}
 		</>
 	);
 }

@@ -34,7 +34,7 @@ function ChatList({ isHome }) {
 	return (
 		<>
 			<ChatContainer isHome={isHome}>
-				<ChatDivLink to="/chatcontent">
+				<ChatDivLink to="/chat/nego_king">
 					<ProfileImg src={Profile} alt="프로필" />
 					<ChatNotice />
 
