@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../constants/index';
+import { useSearchAxios } from '../../hooks/useSearchAxios';
 import FeedHeader from '../common/header/FeedHeader';
 import { SearchInput, SearchForm, SearchBtn } from './SearchHeader.style';
 
 function SearchHeader({ setSearchList }) {
-	const navigate = useNavigate();
-	const [userInfo, setUserInfo] = useState(null);
 	const [keyword, setKeyword] = useState('');
-
-	useEffect(() => {
-		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
-	}, []);
+	const { searchUser } = useSearchAxios();
 
 	useEffect(() => {
 		const reg = /^[0-9a-zA-Zㄱ-힣][0-9a-zA-Zㄱ-힣 ]*$/;
@@ -21,28 +15,6 @@ function SearchHeader({ setSearchList }) {
 		}
 	}, [keyword]);
 
-	async function searchAPI() {
-		const reqPath = `/user/searchuser/?keyword=${keyword}`;
-
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${userInfo.token}`,
-					'Content-type': 'application/json',
-				},
-			});
-
-			const json = await res.json();
-			if (json.status === 404) {
-				throw navigate('/error');
-			}
-			setSearchList(json);
-		} catch (err) {
-			console.error(err);
-		}
-	}
-
 	const onChangeSearch = (event) => {
 		setKeyword(event.target.value);
 	};
@@ -50,7 +22,9 @@ function SearchHeader({ setSearchList }) {
 	const onSubmitForm = (event) => {
 		event.preventDefault();
 		if (keyword !== '') {
-			searchAPI();
+			searchUser(keyword).then((searchData) => {
+				setSearchList(searchData);
+			});
 		}
 	};
 
