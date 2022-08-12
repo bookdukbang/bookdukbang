@@ -1,48 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { SERVER_URL } from '../../constants';
+import { usePostAxios } from '../../hooks/usePostAxios';
 import Feed from '../common/feed/Feed';
 
 function MyFeed() {
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	const myAccountName = JSON.parse(
-		sessionStorage.getItem('user'),
-	).accountname;
+	const myAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
+	const { getMyFeeds } = usePostAxios();
 	const [feeds, setFeeds] = useState(null);
 
 	useEffect(() => {
-		myFeeds();
+		getMyFeeds(myAccountName).then((feedResult) => {
+			setFeeds(feedResult);
+		});
 	}, []);
-
-	async function myFeeds() {
-		try {
-			const feedRes = await fetch(
-				SERVER_URL + `/post/${myAccountName}/userpost`,
-				{
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
-				},
-			);
-			const feedResult = await feedRes.json();
-			setFeeds(feedResult.post);
-		} catch (error) {
-			console.error(error);
-		}
-	}
 
 	return (
 		<>
 			{feeds !== null &&
-				feeds?.map((item) => (
-					<Feed
-						key={item.id}
-						item={item}
-						author={item.author}
-						postId={item.id}
-					/>
-				))}
+				feeds?.map((item) => <Feed key={item.id} item={item} author={item.author} />)}
 		</>
 	);
 }

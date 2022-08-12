@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SERVER_URL } from '../../constants';
 import User from '../common/user/User';
 import { PostFormStyle, PostTextareaWrap, PostTextarea } from './PostForm.style';
@@ -17,6 +17,7 @@ function PostForm({
 }) {
 	const navigate = useNavigate();
 	const [userInfo, setUserInfo] = useState(null);
+	const { id } = useParams();
 
 	useEffect(() => {
 		if (!isImgNone) {
@@ -74,7 +75,11 @@ function PostForm({
 	const onSubmitForm = (e) => {
 		e.preventDefault();
 		if (!isDisable) {
-			formFinishAPI();
+			if (isImgNone) {
+				formFinishAPI(id, postInfo);
+			} else {
+				formFinishAPI(postInfo);
+			}
 		}
 	};
 
