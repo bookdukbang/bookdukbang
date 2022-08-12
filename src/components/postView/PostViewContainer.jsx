@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-// import { SERVER_URL } from '../../constants';useNavigate
 import { usePostAxios } from '../../hooks/usePostAxios';
 import FeedModal from '../common/feed/FeedModal';
 import PostViewImg from '../common/post/PostViewImg';
@@ -28,7 +27,6 @@ const PostContextWrap = styled.div`
 `;
 
 function PostViewContainer() {
-	// const navigate = useNavigate();
 	const { getPost } = usePostAxios();
 	const [postContext, setPostContext] = useState(null);
 	const [userInfo, setUserInfo] = useState(null);
