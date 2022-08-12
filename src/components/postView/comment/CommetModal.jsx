@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAxios } from '../../../hooks/useAxios';
+import { useCommentAxios } from '../../../hooks/useCommentAxios';
 import { BottomSheatBg, BottomSheatWrap } from '../../common/modal/BottomSheat.style';
 import Modal from '../../common/modal/Modal';
 
@@ -8,7 +8,7 @@ function CommetModal({ modalInfo, setModalInfo, setIsCommentUpload }) {
 	const userAccountname = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [isShow, setIsShow] = useState(true);
 	const { id } = useParams();
-	const { deleteComment, reportComment } = useAxios();
+	const { deleteComment, reportComment } = useCommentAxios();
 
 	const deleteModal = {
 		title: '댓글',

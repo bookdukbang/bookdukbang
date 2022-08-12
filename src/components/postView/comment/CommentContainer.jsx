@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAxios } from '../../../hooks/useAxios';
+import { useCommentAxios } from '../../../hooks/useCommentAxios';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 import CommetModal from './CommetModal';
@@ -20,7 +20,7 @@ const CommentContainerStyle = styled.div`
 
 function CommentContainer() {
 	const { id } = useParams();
-	const { getComments } = useAxios();
+	const { getComments } = useCommentAxios();
 	const [postComments, setPostComments] = useState(null);
 	const [isCommentUpload, setIsCommentUpload] = useState(false);
 	const [modalInfo, setModalInfo] = useState({

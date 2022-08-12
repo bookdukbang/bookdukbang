@@ -6,14 +6,14 @@ import {
 	postReportCommentAxios,
 } from '../apis/commentApi';
 
-export const useAxios = () => {
-	const navigater = useNavigate();
+export const useCommentAxios = () => {
+	const navigate = useNavigate();
 
-	// 게시글 댓글 목록 얻기
+	// 댓글 목록 얻기
 	const getComments = (postId) =>
 		getCommentAxios(postId).then((data) => {
 			if (data.status === 404) {
-				navigater('/error');
+				navigate('/error');
 			} else {
 				return data.comments.reverse();
 			}
@@ -23,7 +23,7 @@ export const useAxios = () => {
 	const postComment = (postId, commentVal) =>
 		postCommentAxios(postId, commentVal).then((data) => {
 			if (data.status === 404) {
-				navigater('/error');
+				navigate('/error');
 			} else {
 				return data;
 			}
@@ -48,6 +48,10 @@ export const useAxios = () => {
 				return data;
 			}
 		});
-
-	return { getComments, postComment, deleteComment, reportComment };
+	return {
+		getComments,
+		postComment,
+		deleteComment,
+		reportComment,
+	};
 };

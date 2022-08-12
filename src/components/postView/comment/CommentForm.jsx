@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import NoneProfile from '../../../assets/profile.png';
-import { useAxios } from '../../../hooks/useAxios';
+import { useCommentAxios } from '../../../hooks/useCommentAxios';
 import { WriteForm, UserProfileImg, WriteInput, WriteBtn } from './CommentForm.style';
 
 function CommentForm({ setIsCommentUpload }) {
 	const userInfo = JSON.parse(sessionStorage.getItem('user'));
 	const [isDisabled, setIsDisabled] = useState(true);
 	const [commentVal, setCommentVal] = useState('');
-	const { postComment } = useAxios();
+	const { postComment } = useCommentAxios();
 	const { id } = useParams();
 
 	useEffect(() => {
