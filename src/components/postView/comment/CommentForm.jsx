@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../../constants';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import NoneProfile from '../../../assets/profile.png';
+import { useAxios } from '../../../hooks/useAxios';
 import { WriteForm, UserProfileImg, WriteInput, WriteBtn } from './CommentForm.style';
 
-function CommentForm({ postId, setIsCommentUpload, userInfo }) {
-	const navigate = useNavigate();
+function CommentForm({ setIsCommentUpload }) {
+	const userInfo = JSON.parse(sessionStorage.getItem('user'));
 	const [isDisabled, setIsDisabled] = useState(true);
 	const [commentVal, setCommentVal] = useState('');
+	const { postComment } = useAxios();
+	const { id } = useParams();
 
 	useEffect(() => {
 		if (commentVal === '') {
@@ -17,46 +19,23 @@ function CommentForm({ postId, setIsCommentUpload, userInfo }) {
 		}
 	}, [commentVal]);
 
-	// 서버로 form 보내기
-	async function commentAPI() {
-		const reqPath = `/post/${postId}/comments`;
-		const commentData = {
-			comment: {
-				content: commentVal,
-			},
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${userInfo.token}`,
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(commentData),
-			});
-			const json = await res.json();
-			if (json.status === 404) {
-				throw navigate('/error');
-			}
-			setIsCommentUpload(true);
-			setCommentVal('');
-			return json;
-		} catch (err) {
-			console.error(err);
-		}
-	}
-
 	const onChangeComment = (e) => {
 		setCommentVal(e.target.value);
 	};
 
 	// form submit event
-	const onSubmitForm = (e) => {
-		e.preventDefault();
-		if (!isDisabled) {
-			commentAPI();
-		}
-	};
+	const onSubmitForm = useCallback(
+		(e) => {
+			e.preventDefault();
+			if (!isDisabled) {
+				postComment(id, commentVal).then(() => {
+					setIsCommentUpload(true);
+					setCommentVal('');
+				});
+			}
+		},
+		[commentVal],
+	);
 
 	return (
 		<WriteForm method="POST" onSubmit={onSubmitForm}>

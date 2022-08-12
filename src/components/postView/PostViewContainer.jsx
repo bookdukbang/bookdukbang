@@ -22,7 +22,6 @@ const PostViewSection = styled.section`
 `;
 
 const PostContextWrap = styled.div`
-	/* max-width: 62rem; */
 	flex-basis: 62rem;
 	flex-grow: 1;
 `;
@@ -89,7 +88,7 @@ function PostViewContainer() {
 					<>
 						<PostContextWrap>
 							<PostCard postContext={postContext} setModalInfo={setModalInfo} />
-							<CommentContainer userInfo={userInfo} postId={postId} />
+							<CommentContainer />
 						</PostContextWrap>
 						{postContext.image !== '' && 'image' in postContext && (
 							<PostViewImg uploadImgs={postImgs} isView={true} />
