@@ -118,7 +118,7 @@ const MediumBtnDivStyle = styled(MediumBtnDiv)`
 	}
 `;
 
-function ProfileInfo() {
+function MyProfileInfo() {
 	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	const [myInfo, setMyInfo] = useState('');
@@ -188,4 +188,4 @@ function ProfileInfo() {
 	);
 }
 
-export default ProfileInfo;
+export default MyProfileInfo;

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import Feed from '../components/common/feed/Feed';
+import React from 'react';
 import FeedHeader from '../components/common/header/FeedHeader';
-import { NavigaterWrapping } from '../components/common/Wrap';
-import NavigatorMenu from '../components/navigator/NavigatorMenu';
-import UserProductRegister from '../components/profile/UserProductRegister';
+import MyProfileInfo from '../components/profile/MyProfileInfo';
 import UserProfileInfo from '../components/profile/UserProfileInfo';
-import { SERVER_URL } from '../constants';
+import ProductRegister from '../components/profile/ProductRegister';
+import { NavigaterWrapping } from '../components/common/Wrap';
+import styled from 'styled-components';
+import MyFeed from '../components/profile/MyFeed';
+import NavigatorMenu from '../components/navigator/NavigatorMenu';
+import { useParams } from 'react-router-dom';
 
 const ProfileWrap = styled.div`
 	display: flex;
@@ -38,46 +38,20 @@ const FeedWrap = styled.div`
 `;
 
 function UserProfilePage() {
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	let { id } = useParams();
-	const [feeds, setFeeds] = useState(null);
-	useEffect(() => {
-		userFeeds();
-	}, []);
-	async function userFeeds() {
-		try {
-			const feedRes = await fetch(SERVER_URL + `/post/${id}/userpost`, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const feedResult = await feedRes.json();
-			setFeeds(feedResult.post);
-		} catch (error) {
-			console.error(error);
-		}
-	}
+	const { id } = useParams();
+	const myAccountname = JSON.parse(sessionStorage.getItem('user')).accountname;
+
 	return (
 		<>
 			<FeedHeader />
 			<NavigaterWrapping>
 				<ProfileWrap>
 					<DivArray>
-						<UserProfileInfo />
-						<UserProductRegister />
+						{myAccountname === id ? <MyProfileInfo /> : <UserProfileInfo />}
+						<ProductRegister ismyPage={myAccountname === id} />
 					</DivArray>
 					<FeedWrap>
-						{feeds !== null &&
-							feeds?.map((item) => (
-								<Feed
-									key={item.id}
-									item={item}
-									author={item.author}
-									postId={item.id}
-								/>
-							))}
+						<MyFeed />
 					</FeedWrap>
 				</ProfileWrap>
 			</NavigaterWrapping>

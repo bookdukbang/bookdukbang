@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { usePostAxios } from '../../hooks/usePostAxios';
 import Feed from '../common/feed/Feed';
 
 function MyFeed() {
-	const myAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
+	const { id } = useParams();
 	const { getMyFeeds } = usePostAxios();
 	const [feeds, setFeeds] = useState(null);
 
 	useEffect(() => {
-		getMyFeeds(myAccountName).then((feedResult) => {
+		getMyFeeds(id).then((feedResult) => {
 			setFeeds(feedResult);
 		});
 	}, []);
