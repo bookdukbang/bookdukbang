@@ -25,7 +25,7 @@ const ProductHeaderTitle = styled.span`
 `;
 
 function ProductEditPage() {
-	const { getProduct, editProduct } = useProductAxios();
+	const { getProduct } = useProductAxios();
 	const { id } = useParams();
 	const [productInfo, setProductInfo] = useState({
 		itemName: '',
@@ -59,7 +59,6 @@ function ProductEditPage() {
 			</FeedHeader>
 			<ProductWrap>
 				<ProductForm
-					formAPI={editProduct}
 					productInfo={productInfo}
 					setProductInfo={setProductInfo}
 					errorInfo={errorInfo}

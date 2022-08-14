@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NoneProductImg from '../../assets/none-product.png';
 import PostUploadImg from '../common/post/PostUploadImg';
 import { SERVER_URL } from '../../constants';
@@ -9,13 +9,16 @@ import ProductPrice from './ProductPrice';
 import ProductLink from './ProductLink';
 import { ErrorText } from '../common/Input.style';
 import styled from 'styled-components';
+import { useProductAxios } from '../../hooks/useProductAxios';
 
 const ImgErrorText = styled(ErrorText)`
 	margin-bottom: 3rem;
 `;
 
-function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, formAPI, isEdit }) {
+function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, isEdit }) {
+	const { writeProduct, editProduct } = useProductAxios();
 	const navigate = useNavigate();
+	const { id } = useParams();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [isDisable, setIsDisable] = useState(true);
 
@@ -74,15 +77,13 @@ function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, for
 	}, [uploadImgs]);
 
 	// 서버에 입력 form 제출
-	const onSubmitImg = (e) => {
+	const onSubmitProductForm = (e) => {
 		e.preventDefault();
-		if (!isDisable) {
-			formAPI();
-		}
+		isEdit ? editProduct(id, productInfo) : writeProduct(productInfo, setErrorInfo);
 	};
 
 	return (
-		<ProductFormStyle onSubmit={onSubmitImg}>
+		<ProductFormStyle onSubmit={onSubmitProductForm}>
 			<fieldset>
 				<legend>상품등록 양식</legend>
 				<ProductImgWrap>

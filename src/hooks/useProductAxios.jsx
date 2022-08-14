@@ -1,8 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-import { deleteProductAxios, getProductAxios, putProductAxios } from '../apis/productApi';
+import {
+	getProductListAxios,
+	deleteProductAxios,
+	getProductAxios,
+	postProductAxios,
+	putProductAxios,
+} from '../apis/productApi';
 
 export const useProductAxios = () => {
 	const navigate = useNavigate();
+
+	//  상품의 리스트 얻기
+	const getProductList = (accountname) =>
+		getProductListAxios(accountname).then((data) => {
+			if (data.status === 404) {
+				navigate('/error');
+			} else {
+				return data.product;
+			}
+		});
 
 	//  상품의 정보 얻기
 	const getProduct = (productId) =>
@@ -11,6 +27,25 @@ export const useProductAxios = () => {
 				navigate('/error');
 			} else {
 				return data.product;
+			}
+		});
+
+	// 상품 작성하기
+	const writeProduct = (productInfo, setErrorInfo) =>
+		postProductAxios(productInfo).then((data) => {
+			if (data.status === 404) {
+				navigate('/error');
+			} else if (data.status === 422) {
+				setErrorInfo((cur) => ({
+					...cur,
+					price: {
+						state: true,
+						message: data.message,
+					},
+				}));
+			} else {
+				navigate(-1);
+				return data;
 			}
 		});
 
@@ -35,9 +70,5 @@ export const useProductAxios = () => {
 			}
 		});
 
-	return {
-		getProduct,
-		editProduct,
-		deleteProduct,
-	};
+	return { getProductList, getProduct, writeProduct, editProduct, deleteProduct };
 };

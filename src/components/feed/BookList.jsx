@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MediumBtn, MediumBtnDiv } from '../common/Button.style';
 import { Link } from 'react-router-dom';
-import { SERVER_URL } from '../../constants';
 import ProductDetail from '../common/product/ProductDetail';
+import { useProductAxios } from '../../hooks/useProductAxios';
 
 const BookListWrap = styled.div`
 	margin: 3rem 0;
@@ -53,30 +53,18 @@ const MediumBtnUpload = styled(MediumBtn)`
 `;
 
 function BookList() {
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const { getProductList } = useProductAxios();
 	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [books, setBooks] = useState(null);
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
 		productId: '',
 	});
-	async function MyBookList() {
-		try {
-			const res = await fetch(SERVER_URL + `/product/${MyAccountName}`, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const result = await res.json();
-			setBooks(result.product);
-		} catch (error) {
-			console.error(error);
-		}
-	}
+
 	useEffect(() => {
-		MyBookList();
+		getProductList(MyAccountName).then((productLiist) => {
+			setBooks(productLiist);
+		});
 	}, []);
 
 	const onClickMoreBtn = (e) => {

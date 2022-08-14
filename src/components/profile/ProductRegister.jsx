@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import PlusBtn from '../../assets/plus_btn.png';
-import { SERVER_URL } from '../../constants';
+import { useProductAxios } from '../../hooks/useProductAxios';
 import ProductBtn from '../common/product/ProductBtn';
 
 const BookContainer = styled.div`
@@ -52,28 +52,15 @@ const RegisterTitle = styled.p`
 	color: ${({ theme }) => theme.grayColor2};
 `;
 
-function ProductRegister() {
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
+function ProductRegister({ ismyPage }) {
+	const { getProductList } = useProductAxios();
+	let { id } = useParams();
 	const [books, setBooks] = useState(null);
-	async function MyBookList() {
-		try {
-			const res = await fetch(SERVER_URL + `/product/${MyAccountName}`, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const result = await res.json();
-			setBooks(result.product);
-		} catch (error) {
-			console.error(error);
-		}
-	}
 
 	useEffect(() => {
-		MyBookList();
+		getProductList(id).then((productLiist) => {
+			setBooks(productLiist);
+		});
 	}, []);
 
 	return (
@@ -82,12 +69,14 @@ function ProductRegister() {
 				{books?.map((item) => (
 					<ProductBtn key={item.id} item={item} />
 				))}
-				<BookRegister>
-					<RegisterBtn as={Link} to="/product/upload">
-						<PlusBtnImg src={PlusBtn} alt="" />
-						<RegisterTitle>상품등록</RegisterTitle>
-					</RegisterBtn>
-				</BookRegister>
+				{ismyPage && (
+					<BookRegister>
+						<RegisterBtn as={Link} to="/product/upload">
+							<PlusBtnImg src={PlusBtn} alt="" />
+							<RegisterTitle>상품등록</RegisterTitle>
+						</RegisterBtn>
+					</BookRegister>
+				)}
 			</BookContainer>
 		</>
 	);
