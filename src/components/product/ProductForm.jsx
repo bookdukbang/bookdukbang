@@ -23,16 +23,12 @@ function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, for
 		if (productInfo.itemImage === '') {
 			setErrorInfo((cur) => ({
 				...cur,
-				itemImage: {
-					state: true,
-				},
+				itemImage: { state: true },
 			}));
 		} else {
 			setErrorInfo((cur) => ({
 				...cur,
-				itemImage: {
-					state: false,
-				},
+				itemImage: { state: false },
 			}));
 		}
 	}, [productInfo]);
@@ -65,7 +61,6 @@ function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, for
 				errorInfo.link.state ||
 				errorInfo.itemImage.state,
 		);
-		console.log(isDisable);
 	}, [errorInfo]);
 
 	// 이미지 파일이 업로드 되면 이미지 서버주소 받기

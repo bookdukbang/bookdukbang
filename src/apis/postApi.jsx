@@ -29,11 +29,7 @@ const getPostAxios = async (postId) => {
 
 const postPostAxios = async (postInfo) => {
 	try {
-		const res = await basicInstanceAxios.post(`/post`, {
-			post: {
-				...postInfo,
-			},
-		});
+		const res = await basicInstanceAxios.post(`/post`, { post: { ...postInfo } });
 		return res.data;
 	} catch (err) {
 		console.error(err);
@@ -42,11 +38,7 @@ const postPostAxios = async (postInfo) => {
 
 const putPostAxios = async (postId, postInfo) => {
 	try {
-		const res = await basicInstanceAxios.put(`/post/${postId}`, {
-			post: {
-				...postInfo,
-			},
-		});
+		const res = await basicInstanceAxios.put(`/post/${postId}`, { post: { ...postInfo } });
 		return res.data;
 	} catch (err) {
 		console.error(err);
