@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { SERVER_URL } from '../../constants';
+// import { SERVER_URL } from '../../constants';
+import { useFollowAxios } from '../../hooks/useFollowAxios';
 import { NoneProfileSmall } from '../common/user/UserUpload';
 
 const UserLi = styled.li`
@@ -23,32 +24,34 @@ const UserInfo = styled.h2`
 `;
 
 function UserFollowing() {
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	const MyAccountName = JSON.parse(
-		sessionStorage.getItem('user'),
-	).accountname;
+	// const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [Following, setFollowing] = useState(null);
+	const { getFollowingList } = useFollowAxios();
 
-	async function UserFollowingList() {
-		try {
-			const res = await fetch(
-				SERVER_URL + `/profile/${MyAccountName}/following`,
-				{
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
-				},
-			);
-			const result = await res.json();
-			setFollowing(result);
-		} catch (error) {
-			console.error(error);
-		}
-	}
+	// async function UserFollowingList() {
+	// 	try {
+	// 		const res = await fetch(
+	// 			SERVER_URL + `/profile/${MyAccountName}/following`,
+	// 			{
+	// 				method: 'GET',
+	// 				headers: {
+	// 					Authorization: `Bearer ${token}`,
+	// 					'Content-type': 'application/json',
+	// 				},
+	// 			},
+	// 		);
+	// 		const result = await res.json();
+	// 		setFollowing(result);
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// }
+
 	useEffect(() => {
-		UserFollowingList();
+		getFollowingList(MyAccountName).then((followingList) => {
+			setFollowing(followingList);
+		});
 	}, []);
 
 	return (
@@ -56,10 +59,7 @@ function UserFollowing() {
 			{Following !== null &&
 				Following?.map((item) => (
 					<UserLi key={item._id}>
-						<Link
-							to={`/user/${item.accountname}`}
-							state={{ userId: item.accountname }}
-						>
+						<Link to={`/user/${item.accountname}`} state={{ userId: item.accountname }}>
 							<NoneProfileSmall
 								style={{
 									backgroundImage: `url(${item.image})`,
