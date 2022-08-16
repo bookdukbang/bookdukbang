@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {
-	ProfileName,
-	Profilestyle,
-	SmallProfileEmail,
-} from '../common/ProfileName.style';
+import { ProfileName, Profilestyle, SmallProfileEmail } from '../common/ProfileName.style';
 import { SmallBtn, SmallBtnDiv } from '../common/Button.style';
 import { NoneProfileMedium } from '../common/user/UserUpload';
 import share from '../../assets/share.png';
@@ -178,16 +174,12 @@ function UserProfileInfo() {
 		<>
 			<ProfileDiv>
 				<InfoDiv>
-					<NoneProfileMediumStyle
-						style={{ backgroundImage: `url(${user.image})` }}
-					/>
+					<NoneProfileMediumStyle style={{ backgroundImage: `url(${user.image})` }} />
 
 					<Profilestyle>
 						<TextDiv>
 							<ProfileName>{user.username}</ProfileName>
-							<SmallProfileEmail>
-								@ {user.accountname}
-							</SmallProfileEmail>
+							<SmallProfileEmail>@ {user.accountname}</SmallProfileEmail>
 
 							<ProfileText>{user.intro}</ProfileText>
 						</TextDiv>

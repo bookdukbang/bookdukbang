@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
-// import PostViewImg from '../common/post/PostViewImg';
+import { useParams } from 'react-router-dom';
 import PostForm from '../postUpload/PostForm';
-import { SERVER_URL } from '../../constants';
+import { usePostAxios } from '../../hooks/usePostAxios';
 
 const PostEditSection = styled.section`
 	display: flex;
@@ -18,11 +17,10 @@ const PostEditSection = styled.section`
 		gap: 0rem;
 	}
 `;
-//
+
 function PostEditContainer({ isDisable, setDisable }) {
 	const { id } = useParams();
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
-	const navigate = useNavigate();
+	const { getPost, editPost } = usePostAxios();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [postInfo, setPostInfo] = useState({
 		content: '',
@@ -30,67 +28,15 @@ function PostEditContainer({ isDisable, setDisable }) {
 	});
 
 	useEffect(() => {
-		callPostAPI();
-	}, []);
-
-	// 해당 게시물 내용 받아오기
-	async function callPostAPI() {
-		const reqPath = `/post/${id}`;
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			}
-
+		getPost(id).then((postData) => {
 			setPostInfo((cur) => ({
 				...cur,
-				content: json.post.content,
-				image: json.post.image,
+				content: postData.content,
+				image: postData.image,
 			}));
-			setUploadImgs((cur) => [...cur, json.post.image]);
-			return json;
-		} catch (err) {
-			console.error(err);
-		}
-	}
-
-	// 서버로 수정한 form 보내기
-	async function postEditAPI() {
-		const reqPath = `/post/${id}`;
-		const postData = {
-			post: {
-				...postInfo,
-			},
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'PUT',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(postData),
-			});
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/error');
-			}
-			navigate(`/post/${json.post.id}`);
-
-			return json;
-		} catch (err) {
-			console.error(err.message);
-		}
-	}
+			setUploadImgs((cur) => [...cur, postData.image]);
+		});
+	}, []);
 
 	return (
 		<PostEditSection>
@@ -101,7 +47,7 @@ function PostEditContainer({ isDisable, setDisable }) {
 					uploadImgs={uploadImgs}
 					setUploadImgs={setUploadImgs}
 					setDisable={setDisable}
-					formFinishAPI={postEditAPI}
+					formFinishAPI={editPost}
 					postInfo={postInfo}
 					setPostInfo={setPostInfo}
 					isImgNone={true}

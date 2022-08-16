@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { SERVER_URL } from '../../../constants';
-import { useNavigate, useParams } from 'react-router-dom';
 import { ProductImg, ProductImgWrap } from '../../product/ProductForm.style';
 import { BottomSheatBg } from '../modal/BottomSheat.style';
 import User from '../../common/user/User';
@@ -15,17 +13,18 @@ import {
 	CloseBtn,
 	PriceSpan,
 } from './ProductDetail.style';
+import { useProductAxios } from '../../../hooks/useProductAxios';
 
 function ProductDetail({ modalInfo, setModalInfo }) {
-	const navigate = useNavigate();
-	const { id } = useParams();
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
+	const { getProduct, deleteProduct } = useProductAxios();
 	const loginUser = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [isShow, setIsShow] = useState(true);
 	const [productInfo, setProductInfo] = useState(null);
 
 	useEffect(() => {
-		productViewAPI();
+		getProduct(modalInfo.productId).then((productData) => {
+			setProductInfo(productData);
+		});
 	}, []);
 
 	const onClickBottomSheet = (e) => {
@@ -34,35 +33,8 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 			setIsShow(true);
 		}
 	};
-	async function productViewAPI() {
-		const reqPath = `/product/detail/${modalInfo.productId}`;
-
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/error');
-			}
-
-			setProductInfo(json.product);
-		} catch (err) {
-			console.error(err);
-		}
-	}
 
 	// 삭제하기
-	const onClickDelete = () => {
-		setIsShow(false);
-	};
-
 	const deleteModal = {
 		title: '상품',
 		whatDo: '삭제',
@@ -71,36 +43,18 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 			setIsShow(true);
 		},
 		delete: () => {
-			deleteProductAPI();
+			deleteProduct(modalInfo.productId)
+				.then((productData) => {
+					setModalInfo((cur) => ({ ...cur, state: false }));
+					setIsShow(true);
+					alert(productData.message);
+				})
+				.then(() => {
+					window.location.reload();
+				});
 		},
 	};
 
-	async function deleteProductAPI() {
-		try {
-			const res = await fetch(SERVER_URL + `/product/${modalInfo.productId}`, {
-				method: 'DELETE',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const result = await res.json();
-			if (result.status === 404) {
-				throw navigate('/errorPage');
-			}
-			setModalInfo((cur) => ({ ...cur, state: false }));
-			setIsShow(true);
-			alert(result.message);
-			if (id !== undefined) {
-				navigate('/feed');
-			} else {
-				navigate('/myprofile');
-			}
-			return result;
-		} catch (error) {
-			console.error(error);
-		}
-	}
 	return (
 		<>
 			{productInfo !== null && isShow && (
@@ -137,7 +91,12 @@ function ProductDetail({ modalInfo, setModalInfo }) {
 									<ModifyBtn to={`/product/edit/${productInfo.id}`}>
 										수정
 									</ModifyBtn>
-									<DeleteBtn type="button" onClick={onClickDelete}>
+									<DeleteBtn
+										type="button"
+										onClick={() => {
+											setIsShow(false);
+										}}
+									>
 										삭제
 									</DeleteBtn>
 								</>

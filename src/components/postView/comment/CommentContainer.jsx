@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { SERVER_URL } from '../../../constants';
+import { useCommentAxios } from '../../../hooks/useCommentAxios';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 import CommetModal from './CommetModal';
@@ -18,8 +18,9 @@ const CommentContainerStyle = styled.div`
 	}
 `;
 
-function CommentContainer({ postId, userInfo }) {
-	const navigate = useNavigate();
+function CommentContainer() {
+	const { id } = useParams();
+	const { getComments } = useCommentAxios();
 	const [postComments, setPostComments] = useState(null);
 	const [isCommentUpload, setIsCommentUpload] = useState(false);
 	const [modalInfo, setModalInfo] = useState({
@@ -29,39 +30,15 @@ function CommentContainer({ postId, userInfo }) {
 	});
 
 	useEffect(() => {
-		commentAPI();
+		getComments(id).then((commentData) => setPostComments(commentData));
 	}, []);
 
 	useEffect(() => {
 		if (isCommentUpload) {
-			commentAPI();
+			getComments(id).then((commentData) => setPostComments(commentData));
 			setIsCommentUpload(false);
 		}
 	}, [isCommentUpload]);
-
-	// 해당 게시글의 댓글 불러오기
-	async function commentAPI() {
-		const reqPath = `/post/${postId}/comments`;
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${userInfo.token}`,
-					'Content-type': 'application/json',
-				},
-			});
-
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			}
-
-			setPostComments(json.comments.reverse());
-		} catch (err) {
-			console.error(err);
-		}
-	}
 
 	return (
 		<CommentContainerStyle>
@@ -69,24 +46,12 @@ function CommentContainer({ postId, userInfo }) {
 				{postComments !== '' &&
 					postComments !== null &&
 					postComments.map((item) => (
-						<Comment
-							key={item.id}
-							commentInfo={item}
-							setModalInfo={setModalInfo}
-						/>
+						<Comment key={item.id} commentInfo={item} setModalInfo={setModalInfo} />
 					))}
 			</ul>
-			{postComments !== null && (
-				<CommentForm
-					postId={postId}
-					setIsCommentUpload={setIsCommentUpload}
-					userInfo={userInfo}
-				/>
-			)}
+			{postComments !== null && <CommentForm setIsCommentUpload={setIsCommentUpload} />}
 			{modalInfo.state && (
 				<CommetModal
-					postId={postId}
-					userInfo={userInfo}
 					modalInfo={modalInfo}
 					setModalInfo={setModalInfo}
 					setIsCommentUpload={setIsCommentUpload}

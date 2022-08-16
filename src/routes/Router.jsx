@@ -18,7 +18,7 @@ import ProfileEditPage from '../pages/ProfileEditPage';
 import PostEditPage from '../pages/PostEditPage';
 import ProductEditPage from '../pages/ProductEditPage';
 import PrivateRouter from './PrivateRouter';
-import UserRouter from './UserRouter';
+import UserProfilePage from '../pages/UserProfilePage';
 
 export default function Router() {
 	return (
@@ -48,7 +48,7 @@ export default function Router() {
 				<Route
 					path="/user/:id"
 					exact
-					element={<PrivateRouter element={<UserRouter />} />}
+					element={<PrivateRouter element={<UserProfilePage />} />}
 				/>
 				<Route
 					path="/post/upload"

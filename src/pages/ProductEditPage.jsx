@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProductForm from '../components/product/ProductForm';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
-import { SERVER_URL } from '../constants';
+import { useProductAxios } from '../hooks/useProductAxios';
 
 const ProductWrap = styled(Wrap)`
 	margin-top: 3rem;
@@ -25,9 +25,8 @@ const ProductHeaderTitle = styled.span`
 `;
 
 function ProductEditPage() {
-	const navigate = useNavigate();
+	const { getProduct } = useProductAxios();
 	const { id } = useParams();
-	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const [productInfo, setProductInfo] = useState({
 		itemName: '',
 		price: '',
@@ -35,85 +34,23 @@ function ProductEditPage() {
 		itemImage: '',
 	});
 	const [errorInfo, setErrorInfo] = useState({
-		itemName: {
-			state: false,
-			message: '',
-		},
-		price: {
-			state: false,
-			message: '',
-		},
-		link: {
-			state: false,
-			message: '',
-		},
-		itemImage: {
-			state: true,
-		},
+		itemName: { state: false, message: '' },
+		price: { state: false, message: '' },
+		link: { state: false, message: '' },
+		itemImage: { state: true },
 	});
 
 	useEffect(() => {
-		productUploadAPI();
-	}, []);
-
-	// 상품 데이터 받아오기
-	async function productUploadAPI() {
-		const reqPath = `/product/detail/${id}`;
-
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			}
-
+		getProduct(id).then((productData) => {
 			setProductInfo((cur) => ({
 				...cur,
-				itemName: json.product.itemName,
-				price: json.product.price,
-				link: json.product.link,
-				itemImage: json.product.itemImage,
+				itemName: productData.itemName,
+				price: productData.price,
+				link: productData.link,
+				itemImage: productData.itemImage,
 			}));
-		} catch (err) {
-			console.error(err);
-		}
-	}
-
-	// 상품 데이터 보내기
-	async function productModifyAPI() {
-		const reqPath = `/product/${id}`;
-		const productData = {
-			product: {
-				...productInfo,
-			},
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'PUT',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(productData),
-			});
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			}
-			navigate(-1);
-			return json;
-		} catch (err) {
-			console.error(err);
-		}
-	}
+		});
+	}, []);
 
 	return (
 		<>
@@ -122,7 +59,6 @@ function ProductEditPage() {
 			</FeedHeader>
 			<ProductWrap>
 				<ProductForm
-					formAPI={productModifyAPI}
 					productInfo={productInfo}
 					setProductInfo={setProductInfo}
 					errorInfo={errorInfo}
