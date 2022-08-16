@@ -48,10 +48,10 @@ function UserProfilePage() {
 				<ProfileWrap>
 					<DivArray>
 						{myAccountname === id ? <MyProfileInfo /> : <UserProfileInfo />}
-						<ProductRegister ismyPage={myAccountname === id} />
+						<ProductRegister postId={id} ismyPage={myAccountname === id} />
 					</DivArray>
 					<FeedWrap>
-						<MyFeed />
+						<MyFeed postId={id} />
 					</FeedWrap>
 				</ProfileWrap>
 			</NavigaterWrapping>

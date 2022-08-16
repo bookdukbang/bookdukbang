@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PlusBtn from '../../assets/plus_btn.png';
 import { useProductAxios } from '../../hooks/useProductAxios';
@@ -52,16 +52,15 @@ const RegisterTitle = styled.p`
 	color: ${({ theme }) => theme.grayColor2};
 `;
 
-function ProductRegister({ ismyPage }) {
+function ProductRegister({ ismyPage, postId }) {
 	const { getProductList } = useProductAxios();
-	let { id } = useParams();
 	const [books, setBooks] = useState(null);
 
 	useEffect(() => {
-		getProductList(id).then((productLiist) => {
+		getProductList(postId).then((productLiist) => {
 			setBooks(productLiist);
 		});
-	}, []);
+	}, [postId]);
 
 	return (
 		<>
