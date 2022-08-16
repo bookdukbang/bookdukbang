@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// import { SERVER_URL } from '../../constants';
 import { useFollowAxios } from '../../hooks/useFollowAxios';
 import { NoneProfileSmall } from '../common/user/UserUpload';
 
@@ -24,29 +23,9 @@ const UserInfo = styled.h2`
 `;
 
 function UserFollowing() {
-	// const token = JSON.parse(sessionStorage.getItem('user')).token;
 	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const [Following, setFollowing] = useState(null);
 	const { getFollowingList } = useFollowAxios();
-
-	// async function UserFollowingList() {
-	// 	try {
-	// 		const res = await fetch(
-	// 			SERVER_URL + `/profile/${MyAccountName}/following`,
-	// 			{
-	// 				method: 'GET',
-	// 				headers: {
-	// 					Authorization: `Bearer ${token}`,
-	// 					'Content-type': 'application/json',
-	// 				},
-	// 			},
-	// 		);
-	// 		const result = await res.json();
-	// 		setFollowing(result);
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// }
 
 	useEffect(() => {
 		getFollowingList(MyAccountName).then((followingList) => {
