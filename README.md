@@ -21,12 +21,12 @@
 `Git` `Github` `Github Issues` [`Figma`](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
 
 -   피그마 링크: [💻Figma 시안 보러가기](https://www.figma.com/file/M0bp0ilof7QwUkHD58Reta/%EB%B6%81%EB%8D%95%EB%B0%A9?node-id=3%3A3342)
--   커밋 컨벤션 링크: [💻커밋 컨벤션 보러가기](https://golden-meteor-e5b.notion.site/d1f251287a7d4e73a03350bee1930710)
--   코드 컨벤션 링크: [💻코딩 컨벤션 보러가기](https://golden-meteor-e5b.notion.site/c57e3d6607f64d2ab80f937fbea18d7e)
+-   커밋 컨벤션 링크: [💻커밋 컨벤션 보러가기](https://www.notion.so/d1f251287a7d4e73a03350bee1930710)
+-   코드 컨벤션 링크: [💻코딩 컨벤션 보러가기](https://www.notion.so/c57e3d6607f64d2ab80f937fbea18d7e)
 -   반응형 기준:
-    - PC: 1000px 이상
-    - tablet: 1000px 미만
-    - mobile: 390px 미만
+    -   PC: 1000px 이상
+    -   tablet: 1000px 미만
+    -   mobile: 390px 미만
 
 # 📘 역할 분담
 
@@ -164,16 +164,16 @@ import GlobalStyles from './style/global';
 import DarkModeBtn from './components/darkmode/DarkModeBtn';
 
 function App() {
-    const [mode, setMode] = useState('light');
-        return (
-            <>
-                <ThemeProvider theme={theme[mode]}>
-                    <GlobalStyles />
-                        // 생략
-                        <DarkModeBtn mode={mode} setMode={setMode} />
-                    </ThemeProvider>
-            </>
-    );
+	const [mode, setMode] = useState('light');
+	return (
+		<>
+			<ThemeProvider theme={theme[mode]}>
+				<GlobalStyles />
+				// 생략
+				<DarkModeBtn mode={mode} setMode={setMode} />
+			</ThemeProvider>
+		</>
+	);
 }
 ```
 
@@ -181,8 +181,8 @@ function App() {
 import React from 'react';
 
 function DarkModeBtn({ mode, setMode }) {
-    const { mode, setMode } = useContext(ThemeModeContext);
-    // 생략
+	const { mode, setMode } = useContext(ThemeModeContext);
+	// 생략
 }
 ```
 
@@ -205,18 +205,18 @@ import { ThemeProvider } from 'styled-components';
 import theme from './style/theme';
 
 function App() {
-    const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
-    const [mode, setMode] = useState(LocalTheme);
-    return (
-        <>
-            <ThemeModeContext.Provider value={{ mode, setMode }}>
-                <ThemeProvider theme={theme[mode]}>
-                    // 생략
-                    <DarkModeBtn />
-                </ThemeProvider>
-            </ThemeModeContext.Provider>
-        </>
-    );
+	const LocalTheme = JSON.parse(localStorage.getItem('mode')) || 'light';
+	const [mode, setMode] = useState(LocalTheme);
+	return (
+		<>
+			<ThemeModeContext.Provider value={{ mode, setMode }}>
+				<ThemeProvider theme={theme[mode]}>
+					// 생략
+					<DarkModeBtn />
+				</ThemeProvider>
+			</ThemeModeContext.Provider>
+		</>
+	);
 }
 ```
 
@@ -225,17 +225,17 @@ import React, { useContext } from 'react';
 import { ThemeModeContext } from '../../context/ThemeModeContext';
 
 function DarkModeBtn({ isMain }) {
-    const { mode, setMode } = useContext(ThemeModeContext);
-    const onClickMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            localStorage.setItem('mode', JSON.stringify('dark'));
-        } else {
-            setMode('light');
-            localStorage.setItem('mode', JSON.stringify('light'));
-        }
-    };
-    //생략
+	const { mode, setMode } = useContext(ThemeModeContext);
+	const onClickMode = () => {
+		if (mode === 'light') {
+			setMode('dark');
+			localStorage.setItem('mode', JSON.stringify('dark'));
+		} else {
+			setMode('light');
+			localStorage.setItem('mode', JSON.stringify('light'));
+		}
+	};
+	//생략
 }
 ```
 
@@ -249,64 +249,58 @@ function DarkModeBtn({ isMain }) {
 
 ```jsx
 function Followings() {
-    const { id } = useParams();
-    const [Following, setFollowing] = useState(null);
+	const { id } = useParams();
+	const [Following, setFollowing] = useState(null);
 
-    // 팔로잉 리스트, 팔로우 리스트(UserFollowList())
-    async function UserFollowingList() {
-        try {
-            // 생략
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    useEffect(() => {
-        UserFollowingList();
-    }, []);
+	// 팔로잉 리스트, 팔로우 리스트(UserFollowList())
+	async function UserFollowingList() {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	useEffect(() => {
+		UserFollowingList();
+	}, []);
 
-    // 팔로우
-    async function Follow(useraccount) {
-        try {
-            // 생략
-        } catch (error) {
-            console.error(error);
-        }
-    }
+	// 팔로우
+	async function Follow(useraccount) {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
-    // 언팔로우
-    async function UnFollow(useraccount) {
-        try {
-            // 생략
-        } catch (error) {
-            console.error(error);
-        }
-    }
+	// 언팔로우
+	async function UnFollow(useraccount) {
+		try {
+			// 생략
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
-    return (
-        <>
-            {Following !== null &&
-                Following.map((item) => (
-                    <UserLi key={item._id}>
-                    // 생략
-                    {item.isfollow ? (
-                        <FollowingBtn
-                            type="button"
-                            onClick={() => UnFollow(item.accountname)}
-                        >
-                            팔로잉
-                        </FollowingBtn>
-                    ) : (
-                        <FollowBtn
-                            type="button"
-                            onClick={() => Follow(item.accountname)}
-                        >
-                            팔로우
-                        </FollowBtn>
-                    )}
-                    </UserLi>
-                ))}
-        </>
-    );
+	return (
+		<>
+			{Following !== null &&
+				Following.map((item) => (
+					<UserLi key={item._id}>
+						// 생략
+						{item.isfollow ? (
+							<FollowingBtn type="button" onClick={() => UnFollow(item.accountname)}>
+								팔로잉
+							</FollowingBtn>
+						) : (
+							<FollowBtn type="button" onClick={() => Follow(item.accountname)}>
+								팔로우
+							</FollowBtn>
+						)}
+					</UserLi>
+				))}
+		</>
+	);
 }
 ```
 
