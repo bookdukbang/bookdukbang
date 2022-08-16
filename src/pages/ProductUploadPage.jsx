@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import ProductForm from '../components/product/ProductForm';
 import FeedHeader from '../components/common/header/FeedHeader';
 import Wrap from '../components/common/Wrap';
 import styled from 'styled-components';
-import { useProductAxios } from '../hooks/useProductAxios';
 
 const ProductWrap = styled(Wrap)`
 	margin-top: 3rem;
@@ -24,9 +22,7 @@ const ProductHeaderTitle = styled.span`
 	}
 `;
 
-function ProductEditPage() {
-	const { getProduct } = useProductAxios();
-	const { id } = useParams();
+function ProductUploadPage() {
 	const [productInfo, setProductInfo] = useState({
 		itemName: '',
 		price: '',
@@ -37,20 +33,8 @@ function ProductEditPage() {
 		itemName: { state: false, message: '' },
 		price: { state: false, message: '' },
 		link: { state: false, message: '' },
-		itemImage: { state: true },
+		itemImage: { state: false },
 	});
-
-	useEffect(() => {
-		getProduct(id).then((productData) => {
-			setProductInfo((cur) => ({
-				...cur,
-				itemName: productData.itemName,
-				price: productData.price,
-				link: productData.link,
-				itemImage: productData.itemImage,
-			}));
-		});
-	}, []);
 
 	return (
 		<>
@@ -63,10 +47,10 @@ function ProductEditPage() {
 					setProductInfo={setProductInfo}
 					errorInfo={errorInfo}
 					setErrorInfo={setErrorInfo}
-					isEdit={true}
+					isEdit={false}
 				/>
 			</ProductWrap>
 		</>
 	);
 }
-export default ProductEditPage;
+export default ProductUploadPage;

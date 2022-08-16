@@ -45,7 +45,7 @@ const MediumBtnUserSearch = styled(MediumBtn)`
 	}
 `;
 
-function FeedNoFollowings() {
+function FeedNoFollowers() {
 	return (
 		<>
 			<NoneBookLogoImg src={noneBookLogo} alt="" />
@@ -62,4 +62,4 @@ function FeedNoFollowings() {
 	);
 }
 
-export default FeedNoFollowings;
+export default FeedNoFollowers;

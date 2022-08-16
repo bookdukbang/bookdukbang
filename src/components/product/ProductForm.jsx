@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import NoneProductImg from '../../assets/none-product.png';
 import PostUploadImg from '../common/post/PostUploadImg';
 import { SERVER_URL } from '../../constants';
-import {
-	ProductBtn,
-	ProductFormStyle,
-	ProductImgWrap,
-	ProductImg,
-} from './ProductForm.style';
+import { ProductBtn, ProductFormStyle, ProductImgWrap, ProductImg } from './ProductForm.style';
 import ProductName from './ProductName';
 import ProductPrice from './ProductPrice';
 import ProductLink from './ProductLink';
 import { ErrorText } from '../common/Input.style';
 import styled from 'styled-components';
+import { useProductAxios } from '../../hooks/useProductAxios';
 
 const ImgErrorText = styled(ErrorText)`
 	margin-bottom: 3rem;
 `;
 
-function ProductForm({
-	productInfo,
-	setProductInfo,
-	errorInfo,
-	setErrorInfo,
-	formAPI,
-	isEdit,
-}) {
+function ProductForm({ productInfo, setProductInfo, errorInfo, setErrorInfo, isEdit }) {
+	const { writeProduct, editProduct } = useProductAxios();
 	const navigate = useNavigate();
+	const { id } = useParams();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [isDisable, setIsDisable] = useState(true);
 
@@ -35,16 +26,12 @@ function ProductForm({
 		if (productInfo.itemImage === '') {
 			setErrorInfo((cur) => ({
 				...cur,
-				itemImage: {
-					state: true,
-				},
+				itemImage: { state: true },
 			}));
 		} else {
 			setErrorInfo((cur) => ({
 				...cur,
-				itemImage: {
-					state: false,
-				},
+				itemImage: { state: false },
 			}));
 		}
 	}, [productInfo]);
@@ -61,7 +48,7 @@ function ProductForm({
 			});
 			const json = await res.json();
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			return json;
 		} catch (err) {
@@ -77,7 +64,6 @@ function ProductForm({
 				errorInfo.link.state ||
 				errorInfo.itemImage.state,
 		);
-		console.log(isDisable);
 	}, [errorInfo]);
 
 	// 이미지 파일이 업로드 되면 이미지 서버주소 받기
@@ -86,30 +72,23 @@ function ProductForm({
 			window.URL.revokeObjectURL(URL.createObjectURL(uploadImgs));
 			imgServerAPI(uploadImgs)
 				.then((d) => SERVER_URL + '/' + d.filename)
-				.then((src) =>
-					setProductInfo((cur) => ({ ...cur, itemImage: src })),
-				);
+				.then((src) => setProductInfo((cur) => ({ ...cur, itemImage: src })));
 		}
 	}, [uploadImgs]);
 
 	// 서버에 입력 form 제출
-	const onSubmitImg = (e) => {
+	const onSubmitProductForm = (e) => {
 		e.preventDefault();
-		if (!isDisable) {
-			formAPI();
-		}
+		isEdit ? editProduct(id, productInfo) : writeProduct(productInfo, setErrorInfo);
 	};
 
 	return (
-		<ProductFormStyle onSubmit={onSubmitImg}>
+		<ProductFormStyle onSubmit={onSubmitProductForm}>
 			<fieldset>
 				<legend>상품등록 양식</legend>
 				<ProductImgWrap>
 					{uploadImgs.length !== 0 || isEdit ? (
-						<ProductImg
-							src={productInfo.itemImage}
-							alt={productInfo.itemName}
-						/>
+						<ProductImg src={productInfo.itemImage} alt={productInfo.itemName} />
 					) : (
 						<ProductImg src={NoneProductImg} alt="상품 이미지" />
 					)}

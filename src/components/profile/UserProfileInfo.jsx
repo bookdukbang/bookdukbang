@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {
-	ProfileName,
-	Profilestyle,
-	SmallProfileEmail,
-} from '../common/ProfileName.style';
+import { ProfileName, Profilestyle, SmallProfileEmail } from '../common/ProfileName.style';
 import { SmallBtn, SmallBtnDiv } from '../common/Button.style';
 import { NoneProfileMedium } from '../common/user/UserUpload';
 import share from '../../assets/share.png';
@@ -148,7 +144,7 @@ const ShareBtn = styled(SmallBtn)`
 `;
 
 function UserProfileInfo() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 	let { id } = useParams();
 	const [user, setUser] = useState('');
 	const [isfollow, setIsfollow] = useState(null);
@@ -178,16 +174,12 @@ function UserProfileInfo() {
 		<>
 			<ProfileDiv>
 				<InfoDiv>
-					<NoneProfileMediumStyle
-						style={{ backgroundImage: `url(${user.image})` }}
-					/>
+					<NoneProfileMediumStyle style={{ backgroundImage: `url(${user.image})` }} />
 
 					<Profilestyle>
 						<TextDiv>
 							<ProfileName>{user.username}</ProfileName>
-							<SmallProfileEmail>
-								@ {user.accountname}
-							</SmallProfileEmail>
+							<SmallProfileEmail>@ {user.accountname}</SmallProfileEmail>
 
 							<ProfileText>{user.intro}</ProfileText>
 						</TextDiv>

@@ -2,42 +2,14 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { BottomSheatBg, BottomSheatWrap } from '../modal/BottomSheat.style';
 import Modal from '../modal/Modal';
-import { SERVER_URL } from '../../../constants';
+import { usePostAxios } from '../../../hooks/usePostAxios';
 
 function FeedModal({ postId, setModalInfo, modalInfo }) {
 	const { id } = useParams();
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const loginUser = JSON.parse(localStorage.getItem('user')).accountname;
+	const loginUser = JSON.parse(sessionStorage.getItem('user')).accountname;
 	const navigate = useNavigate();
 	const [isShow, setIsShow] = useState(true);
-
-	async function deleteFeedAPI() {
-		try {
-			const res = await fetch(SERVER_URL + `/post/${postId}`, {
-				method: 'DELETE',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const result = await res.json();
-			if (result.status === 404) {
-				throw navigate('/errorPage');
-			}
-			setModalInfo((cur) => ({ ...cur, state: false }));
-			setIsShow(true);
-			alert(result.message);
-			if (id !== undefined) {
-				navigate('/feed');
-			} else {
-				navigate('/myprofile');
-				window.location.reload();
-			}
-			return result;
-		} catch (error) {
-			console.error(error);
-		}
-	}
+	const { deletePost, reportPost } = usePostAxios();
 
 	// 삭제 modal 정보
 	const deleteModal = {
@@ -48,32 +20,17 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			setIsShow(true);
 		},
 		delete: () => {
-			deleteFeedAPI();
+			deletePost(postId)
+				.then((deleteResult) => {
+					setModalInfo((cur) => ({ ...cur, state: false }));
+					setIsShow(true);
+					alert(deleteResult.message);
+				})
+				.then(() => {
+					id !== undefined && id !== loginUser ? navigate(-1) : window.location.reload();
+				});
 		},
 	};
-
-	async function reportFeedAPI() {
-		try {
-			const res = await fetch(SERVER_URL + `/post/${postId}/report`, {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-			});
-			const result = await res.json();
-			if (result.status === 404) {
-				throw navigate('/errorPage');
-			}
-			setModalInfo((cur) => ({ ...cur, state: false }));
-			setIsShow(true);
-			alert('신고 완료되었습니다.');
-
-			return result;
-		} catch (error) {
-			console.error(error);
-		}
-	}
 
 	// 신고 modal 정보
 	const reportModal = {
@@ -83,7 +40,12 @@ function FeedModal({ postId, setModalInfo, modalInfo }) {
 			setModalInfo((cur) => ({ ...cur, state: false }));
 			setIsShow(true);
 		},
-		delete: () => reportFeedAPI(),
+		delete: () =>
+			reportPost(postId).then(() => {
+				setModalInfo((cur) => ({ ...cur, state: false }));
+				setIsShow(true);
+				alert('신고 완료되었습니다.');
+			}),
 	};
 
 	const onClickBottomSheet = (e) => {

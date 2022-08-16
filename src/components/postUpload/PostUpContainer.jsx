@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import PostForm from './PostForm';
 import PostViewImg from '../common/post/PostViewImg';
-import { SERVER_URL } from '../../constants';
+import { usePostAxios } from '../../hooks/usePostAxios';
 
 const PostUploadSection = styled.section`
 	display: flex;
@@ -20,42 +19,12 @@ const PostUploadSection = styled.section`
 `;
 
 function PostUpContainer({ isDisable, setDisable }) {
-	const token = JSON.parse(localStorage.getItem('user')).token;
-	const navigate = useNavigate();
+	const { writePost } = usePostAxios();
 	const [uploadImgs, setUploadImgs] = useState([]);
 	const [postInfo, setPostInfo] = useState({
 		content: '',
 		image: '',
 	});
-
-	// 서버로 form 보내기
-	async function postUploadAPI() {
-		const reqPath = '/post';
-		const postData = {
-			post: {
-				...postInfo,
-			},
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${token}`,
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify(postData),
-			});
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			}
-			navigate(`/post/${json.post.id}`);
-			return json;
-		} catch (err) {
-			console.error(err.message);
-		}
-	}
 
 	return (
 		<PostUploadSection>
@@ -65,17 +34,13 @@ function PostUpContainer({ isDisable, setDisable }) {
 				uploadImgs={uploadImgs}
 				setUploadImgs={setUploadImgs}
 				setDisable={setDisable}
-				formFinishAPI={postUploadAPI}
+				formFinishAPI={writePost}
 				postInfo={postInfo}
 				setPostInfo={setPostInfo}
 			/>
 
 			{uploadImgs.length > 0 && (
-				<PostViewImg
-					uploadImgs={uploadImgs}
-					setUploadImgs={setUploadImgs}
-					isView={false}
-				/>
+				<PostViewImg uploadImgs={uploadImgs} setUploadImgs={setUploadImgs} isView={false} />
 			)}
 		</PostUploadSection>
 	);

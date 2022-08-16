@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SERVER_URL } from '../../constants';
 import User from '../common/user/User';
-import {
-	PostFormStyle,
-	PostTextareaWrap,
-	PostTextarea,
-} from './PostForm.style';
+import { PostFormStyle, PostTextareaWrap, PostTextarea } from './PostForm.style';
 import PostUploadImg from '../common/post/PostUploadImg';
 
 function PostForm({
@@ -21,6 +17,7 @@ function PostForm({
 }) {
 	const navigate = useNavigate();
 	const [userInfo, setUserInfo] = useState(null);
+	const { id } = useParams();
 
 	useEffect(() => {
 		if (!isImgNone) {
@@ -51,7 +48,7 @@ function PostForm({
 	}, [uploadImgs]);
 
 	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
+		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
 	}, []);
 
 	// 서버로 이미지 보내기
@@ -66,7 +63,7 @@ function PostForm({
 			});
 			const json = await res.json();
 			if (json.status === 404) {
-				throw navigate('/errorPage');
+				throw navigate('/error');
 			}
 			return json;
 		} catch (err) {
@@ -78,7 +75,11 @@ function PostForm({
 	const onSubmitForm = (e) => {
 		e.preventDefault();
 		if (!isDisable) {
-			formFinishAPI();
+			if (isImgNone) {
+				formFinishAPI(id, postInfo);
+			} else {
+				formFinishAPI(postInfo);
+			}
 		}
 	};
 

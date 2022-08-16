@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-	Profilestyle,
-	ProfileName,
-	SmallProfileEmail,
-} from '../common/ProfileName.style';
+import { Profilestyle, ProfileName, SmallProfileEmail } from '../common/ProfileName.style';
 import setting from '../../assets/setting.png';
 import { MediumBtn, MediumBtnDiv } from '../common/Button.style';
-import {
-	ImgUploadBtnMedium,
-	ImgUploadMedium,
-	NoneProfileMedium,
-} from '../common/user/UserUpload';
+import { ImgUploadBtnMedium, ImgUploadMedium, NoneProfileMedium } from '../common/user/UserUpload';
 import { SERVER_URL } from '../../constants';
 
 const ProfileDiv = styled.div`
@@ -126,8 +118,8 @@ const MediumBtnDivStyle = styled(MediumBtnDiv)`
 	}
 `;
 
-function ProfileInfo() {
-	const token = JSON.parse(localStorage.getItem('user')).token;
+function MyProfileInfo() {
+	const token = JSON.parse(sessionStorage.getItem('user')).token;
 
 	const [myInfo, setMyInfo] = useState('');
 	const [myId, setMyId] = useState('');
@@ -157,27 +149,20 @@ function ProfileInfo() {
 		<>
 			<ProfileDiv>
 				<DivStyle>
-					<NoneProfileMediumStyle
-						style={{ backgroundImage: `url(${myInfo.image})` }}
-					/>
-					<ImgUploadBtnMediumStyle as={Link} to="/profileEdit">
-						<ImgUploadMediumStyle
-							src={setting}
-							alt="내 프로필 수정 버튼"
-						/>
+					<NoneProfileMediumStyle style={{ backgroundImage: `url(${myInfo.image})` }} />
+					<ImgUploadBtnMediumStyle as={Link} to="/my/edit">
+						<ImgUploadMediumStyle src={setting} alt="내 프로필 수정 버튼" />
 					</ImgUploadBtnMediumStyle>
 				</DivStyle>
 
 				<Profilestyle>
 					<TextDiv>
 						<ProfileName>{myInfo.username}</ProfileName>
-						<SmallProfileEmail>
-							@ {myInfo.accountname}
-						</SmallProfileEmail>
+						<SmallProfileEmail>@ {myInfo.accountname}</SmallProfileEmail>
 
 						<ProfileText>{myInfo.intro}</ProfileText>
 						<MediumBtnDivStyle>
-							<MediumBtn as={Link} to="/product">
+							<MediumBtn as={Link} to="/product/upload">
 								상품등록
 							</MediumBtn>
 						</MediumBtnDivStyle>
@@ -187,17 +172,13 @@ function ProfileInfo() {
 						<ProfileFollow>
 							<Followers>followers</Followers>
 							<FollowNumStyle>
-								<Link to={`/follower/${myId}`}>
-									{myInfo.followerCount}
-								</Link>
+								<Link to={`/follower/${myId}`}>{myInfo.followerCount}</Link>
 							</FollowNumStyle>
 						</ProfileFollow>
 						<ProfileFollowing>
 							<Followers>followings</Followers>
 							<FollowNumStyle>
-								<Link to={`/following/${myId}`}>
-									{myInfo.followingCount}
-								</Link>
+								<Link to={`/following/${myId}`}>{myInfo.followingCount}</Link>
 							</FollowNumStyle>
 						</ProfileFollowing>
 					</Follow>
@@ -207,4 +188,4 @@ function ProfileInfo() {
 	);
 }
 
-export default ProfileInfo;
+export default MyProfileInfo;

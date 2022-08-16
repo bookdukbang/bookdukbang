@@ -7,6 +7,7 @@ import { ReactComponent as UserIcon } from '../../assets/icon_user.svg';
 
 function NavigatorMenu() {
 	const [isMobile, setIsMobile] = useState(false);
+	const MyAccountName = JSON.parse(sessionStorage.getItem('user')).accountname;
 	window.addEventListener('resize', (e) => {
 		if (e.target.innerWidth <= 390) {
 			setIsMobile(true);
@@ -35,7 +36,7 @@ function NavigatorMenu() {
 						<ChatIcon />
 						<span>CHAT</span>
 					</MenuBtn>
-					<PostingBtn to="/postUpload">
+					<PostingBtn to="/post/upload">
 						<span>포스팅 올리기</span>
 					</PostingBtn>
 
@@ -44,7 +45,7 @@ function NavigatorMenu() {
 						<span>SEARCH</span>
 					</MenuBtn>
 
-					<MenuBtn to="/myprofile">
+					<MenuBtn to={`/user/${MyAccountName}`}>
 						<UserIcon />
 						<span>PROFILE</span>
 					</MenuBtn>

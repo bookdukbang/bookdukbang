@@ -1,7 +1,7 @@
-import { SERVER_URL } from '../../constants';
 import { SmallBtn } from '../common/Button.style';
 import styled from 'styled-components';
 import React from 'react';
+import { useFollowAxios } from '../../hooks/useFollowAxios';
 
 const FollowBtn = styled(SmallBtn)`
 	width: 25vmin;
@@ -23,59 +23,30 @@ const FollowingBtn = styled(SmallBtn)`
 `;
 
 function UserFollowBtn({ accountname, isfollow, setIsfollow }) {
-	const token = JSON.parse(localStorage.getItem('user')).token;
-
-	// 팔로우
-	async function Follow(useraccount) {
-		try {
-			const res = await fetch(
-				SERVER_URL + `/profile/${useraccount}/follow`,
-				{
-					method: 'POST',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
-				},
-			);
-			const result = await res.json();
-			setIsfollow(result.profile.isfollow);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	// 언팔로우
-	async function UnFollow(useraccount) {
-		try {
-			const res = await fetch(
-				SERVER_URL + `/profile/${useraccount}/unfollow`,
-				{
-					method: 'DELETE',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-type': 'application/json',
-					},
-				},
-			);
-			const result = await res.json();
-			setIsfollow(result.profile.isfollow);
-		} catch (error) {
-			console.error(error);
-		}
-	}
+	const { followUser, unfollowUser } = useFollowAxios();
 
 	return (
 		<>
 			{isfollow ? (
 				<FollowingBtn
 					type="button"
-					onClick={() => UnFollow(accountname)}
+					onClick={() =>
+						unfollowUser(accountname).then((followData) => {
+							setIsfollow(followData.profile.isfollow);
+						})
+					}
 				>
 					팔로잉
 				</FollowingBtn>
 			) : (
-				<FollowBtn type="button" onClick={() => Follow(accountname)}>
+				<FollowBtn
+					type="button"
+					onClick={() =>
+						followUser(accountname).then((followData) => {
+							setIsfollow(followData.profile.isfollow);
+						})
+					}
+				>
 					팔로우
 				</FollowBtn>
 			)}

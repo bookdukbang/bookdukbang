@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { SERVER_URL } from '../../constants';
+import { usePostAxios } from '../../hooks/usePostAxios';
 import FeedModal from '../common/feed/FeedModal';
 import PostViewImg from '../common/post/PostViewImg';
 import CommentContainer from './comment/CommentContainer';
@@ -22,58 +22,29 @@ const PostViewSection = styled.section`
 `;
 
 const PostContextWrap = styled.div`
-	/* max-width: 62rem; */
 	flex-basis: 62rem;
 	flex-grow: 1;
 `;
 
 function PostViewContainer() {
-	const navigate = useNavigate();
+	const { getPost } = usePostAxios();
 	const [postContext, setPostContext] = useState(null);
 	const [userInfo, setUserInfo] = useState(null);
 	const [postImgs, setPostImgs] = useState(null);
 	const { id } = useParams();
-	const postId = id;
 	const [modalInfo, setModalInfo] = useState({
 		state: false,
 		postUser: null,
-		postId: postId,
+		postId: id,
 	});
 
 	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
+		setUserInfo(JSON.parse(sessionStorage.getItem('user')));
 	}, []);
 
 	useEffect(() => {
-		userInfo !== null && postViewAPI();
+		userInfo !== null && getPost(id).then((postData) => setPostContext(postData));
 	}, [userInfo]);
-
-	async function postViewAPI() {
-		const reqPath = `/post/${postId}`;
-
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${userInfo.token}`,
-					'Content-type': 'application/json',
-				},
-			});
-
-			const json = await res.json();
-
-			if (json.status === 404) {
-				throw navigate('/errorPage');
-			}
-
-			if (!('image' in json.post)) {
-				json.post['image'] = '';
-			}
-			setPostContext(json.post);
-		} catch (err) {
-			console.error(err);
-		}
-	}
 
 	useEffect(() => {
 		if (postContext !== null) {
@@ -88,21 +59,15 @@ function PostViewContainer() {
 				{userInfo !== null && postContext && postImgs && (
 					<>
 						<PostContextWrap>
-							<PostCard
-								postContext={postContext}
-								setModalInfo={setModalInfo}
-							/>
-							<CommentContainer
-								userInfo={userInfo}
-								postId={postId}
-							/>
+							<PostCard postContext={postContext} setModalInfo={setModalInfo} />
+							<CommentContainer />
 						</PostContextWrap>
 						{postContext.image !== '' && 'image' in postContext && (
 							<PostViewImg uploadImgs={postImgs} isView={true} />
 						)}
 						{modalInfo.state && (
 							<FeedModal
-								postId={postId}
+								postId={id}
 								modalInfo={modalInfo}
 								setModalInfo={setModalInfo}
 							/>

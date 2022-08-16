@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import Heart from '../../assets/heart.png';
 import RedHeart from '../../assets/redheart.png';
-import { SERVER_URL } from '../../constants';
+import { useLike } from '../../hooks/useLike';
 
 const HeartImg = styled.img`
 	padding-top: 0.4rem;
@@ -39,60 +40,28 @@ const LikeBtn = styled.button`
 `;
 
 function LikeButton({ hearted, heartCount, id }) {
-	const [userInfo, setUserInfo] = useState(null);
-	useEffect(() => {
-		setUserInfo(JSON.parse(localStorage.getItem('user')));
-	}, []);
-
 	const [isLike, setIsLike] = useState(hearted);
+	const { likepost, dislikepost } = useLike();
 	const [LikeNum, setLikeNum] = useState(heartCount);
 
-	async function onClickheartedBtn() {
-		const reqPath = `/post/${id}/heart`;
-		const headers = {
-			Authorization: `Bearer ${userInfo.token}`,
-			'Content-type': 'application/json',
-		};
-
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'POST',
-				headers: headers,
+	const onClickLikeBtn = useCallback(() => {
+		if (isLike) {
+			dislikepost(id).then((heartedInfo) => {
+				setIsLike(heartedInfo.hearted);
+				setLikeNum(heartedInfo.heartCount);
 			});
-			const result = await res.json();
-			setIsLike(result.post.hearted);
-			setLikeNum(result.post.heartCount);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	async function onCancelheartedBtn() {
-		const reqPath = `/post/${id}/unheart`;
-		const headers = {
-			Authorization: `Bearer ${userInfo.token}`,
-			'Content-type': 'application/json',
-		};
-		try {
-			const res = await fetch(SERVER_URL + reqPath, {
-				method: 'DELETE',
-				headers: headers,
+		} else {
+			likepost(id).then((heartedInfo) => {
+				setIsLike(heartedInfo.hearted);
+				setLikeNum(heartedInfo.heartCount);
 			});
-			const result = await res.json();
-			setIsLike(result.post.hearted);
-			setLikeNum(result.post.heartCount);
-		} catch (error) {
-			console.error;
 		}
-	}
+	}, [isLike]);
 
 	return (
 		<>
 			<dt>
-				<LikeBtn
-					type="button"
-					onClick={isLike ? onCancelheartedBtn : onClickheartedBtn}
-				>
+				<LikeBtn type="button" onClick={onClickLikeBtn}>
 					{isLike ? (
 						<RedHeartImg src={RedHeart} alt="좋아요취소" />
 					) : (
